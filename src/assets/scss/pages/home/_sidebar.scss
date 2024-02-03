@@ -1,0 +1,44 @@
+.side-nav-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+  .side-nav-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    background-color: $color-black;
+    justify-content: center;
+    color: $color-white;
+  }
+  .side-nav-label {
+    width: 76%;
+    height: 30px;
+    border-radius: 5px;
+    margin-left: 10px;
+    background-color: $color-black;
+    color: $color-white;
+    display: flex;
+    align-items: center;
+  }
+}
+
+.sidebar {
+  > li {
+    > .active {
+      .side-nav-item {
+        .side-nav-icon {
+          background-color: $color-white;
+          color: $color-black;
+          border: 1px solid $color-black;
+        }
+        .side-nav-label {
+          background-color: $color-white;
+          color: $color-black;
+          border: 1px solid $color-black;
+        }
+      }
+    }
+  }
+}

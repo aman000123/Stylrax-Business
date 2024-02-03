@@ -1,0 +1,285 @@
+
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.totalOne-counts{
+  @media (max-width:1286px){
+    .second-paper {
+    padding-bottom: 12px;
+  }
+  .first-paper{
+    padding-bottom: 12px;
+  }
+  @media (max-width:1270px){
+    .second-paper {
+    padding-bottom: 0px;
+  }}
+  @media (max-width:1220px){
+    .first-paper {
+    padding-bottom: 0px;
+  }}
+  @media (max-width:1215px){
+    .first-paper {
+    padding-bottom: 15px;
+  }}
+  @media (max-width:1058px){
+    .first-paper {
+    padding-bottom: 2px;
+  }}
+  @media (max-width:1025px){
+    .second-paper {
+    padding-bottom: 10px;
+  }}
+  @media (max-width:1025px){
+    .third-paper {
+    padding-bottom: 10px;
+  }}
+  @media (max-width:1050px){
+    .first-paper {
+    padding-bottom: 10px;
+  }
+  .second-paper {
+    padding-bottom: 10px;
+  }
+  .third-paper {
+    padding-bottom: 10px;
+  }
+  @media (max-width:1050px){
+    .first-paper {
+    padding-bottom: 15px;
+    }}
+    @media (max-width:1023px){
+      .first-paper {
+      padding-bottom: 0px;
+    }}
+  }
+  }
+.paperOne {
+padding-top: 3px;
+.user-image {
+  background-color: black;
+  color: white;
+  margin-top: 15px;
+  margin-left: 25px;
+  padding: 15px;
+  height: 60px;
+  width: 60px;
+  
+  @media (max-width:1090px){
+    height: 55px;
+    width: 52px;
+   }
+   @media (max-width:1000px){
+   margin-left: 17px;
+   }
+}
+.total {
+  h5 {
+    margin-top: 15px;
+    font-size: 13px;
+    font-weight: bolder;
+    @media (max-width:1150px){
+      font-size: 11px;
+     }
+     @media (max-width:999px){
+      font-size: 9px;
+     }
+     }
+     h6{
+      margin-top: -6px;
+      font-size: 14px;
+      font-weight: bolder;
+    }
+     p{
+      font-size: 10px;
+      font-weight: bolder;
+      @media (max-width:1286px){
+        font-size: 8px;
+        margin-top: -5px;
+        @media (max-width:1213px){
+          font-size: 8px;
+          margin-top: -9px;
+        }
+        @media (max-width:1213px){
+          font-size: 6px;
+           }
+        }}
+      }
+     }
+    }
+  
+    .totalTwo-counts{
+.total-paper {  
+padding-bottom: 12px;
+.user-image {
+  background-color: black;
+  color: white;
+  margin-top: 15px;
+  margin-left: 25px;
+  padding: 15px;
+  height: 60px;
+  width: 60px;
+  @media (max-width:1090px){
+   height: 55px;
+   width: 52px;
+  }
+  @media (max-width:1090px){
+    margin-left: 17px;
+  }
+}
+h5 {
+  margin-top: 20px;
+  font-size: 13px;
+  font-weight:bolder;
+  @media (max-width:1200px){
+    padding-left: 10px;
+    font-size: 11px;
+    padding-top: 2px;
+    }
+    @media (max-width:999px){
+      font-size: 9px;
+    }
+}
+p{
+  font-size: 10px;
+  font-weight: bolder;
+  @media (max-width:1200px){
+    font-size: 7px;
+    font-weight: bolder;;
+  }
+}
+h6 {
+  margin-top: 20px;
+  @media (max-width:999px){
+    font-size: 12px;
+  }
+  }
+}
+ }
+.totalThree-counts {
+ .registeredUser {
+  text-align: center;
+  padding-top: 12px;
+  justify-content: center;
+  text-align: center;
+   .css-13aj3tc-MuiChartsSurface-root{
+    width: 250px;
+    height: 273px;
+  @media (max-width:1287px){
+    width: 226px;
+    margin-left: -60px;
+  }
+  @media (max-width:1190px){
+   margin-left: -82px;
+  }
+  @media (max-width:1110px){
+    width: 200px;
+    margin-left: -100px;
+   }
+   @media (max-width:1010px){
+    width: 180px;
+    margin-left: -120px;
+   }
+}
+}
+.booking-graph {
+  text-align: center;
+  font-size: 11px;
+  padding-top: 15px;
+  .booking{
+    height: 235px;
+    width: 177px;
+    @media (max-width:1286px){
+      height: 218px;
+    }
+    @media (max-width:1150px){
+      height: 193px;
+      margin-left: -9px;
+    }
+    @media (max-width:1150px){
+      margin-left: -20px;
+    }
+    @media (max-width:1286px){
+      padding-top: 30px;
+      @media (max-width:1030px){
+        padding-top: 50px;
+      }
+        @media (max-width:1008px){
+          padding-top: 62px;
+        } }
+  }
+  .booking-list{
+    font-size: 12px;
+    padding-bottom: 20px;
+    @media (max-width:1286px){
+      padding-top: 15px;
+    }
+  @media (max-width:1230px){
+    padding-bottom: 30px;
+   }
+@media (max-width:1150px){
+  padding-top: 30px;
+}
+@media (max-width:1136px){
+font-size: 10px;
+padding-top: 40px;
+}
+@media (max-width:1113px){
+font-size: 9px;
+padding-top: 40px;
+margin-left: -10px;
+} } }
+.graph-revennue {
+  padding-top: 15px;
+  padding-left: 20px;
+  padding-bottom: 2px;
+  tspan{
+    font-size: 12px;
+    @media (max-width:1286px){
+      padding-top: 10px;
+     font-size: 9px;
+    }
+    @media (max-width:999px){
+     margin-left: -196px;
+     font-size: 13px;
+    }
+  }
+  
+  .css-2f7jq3-MuiChartsSurface-root {
+    height: 261px;
+    width: 450px;
+    margin-left: -30px;
+    @media (max-width:1286px){
+      width: 400px;
+      margin-left: -80px;
+    }
+    @media (max-width:1210px){
+      width: 400px;
+      margin-left: -120px;
+    }
+    @media (max-width:1160px){
+      width: 350px;
+      margin-left: -144px;
+    }
+    @media (max-width:1060px){
+      width: 295px;
+      margin-left: -154px;
+    }
+    @media (max-width:1010px){
+      margin-left: -194px;
+    }
+  @media (max-width:999px){
+    width: 270px;
+    height: 260px;
+  }
+}
+  }
+}
+
+
+
+
+

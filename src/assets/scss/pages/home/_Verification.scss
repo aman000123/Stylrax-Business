@@ -1,0 +1,22 @@
+input.input-otp{
+ height: 70px;
+ width: 70px !important;
+ border-radius: 4px;
+ text-align: center;
+ margin: 0.5em;
+ font-size: 18px;
+ border: 1px solid #ced4da;
+}
+.paper {
+.resend-text {
+    font-size: 12px;
+    font-weight: 200;
+    color: $color-grey;
+    text-align: center;
+  }
+  .resend-otp {
+    color: $color-red;
+    text-align: center;
+  }
+ 
+}

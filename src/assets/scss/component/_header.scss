@@ -1,0 +1,52 @@
+// @import "../mixins/mixin";
+// .top_bar {
+//   background-image: linear-gradient(360deg, $color-main, $color-main-light);
+//   p {
+//     i {
+//       color: $color-white;
+//     }
+//     a {
+//       color: $color-white;
+//     }
+//     &:hover {
+//       i {
+//         color: $color-red;
+//       }
+//     }
+//   }
+//   .top_media {
+//     text-align: center;
+//     i {
+//       color: $color-white;
+//     }
+//   }
+// }
+
+// .luxmi {
+//   margin-right: 190px;
+// }
+// .navbar {
+//   box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px,
+//     rgba(0, 0, 0, 0.22) 0px 10px 10px;
+//   .nav-item {
+//     margin-left: 15px;
+//     .nav-link {
+//       color: $color-grey;
+//       font-weight: bold;
+//       font-size: 17px;
+//       letter-spacing: 1px;
+//       font-family: Arial, Helvetica, sans-serif;
+//     }
+//      @include for-tablet {
+//        border-bottom: 2px solid $color-grey;
+//        width: 50%;
+//        margin-left: auto;
+//        margin-right: auto;
+//      }
+   
+   
+//   }
+//   .flot{
+//     float: left;
+//   }
+// }

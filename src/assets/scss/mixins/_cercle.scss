@@ -1,0 +1,9 @@
+@mixin cercle {
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    @include for-desktop{
+        width: 250px;
+        height: 250px;
+    }
+}

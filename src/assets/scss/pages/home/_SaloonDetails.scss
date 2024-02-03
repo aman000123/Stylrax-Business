@@ -1,0 +1,73 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+ }
+.total-details{
+    .details-paper{
+       .personal-details{
+           text-align: center;
+       
+       .user-image{
+         padding-bottom: 5px;
+         height: 120px;
+         width: 140px;
+         border-radius: 5px;
+        
+       }
+       .user-details{
+           font-size: 12px;
+       }
+       .salon-name{
+           font-size: 16px;
+           font-weight: bolder;
+       }
+   }
+       .data-entries{
+       
+        .label{
+            font-size: 11px;
+            padding-left: 43px;
+            font-weight: bolder;
+           
+        }
+        .value{
+            font-size: 11px;
+            color: #6F6B7D;
+            font-weight: 600;
+            
+        }
+       }   
+    .btn{
+           text-align: center;
+           font-size: 12px;
+           padding-left: 40px;
+           padding-bottom: 20px;
+          @media (max-width:1296px){
+           font-size: 10px;
+          }
+          @media (max-width:1286px){
+            padding-bottom: 20px;
+            padding-top: 0px;
+          }
+          @media (max-width:1184px){
+           font-size: 9px;
+          }
+       }
+       .btn-block{
+           background-color: black;
+           color: white;
+           text-align: center;
+           border-radius: 5px;
+           padding: 8px;
+       }
+       .btn-req{
+           background-color: black;
+           color: white;
+           margin-left: 10px;
+           border-radius: 5px;
+           padding: 8px;
+          
+       }
+    }
+}   //1156

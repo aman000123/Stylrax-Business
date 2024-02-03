@@ -1,0 +1,23 @@
+.button {
+    width: 230px;
+    height: 45px;
+    margin-top: 9px;
+    border-radius: 10px;
+    border: none;
+    background-color: $color-black;
+    color: $color-white;
+  }
+
+.link{
+    color: #7ebaba;
+    font-size: 15px!important;
+    font-weight: 400;
+    text-decoration-line: none;
+}
+
+.input{
+    background-color: #edeff0 !important;
+    border: 1px solid #2eb6f5 !important;
+    border-radius: 10px !important;
+    padding: 10px !important;
+}

@@ -1,0 +1,38 @@
+@mixin for-LargePhone {
+    @media only screen and (max-width : $large-phone) {
+        @content;
+    }
+}
+@mixin for-tablet {
+    @media only screen and (max-width:$tablet) {
+        @content;
+    }
+}
+@mixin for-desktop {
+    @media only screen and (max-width:$desktop) {
+        @content;
+    }
+}
+@mixin for-large-desktop {
+    @media only screen and (max-width:$large-desktop) {
+        @content;
+    }
+}
+@mixin smallPhone {
+    @media only screen and (max-width:$mobile) {
+        @content;
+    }
+}
+
+@mixin small-Tablet {
+    @media only screen and (min-width:$small-tablet) {
+        @content;
+    }
+}
+
+
+@mixin small-ipad{
+    @media only screen and (max-width:$ipad-mini) {
+        @content;
+    }
+}
