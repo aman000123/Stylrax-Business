@@ -1,4 +1,4 @@
-// Global Stylesheet where we will import all other stylesheet
+/* // Global Stylesheet where we will import all other stylesheet
 
 // Variables
  @import "./variables/variables";
@@ -15,11 +15,13 @@
 // Utilities
  @import "./utilities/_utilities.scss";
 
-// Pages
+//Pages
 @import "./pages/_page.scss";
 
 // Component
  @import "./component/component";
 
 // Mixins
- @import "./mixins/_mixin";
+ @import "./mixins/_mixin"; */
+
+ @import "./pages/page.css";

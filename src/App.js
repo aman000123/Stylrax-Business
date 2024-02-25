@@ -3,7 +3,7 @@ import {Navigate, useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { ToastContainer } from 'react-toastify';
 import AppRoute from './AppRoute';
-import "../src/assets/scss/style.scss";
+import "../src/assets/scss/style.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import 'react-toastify/dist/ReactToastify.css';
 import { getFeature } from './api/account.api';
