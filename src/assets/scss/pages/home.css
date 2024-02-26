@@ -8,3 +8,10 @@
 @import './home/support.module.css';
 @import './home/Footer.module.css';
 @import './home/downloadApp.module.css';
+@import './home/about.module.css';
+@import './home/counter.module.css';
+@import './home/aboutOne.module.css';
+@import './home/aboutTwo.module.css';
+@import './home/explore.module.css';
+@import './home/review.module.css';
+@import './home/partners.module.css';

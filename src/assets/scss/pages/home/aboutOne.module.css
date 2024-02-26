@@ -1,0 +1,159 @@
+.mainDiv{
+    display: flex;
+    padding: 60px 0px;
+    background-image: url(../../../image/background.png);
+}
+
+
+.sectionOne{
+ display: flex;
+ width: 40%;
+}
+
+.sectionOne img{
+    height: auto;
+    width: 304.5px;               
+}
+
+.section2 {
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    background-color: #000;
+    width: 60%;
+    height: 432px;
+    margin-top: 105px;
+}
+
+.section2 p{
+    color: #fff;
+    font-size: 25px;
+}
+
+ .section2 .imgOne{
+    margin-bottom: 300px;
+}
+
+.img2{
+    margin-top: 100px;
+    margin-right: 10px;
+}
+
+@media (max-width:1520px){
+    .mainDiv{
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    .section2{
+        font-size: 28px;
+        width: 100%;
+        margin-top: 0px;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .sectionOne img{
+        height: auto;
+        width: 304.5px;                      
+    }
+
+    .sectionOne{
+            justify-content: center;
+            align-items: center;
+
+    }
+}
+
+@media (max-width:896px) {
+    .sectionOne img{
+        height: auto;
+        width: 250.5px;                      
+    }   
+}
+
+
+@media (max-width:665px) {
+    .sectionOne img{
+        height: auto;
+        width: 200.5px;                      
+    }
+
+    .section2 p {
+        font-size: 20px;
+    }
+
+    .section2 .imgOne{
+        margin-bottom: 250px;
+    }
+
+    .img2{
+        margin-top: 90px;
+        margin-right: 10px;
+    }
+}
+
+@media(max-width:539px) {
+    .section2 p {
+        font-size: 18px;
+    }
+
+    .section2 .imgOne{
+        height: 20px;
+        width: 50px;
+    }
+
+    .img2{
+    height: 56px;
+    width: 62px;
+    margin-top: 35px;
+    margin-right: 10px;
+    }
+
+}
+
+@media (max-width:451px){
+    .sectionOne img{
+        height: auto;
+        width: 150.5px;                      
+    }
+
+    .section2 p {
+        font-size: 20px;
+    }
+
+    .imgOne{
+        display: none;
+    }
+
+    .img2{
+        display: none;
+    }
+}
+
+@media(max-width:374px){
+    .sectionOne img{
+        height: auto;
+        width: 110.5px;                      
+    }
+
+    .section2 p {
+        font-size: 15px;
+    }
+
+    .section2{
+        height: 300px;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+

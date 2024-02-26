@@ -1,0 +1,248 @@
+.main{
+    display: flex;
+    background-image: url(../../../image/background.png);
+    flex-direction: row-reverse;
+
+}
+
+.section1 {
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    background-color: #000;
+    width: 75%;
+    height: 432px;
+    margin-top: 105px;  
+}
+
+.section1 p{
+    color: #fff;
+    font-size: 25px;
+    text-align: right;
+    font-weight: 600;
+}
+
+
+.imageOne .quotes{
+    height: auto;
+    width: 41px;
+}
+
+.imageOne .crossImg {
+    height: auto;
+    width: 102px;
+}
+
+.section1 .quotes{
+    position: relative;
+    bottom: 111px;
+    left: 16px;
+}
+
+.crossImg{
+    position: relative;
+    top: 101px;
+    right: 592px;
+}
+
+
+@media (max-width:1263px){
+    .main div .meeting{
+        height: auto;
+        width: 409px;
+    }
+
+    .section1{
+        margin-top: 38px;
+    }
+}
+
+@media (max-width:1116px){
+    .main div .meeting{
+        height: auto;
+        width: 380px;
+    }
+
+    .section1{
+        width: 75%;
+        height: 362px;
+        margin-top: 48px;
+    }
+
+    .section1 p{
+        margin-left: 29px;
+    }
+   
+}
+
+@media(max-width:1101px) {
+    .main div .meeting{
+        height: auto;
+        width: 336px;
+    }
+
+    .section1{
+    height: 335px;
+    margin-top: 40px;
+    }
+    
+}
+
+@media(max-width:1066px) {
+    .meeting{
+    height: auto;
+    width: 294px;
+    }
+
+    .section1{
+    height: 269px;
+    margin-top: 66px;
+    }
+
+    .crossImg{
+    height: 73px;
+    width: 86px;
+    top: 84px;
+    right: 578px;
+    }
+
+    .quotes{
+        bottom: 111px;
+        left: 45px;
+    }
+}
+
+@media(max-width:1044px) {
+    .main{
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .section1{
+        width: 100%;
+        margin-top: 0px;
+    }
+
+    .crossImg{
+    top: 80px;
+    right: 519px;
+    }
+
+    .section1 .quotes{
+        left: 52px;
+    }
+
+    .section1 p{
+        font-size: 22px;
+    }
+}
+
+@media(max-width:633px) {
+    .main div .meeting{
+        height: auto;
+        width: 253px;
+    }
+
+    .section1 p{
+        font-size: 19px;
+        font-weight: 500;
+    }
+
+    .crossImg{
+    top: 73px;
+    right: 455px;
+    }
+
+    .quotes{
+        bottom: 85px;
+        left: 43px;
+    }
+}
+
+@media (max-width:574px){
+    .main div .meeting{
+        width: 233px;
+    }
+
+    .section1 p {
+        font-size: 16px;
+    }
+
+    .section1 .quotes{
+        bottom: 81px;
+        left: 44px;
+    }
+
+    .crossImg{
+    top: 67px;
+    right: 395px;
+    }
+
+}
+
+@media(max-width:513px){
+    .main div .meeting{
+        width: 191px;
+    }
+
+    .section1 p {
+        font-size: 13px;
+    }
+
+    .section1 .quotes{
+        height: 26px;
+        bottom: 67px;
+        left: 39px;
+    }
+
+    .crossImg{
+    top: 49px;
+    right: 307px;
+    height: 50px;
+    width: 53px;
+    }
+}
+
+@media(max-width:384px){
+    .main div .meeting{
+        width: 163px;
+    }
+
+    .section1 p {
+        font-size: 11px;
+    }
+
+    .section1 .quotes{
+        bottom: 54px;
+    }
+
+    .crossImg{
+        top: 43px;
+        right: 266px;
+    }
+}
+
+@media(max-width:342px) {
+    .main div .meeting{
+        width: 140px;
+    }
+
+    .section1{
+        height: 163px;
+        
+    }
+
+    .section1 p {
+        font-size: 11px;
+        text-align: lefty;
+    }
+
+    .quotes{
+        display: none;
+    }
+
+    .crossImg{
+        display: none;
+    }
+}
