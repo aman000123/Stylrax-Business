@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Row, Col, Container } from "react-bootstrap";
-import styles from "../../assets/scss/pages/home/Banner.module.css";
-const Banner = () => {
+import styles from "../../assets/scss/pages/home/login.module.css";
+const Login = () => {
   const [mobileNumber, setMobileNumber] = useState("");
   const [mobileNumberError, setMobileNumberError] = useState("");
 
@@ -78,4 +78,4 @@ const Banner = () => {
   );
 };
 
-export default Banner;
+export default Login;

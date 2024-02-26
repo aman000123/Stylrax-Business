@@ -24,30 +24,15 @@
         }
         
     }
- /* @media (max-width:1380px) {
+ 
+@media (max-width:991.7px) {
     .starImage{
-     width: 120px;
-    }}
-    @media (max-width:1330px) {
-        .starImage{
-         width: 100px;
-        }}
-        @media (max-width:1270px) {
-            .starImage{
-             width: 80px;
-            }}
-            @media (max-width:1199.7px) {
-                .starImage{
-                 width: 112px;
-                }} */
-                @media (max-width:991.7px) {
-                    .starImage{
-                     top: 375px;
-                    }}
-                @media (max-width:767.7px) {
-                    .starImage{
-                   display: none;
-                    }}
+     top: 375px;
+  }}
+@media (max-width:767.7px) {
+  .starImage{
+ display: none;
+}}
 .star{
    position: absolute;
    right: 10px;

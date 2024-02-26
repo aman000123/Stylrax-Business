@@ -1,10 +1,10 @@
 @import './home/Navbar.module.css';
-@import './home/Banner.module.css';
+@import './home/login.module.css';
 @import './home/Comment.module.css';
 @import './home/Registration.module.css';
 @import './home/Feedback.module.css';
 @import './home/Team.module.css';
-@import './home/Banner4.module.css';
+@import './home/overview.module.css';
 @import './home/support.module.css';
 @import './home/Footer.module.css';
 @import './home/downloadApp.module.css';

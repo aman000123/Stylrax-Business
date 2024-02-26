@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom';
 import styles from '../../assets/scss/pages/home/Footer.module.css';
 import logo from "../../assets/image/logo.png";
-import AppStore from '../../assets/image/appStore-removebg-preview.png';
-import GooglePlays from '../../assets/image/Border (1).svg'
+import AppStore from '../../assets/image/img-appstore.svg';
+import GooglePlays from '../../assets/image/img-gplay.svg'
 import { MdFacebook } from "react-icons/md";
 import { FaInstagram } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
@@ -71,8 +71,8 @@ function Footer() {
         <div className={styles.socialMediaItems}>
           <p>Download Our App </p>
           <div className={styles.downloadsLogo}>
-            {/* <img src={AppStore} alt="Apple store" />
-            <img src={GooglePlays} alt="Google play store" /> */}
+            <img src={AppStore} alt="Apple store"  />
+            <img src={GooglePlays} alt="Google play store" />
           </div>
 
         </div>

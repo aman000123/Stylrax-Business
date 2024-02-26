@@ -234,6 +234,7 @@
     .mainDiv .links {
         flex-wrap: wrap;
         justify-content: flex-start;
+        margin-left: 130px;
     }
 
     .footerItem:nth-child(4) {
@@ -268,10 +269,36 @@
     .socialIcons {
         gap: 13px;
         justify-content: center;
+    }}
+
+@media screen and (max-width:370px) {
+    .mainDiv .links {
+     margin-left: 120px;
+    }
+}
+@media screen and (max-width:316px) {
+    .mainDiv .links {
+     margin-left: 88px;
+    }
+}
+@media screen and (max-width:290px) {
+    .mainDiv .links {
+     margin-left: 75px;
+    }
+}
+@media  (max-width:px){
+     .downloadsLogo{
+        height: 100px;
+        width: 100px;
+      
+        
+     }
+}
+@media  (max-width:475px){
+    .downloadsLogo{
+       display: none;
+       
     }
 
-
-
 }
-
-@media screen and (max-width:350px) {}
+    

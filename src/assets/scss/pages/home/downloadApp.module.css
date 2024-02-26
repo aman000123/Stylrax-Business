@@ -7,7 +7,7 @@
 }
 
 .mobileImage img {
-    width: 396px;
+    width: 513px;
 }
 .downloadmainDiv{
     display: flex;
@@ -36,7 +36,7 @@
         gap: 37px;
     }
     .mobileImage img{
-        width: 308px;
+        width: 400px;
     }
     .downloadmainDiv h3{
         font-size: 19px;
@@ -102,4 +102,26 @@ font-size: 9px;
         align-items: center;
     }
     
+}
+.brands{
+    text-align: center;
+    color: black;
+    margin-left: 162px;
+}
+@media (max-width:1200px){
+    .brands{
+        font-size: 28px;
+    }
+}
+@media (max-width:780px){
+    .brands{
+        font-size: 20px;
+        margin-left: 70px;
+        margin-top: -32px;
+    }
+}
+@media (max-width:500px){
+    .brands{
+        display: none;
+    }
 }

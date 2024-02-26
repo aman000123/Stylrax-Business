@@ -25,7 +25,7 @@ function Support() {
             <div className={styles.partners}>
                 <p>Partner with</p>
                 <div className={styles.partner}>
-                    <WorkIcon/>
+                    <WorkIcon className={styles.workIcon}/>
                     <span>Lorem Now</span>
                 </div>
 
