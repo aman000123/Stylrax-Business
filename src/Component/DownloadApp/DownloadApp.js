@@ -5,7 +5,7 @@ import appstore from "../../assets/image/imgAppstore.svg";
 
 function DownloadApp() {
   return (
-    <div>
+    <div className={styles.main}>
       <div className={styles.mainDiv}>
         <div className={styles.mobileImage}>
           <img src={mobileImg} alt="mobile-Image" />

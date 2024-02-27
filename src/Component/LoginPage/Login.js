@@ -1,15 +1,18 @@
 import React, { useState } from "react";
 import { Row, Col, Container } from "react-bootstrap";
 import styles from "../../assets/scss/pages/home/login.module.css";
+import Otp from "../otp/otp";
 const Login = () => {
   const [mobileNumber, setMobileNumber] = useState("");
   const [mobileNumberError, setMobileNumberError] = useState("");
+  const [showOTPSection,setshowOTPSection] = useState(false);
 
   const handleSubmit = (event) => {
     event.preventDefault();
     if (validateMobileNumber(mobileNumber)) {
       console.log("Mobile Number:", mobileNumber);
-      setMobileNumber("");
+       setMobileNumber(mobileNumber);
+      setshowOTPSection(true);
     } else {
       setMobileNumberError("Please enter a valid mobile number.");
     }
@@ -19,12 +22,23 @@ const Login = () => {
     const inputValue = event.target.value;
     // Remove any non-digit characters
     const numericValue = inputValue.replace(/\D/g, "");
-    setMobileNumber(numericValue);
+    let formattedMobileNumber = '';
+    for (let i = 0; i < numericValue.length; i++) {
+      formattedMobileNumber += numericValue[i];
+      if ((i + 1) % 3 === 0 && i + 1 < numericValue.length - 3) {
+        formattedMobileNumber += ' ';
+      }
+    }
+    formattedMobileNumber = '   ' + formattedMobileNumber.trim();
+    setMobileNumber(formattedMobileNumber);
     setMobileNumberError("");
   };
   const validateMobileNumber = (number) => {
-    // Check if the number is exactly 10 digits long
-    return number.length === 10 && /^\d+$/.test(number);
+    // Remove spaces from the number
+    const numericValue = number.replace(/\s/g, "");
+    
+    // Check if the numericValue consists only of digits and if it's exactly 10 digits long
+    return /^\d+$/.test(numericValue) && numericValue.length === 10;
   };
   return (
     <main className={styles.main}>
@@ -48,6 +62,8 @@ const Login = () => {
             </Col>
             <Col md={6} className="d-flex justify-content-center">
               <div className={styles.loginBorder}>
+                {!showOTPSection?(
+                  <>
                 <h3 className={styles.login}>Login/Register</h3>
                 <form className={styles.form} onSubmit={handleSubmit}>
                   <div className={styles.formGroup}>
@@ -69,6 +85,10 @@ const Login = () => {
                     </button>
                   </div>
                 </form>
+                </>
+                ):(
+                  <Otp mobileNumber={mobileNumber}/>
+                )}
               </div>
             </Col>
           </Row>

@@ -24,8 +24,8 @@ export default function Counter() {
     return (
         <div className={styles.banner3}>
             <div className={styles.textContent}>
-                {data.map((item) => (
-                    <div className={styles.content}>
+                {data.map((item,index) => (
+                    <div className={styles.content} key={index}>
                         <p className={styles.num}>{item.num}</p>
                         <p className={styles.txt}>{item.txt}</p>
                     </div>
