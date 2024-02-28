@@ -1,4 +1,6 @@
-// import React, { Suspense, lazy } from "react";
+import React, { Suspense, lazy } from "react";
+import Home from "./pages/Home";
+import { useRoutes } from 'react-router-dom';
 // import { Navigate, Outlet, useRoutes } from "react-router-dom";
 // import LogoLoader from "./Component/LogoLoader";
 // const UserManagement = lazy(() => import("./pages/UserManagement"));
@@ -14,7 +16,7 @@
 // const Notification = lazy(() => import("./pages/Notification"));
 // const Setting = lazy(() => import("./pages/Settings"));
 // const Layout = lazy(() => import("../src/pages/Layout"));
-// const DashBoard = lazy(() => import("../src/pages/Dashboard"));
+const SalonDashBoard = lazy(() => import("../src/pages/SalonDashboard"));
 // const Login = lazy(() => import("../src/Component/authentication/Login"));
 // const Authentication = lazy(() => import("../src/Component/authentication/Authentication"));
 // const ForgetPassword = lazy(() => import("../src/Component/authentication/ForgetPassword"));
@@ -80,14 +82,16 @@
 // export default AppRoute;
 
 
-import React from 'react';
-import Home from "./pages/Home";
-import { useRoutes } from 'react-router-dom';
 const AppRoute = (props) => {
   const _routes = [
     {
       path:"",
       element:<Home/>
+    },
+
+    {
+      path:"SalonDashboard",
+      element:<SalonDashBoard/>
     }
   ]
   const routes = useRoutes(_routes);

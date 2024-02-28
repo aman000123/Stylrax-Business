@@ -1,0 +1,32 @@
+.mainDiv{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+
+.clientDetails{
+    text-align: start;
+}
+
+.paper{
+    border-radius: 10px;
+}
+
+.clientImage .clientIcon{
+    font-size: 80px;
+}
+
+.clientDetails p{
+    font-size: 20px;
+    font-weight: 600;
+    margin-top: 10px;
+}
+
+.clientDetails .spanOne{
+    font-size: 10px;
+}
+
+.clientDetails .spanTwo{
+    font-size: 10px;
+}

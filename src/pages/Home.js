@@ -1,5 +1,4 @@
 import React from 'react';
-import Navbar from "../Component/Navbar/Navbar";
 import Login from '../Component/LoginPage/Login';
 import Comment from '../Component/Comments/Comment';
 import Registration from '../Component/Registration/Registration';
@@ -22,7 +21,6 @@ import Partners from '../Component/partners/Partners';
 const Home = () => {
   return (
     <>
-   <Navbar/>
    <Login/>
    <About/>
    <Counter/>
@@ -35,13 +33,10 @@ const Home = () => {
    <Explore/>
    <Review/>
    <DownloadApp/>
-   <Partners/>
+   <Partners/>3
   <Team/>
   <Support/>
- 
-  
   <Footer/>
-  
    </>
   );
 }
