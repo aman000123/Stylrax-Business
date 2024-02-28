@@ -1,7 +1,7 @@
 .main {
     background-color: #000;
     display: flex;
-    justify-content: end;
+    justify-content: flex-end;
     padding: 104px 0px;
     gap: 30px;
     padding-left: 397px;
