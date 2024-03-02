@@ -1,16 +1,18 @@
 input.inputOtp{
-    height: 40px;
-    width: 58px !important;
+    height: 38px;
+    width: 66px !important;
     border-radius: 4px;
     text-align: center;
-    margin: 0.5em;
+    margin: 0.3em;
     font-size: 18px;
-    border: 1px solid #ced4da;
+    border: none;
+    outline: none;
    }
    .input{
     width: 300px;
     height: 40px;
     border-radius: 10px;
+    outline: none;
    }
    .btn{
     background-color: white;

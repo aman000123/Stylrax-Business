@@ -15,12 +15,15 @@ import AboutTwo from '../Component/aboutTwo/AboutTwo';
 import Explore from '../Component/explore/Explore';
 import Review from '../Component/review/Review';
 import Partners from '../Component/partners/Partners';
+import Navbar from "../Component/Navbar/Navbar";
+import menuItems from '../Component/navData/data';
 
 
 
 const Home = () => {
   return (
     <>
+    <Navbar data={menuItems}/>
    <Login/>
    <About/>
    <Counter/>
@@ -37,6 +40,7 @@ const Home = () => {
   <Team/>
   <Support/>
   <Footer/>
+  
    </>
   );
 }
