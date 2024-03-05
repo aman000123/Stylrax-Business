@@ -1,14 +1,14 @@
 import React from 'react'
 import SalonClinic from '../Component/salonDashboard/SalonClinic';
 import UpcomingAppointment from '../Component/salonDashboard/UpcomingAppointment';
-import { Row, Col, Container } from "react-bootstrap";
+import { Row, Col } from "react-bootstrap";
 import arrowIcon from "../assets/image/arrowIcon.png";
 import orangeSpecs from "../assets/image/orangeSpecs.png";
 import styles from "../assets/scss/pages/home/salonDashboard.module.css";
 
 function SalonDashboard() {
   return (
-    <Container className={styles.container}>
+    <div className={styles.container}>
       <div className={styles.mainDiv}>
         <div>
           <img src={orangeSpecs} alt=''/>
@@ -22,15 +22,15 @@ function SalonDashboard() {
         </div>
       </div>
       <Row className='mt-2'>
-        <Col md={8}>
+        <Col md={9}>
           <SalonClinic />
         </Col>
 
-        <Col md={4}>
+        <Col md={3}>
           <UpcomingAppointment />
         </Col>
       </Row>
-    </Container>
+    </div>
   )
 }
 
