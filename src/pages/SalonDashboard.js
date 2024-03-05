@@ -5,9 +5,12 @@ import { Row, Col } from "react-bootstrap";
 import arrowIcon from "../assets/image/arrowIcon.png";
 import orangeSpecs from "../assets/image/orangeSpecs.png";
 import styles from "../assets/scss/pages/home/salonDashboard.module.css";
-
+import Navbar from "../Component/Navbar/Navbar";
+import {navItems} from '../Component/navData/data';
+import { Outlet } from 'react-router-dom';
 function SalonDashboard() {
   return (
+<<<<<<< HEAD
     <div className={styles.container}>
       <div className={styles.mainDiv}>
         <div>
@@ -31,6 +34,13 @@ function SalonDashboard() {
         </Col>
       </Row>
     </div>
+=======
+    <>
+    <Navbar data={navItems}/>
+    <Outlet/>
+   
+    </>
+>>>>>>> 301187c0a347a5fbbc09cc2a02b5b8642374118a
   )
 }
 

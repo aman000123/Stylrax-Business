@@ -1,127 +1,72 @@
-import React from "react";
-import { Formik, Field, ErrorMessage, Form } from "formik";
-import { doLogin, getFeature } from "../../api/account.api";
+import React, { useState } from "react";
+import { doLogin } from "../../api/account.api";
 import { storeToken } from "../../features/authInfo";
 import { useDispatch } from "react-redux";
 import Notify from "../../utils/notify";
-import { Link, useNavigate } from "react-router-dom";
-import Loader from "../Loader";
-import { Col, Container, Row } from "react-bootstrap";
-import logo from "../../assets/image/DLogo.png";
-import {LoginSchema} from "../../utils/schema";
+import { useNavigate } from "react-router-dom";
 
-const initialValues = {
-  email: "",
-  password: "",
-};
+ 
 
-const App = () => {
+
+
+  const App = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [phoneNumberError, setPhoneNumberError] = useState(""); // State for phone number error
 
-  const onSubmit = async (values, { setSubmitting }) => {
-    try {
-      console.log(values);
-      const { email, password } = values;
-      const res = await doLogin({ email, password });
-      const { authToken: token, userInfo } = res.data.data;
-      dispatch(storeToken({ token, userInfo }));
-      navigate("/dashboard");
-      setSubmitting(false);
-    } catch (error) {
-      Notify.error(error.message);
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    if (validatePhoneNumber(phoneNumber)) { // Check validation before submission
+      try {
+        setIsSubmitting(true);
+        console.log(phoneNumber);
+
+        const res = await doLogin({ phoneNumber });
+
+        const { authToken: token, userInfo } = res.data.data;
+        console.log("ata"+res.data.data)
+        dispatch(storeToken({ token:'sampleTokenValue'}));
+        navigate("/dashboard");
+
+      } catch (error) {
+        Notify.error(error.message);
+      } finally {
+        setIsSubmitting(false);
+      }
+    } else {
+      setPhoneNumberError("Please enter a valid phone number."); // Set error message
     }
   };
 
-  return (
-    <>
-      <Container className="p-0">
-        <Row className="m-0 p-0">
-          <Col sm={8} className="p-0 mt-4 ">
-            <p className="">
-              Welcome to{" "}
-              <span>
-                <img src={logo} alt="stylrax logo" />
-              </span>
-            </p>
-          </Col>
-          <Col
-            sm={4}
-            className="p-0 d-flex justify-content-center align-items-center mt-4"
-          >
-            <h6 className="sign-account">
-              No Account? <br />
-              <span className="sign-up">Sign up</span>
-            </h6>
-          </Col>
-          <Col className="p-0 mt-2 ">
-            <h1 className="">Sign in</h1>
-          </Col>
-        </Row>
-      </Container>
-      <Formik
-        initialValues={initialValues}
-        validationSchema={LoginSchema}
-        onSubmit={onSubmit}
-      >
-        {(props) => (
-          <div className="main-form ">
-            <Form className="d-flex flex-column">
-              <div className="form-group">
-                <label htmlFor="email">Email</label>
-                <Field
-                  type="email"
-                  name="email"
-                  placeholder="Enter email"
-                  autoComplete="off"
-                  className={`mt-2 form-control input  ${
-                    props.touched.email && props.errors.email
-                      ? "is-invalid"
-                      : ""
-                  }`}
-                />
-                <ErrorMessage
-                  component="div"
-                  name="email"
-                  className="invalid-feedback"
-                />
-              </div>
+  const handleChange = (event) => {
+    setPhoneNumber(event.target.value);
+    setPhoneNumberError(""); // Clear error message when input changes
+  };
 
-              <div className="form-group">
-                <label htmlFor="password" className="mt-3 ">
-                  Password
-                </label>
-                <Field
-                  type="password"
-                  name="password"
-                  placeholder="Enter password"
-                  className={`form-control input ${
-                    props.touched.password && props.errors.password
-                      ? "is-invalid"
-                      : ""
-                  }`}
-                />
-                <ErrorMessage
-                  component="div"
-                  name="password"
-                  className="invalid-feedback"
-                />
-              </div>
-              <Link to={"/forget-password"} className="ms-auto link">
-                Forget Password
-              </Link>
-              <button
-                type="submit"
-                className="button mb-3 ms-auto"
-                disabled={props.isSubmitting}
-              >
-                {props.isSubmitting ? <Loader /> : "Submit"}
-              </button>
-            </Form>
-          </div>
-        )}
-      </Formik>
-    </>
+  const validatePhoneNumber = (phoneNumber) => {
+    // Perform your validation logic here
+    return /^[0-9]{10}$/.test(phoneNumber); // Example: Check if it's exactly 10 digits
+  };
+
+  return (
+    <div>
+      <form onSubmit={handleSubmit}>
+        <input
+          type="tel"
+          name="phoneNumber"
+          placeholder="Enter your phone number"
+          value={phoneNumber}
+          onChange={handleChange}
+          required
+        />
+        {phoneNumberError && <div className="error">{phoneNumberError}</div>} {/* Display error message */}
+        <button type="submit" disabled={!phoneNumber || isSubmitting}> {/* Disable submit if no phone number or submitting */}
+          {isSubmitting ? 'Submitting...' : 'Submit'}
+        </button>
+      </form>
+    </div>
   );
 };
 

@@ -1,0 +1,95 @@
+.hair{
+    height: 60px;
+    width: 60px;
+    border-radius: 7px;
+}
+.mainDiv{
+    display: flex;
+    justify-content:flex-start ;
+    align-items: center;
+   margin-top: -40px;
+}
+.hairClinic{
+    font-weight: bolder;
+    font-size: 22px;
+}
+.info{
+    font-weight: 500;
+    font-size: 15px;
+    color: #818181;
+    text-align: center;
+}
+.btnDiv{
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    gap: 10px;
+    margin-top: 5px;
+}
+.btnDiv p{
+    font-size: 25px;
+    font-weight: 600;
+    color: #7A7A7A;
+}
+.btnDiv button{
+    padding: 5px 90px;
+    color: black;
+    background-color: white;
+    border: 2px solid #D3D3D3;
+    border-radius: 5px;
+    font-weight: 600;
+}
+.user{
+    font-size: 8px;
+    line-height: 11px;
+    margin-bottom: -2px;
+    
+}
+.userName{
+    font-size: 10px;
+    font-weight: 650;
+}
+.payment{
+    margin-top: 15px;
+    font-size: 8px;
+    line-height: 11px;
+    margin-bottom: -2px;
+    font-weight: 500;
+}
+.accept{
+    color: #53AD34;
+    background-color: white;
+    font-weight: 500;
+    padding: 0px 15px;
+    border: 1px solid #D3D3D3;
+    border-radius: 5px;
+    font-size: 12px;
+   
+}
+.userImage{
+    height: 70px;
+    width: 70px;
+   
+}
+.decline{
+    color: #D82626;
+    background-color: white;
+    font-weight: 500;
+    padding: 0px 15px;
+    border: 1px solid #D3D3D3;
+    border-radius: 5px;
+    font-size: 12px;
+}
+.userInfo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid #D3D3D3;
+    padding: 10px 0px;
+    border-radius: 8px;
+    width: 400px !important;
+}
+.paymentType{
+    color: #53AD34;
+    font-weight: 500;
+}

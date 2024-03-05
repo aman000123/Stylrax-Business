@@ -1,6 +1,12 @@
-import React, { Suspense, lazy } from "react";
+import React, {lazy } from "react";
 import Home from "./pages/Home";
 import { useRoutes } from 'react-router-dom';
+import SaloonDashboard from "./Component/SaloonDashboard/SDashboard";
+import Account from "./Component/account/Account";
+import  Details from "./Component/acountDetails/Details";
+const SalonDashBoard = lazy(() => import("../src/pages/SalonDashboard"));
+const SalonAppointment = lazy(() => import("./Component/salonAppointment/SalonAppointment"));
+
 // import { Navigate, Outlet, useRoutes } from "react-router-dom";
 // import LogoLoader from "./Component/LogoLoader";
 // const UserManagement = lazy(() => import("./pages/UserManagement"));
@@ -16,7 +22,7 @@ import { useRoutes } from 'react-router-dom';
 // const Notification = lazy(() => import("./pages/Notification"));
 // const Setting = lazy(() => import("./pages/Settings"));
 // const Layout = lazy(() => import("../src/pages/Layout"));
-const SalonDashBoard = lazy(() => import("../src/pages/SalonDashboard"));
+//const SalonDashBoard = lazy(() => import("../src/pages/SalonDashboard"));
 // const Login = lazy(() => import("../src/Component/authentication/Login"));
 // const Authentication = lazy(() => import("../src/Component/authentication/Authentication"));
 // const ForgetPassword = lazy(() => import("../src/Component/authentication/ForgetPassword"));
@@ -88,12 +94,40 @@ const AppRoute = (props) => {
       path:"",
       element:<Home/>
     },
-
-    {
-      path:"SalonDashboard",
-      element:<SalonDashBoard/>
-    }
-  ]
+    // {
+    //   path:"account",
+    //   element:<AccountCreation/>
+    // },
+      {
+        path: "salon-dashboard",
+        element: <SalonDashBoard />,
+        
+        children: [
+          {
+            path: "",
+            element: <SaloonDashboard />
+          },
+          {
+            path: "appointment",
+            element: <SalonAppointment />
+          }
+        ]
+      },
+      {
+        path: "account",
+        element: <Account />,
+        
+        children: [
+          {
+            path: "",
+            element: <Details />
+          },
+         
+        ]
+      }
+    ]
+  
+    
   const routes = useRoutes(_routes);
    return routes;
 }

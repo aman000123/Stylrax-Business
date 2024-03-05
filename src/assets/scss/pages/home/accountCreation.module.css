@@ -1,0 +1,32 @@
+.footer{
+    background-color: black;
+    color: white;
+    height: 104px;
+    
+}
+.main{
+    margin-left: 50px;
+}
+.list{
+    display: flex;
+    list-style: none;
+    color: white;
+    padding: 0;
+    gap: 50px;
+
+}
+.list li{
+    margin-top: 32px;
+    line-height: 0px;
+}
+.starImage{
+    height: 20px;
+    width: 200px;
+    color: #FFFFFF;
+    margin-top: 30px;
+}
+.mainDiv{
+    display: flex;
+    justify-content: space-between;
+    
+}
