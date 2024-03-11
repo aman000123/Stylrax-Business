@@ -8,6 +8,11 @@ import { useNavigate } from "react-router-dom";
  
 
 
+const initialValues = {
+  phoneNumber: "",
+  password: "",
+};
+
 
   const App = () => {
   const dispatch = useDispatch();

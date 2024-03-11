@@ -26,4 +26,15 @@ export default class Session {
     static remove(key){
         localStorage.removeItem(key);
     }
+
+    static setRegisteredPhoneNumber(phoneNumber){
+        localStorage.setItem('phoneNumber', phoneNumber);
+        console.log('no'+phoneNumber)
+    }
+
+    // Add a method to retrieve the registered phone number
+    static getRegisteredPhoneNumber(){
+        const storedPhoneNumber = localStorage.getItem('phoneNumber');
+
+    }
 }

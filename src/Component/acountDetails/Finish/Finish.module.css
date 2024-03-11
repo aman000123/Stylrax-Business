@@ -1,0 +1,16 @@
+.form{
+    padding-top: 168px;
+    padding-bottom: 168px;
+  }
+  .form .continue{
+      background-color: black;
+      color: white;
+      padding: 10px 90px;
+     
+  }
+  .form p{
+      text-align: center;
+      color: black;
+      font-weight: 600;
+  }
+  

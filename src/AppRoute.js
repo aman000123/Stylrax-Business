@@ -3,7 +3,6 @@ import Home from "./pages/Home";
 import { useRoutes } from 'react-router-dom';
 import SaloonDashboard from "./Component/SaloonDashboard/SDashboard";
 import Account from "./Component/account/Account";
-import  Details from "./Component/acountDetails/Details";
 const SalonDashBoard = lazy(() => import("../src/pages/SalonDashboard"));
 const SalonAppointment = lazy(() => import("./Component/salonAppointment/SalonAppointment"));
 
@@ -91,45 +90,31 @@ const SalonAppointment = lazy(() => import("./Component/salonAppointment/SalonAp
 const AppRoute = (props) => {
   const _routes = [
     {
-      path:"",
-      element:<Home/>
+      path: "",
+      element: <Home />
     },
-    // {
-    //   path:"account",
-    //   element:<AccountCreation/>
-    // },
-      {
-        path: "salon-dashboard",
-        element: <SalonDashBoard />,
-        
-        children: [
-          {
-            path: "",
-            element: <SaloonDashboard />
-          },
-          {
-            path: "appointment",
-            element: <SalonAppointment />
-          }
-        ]
-      },
-      {
-        path: "account",
-        element: <Account />,
-        
-        children: [
-          {
-            path: "",
-            element: <Details />
-          },
-         
-        ]
-      }
-    ]
-  
-    
+    {
+      path: "salon-dashboard",
+      element: <SalonDashBoard />,
+      children: [
+        {
+          path: "",
+          element: <SaloonDashboard />
+        },
+        {
+          path: "appointment",
+          element: <SalonAppointment />
+        }
+      ]
+    },
+    {
+      path: "account",
+      element: <Account />
+    }
+  ];
+
   const routes = useRoutes(_routes);
-   return routes;
+  return routes;
 }
 
 export default AppRoute;

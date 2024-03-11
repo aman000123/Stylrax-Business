@@ -1,0 +1,24 @@
+.date{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: -10px;
+    padding-top: 40px;
+    color: #7A7A7A;
+    font-weight: 600;
+    font-size: 20px;
+}
+.calendar{
+    border: 2px solid #D3D3D3;
+    border-radius: 8px;
+    width: 330px;
+    height: 380px;
+    margin-left: 60px;
+}
+
+
+.customDateCalendar .css-jgls56-MuiButtonBase-root-MuiPickersDay-root.Mui-selected {
+    color: #fff !important;
+    background-color: #1976d2 !important;
+    font-weight: 500 !important;
+}
