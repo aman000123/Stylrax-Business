@@ -12,7 +12,7 @@ import Notify from "./utils/notify";
 
 function App() {
   
-  const authToken = useSelector(state => state.authInfo.token);
+   const authToken = useSelector(state => state.authInfo.token);
   // const feature = useSelector(state => state.feature.value);
   // const location = useLocation();
   // const dispatch = useDispatch();
@@ -33,11 +33,11 @@ function App() {
   //   getFeatureList();
   // }
   
-  return (
-    <>
-    <AppRoute authToken={authToken}/>
-    <ToastContainer />
-    </>
+   return (
+     <>
+     <AppRoute authToken={authToken}/>
+     <ToastContainer />
+     </>
       
   );
 }

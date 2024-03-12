@@ -23,6 +23,7 @@
     font-size: 22px;
     outline: none;
     border: none;
+    padding-inline-start: 20px;
 }
 @media(max-width:430px){
   .input{

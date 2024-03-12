@@ -1,66 +1,31 @@
-import React, { useState } from "react";
+import React from "react";
 import { Row, Col, Container } from "react-bootstrap";
 import styles from "../../assets/scss/pages/home/login.module.css";
-import Otp from "../otp/otp";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { doLogin } from "../../api/account.api";
+import { storeToken } from "../../features/authInfo";
+import Notify from "../../utils/notify";
+import { Formik, Form, Field, ErrorMessage } from "formik";
+import { LoginSchema } from "../../utils/schema";
 
 const Login = () => {
-  const [mobileNumber, setMobileNumber] = useState("");
-  const [mobileNumberError, setMobileNumberError] = useState("");
-  const [showOTPSection, setShowOTPSection] = useState(false);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    if (validateMobileNumber(mobileNumber)) {
-      try {
-        const response = await fetch("https://devapi.stylrax.com/b2b/account/otp/login", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            countryCode: "91",
-            deviceType: 1,
-            phoneNumber: mobileNumber.replace(/\s/g, ""),
-            deviceToken: "staff3deviceid",
-          }),
-        });
-        const data = await response.json(); 
-        if (response.ok) {
-       
-          setShowOTPSection(true);
-          console.log("Response Data:", data); 
-        } else {
-        
-          console.error("Failed to send OTP:", data);
-        }
-      } catch (error) {
-        console.error("Failed to send OTP:", error); 
-      }
-    } else {
-      setMobileNumberError("Please enter a valid mobile number.");
+  const onSubmit = async (values, { setSubmitting }) => {
+    try {
+      setSubmitting(true);
+      const response = await doLogin(values);
+      const { authToken, userInfo } = response.data;
+      dispatch(storeToken({ token: authToken, userInfo }));
+      // Redirect to the home page after successful login
+      navigate("/");
+    } catch (error) {
+      Notify.error(error.message);
+    } finally {
+      setSubmitting(false);
     }
-  };
-
-  const handleMobileNumberChange = (event) => {
-    const inputValue = event.target.value;
-    // Remove any non-digit characters
-    const numericValue = inputValue.replace(/\D/g, "");
-    let formattedMobileNumber = "";
-    for (let i = 0; i < numericValue.length; i++) {
-      formattedMobileNumber += numericValue[i];
-      if ((i + 1) % 3 === 0 && i + 1 < numericValue.length - 3) {
-        formattedMobileNumber += " ";
-      }
-    }
-    formattedMobileNumber = "   " + formattedMobileNumber.trim();
-    setMobileNumber(formattedMobileNumber);
-    setMobileNumberError("");
-  };
-
-  const validateMobileNumber = (number) => {
-    // Remove spaces from the number
-    const numericValue = number.replace(/\s/g, "");
-
-    // Check if the numericValue consists only of digits and if it's exactly 10 digits long
-    return /^\d+$/.test(numericValue) && numericValue.length === 10;
   };
 
   return (
@@ -70,7 +35,7 @@ const Login = () => {
           <Row className="align-items-center d-flex">
             <Col md={6} className="d-flex justify-content-center">
               <div className={styles.info}>
-                <h3 className={styles.text}>Lorem lpsum</h3>
+                <h3 className={styles.text}>Lorem Ipsum</h3>
                 <h4 className={styles.textOne}>
                   Increase your earnings,
                   <br /> gain respect, and rest
@@ -85,35 +50,41 @@ const Login = () => {
             </Col>
             <Col md={6} className="d-flex justify-content-center">
               <div className={styles.loginBorder}>
-                {!showOTPSection ? (
-                  <>
-                    <h3 className={styles.login}>Login/Register</h3>
-                    <form className={styles.form} onSubmit={handleSubmit}>
+                <Formik
+                  initialValues={{ phoneNumber: "" }}
+                  validationSchema={LoginSchema}
+                  onSubmit={onSubmit}
+                >
+                  {({ isSubmitting }) => (
+                    <Form className={styles.form}>
+                      <h3 className={styles.login}>Login/Register</h3>
                       <div className={styles.formGroup}>
                         <label className="mb-1">Mobile Number</label>
                         <br />
-                        <input
-                          type="text"
+                        <Field
+                          type="tel"
+                          name="phoneNumber"
                           className={styles.input}
-                          value={mobileNumber}
-                          onChange={handleMobileNumberChange}
+                          required
                         />
-                        {mobileNumberError && (
-                          <div className="text-danger">
-                            {mobileNumberError}
-                          </div>
-                        )}
+                        <ErrorMessage
+                          name="phoneNumber"
+                          component="div"
+                          className="text-danger"
+                        />
                       </div>
                       <div>
-                        <button type="submit" className={styles.btn}>
-                          Submit
+                        <button
+                          type="submit"
+                          disabled={isSubmitting}
+                          className={styles.btn}
+                        >
+                          {isSubmitting ? "Submitting..." : "Submit"}
                         </button>
                       </div>
-                    </form>
-                  </>
-                ) : (
-                  <Otp mobileNumber={mobileNumber} />
-                )}
+                    </Form>
+                  )}
+                </Formik>
               </div>
             </Col>
           </Row>
