@@ -13,25 +13,25 @@ import Notify from "./utils/notify";
 function App() {
   
   const authToken = useSelector(state => state.authInfo.token);
-  const feature = useSelector(state => state.feature.value);
-  const location = useLocation();
-  const dispatch = useDispatch();
+  // const feature = useSelector(state => state.feature.value);
+  // const location = useLocation();
+  // const dispatch = useDispatch();
 
-  const getFeatureList = async () => {
-    try {
-      const features = await getFeature();
-      dispatch(setFeature(features.data.data));
-    } catch (error) {
-      Notify.error(error.message);
-    }
-  };
+  // const getFeatureList = async () => {
+  //   try {
+  //     const features = await getFeature();
+  //     dispatch(setFeature(features.data.data));
+  //   } catch (error) {
+  //     Notify.error(error.message);
+  //   }
+  // };
 
-  //If user is already logged in redirect to dashboard
-  if(authToken && location.pathname === "/login"){
-    return <Navigate to={"/dashboard"} />;
-  } else if(authToken && feature.length === 0){
-    getFeatureList();
-  }
+  // //If user is already logged in redirect to dashboard
+  // if(authToken && location.pathname === "/login"){
+  //   return <Navigate to={"/dashboard"} />;
+  // } else if(authToken && feature.length === 0){
+  //   getFeatureList();
+  // }
   
   return (
     <>

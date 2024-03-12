@@ -4,6 +4,7 @@ import { useRoutes } from 'react-router-dom';
 import SaloonDashboard from "./Component/SaloonDashboard/SDashboard";
 import Account from "./Component/account/Account";
 import  Details from "./Component/acountDetails/Details";
+import SalonManagement from "./Component/salonManagement/SalonManagement";
 const SalonDashBoard = lazy(() => import("../src/pages/SalonDashboard"));
 const SalonAppointment = lazy(() => import("./Component/salonAppointment/SalonAppointment"));
 
@@ -110,7 +111,12 @@ const AppRoute = (props) => {
           {
             path: "appointment",
             element: <SalonAppointment />
-          }
+          },
+
+          {
+            path: "salon-management",
+            element: <SalonManagement/>
+          },
         ]
       },
       {

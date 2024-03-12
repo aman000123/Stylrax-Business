@@ -1,0 +1,107 @@
+.mainDiv{
+    padding: 60px 60px;
+    background-color: #fff;
+    border-radius: 7px;
+}
+
+.imgDiv{
+    display: flex;
+    justify-content: space-between;
+}
+
+.text{
+    color: #BEBEBE;
+    font-size: 20px;
+}
+
+.text .icon {
+    padding-bottom: 2px;
+}
+
+.forms{
+    padding-left: 7px;
+}
+
+.lab{
+    padding:10px 0px;
+    color: black;
+    font-weight: 600;
+}
+
+.inputs{
+    padding: 5px 70px 5px 10px;
+    color: #BEBEBE;
+    border: 2px solid #BEBEBE;
+    border-radius: 5px;
+}
+
+.inputsTwo {
+    padding: 5px 170px 5px 10px;
+    color: #BEBEBE;
+    border: 2px solid #BEBEBE;
+    border-radius: 5px;
+}
+
+.inputsThree {
+    padding: 5px 50px 5px 10px;
+    color: #BEBEBE;
+    border: 2px solid #BEBEBE;
+    border-radius: 5px;
+}
+
+
+@media (max-width:769px){
+    .mainDiv{
+        margin-top: 29px;
+    }
+}
+
+
+@media(max-width:609px){
+    .inputsTwo{
+        padding: 5px 72px 5px 10px;
+    }
+}
+
+@media(max-width:493px){
+    .inputs{
+        padding: 5px 0px 5px 10px;
+    }
+
+    .inputsTwo {
+        padding: 5px 0px 5px 10px;
+    }
+    .inputsThree {
+        padding: 5px 0px 5px 10px;
+    }
+}
+
+@media(max-width:437px){
+    .imgDiv div img{
+        height: auto;
+        width: 150px;
+    }
+
+    .mainDiv{
+        padding: 36px 23px;
+    }
+}
+
+
+@media(max-width:361px){
+   .inputs{
+    width: 146px;
+   }
+
+   .inputsTwo{
+    width: 146px;
+   }
+
+   .inputsThree{
+    width: 146px;
+   }
+
+   .imgDiv div img{
+    width: 138px;
+   }
+}

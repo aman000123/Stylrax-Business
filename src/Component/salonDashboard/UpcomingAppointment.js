@@ -160,8 +160,8 @@ function UpcomingAppointment() {
     dots: false,
     infinite: true,
     speed: 500,
-    slidesToShow: 4,
-    slidesToScroll: 4,
+    slidesToShow: 6,
+    slidesToScroll: 6,
     initialSlide: 0,
     arrows: false,
     // slick-next: null, // Removes the previous arrow

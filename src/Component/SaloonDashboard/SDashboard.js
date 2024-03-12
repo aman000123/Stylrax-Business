@@ -9,7 +9,7 @@ import styles from "../../assets/scss/pages/home/salonDashboard.module.css";
 const SDashboard = () => {
   return (
     <>
-      <Container className={styles.container}>
+      <div className={styles.container}>
       <div className={styles.mainDiv}>
         <div>
           <img src={orangeSpecs} alt=''/>
@@ -31,7 +31,7 @@ const SDashboard = () => {
           <UpcomingAppointment />
         </Col>
       </Row>
-    </Container>
+    </div>
     </>
   );
 }
