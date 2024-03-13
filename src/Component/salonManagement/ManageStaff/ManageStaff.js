@@ -7,7 +7,7 @@ import { IoMdAddCircle } from "react-icons/io";
 import clsx from 'clsx';
 import { styled, css } from '@mui/system';
 import { Modal as BaseModal } from '@mui/base/Modal';
-import AddStaff from '../AddStaff';
+import AddStaff from '../AddStaff/AddStaff';
 import ViewAllAddService from '../ViewAllAddService';
 
 

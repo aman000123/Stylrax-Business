@@ -2,7 +2,8 @@ import React from 'react'
 import styles from "../BankDetails/BankDetails.module.css";
 // import { MdEdit } from "react-icons/md";
 import { useFormik } from "formik"
-import { bankDetailsSchema } from "../../../utils/schema.js";
+import {  bankSchema } from "../../../utils/schema.js";
+import { bankDetails } from "../../../api/account.api.js";
 
 const initialValues = {
     accNum: "",
@@ -16,14 +17,22 @@ function BankDetails() {
 
     const { values, errors, touched, handleBlurr, handleChange, handleSubmit } = useFormik({
         initialValues,
-        validationSchema: bankDetailsSchema,
-        onSubmit: (values, action) => {
-            console.log(values);
-            action.resetForm();
+        validationSchema: bankSchema,
+        onSubmit: async (values, action) => {
+            try {
+                // Call the bankDetails function
+                const response = await bankDetails(values);
+                console.log(response); // Assuming the response is logged by the bankDetails function
+
+                console.log('Form submitted successfully');
+                action.resetForm();
+            } catch (error) {
+                console.error('There was an error submitting the form:', error);
+            }
         }
     });
 
-    console.log(errors);
+ 
 
     return (
         <div className={styles.mainDiv}>
@@ -102,7 +111,7 @@ function BankDetails() {
 
 
 
-                    <label for="passbook" className={styles.lab}> Passbook/Cancel Cheque</label><br />
+                    {/* <label for="passbook" className={styles.lab}> Passbook/Cancel Cheque</label><br />
                     <input
                         type='text'
                         placeholder='Jhon'
@@ -118,9 +127,9 @@ function BankDetails() {
                         errors.passbook && touched.passbook ? (
                             <p className={styles.formError}>{errors.passbook}</p>
                         ) : null
-                    }
+                    } */}
 
-                    <button type='submit'>Submit form</button>
+                    <button type='submit' className={styles.btn}>Submit</button>
                 </form>
             </div>
 
@@ -134,4 +143,17 @@ function BankDetails() {
     )
 }
 
-export default BankDetails
+export default BankDetails;
+
+
+
+   // const { values, errors, touched, handleBlurr, handleChange, handleSubmit } = useFormik({
+    //     initialValues,
+    //     validationSchema: bankSchema,
+    //     onSubmit: (values, action) => {
+    //         console.log(values);
+    //         action.resetForm();
+    //     }
+    // });
+
+    // console.log(errors);

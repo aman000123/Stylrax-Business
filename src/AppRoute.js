@@ -1,12 +1,14 @@
 import React, {lazy } from "react";
 import Home from "./pages/Home";
+import SalonManagement from "../src/Component/salonManagement/SalonManagement";
 import { useRoutes } from 'react-router-dom';
 import SaloonDashboard from "./Component/SaloonDashboard/SDashboard";
 import Account from "./Component/account/Account";
 const SalonDashBoard = lazy(() => import("../src/pages/SalonDashboard"));
 const SalonAppointment = lazy(() => import("./Component/salonAppointment/SalonAppointment"));
 
-// import { Navigate, Outlet, useRoutes } from "react-router-dom";
+
+// import { Navigate, Outlet, useRoutes } from "react-router-dom";3
 // import LogoLoader from "./Component/LogoLoader";
 // const UserManagement = lazy(() => import("./pages/UserManagement"));
 // const SalonManagement = lazy(() => import("./pages/SalonManagement"));
@@ -104,6 +106,11 @@ const AppRoute = (props) => {
         {
           path: "appointment",
           element: <SalonAppointment />
+        },
+
+        {
+          path: "salon-management",
+          element: <SalonManagement/>
         }
       ]
     },

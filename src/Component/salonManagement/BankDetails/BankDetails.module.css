@@ -39,6 +39,21 @@
     border-radius: 5px;
 }
 
+.formError{
+    color: red;
+    font-size: 15px;
+}
+
+.btn{
+    padding: 3px 20px;
+    background-color: #000;
+    color: #fff;
+    border: 2px solid #909090;
+    border-radius: 12px;
+    margin-top: 10px;
+    font-size: 15px;
+}
+
 @media (max-width:769px){
     .mainDiv{
         margin-top: 29px;
