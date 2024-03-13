@@ -1,0 +1,99 @@
+.mainDiv{
+    display: flex;
+    justify-content: space-between;
+    background-color: #fff;
+    padding: 30px 60px;
+    border-radius: 8px;
+}
+
+.text{
+    color: #BEBEBE;
+    font-size: 20px;
+}
+
+.text .icon {
+    padding-bottom: 2px;
+}
+
+.lab{
+    padding: 10px 0px;
+    color: black;
+    font-weight: 600;
+}
+
+.inputs{
+    padding: 5px 34px 5px 8px;
+    border: 2px solid #BEBEBE;
+    border-radius: 5px;
+}
+
+.ifsc{
+    padding: 5px 200px 5px 8px;
+    border: 2px solid #BEBEBE;
+    border-radius: 5px; 
+}
+
+.passbook{
+    padding: 5px 50px 5px 8px;
+    border: 2px solid #BEBEBE;
+    border-radius: 5px;
+}
+
+.formError{
+    color: red;
+    font-size: 15px;
+}
+
+.btn{
+    padding: 3px 20px;
+    background-color: #000;
+    color: #fff;
+    border: 2px solid #909090;
+    border-radius: 12px;
+    margin-top: 10px;
+    font-size: 15px;
+}
+
+@media (max-width:769px){
+    .mainDiv{
+        margin-top: 29px;
+    }
+}
+
+@media(max-width:619px){
+    .ifsc{
+        padding: 5px 0px 5px 8px;
+    }
+}
+
+@media(max-width:467px){
+    .mainDiv{
+        padding: 30px 14px;
+    }
+}
+
+@media(max-width:407px){
+    .inputs{
+        padding: 5px 0px 5px 8px;
+    }
+    
+    .ifsc{
+        padding: 5px 0px 5px 8px;
+    }
+    
+    .passbook{
+        padding: 5px 0px 5px 8px;}
+
+}
+
+@media(max-width:355px){
+    .mainDiv{
+        padding: 30px 4px;
+    }
+}
+
+@media(max-width:333px){
+    .mainDiv{
+        padding: 30px 30px;
+    }
+}

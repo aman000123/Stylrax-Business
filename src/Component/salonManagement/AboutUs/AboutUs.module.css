@@ -1,0 +1,34 @@
+.mainDiv{
+    border-radius: 20px;
+    background-color: #fff;
+}
+
+.about{
+    display: flex;
+    align-items: center; 
+    justify-content: space-between;
+    padding: 20px 60px;
+}
+
+.about button{
+    background-color: #BEBEBE;
+    color: #909090;
+    padding: 5px 20px;
+    font-size: 13px;
+}
+
+.about .icon{
+    font-size: 25px;
+    color: #BEBEBE;
+}
+
+.content{
+    /* padding: 5px 60px; */
+    padding: 5px 60px 60px 60px;
+}
+
+@media(max-width:769px){
+    .about{
+        margin-top: 15px;
+    }
+}
