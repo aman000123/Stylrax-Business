@@ -8,24 +8,24 @@ import { useNavigate } from "react-router-dom";
 import { detailsSchema } from "../../../utils/schema";
 import styles from "./Details.module.css";
 
-
+const initialValues = {
+  name: "",
+  middleName: "",
+  lastName: "",
+  email: "",
+  phoneNumber: "",
+  dob: "",
+};
 const Details = ({ nextStep, prevStep, setShowServicePage }) => {
-  const initialValues = {
-    name: "",
-    middleName: "",
-    lastName: "",
-    email: "",
-    phoneNumber: "",
-    dob: "",
-  };
-  const { values, errors, handleBlur,handleChange, handleSubmit, touched } = useFormik({
+ 
+  const { values, errors, handleBlur,handleChange, handleSubmit,isValid, touched } = useFormik({
     initialValues: initialValues,
     validationSchema: detailsSchema,
     validateOnChange: true,
     validateOnBlur: false,
     onSubmit: (values) => {
       console.log(values);
-      nextStep();
+      setShowServicePage(true)
     },
   });
   const [selectedOption, setSelectedOption] = useState("");
@@ -65,9 +65,14 @@ const Details = ({ nextStep, prevStep, setShowServicePage }) => {
 
   
 
-  const handleClick = () => {
-    setShowServicePage(true); // Set showServicePage to true
-  };
+  // const handleClick = () => {
+  //   if(isValid){
+  //   nextStep()
+  //   } else {
+  //     alert("Please fill all required fields."); 
+  //   }
+
+  // };
   return (
     <Container>
       <div className="d-flex flex-column align-items-center">
@@ -82,13 +87,13 @@ const Details = ({ nextStep, prevStep, setShowServicePage }) => {
           </div>
           <form
             className="d-flex flex-column align-items-center"
-            onClick={handleSubmit}
+            onSubmit={handleSubmit}
           >
             <div className="d-flex flex-column align-items-center-start mb-1">
               <label className="fw-bold">
                 Name
                 <br />
-                <input
+                <input type="text"
                   id="name"
                   name="name"
                   value={values.name}
@@ -284,10 +289,11 @@ const Details = ({ nextStep, prevStep, setShowServicePage }) => {
 
             <div className="d-flex flex-column align-items-center">
               <button
-                variant="contained"
-                color="primary"
-              
+                type="submit"
                 className={styles.continue}
+                
+                
+               
               >
                 Continue
               </button>

@@ -32,7 +32,7 @@ const Account = () => {
     <>
       <nav className={`${styles.nav} d-flex align-items-center`}>
         <div>
-          <img src={logo} alt="Logo"/>
+          <img src={logo} alt="Logo" className={styles.logo}/>
         </div>
 
         <div>
@@ -74,8 +74,14 @@ const Account = () => {
               <li>Customer service</li>
               <li>Conditions of use</li>
               <li>Privacy Policy</li>
+              <div>
+         
+              <p className={styles.website}>© 2023-2024, Stylrax.com, Inc. or its affiliates</p>
+            
+          </div>
+              
             </ul>
-
+        
             <div className="">
               <img src={logo} alt="stars" className={styles.starImage}/>
             </div>

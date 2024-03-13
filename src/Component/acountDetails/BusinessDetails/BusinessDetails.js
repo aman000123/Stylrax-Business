@@ -35,24 +35,24 @@ const initialValues = {
   state:"",
   address:"",
   panNumber:"",
-  validate: (values) => {
-    const errors = {};
+  // validate: (values) => {
+  //   const errors = {};
 
-    if (!values.panNumber) {
-      errors.panNumber = 'PAN number is required';
-    } else {
-      const panError = validatePAN(values.panNumber);
-      if (panError) {
-        errors.panNumber = panError;
-      }
-    }
+  //   if (!values.panNumber) {
+  //     errors.panNumber = 'PAN number is required';
+  //   } else {
+  //     const panError = validatePAN(values.panNumber);
+  //     if (panError) {
+  //       errors.panNumber = panError;
+  //     }
+  //   }
 
-    return errors;
-  },
+  //   return errors;
+  // },
 }
 
 const BusinessDetails = ({nextStep,prevStep}) => {
-  const {values,errors,handleBlur,handleChange,handleSubmit,touched} = useFormik
+  const {values,errors,handleBlur,handleChange,handleSubmit,touched,isValid} = useFormik
   ({
     initialValues:initialValues,
     validationSchema:businessDetailsSchema,
@@ -188,9 +188,9 @@ const BusinessDetails = ({nextStep,prevStep}) => {
             </select>
            
           </div>
-          {errors.city && touched.city?(
+          {/* {errors.city && touched.city?(
             <p className={styles.error}>{errors.city}</p>
-          ):null}
+          ):null} */}
           <div>
             <label className="fw-bold">Salon State</label>
             <br />
@@ -207,9 +207,9 @@ const BusinessDetails = ({nextStep,prevStep}) => {
               ))}
             </select>
           </div>
-          {errors.state && touched.state?(
+          {/* {errors.state && touched.state?(
             <p className={styles.error}>{errors.state}</p>
-          ):null}
+          ):null} */}
           <div>
             <label className="fw-bold">Pin Code</label>
             <br />
@@ -300,7 +300,10 @@ const BusinessDetails = ({nextStep,prevStep}) => {
             </button>
           </div>
           <div>
-          <button className={styles.continue}>Continue</button>
+          <button className={styles.continue}
+          type="submit"
+          // onClick={nextStep}
+          >Continue</button>
           {/* <button className={styles.continue} onClick={handleButton}>Continue</button> */}
           </div>
         </form>

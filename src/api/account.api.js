@@ -1,11 +1,15 @@
 import HTTP from "../service/http";
 import { methods } from "../constants";
-import {
-  __endpoint_doLogin
-} from "../constants/endpoints";
+import {__endpoint_doLogin} from "../constants/endpoints";
+import { __endpoint_verifyOtp} from "../constants/endpoints";
+import { __endpoint_resendOtp} from "../constants/endpoints";
 
 export const doLogin = (payload) =>
  HTTP.Request(methods.POST, __endpoint_doLogin, payload);
+ export const verifyOtp = (payload) =>
+ HTTP.Request(methods.POST, __endpoint_verifyOtp, payload);
+ export const resendOtp = (payload) =>
+ HTTP.Request(methods.POST, __endpoint_resendOtp, payload);
 //export const getCountries = (payload) =>
  //HTTP.Request(methods.GET, "https://restcountries.com/v2/all", payload);
 //export const getFeature = () =>

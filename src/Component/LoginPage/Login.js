@@ -1,31 +1,56 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Row, Col, Container } from "react-bootstrap";
 import styles from "../../assets/scss/pages/home/login.module.css";
+import Otp from "../otp/otp";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { doLogin } from "../../api/account.api";
-import { storeToken } from "../../features/authInfo";
+
 import Notify from "../../utils/notify";
-import { Formik, Form, Field, ErrorMessage } from "formik";
-import { LoginSchema } from "../../utils/schema";
 
 const Login = () => {
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [mobileNumberError, setMobileNumberError] = useState("");
+  const [showOTPSection, setShowOTPSection] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const onSubmit = async (values, { setSubmitting }) => {
-    try {
-      setSubmitting(true);
-      const response = await doLogin(values);
-      const { authToken, userInfo } = response.data;
-      dispatch(storeToken({ token: authToken, userInfo }));
-      // Redirect to the home page after successful login
-      navigate("/");
-    } catch (error) {
-      Notify.error(error.message);
-    } finally {
-      setSubmitting(false);
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    if (validateMobileNumber(phoneNumber)) {
+      console.log("phone Number" + phoneNumber);
+      try {
+        setIsSubmitting(true);
+        const data = {
+          countryCode: "91",
+          deviceType: 1,
+          phoneNumber: phoneNumber,
+          deviceToken: "staff3deviceid",
+        };
+        const res = await doLogin(data);
+        console.log("response ::>", res.data.statusCode);
+        if (res.data.statusCode == "200") {
+          setShowOTPSection(true); //for navigate to otp page
+        }
+        console.log("res", res.data);
+      } catch (error) {
+        Notify.error(error.message);
+      } finally {
+        setIsSubmitting(false);
+      }
+    } else {
+      setMobileNumberError("Please enter a valid phone number.");
     }
+  };
+
+  const handleMobileNumberChange = (event) => {
+    const inputValue = event.target.value;
+    const numericValue = inputValue.replace(/\D/g, "");
+    setPhoneNumber(numericValue);
+    setMobileNumberError("");
+  };
+
+  const validateMobileNumber = (number) => {
+    return /^\d{10}$/.test(number);
   };
 
   return (
@@ -35,7 +60,7 @@ const Login = () => {
           <Row className="align-items-center d-flex">
             <Col md={6} className="d-flex justify-content-center">
               <div className={styles.info}>
-                <h3 className={styles.text}>Lorem Ipsum</h3>
+                <h3 className={styles.text}>Lorem lpsum</h3>
                 <h4 className={styles.textOne}>
                   Increase your earnings,
                   <br /> gain respect, and rest
@@ -50,41 +75,39 @@ const Login = () => {
             </Col>
             <Col md={6} className="d-flex justify-content-center">
               <div className={styles.loginBorder}>
-                <Formik
-                  initialValues={{ phoneNumber: "" }}
-                  validationSchema={LoginSchema}
-                  onSubmit={onSubmit}
-                >
-                  {({ isSubmitting }) => (
-                    <Form className={styles.form}>
-                      <h3 className={styles.login}>Login/Register</h3>
+                {!showOTPSection ? (
+                  <>
+                    <h3 className={styles.login}>Login/Register</h3>
+                    <form className={styles.form} onSubmit={handleSubmit}>
                       <div className={styles.formGroup}>
                         <label className="mb-1">Mobile Number</label>
                         <br />
-                        <Field
+                        <input
                           type="tel"
                           name="phoneNumber"
                           className={styles.input}
+                          value={phoneNumber}
+                          onChange={handleMobileNumberChange}
                           required
                         />
-                        <ErrorMessage
-                          name="phoneNumber"
-                          component="div"
-                          className="text-danger"
-                        />
+                        {mobileNumberError && (
+                          <div className="text-danger">{mobileNumberError}</div>
+                        )}
                       </div>
                       <div>
                         <button
                           type="submit"
-                          disabled={isSubmitting}
+                          disabled={!phoneNumber || isSubmitting}
                           className={styles.btn}
                         >
                           {isSubmitting ? "Submitting..." : "Submit"}
                         </button>
                       </div>
-                    </Form>
-                  )}
-                </Formik>
+                    </form>
+                  </>
+                ) : (
+                  <Otp phoneNumber={phoneNumber} />
+                )}
               </div>
             </Col>
           </Row>
@@ -94,4 +117,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Login;

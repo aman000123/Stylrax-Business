@@ -15,6 +15,7 @@ input.inputOtp{
     border-radius: 10px;
     outline: none;
     font-size: 18px;
+    padding-inline-start: 15px;
    }
    .btn{
     background-color: white;

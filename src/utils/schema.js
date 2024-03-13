@@ -25,9 +25,9 @@ export const businessDetailsSchema = Yup.object({
   email:Yup.string().email().required("Please enter your email"),
   companyName:Yup.string().min(5).max(15).required("Please enter company name"),
   pinCode:Yup.string().min(4).required("Please enter pin code"),
-  city:Yup.string().min(2).max(15).required("Please select your city"),
-  state:Yup.string().min(2).required("Please select your state"),
-  gender:Yup.string().min(5).max(15).required("Please select your gender"),
+ // city:Yup.string().min(2).max(15).required("Please select your city"),
+  //state:Yup.string().min(2).required("Please select your state"),
+  //gender:Yup.string().min(5).max(15).required("Please select your gender"),
   address:Yup.string().min(5).max(100).required("Please enter your address"),
   panNumber: Yup.string()
   .matches(/[A-Z]{5}[0-9]{4}[A-Z]{1}$/, 'Invalid pan number')
@@ -42,7 +42,7 @@ export const businessDetailsSchema = Yup.object({
       middleName:Yup.string().min(2).max(15).required("Please enter  middle name"),
       lastName:Yup.string().min(2).max(15).required("Please enter your last name"),
       email:Yup.string().email().required("Please enter your email"),
-      gender:Yup.string().min(5).max(15).required("Please select your gender"),
+      //gender:Yup.string().min(5).max(15).required("Please select your gender"),
       phoneNumber: Yup.string().matches(/^[0-9]{10}$/, 'Invalid phone number').required("Please enter  phone number"),
       dob: Yup.date().max(new Date(), 'Date of birth must be in the past').required("Please enter your DOB"),
      

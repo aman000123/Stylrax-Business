@@ -7,12 +7,12 @@ import "../src/assets/scss/style.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import 'react-toastify/dist/ReactToastify.css';
 import { getFeature } from './api/account.api';
-import { setFeature } from './features/feature';
+//import { setFeature } from './features/feature';
 import Notify from "./utils/notify";
 
 function App() {
-  
-   const authToken = useSelector(state => state.authInfo.token);
+   
+   const authToken = useSelector(state => state.userInfo.token);
   // const feature = useSelector(state => state.feature.value);
   // const location = useLocation();
   // const dispatch = useDispatch();
@@ -35,7 +35,7 @@ function App() {
   
    return (
      <>
-     <AppRoute authToken={authToken}/>
+      <AppRoute authToken={authToken}/> 
      <ToastContainer />
      </>
       

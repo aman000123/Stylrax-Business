@@ -1,15 +1,27 @@
 import React, { useState, useEffect } from "react";
 import styles from "../../assets/scss/pages/home/otp.module.css";
 import OtpInput from "react-otp-input";
+import Notify from "../../utils/notify";
 import { useNavigate } from "react-router-dom";
-
-const Otp = ({ mobileNumber }) => {
+import { resendOtp, verifyOtp } from "../../api/account.api";
+import { useDispatch } from "react-redux";
+import { storeToken } from "../../features/authInfo";
+const Otp = ({ phoneNumber }) => {
   const [otp, setOtp] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
   const [errorMessage, setErrorMessage] = useState("");
   const [isRegistered, setIsRegistered] = useState(false);
   const [resendDisabled, setResendDisabled] = useState(false);
   const [resendTimer, setResendTimer] = useState(0);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const initialValues = {
+    otp: "",
+  };
+  const validateOtp = (otp) => {
+    return /^\d{4}$/.test(otp);
+  };
   const handleOtpChange = (otpValue) => {
     setOtp(otpValue);
     if (otpValue.length === 4) {
@@ -33,88 +45,63 @@ const Otp = ({ mobileNumber }) => {
     />
   );
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    if (otp.trim() === "" || otp.length !== 4) {
-      setErrorMessage("Please enter a valid OTP.");
-    } else {
-      setErrorMessage("");
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    if (validateOtp(otp)) {
+      console.log("Otp" + otp);
       try {
-        const response = await fetch(
-          "https://devapi.stylrax.com/b2b/account/otp/verify",
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              countryCode: "91",
-              phoneNumber: mobileNumber.replace(/\s/g, ""),
-              otp: otp,
-            }),
+        setIsSubmitting(true);
+        const verifyData = {
+          countryCode: "91",
+          phoneNumber: phoneNumber,
+          otp: otp,
+        };
+        const res = await verifyOtp(verifyData);
+        console.log("response ::", res.data.statusCode);
+        if (res.data.statusCode == "200") {
+          const authToken = res.data.data.authToken;
+          console.log("Received token:", authToken);
+          dispatch(storeToken({ token: authToken }));
+          console.log("Received token:", authToken);
+          console.log("Phone number:", phoneNumber);
+
+          if (authToken === phoneNumber) {
+            console.log("Token matches phone number.");
+            navigate("/salon-dashboard");
+          } else {
+            console.log("Token matches not phone number.");
+            navigate("/account");
           }
-        );
-        const data = await response.json();
-        if (response.ok) {
-          console.log("OTP Verified:", data);
-          setIsRegistered(true);
-          navigate("/salon-dashboard");
-        } else {
-          console.error("Failed to verify OTP:", data);
-          navigate('/account')
-          setErrorMessage("Failed to verify OTP.");
         }
       } catch (error) {
-        console.error("Failed to verify OTP:", error);
-        setErrorMessage("Failed to verify OTP.");
+        Notify.error(error.message);
+      } finally {
+        setIsSubmitting(false);
       }
     }
   };
-  const handleResendOTP = async () => {
-    try {
-      setResendDisabled(true);
-      setResendTimer(15);
 
-      const response = await fetch(
-        "https://devapi.stylrax.com/b2b/account/otp/resend",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            countryCode: "91",
-            phoneNumber: mobileNumber.replace(/\s/g, ""),
-          }),
-        }
-      );
-      const data = await response.json();
-      if (response.ok) {
-        console.log("OTP Resent:", data);
+  const handleResend = async (event) => {
+    event.preventDefault();
+    try {
+      setIsSubmitting(true);
+      const resendData = {
+        countryCode: "91",
+        phoneNumber: phoneNumber,
+      };
+      const res = await resendOtp(resendData);
+      console.log("Resend OTP response:", res.data);
+      if (res.data.statusCode == "200") {
+        Notify.success("OTP has been resent successfully.");
       } else {
-        console.error("Failed to resend OTP:", data);
-        setErrorMessage("Failed to resend OTP");
+        Notify.error("Failed to resend OTP. Please try again.");
       }
     } catch (error) {
-      console.error("Failed to resend OTP:", error);
-      setErrorMessage("Failed to resend OTP.");
+      Notify.error("Failed to resend OTP. Please try again later.");
     } finally {
-      setTimeout(() => {
-        setResendDisabled(false);
-      }, 15000);
+      setIsSubmitting(false);
     }
   };
-
-  useEffect(() => {
-    let timer;
-    if (resendTimer > 0) {
-      timer = setTimeout(() => {
-        setResendTimer(resendTimer - 1);
-      }, 1000);
-    }
-    return () => clearTimeout(timer);
-  }, [resendTimer]);
-
   return (
     <div className={styles.loginBorder}>
       <>
@@ -126,7 +113,7 @@ const Otp = ({ mobileNumber }) => {
             <input
               type="text"
               className={styles.input}
-              value={mobileNumber}
+              value={phoneNumber}
               readOnly
             />
           </div>
@@ -141,14 +128,8 @@ const Otp = ({ mobileNumber }) => {
               renderInput={renderInput}
             />
           </div>
-          <p
-            type="button"
-            className={`${styles.resend} ${
-              resendDisabled ? styles.disabled : ""
-            }`}
-            onClick={handleResendOTP}
-          >
-            Resend {resendTimer > 0 ? `(${resendTimer}s)` : ""}
+          <p onClick={handleResend} type="button" className={styles.resend}>
+            Resend
           </p>
           {errorMessage && <div className="text-danger">{errorMessage}</div>}
           <div>
