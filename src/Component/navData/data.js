@@ -13,7 +13,7 @@ const menuItems = [
   { id:3,icon: <AccountCircleOutlinedIcon />, text: "Sign in" }
 ];
 export const navItems = [
-    { id:1,icon: <MdOutlineContentCut style={{fontSize:'22px'}}/>, text: "Salon Management" },
+    { id:1,icon: <MdOutlineContentCut style={{fontSize:'22px'}}/>, text: "Salon Management", link: "salon-management"},
     { id:2,icon: <FaClipboardList style={{fontSize:'22px'}} />, text: "Appointments" ,link:'appointment'},
     { id:3,icon: <AccountCircleOutlinedIcon/>, text: "HairClinic",link:'hair-clinic' },
     { id:4,icon:<FaBell/>,link:'notification'}

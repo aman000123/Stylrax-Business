@@ -10,6 +10,7 @@ export const appointments = [
       paymentAmount: '100₹',
       paymentType: 'Online',
       userImage: appointuser1,
+      status:"Completed",
     },
     {
       name: 'Alberto Raya',
@@ -19,6 +20,7 @@ export const appointments = [
       paymentAmount: '100₹',
       paymentType: 'Online',
       userImage: appointuser2,
+      status:"Completed",
     },
     {
       name: 'Alberto Raya',
@@ -28,6 +30,7 @@ export const appointments = [
       paymentAmount: '100₹',
       paymentType: 'Online',
       userImage: appointuser3,
+      status:"Completed",
     }, 
     {
         name: 'Alberto Raya',
@@ -37,6 +40,7 @@ export const appointments = [
         paymentAmount: '100₹',
         paymentType: 'Online',
         userImage: appointuser3,
+        status:"Completed",
       }, 
       {
         name: 'Alberto Raya',
@@ -46,6 +50,7 @@ export const appointments = [
         paymentAmount: '100₹',
         paymentType: 'Online',
         userImage: appointuser2,
+        status:"Completed",
       }, 
       {
         name: 'Alberto Raya',
@@ -55,7 +60,119 @@ export const appointments = [
         paymentAmount: '100₹',
         paymentType: 'Online',
         userImage: appointuser1,
+        status:"Completed",
       }, 
      
-     
+      {
+        name: 'Alberto Raya',
+        service: 'Hairstyling + 1',
+        time: '10:30 - 11:00 AM',
+        location: 'At Home',
+        paymentAmount: '100₹',
+        paymentType: 'Online',
+        userImage: appointuser2,
+        status:"Completed",
+      }, 
+      {
+        name: 'Alberto Raya',
+        service: 'Hairstyling + 1',
+        time: '10:30 - 11:00 AM',
+        location: 'At Home',
+        paymentAmount: '100₹',
+        paymentType: 'Online',
+        userImage: appointuser3,
+        status:"Completed",
+      },
+      {
+        name: 'Alberto Raya',
+        service: 'Hairstyling + 1',
+        time: '10:30 - 11:00 AM',
+        location: 'At Home',
+        paymentAmount: '100₹',
+        paymentType: 'Online',
+        userImage: appointuser2,
+        status:"Completed"
+      },  
+      {
+        name: 'Alberto Raya',
+        service: 'Hairstyling + 1',
+        time: '10:30 - 11:00 AM',
+        location: 'At Home',
+        paymentAmount: '100₹',
+        paymentType: 'Online',
+        userImage: appointuser1,
+        status:"Completed"
+      }, 
+      {
+        name: 'Alberto Raya',
+        service: 'Hairstyling + 1',
+        time: '10:30 - 11:00 AM',
+        location: 'At Home',
+        paymentAmount: '100₹',
+        paymentType: 'Online',
+        userImage: appointuser3,
+        status:"Completed"
+      }, 
+      {
+        name: 'Alberto Raya',
+        service: 'Hairstyling + 1',
+        time: '10:30 - 11:00 AM',
+        location: 'At Home',
+        paymentAmount: '100₹',
+        paymentType: 'Online',
+        userImage: appointuser2,
+        status:"Completed"
+      }, 
+      {
+        name: 'Alberto Raya',
+        service: 'Hairstyling + 1',
+        time: '10:30 - 11:00 AM',
+        location: 'At Home',
+        paymentAmount: '100₹',
+        paymentType: 'Online',
+        userImage: appointuser1,
+        status:"Completed"
+      }, 
+      {
+        name: 'Alberto Raya',
+        service: 'Hairstyling + 1',
+        time: '10:30 - 11:00 AM',
+        location: 'At Home',
+        paymentAmount: '100₹',
+        paymentType: 'Online',
+        userImage: appointuser2,
+        status:"Completed"
+      }, 
   ];
+
+  export const assign =[
+    {
+      userImage:appointuser1,
+      name:"Debashis",
+
+    },
+    {
+      userImage:appointuser1,
+      name:"Debashis",
+      details:"Hairstylist And Styling Artist",
+
+    },
+    {
+      userImage:appointuser1,
+      name:"Debashis",
+      details:"Hairstylist And Styling Artist",
+
+    },
+    {
+      userImage:appointuser1,
+      name:"Debashis",
+      details:"Hairstylist And Styling Artist",
+
+    },
+    {
+      userImage:appointuser1,
+      name:"Debashis",
+      details:"Hairstylist And Styling Artist",
+
+    }
+  ]

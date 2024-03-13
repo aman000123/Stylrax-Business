@@ -1,6 +1,6 @@
 .mainDiv{
     display: flex;
-    margin-top: -49px;
+    font-style: poppins
 }
 
 .secDiv ul li{
@@ -8,12 +8,15 @@
 }
 
 .container{
-    background-color: #BEBEBE;
+    background-color: #bebebe;
+    padding: 15px 60px;
 }
 
 .secDiv{
     margin-left: -25px;
 }
+
+
 
 .span{
     font-size: 24px;

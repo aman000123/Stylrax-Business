@@ -1,0 +1,258 @@
+.mainDiv{
+    margin: 5px 40px;
+}
+
+.actionButton{
+    display: flex;
+    gap: 10px;
+}
+
+.actionButton .salon{
+    padding: 10px 40px;
+    border-radius: 10px;
+    font-weight: 600;
+    color: #000;
+}
+
+.actionButton .doorBuddy{
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-weight: 600;
+    color: #000;
+}
+
+.secDiv{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 170px;
+    background-color: #fff;
+    border: 2px solid #909090;
+    border-radius: 20px;
+    margin-top: 10px;
+    padding: 12px 0px;
+}
+
+.secDiv .day{
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.height {
+    line-height: 12px;
+}
+
+.height span{
+    color: #909090;
+}
+
+.height .spanOne{
+    font-size: 12px;
+}
+
+.height .spanTwo{
+    font-size: 11px;
+    padding-left: 5px;
+}
+
+.timeDiv{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 80px;
+    border: 2px solid #909090;
+    border-radius: 17.111px;
+    padding: 5px 10px;
+}
+
+.timeDiv div .spanOne{
+    display: block;
+}
+
+.timeDiv .timeIcon{
+    font-size: 25px;
+}
+
+.circleDiv{
+    border: 2px solid #BEBEBE;
+    border-radius: 19px;
+    text-align: start;
+    height: auto;
+    width: 60px;
+}
+
+.circleDiv .blackCircle{
+    font-size: 28px;
+    padding-left: 2px;
+    padding-right: 2px;
+    
+}
+
+
+@media(max-width:1448px){
+    .secDiv{
+        gap: 119px;
+    }
+}
+
+@media(max-width:1286px){
+    .timeDiv{
+        gap: 35px;
+    }
+}
+
+@media(max-width:1180px){
+    .secDiv{
+        gap: 81px;
+    }
+}
+
+@media(max-width:1030px){
+    .secDiv{
+        gap: 54px;
+    }
+
+    .timeDiv{
+        gap: 31px;
+    }
+}
+
+@media(max-width:911px){
+    .secDiv .day{
+        font-size: 17px;
+    }
+    
+    .secDiv{
+        gap: 31px;
+    }
+
+    .timeDiv{
+        gap: 15px;
+    }
+}
+
+@media(max-width:766px){
+    .actionButton{
+       justify-content: center;
+       margin-top: 10px;
+    }
+}
+
+@media(max-width:667px){
+    .secDiv .day{
+        font-size: 14px;
+    }
+
+    .timeDiv{
+        padding: 3px 5px;
+        border-radius: 12.111px;
+    }
+
+    .timeDiv .spanOne{
+        font-size: 11px;
+    }
+
+    .timeDiv .spanTwo{
+        font-size: 9px;
+    }
+
+    .timeDiv .timeIcon{
+        font-size: 19px;
+    } 
+}
+
+@media(max-width:604px){
+    .timeDiv{
+        gap: 8px;
+    }
+
+    .secDiv{
+        gap: 15px;
+        padding: 5px 0px;
+    }
+
+    .height{
+        line-height: 8px;
+    }
+
+    .circleDiv{
+        height: auto;
+        width: 50px;
+    }
+}
+
+@media(max-width:536px){
+    .secDiv .day{
+        font-size: 11px;
+    }
+
+    .secDiv{
+        gap: 7px;
+    }
+
+    .timeDiv{gap: 3px;}
+}
+
+@media(max-width:510px){
+    .mainDiv{
+        margin: 0px 0px;
+    }
+
+    .secDiv{
+        gap: 31px;
+    }
+
+    .timeDiv{
+        gap: 7px;
+    }
+}
+
+@media(max-width:486px){
+        .secDiv{
+            gap: 19px;
+        }
+    
+        .timeDiv{
+            gap: 7px;
+        }
+    
+}
+
+@media(max-width:455px){
+    .secDiv{
+        gap: 10px;
+    }
+
+}
+
+@media(max-width:419px){
+    .secDiv{
+        gap: 5px;
+    }
+
+    .timeDiv{
+        gap: 4px;
+    }
+}
+
+@media(max-width:419px){
+    .secDiv{
+        gap: 18px;
+    }
+
+    .timeDiv{
+        gap: 5px;
+    }
+}
+
+@media(max-width:361px){
+    .secDiv{
+        gap: 10px;
+    }
+
+    .timeDiv{
+        gap: 4px;
+    }
+
+}
+

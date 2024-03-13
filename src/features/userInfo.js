@@ -2,19 +2,19 @@
 import { createSlice } from "@reduxjs/toolkit";
 import Session from "../service/session";
 
-const featureSlice = createSlice({
-  name: "feature",
+const userInfo = createSlice({
+  name: "user",
   initialState: {
     value: [], // Initial state is an empty array
   },
   reducers: {
-    setFeature: (state, action) => {
+    setUser: (state, action) => {
       state.value = action.payload;
       // Session.set("feature", JSON.stringify(action.payload));
     },
   },
 });
 
-export const { setFeature } = featureSlice.actions;
+export const { setUser } = userInfo.actions;
 
-export default featureSlice.reducer;
+export default userInfo.reducer;

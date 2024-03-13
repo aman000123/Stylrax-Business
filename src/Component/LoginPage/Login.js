@@ -1,66 +1,56 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Row, Col, Container } from "react-bootstrap";
 import styles from "../../assets/scss/pages/home/login.module.css";
 import Otp from "../otp/otp";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { doLogin } from "../../api/account.api";
+
+import Notify from "../../utils/notify";
 
 const Login = () => {
-  const [mobileNumber, setMobileNumber] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
   const [mobileNumberError, setMobileNumberError] = useState("");
   const [showOTPSection, setShowOTPSection] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    if (validateMobileNumber(mobileNumber)) {
+    if (validateMobileNumber(phoneNumber)) {
+      console.log("phone Number" + phoneNumber);
       try {
-        const response = await fetch("https://devapi.stylrax.com/b2b/account/otp/login", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            countryCode: "91",
-            deviceType: 1,
-            phoneNumber: mobileNumber.replace(/\s/g, ""),
-            deviceToken: "staff3deviceid",
-          }),
-        });
-        const data = await response.json(); 
-        if (response.ok) {
-       
-          setShowOTPSection(true);
-          console.log("Response Data:", data); 
-        } else {
-        
-          console.error("Failed to send OTP:", data);
+        setIsSubmitting(true);
+        const data = {
+          countryCode: "91",
+          deviceType: 1,
+          phoneNumber: phoneNumber,
+          deviceToken: "staff3deviceid",
+        };
+        const res = await doLogin(data);
+        console.log("response ::>", res.data.statusCode);
+        if (res.data.statusCode == "200") {
+          setShowOTPSection(true); //for navigate to otp page
         }
+        console.log("res", res.data);
       } catch (error) {
-        console.error("Failed to send OTP:", error); 
+        Notify.error(error.message);
+      } finally {
+        setIsSubmitting(false);
       }
     } else {
-      setMobileNumberError("Please enter a valid mobile number.");
+      setMobileNumberError("Please enter a valid phone number.");
     }
   };
 
   const handleMobileNumberChange = (event) => {
     const inputValue = event.target.value;
-    // Remove any non-digit characters
     const numericValue = inputValue.replace(/\D/g, "");
-    let formattedMobileNumber = "";
-    for (let i = 0; i < numericValue.length; i++) {
-      formattedMobileNumber += numericValue[i];
-      if ((i + 1) % 3 === 0 && i + 1 < numericValue.length - 3) {
-        formattedMobileNumber += " ";
-      }
-    }
-    formattedMobileNumber = "   " + formattedMobileNumber.trim();
-    setMobileNumber(formattedMobileNumber);
+    setPhoneNumber(numericValue);
     setMobileNumberError("");
   };
 
   const validateMobileNumber = (number) => {
-    // Remove spaces from the number
-    const numericValue = number.replace(/\s/g, "");
-
-    // Check if the numericValue consists only of digits and if it's exactly 10 digits long
-    return /^\d+$/.test(numericValue) && numericValue.length === 10;
+    return /^\d{10}$/.test(number);
   };
 
   return (
@@ -93,26 +83,30 @@ const Login = () => {
                         <label className="mb-1">Mobile Number</label>
                         <br />
                         <input
-                          type="text"
+                          type="tel"
+                          name="phoneNumber"
                           className={styles.input}
-                          value={mobileNumber}
+                          value={phoneNumber}
                           onChange={handleMobileNumberChange}
+                          required
                         />
                         {mobileNumberError && (
-                          <div className="text-danger">
-                            {mobileNumberError}
-                          </div>
+                          <div className="text-danger">{mobileNumberError}</div>
                         )}
                       </div>
                       <div>
-                        <button type="submit" className={styles.btn}>
-                          Submit
+                        <button
+                          type="submit"
+                          disabled={!phoneNumber || isSubmitting}
+                          className={styles.btn}
+                        >
+                          {isSubmitting ? "Submitting..." : "Submit"}
                         </button>
                       </div>
                     </form>
                   </>
                 ) : (
-                  <Otp mobileNumber={mobileNumber} />
+                  <Otp phoneNumber={phoneNumber} />
                 )}
               </div>
             </Col>

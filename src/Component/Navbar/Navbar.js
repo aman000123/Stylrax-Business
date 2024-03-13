@@ -34,7 +34,7 @@ const Navbar = (props) => {
             <div key={index} className="d-flex">
              <div className={`${styles.icon} me-2`}>{item.icon}</div> 
            
-              <NavLink href={`salon-dashboard/${item.link}`}>{item.text}</NavLink>
+              <NavLink href={`${item.link}`}>{item.text}</NavLink>
               
             </div>
             

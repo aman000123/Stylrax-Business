@@ -1,0 +1,75 @@
+.paper{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border: 2px solid #BEBEBE;
+    border-radius: 4.319px;
+    padding: 0px 6px;
+    gap: 7px;
+}
+
+.mainDiv{
+    background-color: #fff;
+    padding: 13px 25px;
+    border-radius: 5px;
+}
+
+
+
+.hairStyle{
+    font-size: 10px;
+    font-weight: bold;
+}
+
+.hairStylist{
+    height: auto;
+    width: 56px;
+    padding-top: 10px;
+}
+
+.mainDiv div{
+    font-size: 1.5rem;
+    font-weight: 600;
+    padding: 0px 10px;
+}
+
+@media(max-width:1342px){
+    .mainDiv div{
+        padding: 0px 4px;
+    }
+}
+
+@media(max-width:1055px){
+    .hairStylist{
+        width: 81px;
+    }
+}
+
+@media (max-width:768px){
+    .mainDiv{
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+}
+
+@media (max-width:365px){
+    .mainDiv{
+        margin-top: 8px;
+        margin-bottom: 8px;
+    }
+
+    .paper{
+        margin-top: 8px;
+    }
+
+    .hairStylist{
+        width: 85px;
+        /* font-size: 40px; */
+    }
+
+    .hairStyle{
+        font-weight: 15px;
+    }
+}
+
