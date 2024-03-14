@@ -21,6 +21,16 @@
     font-weight: 500;
 }
 
+ /* .addService{
+    display: flex;
+    flex-direction: column;
+} */
+
+.services{
+    display: flex;
+    flex-wrap: wrap;
+} 
+
 .imgDiv img{
     height: auto;
     width: 81px;
