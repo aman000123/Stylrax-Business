@@ -16,6 +16,19 @@
     justify-content: space-between;
    
 }
+@media (max-width:490px){
+    .nav{
+        width: 108%;
+    }}
+
+@media (max-width:450px){
+    .nav{
+        width: 120%;
+    }}
+    @media (max-width:400px){
+        .nav{
+            width: 140%;
+        }}
 .menu_list{
     color: #FFFFFF;
     float: right;

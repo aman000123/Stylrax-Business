@@ -1,0 +1,47 @@
+.mainDiv {
+    padding: 0px 0px 0px 30px;
+}
+
+.mainDiv .para{
+    font-size: 18px;
+    font-weight: 630;
+}
+
+.paper{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    gap: 0px;
+    height: auto;
+    width: 50%;
+    background-color: #fff;
+    margin-top: 10px;
+}
+
+.secDiv{
+    display: flex;
+    flex-direction: row;
+    gap: 142px;
+    justify-content: center;
+    align-items: center;
+}
+
+.secDiv div{
+    line-height: 0px;
+    padding-top: 30px;
+}
+
+.secDiv div p .rupee{
+    font-size: 16px
+}
+
+.paper button{
+    border: none;
+    font-size: 13px;
+    text-decoration: underline;
+    color: #909090;
+    font-weight: 600;
+}
+
+

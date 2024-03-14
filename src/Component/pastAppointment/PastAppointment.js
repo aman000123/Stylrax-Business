@@ -1,6 +1,6 @@
 import React from 'react';
 import {Row, Col } from "react-bootstrap";
-import styles from "../../assets/scss/pages/home/salonAppointment.module.css";
+//import styles from "../../assets/scss/pages/home/salonAppointment.module.css";
 import { appointments} from "../salonAppointment/apointmentData";
 import { Link } from 'react-router-dom';
 import dayjs from 'dayjs';
@@ -12,7 +12,7 @@ import { MobileDatePicker } from '@mui/x-date-pickers/MobileDatePicker';
 import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
 import { StaticDatePicker } from '@mui/x-date-pickers/StaticDatePicker';
 import { DateCalendar } from '@mui/x-date-pickers/DateCalendar';
-import main from "../../assets/scss/pages/home/pastAppointment.module.css";
+import main from "./PastAppointment.module.css";
 import { useState } from 'react';
 const PastAppointment = () => {
   const [selectedDate, setSelectedDate] = useState(dayjs());
@@ -21,6 +21,7 @@ const PastAppointment = () => {
   };
   return (
     <div>
+     
       <Row>
         <Col md={4}>
         <div className={main.calendar}>
@@ -45,19 +46,19 @@ const PastAppointment = () => {
             {appointments.slice(0, 12).map((appointment, index) => (
               <Col md={5} key={index} className='me-4'>
                 <Row className="mb-2">
-                  <div className={styles.userInfo}>
+                  <div className={main.userInfo}>
                     <Col md={4}>
                       <div>
                         <img
                           src={appointment.userImage}
-                          className={styles.userImage}
+                          className={main.userImage}
                           alt="User"
                         />
                       </div>
                     </Col>
                     <Col md={3}>
-                      <p className={styles.user}>
-                        <span className={styles.userName}>
+                      <p className={main.user}>
+                        <span className={main.userName}>
                           {appointment.name}
                         </span>
                         <br />
@@ -67,23 +68,23 @@ const PastAppointment = () => {
                         <br />
                         <span>{appointment.location}</span>
                       </p>
-                      <button className={styles.accept}>Accept</button>
+                      <button className={main.accept}>Accept</button>
                     </Col>
                     <Col md={2}>
-                      <p className={styles.payment}>
+                      <p className={main.payment}>
                         {appointment.paymentAmount}
                         <br />
                         <span>Payment</span>
                         <br />
-                        <span className={styles.paymentType}>
+                        <span className={main.paymentType}>
                           {appointment.paymentType}
                         </span>
                       </p>
                      
-                      <button className={styles.decline}>Decline</button>
+                      <button className={main.decline}>Decline</button>
                     </Col>
                     <Col md={3}>
-                    <div className={styles.status}>
+                    <div className={main.status}>
                         {appointment.status}<br/>
                         <Link>View Details</Link>
                       </div>
@@ -95,6 +96,7 @@ const PastAppointment = () => {
           </Row>
         </Col>
       </Row>
+     
     </div>
   );
 }

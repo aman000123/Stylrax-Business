@@ -6,13 +6,21 @@
 .footer{
     background-color: black;
     color: white;
-    height: 104px;
     width: 100%;
     box-sizing: border-box;
 }
+
 .main{
     margin-left: 50px;
 }
+@media (max-width:393.9px){
+    .footer{
+        width: 104%;
+        }}
+@media (max-width:393.9px){
+    .mainDiv{
+        flex-direction: column;
+        }}
 .website{
     margin-top: 47px;
     margin-left: -580px;
@@ -29,6 +37,18 @@
             .website{
                 margin-left: -320px;
             }}
+            @media (max-width:494.9px){
+                .website{
+                    margin-left: -280px;
+                }}
+                @media (max-width:443.9px){
+                    .website{
+                        margin-left: -220px;
+                    }}
+                    @media (max-width:393.9px){
+                        .website{
+                            margin-left: -260px;
+                        }}
 .list{
     display: flex;
     list-style: none;
@@ -56,6 +76,20 @@
         .list{
             margin-left: -35px;
         }}
+        @media (max-width:494.9px){
+            .list{
+                font-size: 10px;
+                }}
+                @media (max-width:443.9px){
+                    .list{
+                        font-size: 8px;
+                        }}
+                        @media (max-width:393.9px){
+                            .list{
+                                font-size: 10px;
+                                margin-left: 5px;
+                                }}
+
 .list li{
     margin-top: 32px;
     line-height: 0px;
@@ -82,6 +116,12 @@
         @media (max-width:522.9px){
             .starImage{
                margin-right: 20px;
+            }}
+            @media (max-width:393.9px){
+                .starImage{
+                width: 171px;
+                margin-top: -30px;
+                margin-left: 48px;
             }}
 .mainDiv{
     display: flex;
@@ -148,6 +188,10 @@
     .nav{
    flex-direction: column;
   }} 
+  @media (max-width:380.8px) {
+    .nav{
+   width: 105%;
+  }} 
 .menuList{
     list-style: none;
     display: flex;
@@ -203,6 +247,11 @@
     margin-left: -14px;
     align-items: self-start;
   }}
+  @media (max-width:385.9px) {
+    .menuList li{
+    font-size: 7px;
+   
+  }}
 .menuList span{
     border: 2px solid white;
     display: flex;
@@ -221,6 +270,10 @@
     .menuList span{
      padding: 0px 5px;
      font-size: 8px;
+  }}
+  @media (max-width:396.8px) {
+    .menuList span{
+     font-size: 7px;
   }}
 .active{
     background-color: white;
