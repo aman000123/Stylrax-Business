@@ -12,7 +12,7 @@ export const doLogin = (payload) =>
  export const verifyOtp = (payload) =>
  HTTP.Request(methods.POST, __endpoint_verifyOtp, payload);
  export const resendOtp = (payload) =>
- HTHTTP.Request(methods.GET, __endpoint_addStaff, payload);
+ HTTP.Request(methods.GET, __endpoint_addStaff, payload);
  export const bankDetails = (payload) =>
  HTTP.Request(methods.POST, __endpoint_bankDetails, payload);
 //export const getCountries = (payload) =>
