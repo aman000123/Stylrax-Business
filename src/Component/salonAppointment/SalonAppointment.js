@@ -61,7 +61,7 @@ const SalonAppointment = () => {
             <Row>
               {/* Render appointments for the first two rows */}
               {appointments.slice(0, 6).map((appointment, index) => (
-                <Col md={4} sm={6} xs={12} key={index} className="mb-2">
+                <Col md={4} sm={6} xs={6} key={index} className="mb-2">
                   <Row className="mb-2 d-flex" >
                     <div className={styles.userInfo}>
                       <Col  md={4}>
@@ -111,7 +111,7 @@ const SalonAppointment = () => {
                 <Row className="mb-2">
                   <div className={styles}>
                     <p className={styles.staffDiv}>Assign Staff</p>
-                    <Col md={4} sm={6} xs={12}  className="mb-2">
+                    <Col md={4} sm={6} xs={6}  className="mb-2">
                       <div className="d-flex">
                         {assign.map((user, imageIndex) => (
                           
@@ -145,7 +145,7 @@ const SalonAppointment = () => {
               </Col>
 
               {appointments.slice(6).map((appointment, index) => (
-                <Col md={4} sm={6} xs={12} key={index} className="mb-2">
+                <Col md={4} sm={6} xs={6} key={index} className="mb-2">
                   <Row className="mb-2">
                     <div className={styles.userInfo}>
                       <Col md={4}>

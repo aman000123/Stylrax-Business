@@ -25,6 +25,20 @@
         margin-left: -40px;
     }
 }
+@media (max-width:991px){
+    .customDateCalendar{
+        width: 200px !important;
+        font-size: 15px !important;
+        line-height: 15px;
+    }
+}
+@media(max-width:991.9px){
+    .calendar{
+        width: 300px;
+        height: 380px;
+        margin-left: -100px;
+    }
+}
 .customDateCalendar .css-jgls56-MuiButtonBase-root-MuiPickersDay-root.Mui-selected {
     color: #fff !important;
     background-color: #1976d2 !important;

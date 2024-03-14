@@ -7,7 +7,7 @@ const UpComingAppointment = () => {
     <Row>
              
               {appointments.slice(0, 10).map((appointment, index) => (
-                <Col md={4} key={index}>
+                <Col md={4} sm={6} xs={6} key={index}>
                   <Row className="mb-2">
                     <div className={styles.userInfo}>
                       <Col md={4}>

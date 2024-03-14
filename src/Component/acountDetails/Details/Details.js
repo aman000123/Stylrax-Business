@@ -291,12 +291,10 @@ const Details = ({ nextStep, prevStep, setShowServicePage }) => {
               <button
                 type="submit"
                 className={styles.continue}
-                
-                
-               
-              >
+                >
                 Continue
               </button>
+             
             </div>
           </form>
         </div>
