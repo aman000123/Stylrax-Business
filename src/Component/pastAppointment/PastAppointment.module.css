@@ -14,6 +14,7 @@
     width: 330px;
     height: 380px;
     margin-left: 60px;
+    margin-top: -420px;
 }
 @media(max-width:1440px){
     .calendar{
@@ -25,20 +26,57 @@
         margin-left: -40px;
     }
 }
-@media (max-width:991px){
+@media(max-width:991.9px){
+    .calendar{
+       width: 280px !important;
+       margin-left: 180px !important;
+      
+    }
+}
+@media (max-width:1063.9px){
     .customDateCalendar{
-        width: 200px !important;
+        width: 250px !important;
         font-size: 15px !important;
         line-height: 15px;
     }
 }
-@media(max-width:991.9px){
+@media (max-width:991.9px){
+    .customDateCalendar{
+        width: 270px !important;
+        
+       
+    }
+}
+@media(max-width:1063.9px){
     .calendar{
         width: 300px;
         height: 380px;
-        margin-left: -100px;
-    }
-}
+        margin-left: 0px;
+    }}
+    @media(max-width:991.9px){
+        .calendar{
+           margin-top: 0;
+           margin-bottom: 20px !important;
+           
+        }}
+        @media(max-width:991.9px){
+            .calendar{
+              display: none;
+               
+            }}
+      .DatePicker{
+        display: none;
+        margin-left: 220px !important;
+        padding-bottom: 10px !important;
+      } 
+      @media (max-width:991.9px){
+        .DatePicker{
+            display: block;
+        }}
+        @media (max-width:767.9px){
+            .DatePicker{
+                margin-left: 160px !important; 
+            }}
 .customDateCalendar .css-jgls56-MuiButtonBase-root-MuiPickersDay-root.Mui-selected {
     color: #fff !important;
     background-color: #1976d2 !important;
@@ -53,7 +91,7 @@
     display: flex;
     justify-content:flex-start ;
     align-items: center;
-   margin-top: -40px;
+    margin-top: -40px;
 }
 .hairClinic{
     font-weight: bolder;
@@ -106,6 +144,12 @@
     font-size: 10px;
     font-weight: 650;
 }
+@media (max-width:767.9px){
+    .userName{
+        font-size: 14px;
+        margin-left: 7px;
+    }}
+
 
 .payment{
     margin-top: 15px;
@@ -114,7 +158,13 @@
     margin-bottom: -2px;
     font-weight: 500;
 }
-
+@media (max-width:767.9px){
+    .payment{
+        margin-left: 10px;
+        font-size: 13px;
+        line-height: 13px;
+        padding-bottom: 2px;
+    }}
 .accept{
     color: #53AD34;
     background-color: white;
@@ -129,6 +179,10 @@
     .accept{
         margin-left: -18px;
     }}
+    @media (max-width:767.9px){
+        .accept{
+            margin-left: 0px;
+        }}
 .decline{
     color: #D82626;
     background-color: white;
@@ -148,9 +202,21 @@
     border-radius: 8px;
     width: 400px !important;
 }
+@media (max-width:991.9px){
+    .userInfo{
+     margin-left: 50px !important;
+    }
+}
+@media (max-width:767.9px){
+    .userInfo{
+      flex-direction: column;
+     width: 500px !important;  }}
+     @media (max-width:400.9px){
+        .userInfo{
+         margin-left: 100px !important;
 
-
-
+        }}
+    
 .paymentType{
     color: #53AD34;
     font-weight: 500;
@@ -167,6 +233,13 @@
     color: #7A7A7A;
     text-align: center;
 }
+@media (max-width:767.9px){
+    .user{
+        font-size: 13px;
+        line-height: 17px;
+        margin-right: -50px;
+    }}
+
 .assign{
     height: 40px;
     width: 71px;
@@ -176,7 +249,6 @@
 .clientDiv{
    border: 2px solid #D3D3D3;
    border-radius: 8px;
-   /* padding: 0px 6px; */
   margin-left: -10px;
 }
 .staffBtn{
@@ -250,4 +322,9 @@
             width: 65px;
             margin-left: -3px;
         }}
-
+        @media (max-width:767.9px){
+            .userImage{
+                width: 100px;
+                
+            }}
+    

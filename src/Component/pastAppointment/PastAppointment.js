@@ -7,11 +7,12 @@ import dayjs from 'dayjs';
 import { DemoContainer, DemoItem } from '@mui/x-date-pickers/internals/demo';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+
 import { MobileDatePicker } from '@mui/x-date-pickers/MobileDatePicker';
 import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
 import { StaticDatePicker } from '@mui/x-date-pickers/StaticDatePicker';
 import { DateCalendar } from '@mui/x-date-pickers/DateCalendar';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import main from "./PastAppointment.module.css";
 import { useState } from 'react';
 const PastAppointment = () => {
@@ -22,12 +23,22 @@ const PastAppointment = () => {
   return (
     <div>
      
-      <Row>
-        <Col md={4}>
+      <Row className={main.mainDiv}>
+        <Col md={12} lg={4} >
+          <div className={main.DatePicker}>
+          <LocalizationProvider dateAdapter={AdapterDayjs}>
+              <DatePicker
+                value={selectedDate}
+                onChange={handleDateChange}
+                renderInput={(params) => <input {...params} />} 
+              />
+            </LocalizationProvider>
+          </div>
         <div className={main.calendar}>
-        
+      
         <LocalizationProvider dateAdapter={AdapterDayjs}>
         <p className={main.date}>{selectedDate.format(' D MMMM , YYYY')}</p>
+       
       <DateCalendar
       
        value={selectedDate}
@@ -40,11 +51,11 @@ const PastAppointment = () => {
     
         </div>
         </Col>
-        <Col md={8}>
+        <Col  md={12} lg={8} sm={12}   className={main.userDiv}>
         
           <Row>
             {appointments.slice(0, 12).map((appointment, index) => (
-              <Col md={5} key={index} className='me-4'>
+              <Col md={5} sm={5} xs={5}  key={index} className='me-4'>
                 <Row className="mb-2">
                   <div className={main.userInfo}>
                     <Col md={4}>
@@ -88,14 +99,18 @@ const PastAppointment = () => {
                         {appointment.status}<br/>
                         <Link>View Details</Link>
                       </div>
+                      
                     </Col>
+                    
                   </div>
                 </Row>
               </Col>
+              
             ))}
-          </Row>
-        </Col>
-      </Row>
+            </Row>
+         
+        </Col> 
+       </Row>
      
     </div>
   );
