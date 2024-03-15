@@ -199,17 +199,34 @@
     align-items: center;
     gap: 40px;
 }
-@media (max-width:1265.9px) {
-    .menuList{
-    gap: 22px;
-  }}
+@media (max-width:1270.9px) {
+  .menuList{
+  gap: 35px;
+}}
+@media (max-width:1257.9px) {
+  .menuList{
+  gap: 30px;
+}}
+@media (max-width:1240.9px) {
+  .menuList{
+  gap: 27px;
+}}
+@media (max-width:1232.9px) {
+  .menuList{
+  gap: 20px;
+}}
+@media (max-width:1217.9px) {
+  .menuList{
+  gap: 20px;
+}}
+
   @media (max-width:972.9px) {
     .menuList{
-    gap: 19px;
+    gap: 17px;
   }}
 .menuList li{
     display: flex;
-    gap: 5px;
+    gap: 2px;
     font-size: 17px;
 }
 @media (max-width:1112px) {

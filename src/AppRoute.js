@@ -2,8 +2,9 @@ import React, {lazy } from "react";
 import Home from "./pages/Home";
 import SalonManagement from "../src/Component/salonManagement/SalonManagement";
 import { useRoutes } from 'react-router-dom';
-import SaloonDashboard from "./Component/SaloonDashboard/SDashboard";
+//import SaloonDashboard from "./Component/SaloonDashboard/SDashboard";
 import Account from "./Component/account/Account";
+import DashBoardLayout from "./Component/dashboardLayout/DashboardLayout";
 const SalonDashBoard = lazy(() => import("../src/pages/SalonDashboard"));
 const SalonAppointment = lazy(() => import("./Component/salonAppointment/SalonAppointment"));
 
@@ -101,7 +102,7 @@ const AppRoute = (props) => {
       children: [
         {
           path: "",
-          element: <SaloonDashboard />
+          element: <DashBoardLayout />
         },
         {
           path: "appointment",

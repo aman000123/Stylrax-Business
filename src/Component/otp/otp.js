@@ -64,7 +64,7 @@ const Otp = ({ phoneNumber }) => {
           const profile = res.data.data.profile;
           dispatch(storeToken({authToken,profile }));
 
-          if (authToken === phoneNumber) {
+          if (authToken === profile) {
             console.log("Token matches phone number.");
             navigate("/salon-dashboard");
           } else {

@@ -7,6 +7,8 @@ import { useFormik } from "formik";
 import { useNavigate } from "react-router-dom";
 import { detailsSchema } from "../../../utils/schema";
 import styles from "./Details.module.css";
+import Notify from "../../../utils/notify";
+import {createSalon } from "../../../api/account.api";
 
 const initialValues = {
   name: "",
@@ -31,6 +33,7 @@ const Details = ({ nextStep, prevStep, setShowServicePage }) => {
   const [selectedOption, setSelectedOption] = useState("");
   const [activeStep, setActiveStep] = useState(0);
   const [selectedFile, setSelectedFile] = useState(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const navigate = useNavigate();
   const fileInputRef = useRef(null);
@@ -45,8 +48,43 @@ const Details = ({ nextStep, prevStep, setShowServicePage }) => {
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
   };
-  
+ 
+// const formSubmit = async(event)=>{
+//   event.preventDefault();
+//   if(validateOtp()){
+//     console.log("data");
+//     try{
+//       setIsSubmitting(true);
+//       const verifyForm ={
+          
+//           profileType:"Salon",
+//           firstName:values.name,
+//           middleName:values.middleName,
+//           lastName:values.lastName,
+//           email:values.email,
+//           dataOfBirth:values.dob,
+//           gender:"Male",
+//           panCardImageUrl:"someurl",
+//           aadharFrontUrl:"someurl",
+//           aadharBackUrl:"someurl",
+//           profileImageUrl:"someUrl",
+//           serviceType:"Male"
+      
+//       }
+//       const res= await createSalon(verifyForm);
+//       if(res.data.statusCode == "200"){
+//         navigate('/salon-dashboard')
+//       }
+//     } catch (error){
+//       Notify.error(error.message);
+//     } finally {
+//       setIsSubmitting(false);
+//     }
+//   } else {
 
+//   }
+
+// }
   const handleChangeFile = (type) => {
     fileInputRef.current.click();
     fileInputRef.current.onchange = (event) => {
@@ -62,17 +100,6 @@ const Details = ({ nextStep, prevStep, setShowServicePage }) => {
       }
     };
   };
-
-  
-
-  // const handleClick = () => {
-  //   if(isValid){
-  //   nextStep()
-  //   } else {
-  //     alert("Please fill all required fields."); 
-  //   }
-
-  // };
   return (
     <Container>
       <div className="d-flex flex-column align-items-center">
