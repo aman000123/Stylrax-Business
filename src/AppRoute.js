@@ -1,5 +1,8 @@
-import React, {lazy } from "react";
+import React, { lazy } from "react";
 import Home from "./pages/Home";
+import { Suspense } from "react";
+import LogoLoader from "./Component/LogoLoader";
+import { Navigate, Outlet } from "react-router-dom";
 import SalonManagement from "../src/Component/salonManagement/SalonManagement";
 import { useRoutes } from 'react-router-dom';
 import SaloonDashboard from "./Component/SaloonDashboard/SDashboard";
@@ -23,7 +26,7 @@ const SalonAppointment = lazy(() => import("./Component/salonAppointment/SalonAp
 // const Notification = lazy(() => import("./pages/Notification"));
 // const Setting = lazy(() => import("./pages/Settings"));
 // const Layout = lazy(() => import("../src/pages/Layout"));
-//const SalonDashBoard = lazy(() => import("../src/pages/SalonDashboard"));
+// const SalonDashBoard = lazy(() => import("../src/pages/SalonDashboard"));
 // const Login = lazy(() => import("../src/Component/authentication/Login"));
 // const Authentication = lazy(() => import("../src/Component/authentication/Authentication"));
 // const ForgetPassword = lazy(() => import("../src/Component/authentication/ForgetPassword"));
@@ -31,6 +34,7 @@ const SalonAppointment = lazy(() => import("./Component/salonAppointment/SalonAp
 // const NewPassword = lazy(() => import("../src/Component/authentication/NewPassword"));
 // const ChangedPassword = lazy(() => import("../src/Component/authentication/ChangedPassword"));
 // const Error = lazy(() => import("../src/Component/Error"));
+
 
 // const ProtectedRoutes = ({ authToken }) =>{
 //   return authToken ? <Outlet /> : <Navigate to="/login" />;
@@ -64,7 +68,7 @@ const SalonAppointment = lazy(() => import("./Component/salonAppointment/SalonAp
 //              { path: "payment-management", element: <PaymentMan /> },
 //              { path: "notification", element: <Notification /> },
 //              { path: "setting", element: <Setting /> },
-            
+
 //           ],
 //         },
 //       ],
@@ -89,39 +93,87 @@ const SalonAppointment = lazy(() => import("./Component/salonAppointment/SalonAp
 // export default AppRoute;
 
 
+// function ProtectedRoutes({ authToken }) {
+//   return authToken ? <Outlet /> : <Navigate to="/home" />;
+// }
+
+// const AppRoute = (props) => {
+//   const _routes = [
+//     {
+//       path: "",
+//       element: (
+//         <Suspense fallback={"Loading"}>
+//           <ProtectedRoutes {...props}/>
+//         </Suspense>
+//       ),
+//       children: [
+//         {
+//           path: "salon-dashboard",
+//           element: <SalonDashBoard />,
+//           children: [
+//             { path: "", element: <SaloonDashboard /> },
+//             { path: "appointment", element: <SalonAppointment /> },
+//             { path: "salon-management", element: <SalonManagement /> },
+//           ]
+//         }
+
+//       ]
+//     },
+
+//     {
+//       path: "account",
+//       element: <Account />
+//     },
+
+//     {
+//       path: "home",
+//       element: <Home />
+//     }
+
+//   ]
+//    const routes = useRoutes(_routes);
+//   return routes;
+
+// }
+// export default AppRoute;
+
+
 const AppRoute = (props) => {
-  const _routes = [
-    {
-      path: "",
-      element: <Home />
-    },
-    {
-      path: "salon-dashboard",
-      element: <SalonDashBoard />,
-      children: [
-        {
-          path: "",
-          element: <SaloonDashboard />
-        },
-        {
-          path: "appointment",
-          element: <SalonAppointment />
-        },
 
-        {
-          path: "salon-management",
-          element: <SalonManagement/>
-        }
-      ]
-    },
-    {
-      path: "account",
-      element: <Account />
-    }
-  ];
+const _routes = [
+  {
+    path: "",
+    element: <Home/> 
+  },
 
-  const routes = useRoutes(_routes);
+  {
+    path: "salon-dashboard",
+    element: <SalonDashBoard />,
+    children: [ 
+      {
+        path: "",
+        element: <SaloonDashboard />
+      },
+      {
+        path: "appointment",
+        element: <SalonAppointment />
+      },
+
+      {
+        path: "salon-management",
+        element: <SalonManagement />
+      }
+    ]
+  },
+  {
+    path: "account",
+    element: <Account />
+  }
+];
+
+   const routes = useRoutes(_routes);
   return routes;
-}
 
+}
 export default AppRoute;
+

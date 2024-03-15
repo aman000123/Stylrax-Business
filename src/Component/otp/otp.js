@@ -6,10 +6,11 @@ import { useNavigate } from "react-router-dom";
 import { resendOtp, verifyOtp } from "../../api/account.api";
 import { useDispatch } from "react-redux";
 import { storeToken } from "../../features/authInfo";
+
+
 const Otp = ({ phoneNumber }) => {
   const [otp, setOtp] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
-
   const [errorMessage, setErrorMessage] = useState("");
   const [isRegistered, setIsRegistered] = useState(false);
   const [resendDisabled, setResendDisabled] = useState(false);
@@ -56,6 +57,11 @@ const Otp = ({ phoneNumber }) => {
           phoneNumber: phoneNumber,
           otp: otp,
         };
+
+
+
+
+        
         const res = await verifyOtp(verifyData);
         console.log("response ::", res.data.statusCode);
         if (res.data.statusCode == "200") {
@@ -102,6 +108,9 @@ const Otp = ({ phoneNumber }) => {
       setIsSubmitting(false);
     }
   };
+
+
+
   return (
     <div className={styles.loginBorder}>
       <>
@@ -140,7 +149,10 @@ const Otp = ({ phoneNumber }) => {
         </form>
       </>
     </div>
+    
   );
+  
 };
+
 
 export default Otp;
