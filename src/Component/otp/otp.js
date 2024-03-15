@@ -60,10 +60,9 @@ const Otp = ({ phoneNumber }) => {
         console.log("response ::", res.data.statusCode);
         if (res.data.statusCode == "200") {
           const authToken = res.data.data.authToken;
-          console.log("Received token:", authToken);
-          dispatch(storeToken({ token: authToken }));
-          console.log("Received token:", authToken);
-          console.log("Phone number:", phoneNumber);
+          console.log("auth token",authToken)
+          const profile = res.data.data.profile;
+          dispatch(storeToken({authToken,profile }));
 
           if (authToken === phoneNumber) {
             console.log("Token matches phone number.");
