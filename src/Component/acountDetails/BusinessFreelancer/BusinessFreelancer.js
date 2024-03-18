@@ -1,12 +1,11 @@
 import React, { useRef, useState } from "react";
-import client3 from "../../../assets/image/client3.svg";
 import { Container } from "react-bootstrap";
 import { IoCheckbox } from "react-icons/io5";
 import { GrFormUpload } from "react-icons/gr";
 import { useFormik } from "formik";
 import { useNavigate } from "react-router-dom";
 import { detailsSchema } from "../../../utils/schema";
-import styles from "./Details.module.css";
+import styles from "../Details/Details.module.css";
 import Notify from "../../../utils/notify";
 import { createSalon } from "../../../api/account.api";
 
@@ -18,7 +17,7 @@ const initialValues = {
   phoneNumber: "",
   dob: "",
 };
-const Details = ({ nextStep, prevStep, setShowServicePage }) => {
+const BusinessFreelancer = ({ nextStep, setShowServicePage }) => {
   const {
     values,
     errors,
@@ -33,14 +32,13 @@ const Details = ({ nextStep, prevStep, setShowServicePage }) => {
     validateOnChange: true,
     validateOnBlur: false,
 
-    onSubmit: (values) => {
-      console.log(values);
-      setShowServicePage(true);
-    },
-  });
+    onSubmit:  (values) => {
+        console.log(values)
+        nextStep();
+      },
+    });
   const [selectedOption, setSelectedOption] = useState("");
   const [activeStep, setActiveStep] = useState(0);
-  const [selectedFile, setSelectedFile] = useState(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const navigate = useNavigate();
@@ -57,51 +55,37 @@ const Details = ({ nextStep, prevStep, setShowServicePage }) => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
   };
 
-  const formSubmit = async (event) => {
-    event.preventDefault();
-    console.log("data");
-    if (isValid) {
-      try {
-        setIsSubmitting(true);
-        const verifyForm = {
-          profileType: "Salon",
-          firstName: values.name,
-          middleName: values.middleName,
-          lastName: values.lastName,
-          email: values.email,
-          dataOfBirth: values.dob,
-          gender: "Male",
-          panCardImageUrl: "someurl",
-          aadharFrontUrl: "someurl",
-          aadharBackUrl: "someurl",
-          // profileImageUrl:"someUrl",
-        };
-        const res = await createSalon(verifyForm);
-        if (res.data.statusCode == "200") {
-          navigate("/salon-dashboard");
-        }
-      } catch (error) {
-        Notify.error(error.message);
-      } finally {
-        setIsSubmitting(false);
-      }
-    }
-  };
-  const handleChangeFile = (type) => {
-    fileInputRef.current.click();
-    fileInputRef.current.onchange = (event) => {
-      const selectedFile = event.target.files[0];
-      if (selectedFile) {
-        if (type === "adhar") {
-          setSelectedFile(selectedFile);
-        } else if (type === "pan") {
-          setSelectedFile(selectedFile);
-        }
-      } else {
-        alert("Please select a file to upload");
-      }
-    };
-  };
+//   const formSubmit = async (event) => {
+//     event.preventDefault();
+//     console.log("data");
+//     if (isValid) {
+//       try {
+//         setIsSubmitting(true);
+//         const verifyForm = {
+//           profileType: "Salon",
+//           firstName: values.name,
+//           middleName: values.middleName,
+//           lastName: values.lastName,
+//           email: values.email,
+//           dataOfBirth: values.dob,
+//           gender: "Male",
+//           panCardImageUrl: "someurl",
+//           aadharFrontUrl: "someurl",
+//           aadharBackUrl: "someurl",
+//           // profileImageUrl:"someUrl",
+//         };
+//         const res = await createSalon(verifyForm);
+//         if (res.data.statusCode == "200") {
+//           navigate("/salon-dashboard");
+//         }
+//       } catch (error) {
+//         Notify.error(error.message);
+//       } finally {
+//         setIsSubmitting(false);
+//       }
+//     }
+//   };
+ 
   return (
     <Container>
       <div className="d-flex flex-column align-items-center">
@@ -110,9 +94,6 @@ const Details = ({ nextStep, prevStep, setShowServicePage }) => {
           activeStep={activeStep}
           handleNext={handleNext}
         >
-          <div className="d-flex flex-column align-items-center mb-1">
-            <img src={client3} className={styles.client} alt="client" />
-          </div>
           <form
             className="d-flex flex-column align-items-center"
             onSubmit={handleSubmit}
@@ -209,22 +190,7 @@ const Details = ({ nextStep, prevStep, setShowServicePage }) => {
                 ) : null}
               </label>
             </div>
-            <div className="d-flex flex-column align-items-center-start mb-1">
-              <label className="fw-bold">
-                Contact Number
-                <br />
-                <input
-                  name="phoneNumber"
-                  value={values.phoneNumber}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  className={styles.number}
-                />
-                {errors.phoneNumber && touched.phoneNumber ? (
-                  <p className={styles.error}>{errors.phoneNumber}</p>
-                ) : null}
-              </label>
-            </div>
+          
             <div className="d-flex flex-column align-items-center-start mb-1">
               <label className="fw-bold">
                 Gender
@@ -240,6 +206,27 @@ const Details = ({ nextStep, prevStep, setShowServicePage }) => {
                     className="d-flex flex-column align-items-center-start"
                   >
                     Male
+                  </option>
+                  <option value="option2">Female</option>
+                  <option value="option3">Others</option>
+                </select>
+              </label>
+            </div>
+            <div className="d-flex flex-column align-items-center-start mb-1">
+              <label className="fw-bold">
+                Services For
+                <br />
+                <select
+                  id="dropdown"
+                  value={selectedOption}
+                  onChange={handleOptionChange}
+                  className={styles.dropDown}
+                >
+                  <option
+                    value="option1"
+                    className="d-flex flex-column align-items-center-start"
+                  >
+                    Unisex
                   </option>
                   <option value="option2">Female</option>
                   <option value="option3">Others</option>
@@ -316,7 +303,7 @@ const Details = ({ nextStep, prevStep, setShowServicePage }) => {
             </div>
 
             <div className="d-flex flex-column align-items-center">
-              <button type="submit" className={styles.continue}>
+              <button type="submit" className={styles.continue} onClick={nextStep}>
                 Continue
               </button>
             </div>
@@ -327,4 +314,4 @@ const Details = ({ nextStep, prevStep, setShowServicePage }) => {
   );
 };
 
-export default Details;
+export default BusinessFreelancer;

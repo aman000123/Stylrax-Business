@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import SalonClinic from "../salonDashboard/SalonClinic";
 import UpcomingAppointment from "../salonDashboard/UpcomingAppointment";
-import { Row, Col, Container } from "react-bootstrap";
+import { Row, Col, Container, Modal } from "react-bootstrap";
 import arrowIcon from "../../assets/image/arrowIcon.png";
 import orangeSpecs from "../../assets/image/orangeSpecs.png";
 import styles from "../../assets/scss/pages/home/salonDashboard.module.css";
+import Dialog from '@mui/material/Dialog';
 import { LuSwitchCamera } from "react-icons/lu";
 import SwitchSalon from "../switchSalon/SwitchSalon";
 const DashBoardLayout = () => {
@@ -36,6 +37,7 @@ const DashBoardLayout = () => {
             </ul>
             {showContent && (
         <SwitchSalon/>
+    
       )}
           </div>
         </div>

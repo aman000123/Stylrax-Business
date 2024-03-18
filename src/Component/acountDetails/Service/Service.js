@@ -1,10 +1,18 @@
 import React, { useState } from "react";
 import { Container } from "react-bootstrap";
 import styles from "./Service.module.css";
-
-const Service = ({ nextStep }) => {
+const Service = ({ nextStep,setSelectedService }) => {
   const [activeButton, setActiveButton] = useState(null);
-
+ 
+ 
+  const handleSalon = () => {
+    setSelectedService("Salon");
+    nextStep(); 
+  };
+  const handleFreelancer = () => {
+    setSelectedService("Freelancer");
+    nextStep(); 
+  };
   return (
     <Container>
       <div className="d-flex flex-column align-items-center">
@@ -16,8 +24,7 @@ const Service = ({ nextStep }) => {
           <div className="d-flex flex-column align-items-center">
             <button
               type="button"
-              // onClick={handleSalon}
-              onClick={nextStep}
+              onClick={handleSalon}
               className={`${styles.button} ${
                 activeButton === "salon" ? styles.activeButton : ""
               }`}
@@ -26,8 +33,7 @@ const Service = ({ nextStep }) => {
             </button>
             <button
               type="button"
-              onClick={nextStep}
-              //onClick={handleFreelancer}
+              onClick={handleFreelancer}
               className={`${styles.btn} ${
                 activeButton === "freelancer" ? styles.activeButton : ""
               }`}

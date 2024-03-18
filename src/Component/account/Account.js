@@ -7,6 +7,7 @@ import Finish from "../acountDetails/Finish/Finish";
 import logo from "../../assets/image/logo.png";
 import styles from "./Account.module.css";
 import Service from "../acountDetails/Service/Service";
+import BusinessFreelancer from "../acountDetails/BusinessFreelancer/BusinessFreelancer";
 const steps = [
   "Account Creation",
   "Business Details",
@@ -18,6 +19,7 @@ const Account = () => {
   const navigate = useNavigate();
   const [activeStep, setActiveStep] = useState(0);
   const [showServicePage, setShowServicePage] = useState(false);
+  const [selectedService, setSelectedService] = useState(null);
   const nextStep = () => {
     setActiveStep(activeStep + 1);
   };
@@ -62,11 +64,17 @@ const Account = () => {
             />
           )}
           {activeStep === 0 && showServicePage && (
-            <Service nextStep={nextStep} />
+            <Service nextStep={nextStep} setSelectedService={setSelectedService}/>
           )}
         </>
         {activeStep === 1 && (
-          <BusinessDetails nextStep={nextStep} prevStep={prevStep} />
+          <>
+            {selectedService === "Salon" ? (
+              <BusinessDetails nextStep={nextStep} prevStep={prevStep} />
+            ) : (
+              <BusinessFreelancer nextStep={nextStep} prevStep={prevStep} />
+            )}
+          </>
         )}
         {activeStep === 2 && (
           <BankDetails nextStep={nextStep} prevStep={prevStep} />

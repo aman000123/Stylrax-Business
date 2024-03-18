@@ -11,6 +11,7 @@ const SwitchSalon = () => {
         { id: 3, name: "Hair Salon", image: orangeSpecs },
       ];
   return (
+    
     <Paper className={`${styles.switchPaper}`} elevation={15}style={{ borderRadius: '15px' }}>
         <div className={styles.main}>
       <div className={styles.mainDiv}>
