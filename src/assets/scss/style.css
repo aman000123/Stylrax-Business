@@ -18,7 +18,7 @@
 //Pages
 @import "./pages/_page.scss";
 
-// Component
+// components
  @import "./component/component";
 
 // Mixins
