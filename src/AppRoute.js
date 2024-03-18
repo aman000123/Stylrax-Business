@@ -8,6 +8,7 @@ import { useRoutes } from 'react-router-dom';
 //import SaloonDashboard from "./Component/SaloonDashboard/SDashboard";
 import Account from "./Component/account/Account";
 import DashBoardLayout from "./Component/dashboardLayout/DashboardLayout";
+import { useSelector } from "react-redux";
 const SalonDashBoard = lazy(() => import("../src/pages/SalonDashboard"));
 const SalonAppointment = lazy(() => import("./Component/salonAppointment/SalonAppointment"));
 
@@ -94,11 +95,12 @@ const SalonAppointment = lazy(() => import("./Component/salonAppointment/SalonAp
 // export default AppRoute;
 
 
-// function ProtectedRoutes({ authToken }) {
-//   return authToken ? <Outlet /> : <Navigate to="/home" />;
-// }
-
+// const ProtectedRoutes = ({authToken }) =>{
+//      return authToken ? <Outlet /> : <Navigate to="/" />;
+//    }
+ 
 // const AppRoute = (props) => {
+
 //   const _routes = [
 //     {
 //       path: "",
@@ -112,7 +114,7 @@ const SalonAppointment = lazy(() => import("./Component/salonAppointment/SalonAp
 //           path: "salon-dashboard",
 //           element: <SalonDashBoard />,
 //           children: [
-//             { path: "", element: <SaloonDashboard /> },
+//             { path: "", element: <DashBoardLayout /> },
 //             { path: "appointment", element: <SalonAppointment /> },
 //             { path: "salon-management", element: <SalonManagement /> },
 //           ]
@@ -127,16 +129,24 @@ const SalonAppointment = lazy(() => import("./Component/salonAppointment/SalonAp
 //     },
 
 //     {
-//       path: "home",
+//       path: "/",
 //       element: <Home />
-//     }
-
+//     },
+  
 //   ]
+  
 //    const routes = useRoutes(_routes);
 //   return routes;
 
 // }
 // export default AppRoute;
+
+
+
+
+
+
+
 
 
 const AppRoute = (props) => {
@@ -146,25 +156,7 @@ const _routes = [
     path: "",
     element: <Home/> 
   },
-
-  {
-    path: "salon-dashboard",
-    element: <SalonDashBoard />,
-    children: [ 
-      {
-        path: "",
-        element: <SaloonDashboard />
-      },
-      {
-        path: "appointment",
-        element: <SalonAppointment />
-      },
-  const _routes = [
-    {
-      path: "",
-      element: <Home />
-    },
-    {
+   {
       path: "salon-dashboard",
       element: <SalonDashBoard />,
       children: [

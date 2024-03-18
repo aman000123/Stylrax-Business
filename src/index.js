@@ -6,15 +6,11 @@ import reportWebVitals from "./reportWebVitals";
 import store from "./app/store";
 import { Provider } from "react-redux";
 import { BrowserRouter as Router } from "react-router-dom";
-import Navbar from "./Component/Navbar/Navbar";
-import menuItems from "./Component/navData/data";
-import { navItems } from "./Component/navData/data";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
 root.render(
   <Provider store={store}>
     <Router>
-    
       <App />
     </Router>
   </Provider>

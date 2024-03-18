@@ -58,11 +58,7 @@ const Otp = ({ phoneNumber }) => {
           otp: otp,
         };
 
-
-
-
-        
-        const res = await verifyOtp(verifyData);
+     const res = await verifyOtp(verifyData);
         console.log("response ::", res.data.statusCode);
         if (res.data.statusCode == "200") {
           const authToken = res.data.data.authToken;

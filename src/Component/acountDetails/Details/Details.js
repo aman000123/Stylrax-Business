@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 import { detailsSchema } from "../../../utils/schema";
 import styles from "./Details.module.css";
 import Notify from "../../../utils/notify";
-import {createSalon } from "../../../api/account.api";
+import { createSalon } from "../../../api/account.api";
 
 const initialValues = {
   name: "",
@@ -19,15 +19,23 @@ const initialValues = {
   dob: "",
 };
 const Details = ({ nextStep, prevStep, setShowServicePage }) => {
- 
-  const { values, errors, handleBlur,handleChange, handleSubmit,isValid, touched } = useFormik({
+  const {
+    values,
+    errors,
+    handleBlur,
+    handleChange,
+    handleSubmit,
+    isValid,
+    touched,
+  } = useFormik({
     initialValues: initialValues,
     validationSchema: detailsSchema,
     validateOnChange: true,
     validateOnBlur: false,
+
     onSubmit: (values) => {
       console.log(values);
-      setShowServicePage(true)
+      setShowServicePage(true);
     },
   });
   const [selectedOption, setSelectedOption] = useState("");
@@ -48,43 +56,37 @@ const Details = ({ nextStep, prevStep, setShowServicePage }) => {
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
   };
- 
-// const formSubmit = async(event)=>{
-//   event.preventDefault();
-//   if(validateOtp()){
-//     console.log("data");
-//     try{
-//       setIsSubmitting(true);
-//       const verifyForm ={
-          
-//           profileType:"Salon",
-//           firstName:values.name,
-//           middleName:values.middleName,
-//           lastName:values.lastName,
-//           email:values.email,
-//           dataOfBirth:values.dob,
-//           gender:"Male",
-//           panCardImageUrl:"someurl",
-//           aadharFrontUrl:"someurl",
-//           aadharBackUrl:"someurl",
-//           profileImageUrl:"someUrl",
-//           serviceType:"Male"
-      
-//       }
-//       const res= await createSalon(verifyForm);
-//       if(res.data.statusCode == "200"){
-//         navigate('/salon-dashboard')
-//       }
-//     } catch (error){
-//       Notify.error(error.message);
-//     } finally {
-//       setIsSubmitting(false);
-//     }
-//   } else {
 
-//   }
-
-// }
+  const formSubmit = async (event) => {
+    event.preventDefault();
+    console.log("data");
+    if (isValid) {
+      try {
+        setIsSubmitting(true);
+        const verifyForm = {
+          profileType: "Salon",
+          firstName: values.name,
+          middleName: values.middleName,
+          lastName: values.lastName,
+          email: values.email,
+          dataOfBirth: values.dob,
+          gender: "Male",
+          panCardImageUrl: "someurl",
+          aadharFrontUrl: "someurl",
+          aadharBackUrl: "someurl",
+          // profileImageUrl:"someUrl",
+        };
+        const res = await createSalon(verifyForm);
+        if (res.data.statusCode == "200") {
+          navigate("/salon-dashboard");
+        }
+      } catch (error) {
+        Notify.error(error.message);
+      } finally {
+        setIsSubmitting(false);
+      }
+    }
+  };
   const handleChangeFile = (type) => {
     fileInputRef.current.click();
     fileInputRef.current.onchange = (event) => {
@@ -107,20 +109,20 @@ const Details = ({ nextStep, prevStep, setShowServicePage }) => {
           className={styles.main}
           activeStep={activeStep}
           handleNext={handleNext}
-          
         >
           <div className="d-flex flex-column align-items-center mb-1">
             <img src={client3} className={styles.client} alt="client" />
           </div>
           <form
             className="d-flex flex-column align-items-center"
-            onSubmit={handleSubmit}
+            onSubmit={formSubmit}
           >
             <div className="d-flex flex-column align-items-center-start mb-1">
               <label className="fw-bold">
                 Name
                 <br />
-                <input type="text"
+                <input
+                  type="text"
                   id="name"
                   name="name"
                   value={values.name}
@@ -168,8 +170,8 @@ const Details = ({ nextStep, prevStep, setShowServicePage }) => {
               </label>
             </div>
             {errors.lastName && touched.lastName ? (
-                  <p className={styles.error}>{errors.lastName}</p>
-                ) : null}
+              <p className={styles.error}>{errors.lastName}</p>
+            ) : null}
             <div className="d-flex flex-column align-items-center-start mb-1">
               <label className="fw-bold">
                 Email
@@ -194,14 +196,12 @@ const Details = ({ nextStep, prevStep, setShowServicePage }) => {
                 Date of Birth
                 <br />
                 <input
-                 
                   type="date"
                   name="dob"
                   value={values.dob}
                   onChange={handleChange}
                   onBlur={handleBlur}
                   className={styles.birthday}
-                  
                 />
                 {errors.dob && touched.dob ? (
                   <p className={styles.error}>{errors.dob}</p>
@@ -315,13 +315,9 @@ const Details = ({ nextStep, prevStep, setShowServicePage }) => {
             </div>
 
             <div className="d-flex flex-column align-items-center">
-              <button
-                type="submit"
-                className={styles.continue}
-                >
+              <button type="submit" className={styles.continue}>
                 Continue
               </button>
-             
             </div>
           </form>
         </div>

@@ -2,10 +2,12 @@ import React, { useRef, useState } from "react";
 import { Container } from "react-bootstrap";
 import { GrFormUpload } from "react-icons/gr";
 import styles from "./BusinessDetails.module.css";
-
+import Notify from "../../../utils/notify";
+import { useNavigate } from "react-router-dom";
 
 import { useFormik } from "formik";
 import {businessDetailsSchema} from "../../../utils/schema";
+import { Salon } from "../../../api/account.api";
 
 const states = ["Select State", "Alabama", "Alaska"];
 const cities = {
@@ -67,8 +69,8 @@ const BusinessDetails = ({nextStep,prevStep}) => {
   const [selectedState, setSelectedState] = useState("Select State");
   const [selectedOption, setSelectedOption] = useState("");
   const [selectedFile, setSelectedFile] = useState(null);
- 
- 
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const navigate = useNavigate();
   const fileInputRef = useRef(null);
   const handleStateChange = (event) => {
     const state = event.target.value;
@@ -89,7 +91,37 @@ const BusinessDetails = ({nextStep,prevStep}) => {
     setSelectedFile(file);
   };
   
-
+  //const formSubmit = async(event)=>{
+   // event.preventDefault();
+   
+      //console.log("data");
+     // try{
+      //  setIsSubmitting(true);
+       // const verifyForm ={
+    // name:values.name,
+    //email:values.email,
+    //gstNumber:values.gstNumber,
+    //companyName:values.companyName,
+    //address:values.address,
+            // gender:"Male",
+            // panCardImageUrl:"someurl",
+            // aadharFrontUrl:"someurl",
+            // aadharBackUrl:"someurl",
+            // profileImageUrl:"someUrl",
+            // serviceType:"Male"
+        
+       // }
+        //const res= await Salon(verifyForm);
+        //console.log("Business api data",res)
+        //if(res.data.statusCode == "200"){
+          //navigate('/salon-dashboard')
+          //nextStep()
+       // }
+      //} catch (error){
+       // Notify.error(error.message);
+    //  } finally {
+        //setIsSubmitting(false);
+      //}}
   return (
     <Container>
    
@@ -302,7 +334,7 @@ const BusinessDetails = ({nextStep,prevStep}) => {
           <div>
           <button className={styles.continue}
           type="submit"
-          // onClick={nextStep}
+          
           >Continue</button>
           {/* <button className={styles.continue} onClick={handleButton}>Continue</button> */}
           </div>
