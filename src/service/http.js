@@ -3,8 +3,6 @@ import session from "./session";
 import {PUBLIC_URLS} from '../constants/public-endpoint';
 import Notify from '../utils/notify';
 
-//TODO: handle public endpoints, multiple-part request, json request
-
 /*Setting up interceptors with axios*/
 axios.interceptors.request.use(function (config) {
    
@@ -31,7 +29,7 @@ axios.interceptors.response.use(function (response) {
     // SUCESS: and GET request : no notification
     // ERROR: always
 
-    return response;
+    return response.data;
 
 }, function (error) {
     if (!error.response && error.message === 'Network Error') {
