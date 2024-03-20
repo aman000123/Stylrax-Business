@@ -1,12 +1,8 @@
-import React from 'react'
-import Navbar from "../components/Navbar/Navbar";
-import { navItems } from '../components/navData/data';
+import Navbar from "../layout/navbar/Navbar";
+import { navItems } from '../../src/data/navdata/Data';
 import { Outlet } from 'react-router-dom';
-
-
 function SalonDashboard() {
   return (
-
     <>
     <Navbar data={navItems}/>
     <Outlet/>

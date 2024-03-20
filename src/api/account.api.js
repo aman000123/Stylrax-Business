@@ -1,7 +1,7 @@
 import HTTP from "../service/http";
 import { methods } from "../constants";
 import { __endpoint_Salon, __endpoint_addStaff, __endpoint_createSalon,
-  __endpoint_doLogin, __endpoint_resendOtp, __endpoint_verifyOtp
+  __endpoint_doLogin, __endpoint_verifyOtp
 } from "../constants/endpoints";
 
 export const doLogin = (payload) =>

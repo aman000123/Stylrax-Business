@@ -1,0 +1,127 @@
+.main{
+    background-image: url("../../../assests/image/bgOne.webp");
+    background-size: cover;
+    overflow: hidden;
+    padding-top: 60px;
+    padding-bottom: 50px;
+    position: relative;
+}
+.starImage{
+    position: absolute;
+    top: 353px;
+    width: 200px;
+    height: 160px;
+}
+@media (max-width:1440px) {
+    .starImage{
+     width: 150px;
+    }}
+    @media (max-width:1380px) {
+        .starImage{
+            width: 150px;
+    top: 409px;
+    height: 149px;
+        }
+        
+    }
+ 
+@media (max-width:991.7px) {
+    .starImage{
+     top: 375px;
+  }}
+@media (max-width:767.7px) {
+  .starImage{
+ display: none;
+}}
+.star{
+   position: absolute;
+   right: 10px;
+   width: 200px;
+   height: 150px;
+   top: 10px;
+}
+@media (max-width:1440px) {
+    .star{
+     width: 150px;
+    }}
+    @media (max-width:1380px) {
+        .star{
+         width: 120px;
+        }}
+        @media (max-width:767.7px) {
+            .star{
+           display: none;
+            }}
+.pra{
+    color: black;
+    font-weight: 500;
+    line-height: 30px;
+    font-size: 25px;
+    text-align: center;
+}
+@media (max-width:1199.5px){
+    .pra{
+        font-size: 20px;
+    }
+}
+@media (max-width:991.5px){
+    .pra{
+        font-size: 16px;
+        line-height: 20px;
+    }
+}
+@media (max-width:767.5px){
+    .pra{
+       line-height: 20px;
+    }
+}
+@media (max-width:575px){
+    .pra{
+       font-size: 13px;
+    }
+}
+@media (max-width:532px){
+    .pra{
+     
+       font-size: 12px;
+       font-weight: 600;
+    }
+}
+@media (max-width:313px){
+    .pra{
+      margin-left: -30px;
+      margin-right: -30px;
+    }
+}
+.mainSection{
+    background-color: white; 
+     padding:  50px 150px;
+    padding-left: 175px;
+    padding-right: 175px;
+
+}
+
+@media (max-width:1096px){
+    .mainSection{
+        padding-left: 130px;
+        padding-right: 130px;
+    }
+}
+@media (max-width:1000px){
+    .mainSection{
+        padding-left: 110px;
+        padding-right: 110px;
+    }
+}
+@media (max-width:767.7px){
+    .mainSection{
+      margin-top: -70px;
+      margin-bottom: -70px;
+    }
+}
+@media (max-width:575px){
+    .mainSection{
+       margin-left: 40px;
+       margin-right: 40px;
+    }
+}

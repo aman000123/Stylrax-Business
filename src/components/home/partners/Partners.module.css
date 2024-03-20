@@ -1,0 +1,151 @@
+.bgImg{
+    background-image: url("../../../assets/image/rectangle.png");
+    padding: 84px 125px;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.bgImg div {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+
+.bgColor{
+    background-color: #fff;
+    
+}
+
+@media(max-width:1216px){
+    .bgColor img{
+        height: auto;
+        width: 95px;
+    }
+
+    .bgImg{
+        padding: 70px 125px;
+    }
+    
+}
+
+@media(max-width:1000px) {
+    .bgColor img{
+        height: auto;
+        width: 85px;
+    }
+
+    .bgImg{
+        padding: 50px 100px;
+    }
+}
+
+@media(max-width:882px) {
+    .bgColor img{
+        height: auto;
+        width: 75px;
+    }
+
+    .bgImg{
+        padding: 50px 90px;
+    }
+}
+
+@media(max-width:773px) {
+    .bgColor img{
+        height: auto;
+        width: 65px;
+    }
+
+    .bgImg{
+        padding: 50px 80px;
+    }
+}
+
+@media(max-width:698px) {
+    .bgColor img{
+        height: auto;
+        width: 56px;
+    }
+
+    .bgImg{
+        padding: 43px 61px;
+    }
+}
+
+@media(max-width:572px) {
+    .bgColor img{
+        height: auto;
+        width: 55px;
+    }
+
+    .bgImg{
+        padding: 39px 49px;
+    }
+}
+
+@media(max-width:524px) {
+    .bgColor img{
+        height: auto;
+        width: 50px;
+    }
+
+    .bgImg{
+        padding: 36px 36px;
+    }
+}
+
+@media(max-width:467px) {
+    .bgColor img{
+        height: auto;
+        width: 50px;
+    }
+
+    .bgImg{
+        padding: 36px 36px;
+    }
+}
+
+@media(max-width:467px) {
+    .bgColor img{
+        height: auto;
+        width: 44px;
+    }
+
+    .bgImg{
+        padding: 37px 19px;
+    }
+}
+
+@media(max-width:394px) {
+    .bgColor img{
+        height: auto;
+        width: 40px;
+    }
+
+    .bgImg{
+        padding: 20px 20px;
+    }
+}
+
+@media(max-width:343px) {
+    .bgColor img{
+        height: auto;
+        width: 40px;
+    }
+
+    .bgImg{
+        padding: 19px 17px;
+    }
+}
+
+@media(max-width:328px) {
+    .bgColor img{
+        height: auto;
+        width: 37px;
+    }
+
+    .bgImg{
+        padding: 15px 10px;
+    }
+}
