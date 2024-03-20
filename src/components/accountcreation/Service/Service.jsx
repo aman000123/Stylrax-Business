@@ -1,7 +1,12 @@
 import  { useState } from "react";
 import { Container } from "react-bootstrap";
 import styles from "./Service.module.css";
+import PropTypes from 'prop-types';
 const Service = ({ nextStep,setSelectedService }) => {
+  Service.propTypes = {
+    setSelectedService: PropTypes.func.isRequired,
+    nextStep: PropTypes.func.isRequired,
+  };
   const [activeButton] = useState(null);
  
  

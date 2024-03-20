@@ -4,7 +4,8 @@ import { IoCheckbox } from "react-icons/io5";
 import { GrFormUpload } from "react-icons/gr";
 import { useFormik } from "formik";
 import { detailsSchema } from "../../../utils/schema";
-import styles from "../Details/Details.module.css";
+import styles from "../accountcreation/Details.module.css";
+import PropTypes from 'prop-types';
 //import Notify from "../../../utils/notify";
 //import { createSalon } from "../../../api/account.api";
 
@@ -17,6 +18,9 @@ const initialValues = {
   dob: "",
 };
 const BusinessFreelancer = ({ nextStep }) => {
+  BusinessFreelancer.propTypes = {
+    nextStep: PropTypes.func.isRequired,
+  };
   const {
     values,
     errors,
@@ -89,7 +93,9 @@ const BusinessFreelancer = ({ nextStep }) => {
       <div className="d-flex flex-column align-items-center">
         <div
           className={styles.main}
+         // eslint-disable-next-line react/no-unknown-property
          activeStep={activeStep}
+          // eslint-disable-next-line react/no-unknown-property
           handleNext={handleNext}
         >
           <form

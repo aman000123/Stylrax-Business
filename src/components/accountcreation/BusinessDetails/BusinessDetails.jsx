@@ -5,6 +5,7 @@ import styles from "./BusinessDetails.module.css";
 import { IoAddSharp } from "react-icons/io5";
 import { useFormik } from "formik";
 import { businessDetailsSchema } from "../../../utils/schema";
+import PropTypes from 'prop-types';
 //import { Salon } from "../../../api/account.api";
 
 const states = ["Select State", "Alabama", "Alaska"];
@@ -27,6 +28,9 @@ const initialValues = {
 };
 
 const BusinessDetails = ({ nextStep}) => {
+  BusinessDetails.propTypes = {
+    nextStep: PropTypes.func.isRequired,
+  };
   const {
     values,
     errors,

@@ -19,7 +19,7 @@ height: 185px;
 
 .heading p{
 color: #000;
-font-family: Poppins;
+/* font-family: Poppins; */
 font-size: 36px;
 font-style: normal;
 font-weight: 600;
@@ -29,7 +29,7 @@ line-height: 46.815px; /* 133.758% */
 .desc p{
 color: #525252;
 text-align: center;
-font-family: Poppins;
+/* font-family: Poppins; */
 font-size: 26px;
 font-style: normal;
 font-weight: 600;

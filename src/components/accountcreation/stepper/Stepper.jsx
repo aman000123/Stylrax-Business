@@ -1,11 +1,11 @@
 import { useState } from "react";
 import {useNavigate } from "react-router-dom";
-import Details from "../Details/Details";
-import BusinessDetails from "../BusinessDetails/BusinessDetails";
-import BankDetails from "../BankDetails/BankDetails";
+import Details from "../accountcreation/Details";
+import BusinessDetails from "../businessdetails/BusinessDetails";
+import BankDetails from "../bankdetails/BankDetails";
 import Finish from "../Finish/Finish";
-import logo from "../../../assets/image/logo.png";
-import styles from "./Account.module.css";
+import logo from  "../../../assets/image/logo_f.svg";
+import styles from "./Stepper.module.css";
 import Service from "../Service/Service";
 import BusinessFreelancer from "../businessfreelancer/BusinessFreelancer";
 const steps = [
@@ -15,7 +15,7 @@ const steps = [
   "Finish",
 ];
 
-const Account = () => {
+const Stepper = () => {
   const navigate = useNavigate();
   const [activeStep, setActiveStep] = useState(0);
   const [showServicePage, setShowServicePage] = useState(false);
@@ -107,4 +107,4 @@ const Account = () => {
   );
 };
 
-export default Account;
+export default Stepper;

@@ -1,5 +1,5 @@
 .main{
-    background-image: url("../../../assests/image/bgOne.webp");
+    background-image: url("../../../assets/image/bgOne.webp");
     background-size: cover;
     overflow: hidden;
     padding-top: 60px;
@@ -8,7 +8,7 @@
 }
 .starImage{
     position: absolute;
-    top: 353px;
+    top: 265px;
     width: 200px;
     height: 160px;
 }

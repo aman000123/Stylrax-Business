@@ -7,7 +7,7 @@
     background-image: url("../../../assets/image/vectorbg.webp");
     background-size: cover;
     overflow: hidden;
-    
+    padding-bottom: 75px;
 }
 .commentDiv{
     background-color: black;
@@ -27,7 +27,6 @@
    }
    @media(max-width:767.7px){
     .commentDiv{
-      margin-top: -40px;
       margin-left: -25px;
    }}
    @media(max-width:360px){

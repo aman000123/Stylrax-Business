@@ -24,6 +24,7 @@ const LoginForm = () => {
           deviceToken: "staff3deviceid",
         };
         const res = await doLogin(data);
+        console.log("Login response",res)
         setShowOTPSection(true);
       } catch (error) {
         Notify.error(error.message);

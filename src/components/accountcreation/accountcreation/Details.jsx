@@ -4,10 +4,10 @@ import { Container } from "react-bootstrap";
 import { IoCheckbox } from "react-icons/io5";
 import { GrFormUpload } from "react-icons/gr";
 import { useFormik } from "formik";
-import { useNavigate } from "react-router-dom";
+//import { useNavigate } from "react-router-dom";
 import { detailsSchema } from "../../../utils/schema";
 import styles from "./Details.module.css";
-
+import PropTypes from 'prop-types';
 
 const initialValues = {
   name: "",
@@ -18,6 +18,9 @@ const initialValues = {
   dob: "",
 };
 const Details = ({ setShowServicePage }) => {
+  Details.propTypes = {
+    setShowServicePage: PropTypes.func.isRequired,
+  };
   const {
     values,
     errors,
@@ -35,6 +38,7 @@ const Details = ({ setShowServicePage }) => {
       console.log(values);
       setShowServicePage(true);
     },
+   
   });
   const [selectedOption, setSelectedOption] = useState("");
   const [activeStep, setActiveStep] = useState(0);
@@ -89,7 +93,9 @@ const Details = ({ setShowServicePage }) => {
       <div className="d-flex flex-column align-items-center">
         <div
           className={styles.main}
+          // eslint-disable-next-line react/no-unknown-property
           activeStep={activeStep}
+          // eslint-disable-next-line react/no-unknown-property
           handleNext={handleNext}
         >
           <div className="d-flex flex-column align-items-center mb-1">

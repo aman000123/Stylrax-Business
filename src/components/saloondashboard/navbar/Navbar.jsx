@@ -1,8 +1,8 @@
 import  { useState } from "react";
-import logo from "../../assets/image/logo_f.svg";
 import MenuIcon from "@mui/icons-material/Menu";
 import styles from "../navbar/Navbar.module.css";
 import { NavLink } from "react-bootstrap";
+import Logo from "../../../ux/Logo";
 import PropTypes from 'prop-types';
 const Navbar = (props) => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -13,7 +13,7 @@ const Navbar = (props) => {
     <nav className={styles.nav}>
       <div className="align-items-center">
         <div className={styles.logo}>
-          <img src={logo} alt="logo" />
+         <Logo/>
         </div>
       </div>
       <div>
@@ -36,7 +36,7 @@ const Navbar = (props) => {
           <ul className={`${styles.MenuIcon}`}>
             {props.data.map((item, index) => (
               <div key={index} className="d-flex">
-                {item.icon}
+                 <span className={`${styles.icon}`}>{item.icon}</span>
                 <li>{item.text}</li>
               </div>
             ))}

@@ -2,7 +2,7 @@ import  { lazy } from "react";
 const Home =lazy(() => import( "./pages/Home"));
 const SalonManagement = lazy(() =>import ("./components/saloonmanagement/salonmanagement/SalonManagement"));
 import { useRoutes } from 'react-router-dom';
-const Account = lazy(() => import( "./components/accountcreation/account/Account"));
+const Stepper = lazy(() => import( "./components/accountcreation/stepper/Stepper"));
 const DashBoardLayout = lazy(()=> import( "../src/dashboardlayout/DashboardLayout"));
 const SalonDashBoard = lazy(() => import("./pages/SalonDashboard"));
 const SalonAppointment = lazy(() => import("./components/salonappointment/newappointment/NewAppointment"));
@@ -92,7 +92,7 @@ const _routes = [
   },
   {
     path: "account",
-    element: <Account />
+    element: <Stepper />
   }
 ];
 

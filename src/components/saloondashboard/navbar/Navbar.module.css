@@ -16,20 +16,49 @@
     justify-content: space-between;
    
 }
+@media (max-width:490px){
+    .nav{
+        /* width: 108%; */
+    }}
+
+@media (max-width:450px){
+    .nav{
+        /* width: 120%; */
+    }}
+    @media (max-width:400px){
+        .nav{
+            /* width: 140%; */
+        }}
 .menu_list{
     color: #FFFFFF;
     float: right;
     display: flex;
     gap: 20px;
     margin-right: 60px;
+    margin-top: 10px;
+}
+@media (max-width: 865px) {
+    .menu_list{
+       margin-top: 20px;
+    }
+}
+@media (max-width: 829px) {
+    .menu_list{
+       margin-right: 20px;
+    }
+}
+@media (max-width: 809px) {
+    .menu_list{
+      margin-right: 15px;
+    }
 }
 .menu_icon {
     display: none;
     color: #FFFFFF;
 }
-@media (max-width: 899px) {
+@media (max-width: 809px) {
     .menu_list{
-       gap: 10px;
+       gap: 9px;
     }
 }
 @media (max-width: 779px) {
@@ -46,8 +75,25 @@
     list-style: none;
     text-decoration: none;
     color: white;
-   
+    margin-top: 7px;
 }
+@media (max-width:895.9px){
+    .menu_list a{
+    font-size: 14px;
+    }}
+@media (max-width:856px){
+.menu_list a{
+font-size: 13px;
+}}
+@media (max-width:838px){
+    .menu_list a{
+    font-size: 12.5px;
+    }}
+    @media (max-width:805px){
+        .menu_list a{
+        font-size: 12px;
+        margin-top: 10px;
+        }}
 .logo{
     float: left;
     padding-top: 3px;
@@ -84,16 +130,25 @@
     margin-left: -210px;
     list-style: none;
     color: white;
-    padding: 30px 20px;
+    padding: 10px 20px;
     margin-top: 50px;
     border-radius: 10px;
     margin-right: 20px;
     position: absolute;
+    font-size: 13px;
 }
-
+.MenuIcon li{
+    margin-left: 10px;
+    margin-bottom: 8px;
+    margin-top: 5px;
+}
 @media screen and (min-width: 779px) {
     .MenuIcon {
       display: none;
     }
-}  
-
+} 
+@media(max-width:779px){ 
+.user{
+   height: 20px;
+   width: 20px;
+}}

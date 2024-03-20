@@ -7,7 +7,7 @@
     display: flex;
     justify-content:flex-start ;
     align-items: center;
-   margin-top: -40px;
+    padding-top: 15px;
 }
 .hairClinic{
     font-weight: bolder;
@@ -164,11 +164,13 @@
 @media (max-width:1199.7px){
     .userImage{
         width: 75px;
+        margin-left: 12px;
     }
 }
 @media (max-width:991.7px){
     .userImage{
         width: 60px;
+        margin-left: 6px;
     }
 }
 @media (max-width:450.7px){

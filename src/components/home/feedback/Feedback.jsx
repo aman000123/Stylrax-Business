@@ -11,13 +11,13 @@ const Feedback = () => {
           <Col md={12} className="d-flex justify-content-center">
             <div className={styles.mainSection}>
               <p className={styles.pra}>
-                "Trust is at the core of Stylrax. Our thorough verification
+              &quot;Trust is at the core of Stylrax. Our thorough verification
                 process
                 <br /> ensures a safe and secure environment for both
                 professionals
                 <br /> and clients. Build your reputation and trust with our
                 trusted
-                <br /> community."
+                <br /> community.&quot;
               </p>
             </div>
           </Col>

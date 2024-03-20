@@ -1,8 +1,8 @@
 import {Container} from "react-bootstrap";
 import { GrFormUpload } from "react-icons/gr";
-import styles from "./BankDetails.module.css";
+import styles from "../bankdetails/BankDetails.module.css";
 import { useFormik } from "formik";
-
+import PropTypes from 'prop-types';
 import {bankDetailsSchema} from "../../../utils/schema";
 const initialValues = {
   accountNumber:"",
@@ -13,6 +13,9 @@ const initialValues = {
 
 
 const BankDetails = ({nextStep}) => {
+  BankDetails.propTypes = {
+    nextStep: PropTypes.func.isRequired,
+  };
   const {values,errors,handleBlur,handleChange,handleSubmit,touched} = useFormik ({
     initialValues:initialValues,
     validationSchema:bankDetailsSchema,

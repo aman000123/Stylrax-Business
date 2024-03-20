@@ -1,9 +1,9 @@
 .main{
-    /* background-image: url("../../../image/vectorbg.webp"); */
     background-image: url("../../../assets/image/vectorbg.webp");
     background-size: cover;
     overflow: hidden;
-   
+    margin-top: 50px;
+    margin-bottom: -30px;
 }
 .mainDiv{
     background-image: url("../../../assets/image/bgTwo-Photoroom.png-Photoroom.svg");

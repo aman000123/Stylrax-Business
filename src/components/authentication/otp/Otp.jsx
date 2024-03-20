@@ -6,11 +6,14 @@ import { useNavigate } from "react-router-dom";
 import { resendOtp, verifyOtp } from "../../../api/account.api";
 import { useDispatch } from "react-redux";
 import { storeToken } from "../../../store/auth.slice";
-
+import PropTypes from 'prop-types';
 
 const Otp = ({ phoneNumber }) => {
+  Otp.propTypes = {
+    phoneNumber: PropTypes.func.isRequired,
+  };
   const [otp, setOtp] = useState("");
-  const [ setIsSubmitting] = useState(false);
+  const [ isSubmitting,setIsSubmitting] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate();
   const dispatch = useDispatch();

@@ -7,9 +7,9 @@ export default function Review() {
         <>
             <div className={styles.main}>
                 <div className={styles.child}>
-                    <p>"Love this platform! Easy sign-up, smooth appointments,
+                    <p>&quot;Love this platform! Easy sign-up, smooth appointments,
                         and a safe space for freelancers and salons. Highly recommended
-                        for a hassle-free experience!"
+                        for a hassle-free experience!&quot;
                     </p>
                     <div className={styles.flexDiv}>
                         <div className={styles.imgDiv}>
@@ -24,9 +24,9 @@ export default function Review() {
                 </div>
 
                 <div className={styles.child}>
-                    <p>"Love this platform! Easy sign-up, smooth appointments,
+                    <p>&quot;Love this platform! Easy sign-up, smooth appointments,
                         and a safe space for freelancers and salons. Highly recommended
-                        for a hassle-free experience!"
+                        for a hassle-free experience!&quot;
                     </p>
                     <div className={styles.flexDiv}>
                         <div className={styles.imgDiv}>
@@ -41,9 +41,9 @@ export default function Review() {
                 </div>
 
                 <div className={styles.child}>
-                    <p>"Love this platform! Easy sign-up, smooth appointments,
+                    <p>&quot;Love this platform! Easy sign-up, smooth appointments,
                         and a safe space for freelancers and salons. Highly recommended
-                        for a hassle-free experience!"
+                        for a hassle-free experience!&quot;
                     </p>
                     <div className={styles.flexDiv}>
                         <div className={styles.imgDiv}>
