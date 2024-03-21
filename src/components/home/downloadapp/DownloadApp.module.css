@@ -110,7 +110,7 @@ font-size: 9px;
 .brands{
     text-align: center;
     color: black;
-    margin-left: 162px;
+    /* margin-left: 162px; */
     margin-bottom: 27px;
 }
 @media (max-width:1200px){
@@ -121,7 +121,7 @@ font-size: 9px;
 @media (max-width:780px){
     .brands{
         font-size: 20px;
-        margin-left: 70px;
+        /* margin-left: 70px; */
         margin-top: -32px;
       
     }

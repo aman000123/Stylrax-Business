@@ -1,13 +1,13 @@
-import  { useRef, useState } from "react";
 import client3 from "../../../assets/image/client3.svg";
 import { Container } from "react-bootstrap";
 import { IoCheckbox } from "react-icons/io5";
 import { GrFormUpload } from "react-icons/gr";
-import { useFormik } from "formik";
-//import { useNavigate } from "react-router-dom";
 import { detailsSchema } from "../../../utils/schema";
 import styles from "./Details.module.css";
 import PropTypes from 'prop-types';
+import { createSalon } from "../../../api/account.api";
+import Notify from "../../../utils/notify";
+import { ErrorMessage, Field, Form, Formik } from "formik";
 
 const initialValues = {
   name: "",
@@ -17,224 +17,168 @@ const initialValues = {
   phoneNumber: "",
   dob: "",
 };
+
 const Details = ({ setShowServicePage }) => {
-  Details.propTypes = {
-    setShowServicePage: PropTypes.func.isRequired,
-  };
-  const {
-    values,
-    errors,
-    handleBlur,
-    handleChange,
-    handleSubmit,
-    touched,
-  } = useFormik({
-    initialValues: initialValues,
-    validationSchema: detailsSchema,
-    validateOnChange: true,
-    validateOnBlur: false,
-
-    onSubmit: (values) => {
-      console.log(values);
+  const onSubmit = async (values) => {
+    try {
+      const verifyForm = {
+        profileType: "Salon",
+        firstName: values.name,
+        middleName: values.middleName,
+        lastName: values.lastName,
+        email: values.email,
+        dataOfBirth: values.dob,
+        gender: "Male",
+        panCardImageUrl: "someurl",
+        aadharFrontUrl: "someurl",
+        aadharBackUrl: "someurl"
+      };
+      const res = await createSalon(verifyForm);
       setShowServicePage(true);
-    },
-   
-  });
-  const [selectedOption, setSelectedOption] = useState("");
-  const [activeStep, setActiveStep] = useState(0);
- 
- 
-  const fileInputRef = useRef(null);
-
-  const handleOptionChange = (event) => {
-    setSelectedOption(event.target.value);
+      console.log("response:::>",res.data.data)
+    } catch (error) {
+      Notify.error(error.message);
+    }
   };
 
-  const handleUploaded = () => {
-    fileInputRef.current.click();
-  };
-  const handleNext = () => {
-    setActiveStep((prevActiveStep) => prevActiveStep + 1);
-  };
-
-  // const formSubmit = async (event) => {
-  //   event.preventDefault();
-  //   console.log("data");
-  //   if (isValid) {
-  //     try {
-  //       setIsSubmitting(true);
-  //       const verifyForm = {
-  //         profileType: "Salon",
-  //         firstName: values.name,
-  //         middleName: values.middleName,
-  //         lastName: values.lastName,
-  //         email: values.email,
-  //         dataOfBirth: values.dob,
-  //         gender: "Male",
-  //         panCardImageUrl: "someurl",
-  //         aadharFrontUrl: "someurl",
-  //         aadharBackUrl: "someurl",
-  //         // profileImageUrl:"someUrl",
-  //       };
-  //       const res = await createSalon(verifyForm);
-  //       if (res.data.statusCode == "200") {
-  //         navigate("/salon-dashboard");
-  //       }
-  //     } catch (error) {
-  //       Notify.error(error.message);
-  //     } finally {
-  //       setIsSubmitting(false);
-  //     }
-  //   }
-  // };
- 
   return (
     <Container>
       <div className="d-flex flex-column align-items-center">
         <div
           className={styles.main}
-          // eslint-disable-next-line react/no-unknown-property
-          activeStep={activeStep}
-          // eslint-disable-next-line react/no-unknown-property
-          handleNext={handleNext}
         >
           <div className="d-flex flex-column align-items-center mb-1">
             <img src={client3} className={styles.client} alt="client" />
           </div>
-          <form
-            className="d-flex flex-column align-items-center"
-            onSubmit={handleSubmit}
+          <Formik
+            initialValues={initialValues}
+            validationSchema={detailsSchema}
+            onSubmit={onSubmit}
           >
-            <div className="d-flex flex-column align-items-center-start mb-1">
-              <label className="fw-bold">
-                Name
-                <br />
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  value={values.name}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  placeholder="Jhon"
-                  className={styles.input}
-                />
-                {errors.name && touched.name ? (
-                  <p className={styles.error}>{errors.name}</p>
-                ) : null}
-              </label>
-            </div>
-            <div className="d-flex flex-column align-items-center-start mb-1">
-              <label className="fw-bold">
-                Middle Name
-                <br />
-                <input
-                  id="middle"
-                  name="middleName"
-                  value={values.middleName}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  placeholder="Abrahim"
-                  className={styles.input}
-                />
-                {errors.middleName && touched.middleName ? (
-                  <p className={styles.error}>{errors.middleName}</p>
-                ) : null}
-              </label>
-            </div>
-            <div className="d-flex flex-column align-items-center-start mb-1">
-              <label className="fw-bold">
-                Last Name
-                <br />
-                <input
-                  id="lastName"
-                  name="lastName"
-                  value={values.lastName}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  placeholder="Optional"
-                  className={styles.input}
-                />
-                  {errors.lastName && touched.lastName ? (
-              <p className={styles.error}>{errors.lastName}</p>
-            ) : null}
-              </label>
-            </div>
-          
-            <div className="d-flex flex-column align-items-center-start mb-1">
-              <label className="fw-bold">
-                Email
-                <br />
-                <input
-                  id="email"
-                  name="email"
-                  value={values.email}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  placeholder="Sampleemail.com"
-                  className={styles.input}
-                />
-                <IoCheckbox className={styles.calendar} />
-                {errors.email && touched.email ? (
-                  <p className={styles.error}>{errors.email}</p>
-                ) : null}
-              </label>
-            </div>
-            <div className="d-flex flex-column align-items-center-start mb-1">
-              <label className="fw-bold">
-                Date of Birth
-                <br />
-                <input
-                  type="date"
-                  name="dob"
-                  value={values.dob}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  className={styles.birthday}
-                />
-                {errors.dob && touched.dob ? (
-                  <p className={styles.error}>{errors.dob}</p>
-                ) : null}
-              </label>
-            </div>
-            <div className="d-flex flex-column align-items-center-start mb-1">
-              <label className="fw-bold">
-                Contact Number
-                <br />
-                <input
-                  name="phoneNumber"
-                  value={values.phoneNumber}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  className={styles.number}
-                />
-                {errors.phoneNumber && touched.phoneNumber ? (
-                  <p className={styles.error}>{errors.phoneNumber}</p>
-                ) : null}
-              </label>
-            </div>
-            <div className="d-flex flex-column align-items-center-start mb-1">
-              <label className="fw-bold">
-                Gender
-                <br />
-                <select
-                  id="dropdown"
-                  value={selectedOption}
-                  onChange={handleOptionChange}
-                  className={styles.dropDown}
-                >
-                  <option
-                    value="option1"
-                    className="d-flex flex-column align-items-center-start"
+            <Form className="d-flex flex-column align-items-center">
+              <div className="d-flex flex-column align-items-center-start mb-1">
+                <label className="fw-bold">
+                  Name
+                  <br />
+                  <Field
+                    name="name"
+                    placeholder="Jhon"
+                    className={styles.input}
+                  />
+                  <ErrorMessage
+                    name="name"
+                    className={styles.error}
+                    component="div"
+                  />
+                </label>
+              </div>
+              <div className="d-flex flex-column align-items-center-start mb-1">
+                <label className="fw-bold">
+                  Middle Name
+                  <br />
+                  <Field
+                    name="lastName"
+                    placeholder="Jhon"
+                    className={styles.input}
+                  />
+                  <ErrorMessage
+                    name="lastName"
+                    className={styles.error}
+                    component="div"
+                  />
+                </label>
+              </div>
+             
+              <div className="d-flex flex-column align-items-center-start mb-1">
+                <label className="fw-bold">
+                  Last Name
+                  <br />
+                  <Field
+                    name="middleName"
+                    placeholder="Abrahim"
+                    className={styles.input}
+                  />
+                  <ErrorMessage
+                    name="middleName"
+                    className={styles.error}
+                    component="div"
+                  />
+                </label>
+              </div>
+              <div className="d-flex flex-column align-items-center-start mb-1">
+                <label className="fw-bold">
+                  Email
+                  <br />
+                  <Field
+                    name="email"
+                    placeholder="Samplemail.com"
+                    className={styles.input}
+                  />
+                   <IoCheckbox className={styles.calendar} />
+                  <ErrorMessage
+                    name="email"
+                    className={styles.error}
+                    component="div"
+                  />
+                </label>
+              </div>
+              <div className="d-flex flex-column align-items-center-start mb-1">
+                <label className="fw-bold">
+                  Date of Birth
+                  <br />
+                  <Field
+                    type="date"
+                    name="dob"
+                    placeholder="Jhon"
+                    className={styles.input}
+                  />
+                  <ErrorMessage
+                    name="dob"
+                    className={styles.error}
+                    component="div"
+                  />
+                </label>
+              </div>
+              <div className="d-flex flex-column align-items-center-start mb-1">
+                <label className="fw-bold">
+                
+                  Contact Number
+                  <br />
+                  <Field
+                    name="phoneNumber"
+                    placeholder="8318893508"
+                    className={styles.number}
+                  />
+                  <ErrorMessage
+                  component="div"
+                    name="phoneNumber"
+                    className={styles.error}
+                  />
+                </label>
+              </div>
+              <div className="d-flex flex-column align-items-center-start mb-1">
+                <label className="fw-bold">
+                  Gender
+                  <br />
+                   <Field
+                   as="select"
+                    name="gender"
+                    placeholder="Jhon"
+                    className={styles.input}
                   >
-                    Male
-                  </option>
-                  <option value="option2">Female</option>
-                  <option value="option3">Others</option>
-                </select>
-              </label>
-            </div>
-            <div className="d-flex flex-column align-items-center-start mb-1">
+                  <option value="male">Male</option>
+                  <option value="female">Female</option>
+                  <option value="other">Other</option>
+                  </Field> 
+                
+                  <ErrorMessage
+                    name="name"
+                    className={styles.error}
+                    component="div"
+                  />
+                </label>
+              </div>
+              <div className="d-flex flex-column align-items-center-start mb-1">
               <label className="fw-bold ">
                 Adhar Card Image
                 <br />
@@ -245,14 +189,14 @@ const Details = ({ setShowServicePage }) => {
                     <div>
                       <input
                         type="file"
-                        ref={fileInputRef}
+                        // ref={fileInputRef}
                         style={{ display: "none" }}
-                        onChange={handleChange}
+                        //onChange={handleChange}
                       />
                       <br />
                       <button
                         className={`${styles.btn} align-items-center-start`}
-                        onClick={handleUploaded}
+                        //onClick={handleUploaded}
                       >
                         <GrFormUpload className={styles.uploadIcon} />
                         Upload
@@ -265,14 +209,14 @@ const Details = ({ setShowServicePage }) => {
                     <br />
                     <input
                       type="file"
-                      ref={fileInputRef}
+                    //  ref={fileInputRef}
                       style={{ display: "none" }}
-                      onChange={handleChange}
+                     // onChange={handleChange}
                     />
                     <br />
                     <button
                       className={`${styles.btn} align-items-center-start`}
-                      onClick={handleUploaded}
+                     // onClick={handleUploaded}
                     >
                       <GrFormUpload className={styles.uploadIcon} />
                       Upload
@@ -291,28 +235,33 @@ const Details = ({ setShowServicePage }) => {
                   <br />
                   <input
                     type="file"
-                    ref={fileInputRef}
+                   // ref={fileInputRef}
                     style={{ display: "none" }}
-                    onChange={handleChange}
+                   // onChange={handleChange}
                   />
-                  <button className={styles.panBtn} onClick={handleUploaded}>
+                  <button className={styles.panBtn}>
                     <GrFormUpload className={styles.uploadIcon} />
                     Upload
                   </button>
                 </p>
               </label>
             </div>
-
-            <div className="d-flex flex-column align-items-center">
-              <button type="submit" className={styles.continue}>
-                Continue
-              </button>
-            </div>
-          </form>
+              {/* Other form fields */}
+              <div className="d-flex flex-column align-items-center">
+                <button type="submit" className={styles.continue}>
+                  Continue
+                </button>
+              </div>
+            </Form>
+          </Formik>
         </div>
       </div>
     </Container>
   );
+};
+
+Details.propTypes = {
+  setShowServicePage: PropTypes.func.isRequired,
 };
 
 export default Details;

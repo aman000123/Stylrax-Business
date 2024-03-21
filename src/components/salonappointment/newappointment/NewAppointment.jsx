@@ -118,7 +118,7 @@ const NewAppointment = () => {
                           <div
                             key={imageIndex}
                             className={`${styles.clientDiv} me-3`}
-                            style={{ display: imageIndex >= 4 && window.innerWidth <= 991 ? 'none' : 'block' }}>
+                            style={{ display: imageIndex >= 4 && window.innerWidth <= 992 ? 'none' : 'block' }}>
                             <img
                               src={user.userImage}
                               className={styles.assign}

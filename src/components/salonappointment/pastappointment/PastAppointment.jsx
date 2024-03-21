@@ -2,11 +2,12 @@ import {Row, Col } from "react-bootstrap";
 import { appointments} from "../../../data/appointment/Appointment";
 import { Link } from 'react-router-dom';
 import dayjs from 'dayjs';
+import { GrFormLocation } from "react-icons/gr";
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DateCalendar } from '@mui/x-date-pickers/DateCalendar';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-import main from "../newappointment/NewAppointment.module.css";
+import main from "../pastappointment/PastAppointment.module.css";
 import { useState } from 'react';
 const PastAppointment = () => {
   const [selectedDate, setSelectedDate] = useState(dayjs());
@@ -68,11 +69,11 @@ const PastAppointment = () => {
                         <br />
                         <span>{appointment.service}</span>
                         <br />
-                        <span>{appointment.time}</span>
-                        <br />
-                        <span>{appointment.location}</span>
+                        <span>{appointment.time}<span className={main.gender}>Male</span></span>                        <br />
+                        <span>{appointment.location}</span>&nbsp;
+                          <span className={main.locationDistance}><GrFormLocation className={main.location}/>1.5km</span>
                       </p>
-                      <button className={main.accept}>Accept</button>
+                      {/* <button className={main.accept}>Accept</button> */}
                     </Col>
                     <Col md={2}>
                       <p className={main.payment}>
@@ -85,7 +86,7 @@ const PastAppointment = () => {
                         </span>
                       </p>
                      
-                      <button className={main.decline}>Decline</button>
+                      {/* <button className={main.decline}>Decline</button> */}
                     </Col>
                     <Col md={3}>
                     <div className={main.status}>

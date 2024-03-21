@@ -19,8 +19,12 @@
 @media(max-width:1440px){
     .calendar{
         margin-left: auto;
+    }}
+  @media(max-width:1399.9px){
+    .calendar{
+        margin-top: -345px;
     }
-}
+  }
 @media(max-width:1199.9px){
     .calendar{
         margin-left: -40px;
@@ -155,11 +159,16 @@
 
 
 .payment{
-    margin-top: 15px;
     font-size: 8px;
     line-height: 11px;
     margin-bottom: -2px;
     font-weight: 500;
+    margin-left: 20px;
+}
+@media (max-width:1199px){
+    .payment{
+        margin-left: 0;
+    }
 }
 @media (max-width:767.9px){
     .payment{
@@ -168,6 +177,7 @@
         line-height: 13px;
         padding-bottom: 2px;
     }}
+
 .accept{
     color: #53AD34;
     background-color: white;
@@ -214,9 +224,9 @@
     .userInfo{
       flex-direction: column;
      width: 500px !important;  }}
-     @media (max-width:400.9px){
+     @media (max-width:500.9px){
         .userInfo{
-         margin-left: 100px !important;
+         margin-left: -20px !important;
 
         }}
     
@@ -290,15 +300,17 @@
     margin-bottom: 5px;
 }
 .status{
-    margin-left: 20px;
     text-align: center;
-    line-height: 15px;
+    line-height: 20px;
     font-size: 12px;
     color: #53AD34;
 }
+.gender{
+    margin-left: 5px;
+}
 @media (max-width:1199.9px){
     .status{
-        margin-left: 6px;
+        margin-left: -10px;
     }}
 .status a{
     color: #7A7A7A;
@@ -314,16 +326,17 @@
 
 .userImage{
     height: 90px;
-    width: 100px;
+    width: 120px;
 }
-@media (max-width:1339px){
+@media (max-width:1399.9px){
     .userImage{
-        width: 80px;
+        height: 70px !important;
+        width: 100px;
     }}
     @media (max-width:1199.9px){
         .userImage{
-            width: 65px;
-            margin-left: -3px;
+            width: 56px;
+            margin-left: 10px;
         }}
         @media (max-width:767.9px){
             .userImage{
