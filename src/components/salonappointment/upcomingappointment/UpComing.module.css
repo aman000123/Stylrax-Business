@@ -98,13 +98,16 @@
     font-size: 8px;
     line-height: 11px;
     margin-bottom: -2px;
-    
+    margin-left: 30px;
 }
+@media (max-width:1199px){
+    .user{
+        margin-left: 10px;
+    }}
 @media (max-width:767.7px){
     .user{
         margin-left: 10px;
-    }
-}
+    }}
 .userName{
     font-size: 10px;
     font-weight: 650;
@@ -120,17 +123,21 @@
         }
     }
 .payment{
-    margin-top: 15px;
-    font-size: 8px;
-    line-height: 11px;
+    font-size: 12px;
+    line-height: 18px;
     margin-bottom: -2px;
     font-weight: 500;
+    margin-left: 45px;
 }
+@media (max-width:999px){
+    .payment{
+        margin-left: 20px;
+    }}
+
 @media (max-width:767.7px){
     .payment{
         margin-left: 20px;
-    }
-}
+    }}
 @media (max-width:450.9px){
     .payment{
         font-size: 11px;
@@ -160,6 +167,7 @@
 .userImage{
     height: 90px;
     width: 100px;
+    margin-left: 20px;
 }
 @media (max-width:1199.7px){
     .userImage{
@@ -288,11 +296,6 @@
    /* padding: 0px 6px; */
   margin-left: -10px;
 }
-@media (max-width:991.9px){
-    .clientDiv{
-       display: none;
-    }
-}
 .staffBtn{
     outline: none;
     border: none;
@@ -302,25 +305,7 @@
     gap: 90px;
     margin-top: 10px;
 }
-.assignBtn{
-    color: #53AD34;
-    font-weight: 500;
-    border: 1px solid #D3D3D3;
-    background-color: white;
-    padding: 0px 15px;
-    font-size: 12px;
-    font-weight: 500;
-    border-radius: 5px;
-}
-.cancelBtn{
-    color: #D82626;
-    border: 1px solid #D3D3D3;
-    background-color: white;
-    padding: 0px 15px;
-    font-size: 12px;
-    font-weight: 500;
-    border-radius: 5px;
-}
+
 .staffDiv{
     display: flex;
     justify-content: center;
@@ -355,5 +340,16 @@
 @media (max-width:991.7px){
     .gender{
         display: none;
-    }
+    }}
+
+.payment .paymentInfo{
+    color: #7C7C7C;
+}
+@media(max-width:991px){
+    .payment .paymentInfo{
+        font-size: 10px;
+    }    
+}
+.gender{
+    margin-left: 6px;
 }

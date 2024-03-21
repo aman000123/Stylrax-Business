@@ -1,5 +1,5 @@
 import  { useState } from "react";
-import logo from "../../assets/image/logo_f.svg";
+import logo from "../../assets/image/stylrax_logo.png";
 import MenuIcon from "@mui/icons-material/Menu";
 import styles from "../navbar/Navbar.module.css";
 import { NavLink } from "react-bootstrap";

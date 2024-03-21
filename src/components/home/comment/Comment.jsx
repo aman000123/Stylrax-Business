@@ -2,7 +2,7 @@ import { Row, Col, Container } from "react-bootstrap";
 import userThree from "../../../assets/image/userThree.png";
 import userTwo from "../../../assets/image/userTwo.png";
 import userOne from "../../../assets/image/userOne.png";
-import logo from "../../../assets/image/logo.png";
+import logo from "../../../assets/image/stylrax_black.png";
 import styles from "../comment/Comment.module.css";
 const Comment = () => {
   return (

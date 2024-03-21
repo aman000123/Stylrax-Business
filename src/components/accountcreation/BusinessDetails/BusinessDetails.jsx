@@ -6,8 +6,8 @@ import { IoAddSharp } from "react-icons/io5";
 import { useFormik } from "formik";
 import { businessDetailsSchema } from "../../../utils/schema";
 import PropTypes from 'prop-types';
-//import { Salon } from "../../../api/account.api";
-
+import { Salon } from "../../../api/account.api";
+import Notify from "../../../utils/notify";
 const states = ["Select State", "Alabama", "Alaska"];
 const cities = {
   "Select State": ["Select City"],
@@ -38,14 +38,38 @@ const BusinessDetails = ({ nextStep}) => {
     handleChange,
     handleSubmit,
     touched,
+    isValid
   } = useFormik({
     initialValues: initialValues,
     validationSchema: businessDetailsSchema,
     validateOnChange: true,
     validateOnBlur: false,
-    onSubmit: (values) => {
+    onSubmit: async(values) => {
       console.log(values);
-      nextStep();
+   if (isValid) {
+        try {
+          const verifyForm = {
+            name:values.name,
+            email:values.email,
+            gstNumber:values.gstNumber,
+            companyName:values.companyName,
+            address:values.address,
+            "city":"Delhi",
+            "state":"Delhi",
+            pincode:values.pinCode,
+            "serviceType":"Men",
+            "homeService":false,
+            "mainGateImageUrl":"maingateImageUrl",
+            "bannerImages":["url1","url2"],
+            "gallaryImages":["gi_url1","gi_url2"]
+          };
+          const res = await Salon(verifyForm);
+          console.log("business res:::>",res.data)
+          nextStep();
+        } catch (error) {
+          Notify.error(error.message);
+        } 
+      }
     },
   });
   const [selectedCity, setSelectedCity] = useState("Select City");
@@ -72,37 +96,7 @@ const BusinessDetails = ({ nextStep}) => {
     setSelectedFile(file);
   };
 
-  // const formSubmit = async(event)=>{
-  //  event.preventDefault();
 
-  //     console.log("data");
-  //    try{
-  //      setIsSubmitting(true);
-  //      const verifyForm ={
-  //        name:values.name,
-  //        email:values.email,
-  //        gstNumber:values.gstNumber,
-  //        companyName:values.companyName,
-  //        address:values.address,
-  //           gender:"Male",
-  //           panCardImageUrl:"someurl",
-  //           aadharFrontUrl:"someurl",
-  //           aadharBackUrl:"someurl",
-  //           profileImageUrl:"someUrl",
-  //           serviceType:"Male"
-
-  //      }
-  //       const res= await Salon(verifyForm);
-  //       console.log("Business api data",res)
-  //       if(res.data.statusCode == "200"){
-  //         navigate('/salon-dashboard')
-  //         nextStep()
-  //      }
-  //     } catch (error){
-  //      Notify.error(error.message);
-  //    } finally {
-  //       setIsSubmitting(false);
-  //     }}
   return (
     <Container>
       <div className="d-flex flex-column align-items-center">
