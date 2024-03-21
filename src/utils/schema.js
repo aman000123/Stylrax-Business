@@ -95,8 +95,15 @@ export const businessDetailsSchema = Yup.object({
     accName: Yup.string().min(3).max(15).required("Please enter valid Account Name"),
     bankName: Yup.string().min(11).max(25).required("Enter  valid Bank Name"),
     ifscCode: Yup.string().matches(/^[A-Za-z]{4}[0][A-Z0-9a-z]{6}$/, 'Invalid IFSC code').required("Please enter valid IFSC code"),
-    // passbook: Yup.string().
+    passbook: Yup.mixed().required("Please upload a passbook image")
   });
+
+//   export const bankSchema = Yup.object({
+//     accNum: Yup.string().min(11, 'Account Number must be at least 11 characters').max(16, 'Account Number must be at most 16 characters').required("Please enter a valid Account Number"),
+//     accName: Yup.string().min(3, 'Account Name must be at least 3 characters').max(50, 'Account Name must be at most 50 characters').required("Please enter a valid Account Name"),
+//     bankName: Yup.string().min(3, 'Bank Name must be at least 3 characters').max(50, 'Bank Name must be at most 50 characters').required("Please enter a valid Bank Name"),
+//     ifscCode: Yup.string().matches(/^[A-Za-z]{4}[0][A-Z0-9a-z]{6}$/, 'Invalid IFSC code').required("Please enter a valid IFSC code"),
+// });
 
   // Add staff schema
 

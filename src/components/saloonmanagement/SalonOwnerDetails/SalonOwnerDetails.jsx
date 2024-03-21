@@ -3,6 +3,7 @@ import salonownerdetailimg from "../../../assets/image/salonownerdetailimg.png";
 // import { MdEdit } from "react-icons/md";
 import { useFormik } from "formik";
 import { salonOwnerDetails } from "../../../utils/schema.js";
+import { salonownerDetails } from "../../../api/account.api.js";
 
 
 
@@ -22,9 +23,32 @@ function SalonOwnerDetails() {
     const { values, errors, touched, handleBlurr, handleChange, handleSubmit } = useFormik({
         initialValues,
         validationSchema: salonOwnerDetails,
-        onSubmit: (values, action) => {
-            console.log(values);
-            action.resetForm();
+        onSubmit: async () => {
+            try {
+                // const {accNum, accName, bankName, ifscCode} = values
+                const data = {
+                    
+                        "profileType":"Salon",
+                        "firstName":values.firstName,
+                        "middleName":values.middleName,
+                        "lastName":values.lastName,
+                        "email":values.email,
+                        "dataOfBirth":values.dob,
+                        "gender":values.gender,
+                        "panCardImageUrl":values.panCard,
+                        "aadharFrontUrl":values.aadharCard,
+                        "aadharBackUrl":"someurl",
+                        "profileImageUrl":"someUrl",
+                        "serviceType":"Male" 
+                }
+                // Call the bankDetails function
+                const response = await salonownerDetails(data);
+                console.log(response); // Assuming the response is logged by the bankDetails function
+                console.log('Form submitted successfully');
+                action.resetForm();
+            } catch (error) {
+                console.error('There was an error submitting the form:', error);
+            }
         }
     });
 
