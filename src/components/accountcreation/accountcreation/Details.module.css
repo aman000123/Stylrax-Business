@@ -7,6 +7,9 @@
     height: 40px;
     padding-inline-start: 10px;
 }
+.fileUpload{
+    display: none;
+}
 @media (max-width:500px){
     .input{
         width: 250px; 
@@ -103,6 +106,7 @@
     font-size: 12px;
     font-weight: 500;
     margin-right: 90px;
+    margin-top: -10px;
 }
 @media (max-width:500px){
     .panCard{

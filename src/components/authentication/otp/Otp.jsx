@@ -8,6 +8,9 @@ import { useDispatch } from "react-redux";
 import { storeToken } from "../../../store/auth.slice";
 import PropTypes from 'prop-types';
 
+const initialValues = {
+  otp: "",
+}
 const Otp = ({ phoneNumber }) => {
   Otp.propTypes = {
     phoneNumber: PropTypes.func.isRequired,

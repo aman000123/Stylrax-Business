@@ -17,6 +17,9 @@ input.inputOtp{
     font-size: 18px;
     padding-inline-start: 15px;
    }
+   .error{
+    color: red;
+   }
    .btn{
     background-color: white;
     color: black;

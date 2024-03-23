@@ -3,6 +3,7 @@ import salondetailimg from "../../../assets/image/salondetailimg.png";
 // import { MdEdit } from "react-icons/md";
 import { useFormik } from "formik"
 import { salonDetailsSchema } from "../../../utils/schema.js";
+import { salonDetails } from "../../../api/account.api.js";
 
 const initialValues = {
     salonName: "",
@@ -19,9 +20,34 @@ function SalonDetails() {
     const { values, errors, touched, handleBlurr, handleChange, handleSubmit } = useFormik({
         initialValues,
         validationSchema: salonDetailsSchema,
-        onSubmit: (values, action) => {
-            console.log(values);
-            action.resetForm();
+        onSubmit: async () => {
+            try {
+                // const {accNum, accName, bankName, ifscCode} = values
+                const data = {
+                        "name":values.salonName,
+                        "email":values.email,
+                        "gstNumber":values.gstNumber,
+                        "companyName":"Unique Style",
+                        "address":values.address,
+                        "latitude":"332.343",
+                        "longitude":"23.343",
+                        "city":"Delhi",
+                        "state":values.mystate,
+                        "pincode":values.salonStatePinCode,
+                        "serviceType":values.services,
+                        "homeService":false,
+                        "mainGateImageUrl":"maingateImageUrl",
+                        "bannerImages":["url1","url2"],
+                        "gallaryImages":["gi_url1","gi_url2"]
+                }
+                // Call the bankDetails function
+                const response = await salonDetails(data);
+                console.log(response); // Assuming the response is logged by the bankDetails function
+                console.log('Form submitted successfully');
+                action.resetForm();
+            } catch (error) {
+                console.error('There was an error submitting the form:', error);
+            }
         }
     });
     console.log(errors);

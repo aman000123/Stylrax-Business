@@ -178,6 +178,7 @@ const BusinessDetails = ({ nextStep}) => {
             <br />
             <textarea
               type="address"
+              rows={5}
               className={styles.textarea}
               name="address"
               value={values.address}
@@ -261,7 +262,6 @@ const BusinessDetails = ({ nextStep}) => {
 
           <div>
             <label className="fw-bold">Salon Main Gate Image</label>
-            <p>lorem ipsum</p>
             <input
               type="file"
               id="image"
@@ -279,7 +279,6 @@ const BusinessDetails = ({ nextStep}) => {
           </div>
           <div>
             <label className="fw-bold">Pan Card</label>
-            <p>lorem ipsum</p>
             <input
               type="file"
               id="image"
@@ -297,7 +296,6 @@ const BusinessDetails = ({ nextStep}) => {
           </div>
           <div>
             <label className="fw-bold">Salon Gallery</label>
-            <p>lorem ipsum</p>
             <input
               type="file"
               id="image"

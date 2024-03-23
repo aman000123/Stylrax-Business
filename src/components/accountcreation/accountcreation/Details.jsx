@@ -5,9 +5,10 @@ import { GrFormUpload } from "react-icons/gr";
 import { detailsSchema } from "../../../utils/schema";
 import styles from "./Details.module.css";
 import PropTypes from 'prop-types';
-import { createSalon } from "../../../api/account.api";
+import { createSalon, fileUploader } from "../../../api/account.api";
 import Notify from "../../../utils/notify";
 import { ErrorMessage, Field, Form, Formik } from "formik";
+import { useEffect, useRef, useState } from "react";
 
 const initialValues = {
   name: "",
@@ -16,10 +17,41 @@ const initialValues = {
   email: "",
   phoneNumber: "",
   dob: "",
+  aadharFrontUrl:"",
+  gender:"",
 };
-// name
+
 const Details = ({ setShowServicePage }) => {
+  const[selectedFile,setSelectedFile] = useState(null);
+  const [url,setUrl] = useState("");
+  console.log("url:::>",url)
+  const [fileName, setFileName] = useState("");
+  useEffect(()=>{
+   const imageUploader =async()=>{
+   try {
+    const imageUrl = await fileUploader();
+   setUrl( imageUrl)
+   } catch (error) {
+    console.log('error',error)
+   }
+   }
+   imageUploader()
+  },[])
+  const fileInputRef = useRef(null);
+  const handleFileChange = (event) => {
+    const file = event.target.files[0];
+    console.log('Selected File 1:', file);
+    
+      setSelectedFile(file);
+      setFileName(file?file.name:"");
+      console.log('Selected File:', file);
+    
+  };
+  const handleUploadIconClick = () => {
+    fileInputRef.current.click();
+  };
   const onSubmit = async (values) => {
+    console.log("values:::>",values)
     try {
       const verifyForm = {
         profileType: "Salon",
@@ -28,14 +60,15 @@ const Details = ({ setShowServicePage }) => {
         lastName: values.lastName,
         email: values.email,
         dataOfBirth: values.dob,
-        gender: "Male",
-        panCardImageUrl: "someurl",
-        aadharFrontUrl: "someurl",
+        gender: values.gender,
+        aadharFrontUrl: values.aadharFrontUrl,
+       // aadharFrontUrl: "someurl",
         aadharBackUrl: "someurl"
       };
       const res = await createSalon(verifyForm);
       setShowServicePage(true);
-      console.log("response:::>",res.data.data)
+      createSalon.append(selectedFile)
+      console.log("response:::>",res.data)
     } catch (error) {
       Notify.error(error.message);
     }
@@ -58,7 +91,7 @@ const Details = ({ setShowServicePage }) => {
             <Form className="d-flex flex-column align-items-center">
               <div className="d-flex flex-column align-items-center-start mb-1">
                 <label className="fw-bold">
-                  Name
+                  First Name
                   <br />
                   <Field
                     name="name"
@@ -77,14 +110,9 @@ const Details = ({ setShowServicePage }) => {
                   Middle Name
                   <br />
                   <Field
-                    name="lastName"
-                    placeholder="Jhon"
+                    name="middleName"
+                    placeholder="Optional"
                     className={styles.input}
-                  />
-                  <ErrorMessage
-                    name="lastName"
-                    className={styles.error}
-                    component="div"
                   />
                 </label>
               </div>
@@ -94,12 +122,12 @@ const Details = ({ setShowServicePage }) => {
                   Last Name
                   <br />
                   <Field
-                    name="middleName"
+                    name="lastName"
                     placeholder="Abrahim"
                     className={styles.input}
                   />
                   <ErrorMessage
-                    name="middleName"
+                    name="lastName"
                     className={styles.error}
                     component="div"
                   />
@@ -131,6 +159,7 @@ const Details = ({ setShowServicePage }) => {
                     name="dob"
                     placeholder="Jhon"
                     className={styles.input}
+                    max={new Date().toISOString().split("T")[0]}
                   />
                   <ErrorMessage
                     name="dob"
@@ -163,16 +192,17 @@ const Details = ({ setShowServicePage }) => {
                    <Field
                    as="select"
                     name="gender"
-                    placeholder="Jhon"
+                    // placeholder="select"
                     className={styles.input}
                   >
+                  <option value="">select</option>
                   <option value="male">Male</option>
                   <option value="female">Female</option>
                   <option value="other">Other</option>
                   </Field> 
                 
                   <ErrorMessage
-                    name="name"
+                    name="gender"
                     className={styles.error}
                     component="div"
                   />
@@ -188,40 +218,60 @@ const Details = ({ setShowServicePage }) => {
                     <br />
                     <div>
                       <input
+                      
                         type="file"
-                        // ref={fileInputRef}
-                        style={{ display: "none" }}
-                        //onChange={handleChange}
+                        name="aadharFrontUrl"
+                        ref={fileInputRef}
+                         style={{ display: "none" }}
+                         onChange={handleFileChange}
                       />
+                      
                       <br />
+                    
                       <button
                         className={`${styles.btn} align-items-center-start`}
-                        //onClick={handleUploaded}
+                      
+                        onClick={handleUploadIconClick}
+                        type="file"
+
                       >
                         <GrFormUpload className={styles.uploadIcon} />
                         Upload
+                       
                       </button>
+                      <ErrorMessage
+                    component="div"
+                    name="aadharFrontUrl"
+                    className={styles.error}
+                  /> 
+                     
                     </div>
+                    <span>{fileName}</span>
                   </label>
-
+                  
                   <label className={styles.back}>
                     Back
                     <br />
                     <input
                       type="file"
-                    //  ref={fileInputRef}
+                      name="aadharFrontUrl"
+                      ref={fileInputRef}
                       style={{ display: "none" }}
-                     // onChange={handleChange}
+                      onChange={handleUploadIconClick}
+                    
                     />
                     <br />
                     <button
                       className={`${styles.btn} align-items-center-start`}
-                     // onClick={handleUploaded}
+                      onClick={handleUploadIconClick}
+                     type="file"
+                     name="aadharFrontUrl"
                     >
                       <GrFormUpload className={styles.uploadIcon} />
                       Upload
                     </button>
                   </label>
+                  <span>{fileName}</span>
                 </div>
               </label>
             </div>
@@ -231,13 +281,14 @@ const Details = ({ setShowServicePage }) => {
                 Pan Card
                 <br />
                 <p className={styles.panCard}>
-                  lorem ipsum
+                
                   <br />
                   <input
                     type="file"
-                   // ref={fileInputRef}
-                    style={{ display: "none" }}
-                   // onChange={handleChange}
+                    ref={fileInputRef}
+                    //style={{ display: "none" }}
+                 //   onChange={handleChange}
+                    className={styles.fileUpload}
                   />
                   <button className={styles.panBtn}>
                     <GrFormUpload className={styles.uploadIcon} />

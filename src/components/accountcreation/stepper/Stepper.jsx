@@ -1,7 +1,7 @@
 import { useState } from "react";
 import {useNavigate } from "react-router-dom";
 import Details from "../accountcreation/Details";
-import BusinessDetails from "../businessdetails/BusinessDetails";
+import BusinessDetails from "../businessdetails/BusinessDetails"
 import BankDetails from "../bankdetails/BankDetails";
 import Finish from "../Finish/Finish";
 import logo from  "../../../assets/image/logo_f.svg";

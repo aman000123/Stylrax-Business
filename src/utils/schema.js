@@ -1,14 +1,16 @@
 import * as Yup from "yup";
 
 export const LoginSchema = Yup.object().shape({
-    email: Yup.string()
-      .email("Invalid email address format")
-      .required("Email is required"),
       phoneNumber: Yup.string()
       .matches(/^\d{10}$/, "Invalid phone number")
       .required("Phone number is required"),
   });
 
+  export const OTPSchema = Yup.object().shape({
+    otp: Yup.string()
+      .matches(/^\d{4}$/, "OTP must be 4 digits")
+      .required("OTP is required"),
+  });
  export const bankDetailsSchema = Yup.object({
     accountNumber: Yup.string()
     .matches(/^\d{9,18}$/, 'Account number must be between 9 and 18 digits') 
@@ -35,17 +37,25 @@ export const businessDetailsSchema = Yup.object({
   gst: Yup.string()
   .matches(/^\d{2}[A-Z]{5}\d{4}[A-Z]{1}[A-Z\d]{1}[Z]{1}[A-Z\d]{1}$/, 'Invalid gst number') // Matches the GST format
   .required("Please enter your gst number"),
+ 
   })
 
   export const detailsSchema = Yup.object().shape({
-      name:Yup.string().min(2).max(15).required("Please enter your name"),
-      middleName:Yup.string().min(2).max(15).required("Please enter  middle name"),
+      name:Yup.string().min(2).max(15).required("Please enter first your name"),
+    //  middleName:Yup.string().min(2).max(15)("Please enter  middle name"),
       lastName:Yup.string().min(2).max(15).required("Please enter your last name"),
       email:Yup.string().email().required("Please enter your email"),
-      //gender:Yup.string().min(5).max(15).required("Please select your gender"),
+      gender:Yup.string().required("Please select your gender"),
       phoneNumber: Yup.string().matches(/^[0-9]{10}$/, 'Invalid phone number').required("Please enter  phone number"),
       dob: Yup.date().max(new Date(), 'Date of birth must be in the past').required("Please enter your DOB"),
-     
+      // aadharFrontUrl : Yup.mixed()
+      
+      // .test('fileType', 'Only JPG, JPEG, or PNG files are allowed', (value) => {
+      //   if (value) return true; // allow empty value
+      //   return (
+      //     value && ['image/jpeg', 'image/jpg', 'image/png'].includes(value.type)
+      //   );
+      // }),
    } )
 
    // salonDetails Schema
@@ -95,8 +105,15 @@ export const businessDetailsSchema = Yup.object({
     accName: Yup.string().min(3).max(15).required("Please enter valid Account Name"),
     bankName: Yup.string().min(11).max(25).required("Enter  valid Bank Name"),
     ifscCode: Yup.string().matches(/^[A-Za-z]{4}[0][A-Z0-9a-z]{6}$/, 'Invalid IFSC code').required("Please enter valid IFSC code"),
-    // passbook: Yup.string().
+    passbook: Yup.mixed().required("Please upload a passbook image")
   });
+
+//   export const bankSchema = Yup.object({
+//     accNum: Yup.string().min(11, 'Account Number must be at least 11 characters').max(16, 'Account Number must be at most 16 characters').required("Please enter a valid Account Number"),
+//     accName: Yup.string().min(3, 'Account Name must be at least 3 characters').max(50, 'Account Name must be at most 50 characters').required("Please enter a valid Account Name"),
+//     bankName: Yup.string().min(3, 'Bank Name must be at least 3 characters').max(50, 'Bank Name must be at most 50 characters').required("Please enter a valid Bank Name"),
+//     ifscCode: Yup.string().matches(/^[A-Za-z]{4}[0][A-Z0-9a-z]{6}$/, 'Invalid IFSC code').required("Please enter a valid IFSC code"),
+// });
 
   // Add staff schema
 
