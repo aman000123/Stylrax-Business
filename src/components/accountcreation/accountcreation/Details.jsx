@@ -17,7 +17,7 @@ const initialValues = {
   phoneNumber: "",
   dob: "",
 };
-
+// name
 const Details = ({ setShowServicePage }) => {
   const onSubmit = async (values) => {
     try {
