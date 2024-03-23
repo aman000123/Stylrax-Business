@@ -41,7 +41,7 @@ const Details = ({ setShowServicePage }) => {
 
      console.log("fileUrl:::>",fileUrl)
 
-    uploadFileToS3(file.file,  fileUrl.data.url)
+    uploadFileToS3(file,  fileUrl.data.url)
     
   };
   const handleUploadIconClick = () => {
@@ -50,22 +50,20 @@ const Details = ({ setShowServicePage }) => {
 
   //File Upload to S3
   const uploadFileToS3 = async (file, url) => {
-   
-  try {
-    const response = await fetch(url, {
-      method: 'PUT',
-      body: file
-    });
-    if (response.ok) {
-      console.log('File uploaded successfully!');
-    } else {
-      console.error('Failed to upload file:', response.statusText);
+    try {
+      const formData = new FormData();
+      formData.append('file', file);
+      const requestOptions = {
+        method: 'PUT',
+        body: file,
+        headers: {
+          'Content-Type': file.type,
+        }
+      };
+      await fetch(url, requestOptions);
+    } catch (error) {
+      console.error('Error uploading file:', error);
     }
-  } catch (error) {
-    console.error('Error uploading file:', error);
-  }
-    console.log("File Upload response ", result)
-  
   };
 
 
