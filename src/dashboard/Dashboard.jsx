@@ -3,7 +3,7 @@ import SalonClinic from "../components/saloondashboard/salonclinic/SalonClinic";
 import UpcomingAppointment from "../components/saloondashboard/upcoming/UpcomingAppointment";
 import { Row, Col} from "react-bootstrap";
 import orangeSpecs from "../assets/image/orangeSpecs.png";
-import styles from "../dashboardlayout/DashboardLayout.module.css";
+import styles from "./DashboardLayout.module.css";
 import { LuSwitchCamera } from "react-icons/lu";
 import SwitchSalon from "../components/saloondashboard/switchsalon/SwitchSalon";
 const DashBoardLayout = () => {

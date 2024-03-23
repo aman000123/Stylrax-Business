@@ -27,29 +27,48 @@ const Details = ({ setShowServicePage }) => {
   console.log("url:::>",url)
   const [fileName, setFileName] = useState("");
   useEffect(()=>{
-   const imageUploader =async()=>{
-   try {
-    const imageUrl = await fileUploader();
-   setUrl( imageUrl)
-   } catch (error) {
-    console.log('error',error)
-   }
-   }
-   imageUploader()
+   
   },[])
   const fileInputRef = useRef(null);
-  const handleFileChange = (event) => {
+  const handleFileChange = async(event) => {
     const file = event.target.files[0];
-    console.log('Selected File 1:', file);
+    console.log('Selected File 1:', file.name);
     
-      setSelectedFile(file);
-      setFileName(file?file.name:"");
-      console.log('Selected File:', file);
+      // setSelectedFile(file);
+      // setFileName(file?file.name:"");
+      // console.log('Selected File:', file);
+     const fileUrl =  await fileUploader({fileName:file.name });
+
+     console.log("fileUrl:::>",fileUrl)
+
+    uploadFileToS3(file.file,  fileUrl.data.url)
     
   };
   const handleUploadIconClick = () => {
     fileInputRef.current.click();
   };
+
+  //File Upload to S3
+  const uploadFileToS3 = async (file, url) => {
+   
+  try {
+    const response = await fetch(url, {
+      method: 'PUT',
+      body: file
+    });
+    if (response.ok) {
+      console.log('File uploaded successfully!');
+    } else {
+      console.error('Failed to upload file:', response.statusText);
+    }
+  } catch (error) {
+    console.error('Error uploading file:', error);
+  }
+    console.log("File Upload response ", result)
+  
+  };
+
+
   const onSubmit = async (values) => {
     console.log("values:::>",values)
     try {
@@ -222,23 +241,24 @@ const Details = ({ setShowServicePage }) => {
                         type="file"
                         name="aadharFrontUrl"
                         ref={fileInputRef}
-                         style={{ display: "none" }}
+                        //  style={{ display: "none" }}
                          onChange={handleFileChange}
                       />
                       
                       <br />
                     
-                      <button
+                      {/* <button
+              
                         className={`${styles.btn} align-items-center-start`}
                       
                         onClick={handleUploadIconClick}
-                        type="file"
+                        type="button"
 
-                      >
-                        <GrFormUpload className={styles.uploadIcon} />
+                      > */}
+                        {/* <GrFormUpload className={styles.uploadIcon} />
                         Upload
                        
-                      </button>
+                      </button> */}
                       <ErrorMessage
                     component="div"
                     name="aadharFrontUrl"
@@ -264,8 +284,7 @@ const Details = ({ setShowServicePage }) => {
                     <button
                       className={`${styles.btn} align-items-center-start`}
                       onClick={handleUploadIconClick}
-                     type="file"
-                     name="aadharFrontUrl"
+                     type="button"
                     >
                       <GrFormUpload className={styles.uploadIcon} />
                       Upload
