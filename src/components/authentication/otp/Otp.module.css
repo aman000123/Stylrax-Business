@@ -50,6 +50,11 @@ input.inputOtp{
     float: right;
     margin-top: -15px;
 }
+.clear{
+    margin-top: -15px;
+    margin-left: 5px;
+    margin-right: -12px;
+}
 @media (max-width:1029.7px){
     .loginBorder{
         padding: 10px;

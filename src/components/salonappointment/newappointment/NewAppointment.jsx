@@ -5,6 +5,8 @@ import styles from "./NewAppointment.module.css";
 import PastAppointment from "../pastappointment/PastAppointment";
 import UpComingAppointment from "../upcomingappointment/UpComingAppointment";
 import Ongoing from "../ongoingappointment/Ongoing";
+import Navbar from "../../saloondashboard/navbar/Navbar";
+import { navItems } from "../../../data/navdata/Data";
 const NewAppointment = () => {
   const [activeButton, setActiveButton] = useState("button3");
   const handleButtonClick = (buttonName) => {
@@ -12,6 +14,7 @@ const NewAppointment = () => {
   };
   return (
     <main>
+        <Navbar data={navItems}/>
       <Container>
         <div className={styles.mainDiv}>
           <img src={hair} className={styles.hair} alt="Hair" />

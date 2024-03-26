@@ -40,6 +40,11 @@ export const businessDetailsSchema = Yup.object({
  
   })
 
+  const MIN_AGE = 18;
+  const getMinDOBDate = () => {
+    const currentDate = new Date();
+    return new Date(currentDate.getFullYear() - MIN_AGE, currentDate.getMonth(), currentDate.getDate());
+  };
   export const detailsSchema = Yup.object().shape({
       name:Yup.string().min(2).max(15).required("Please enter first your name"),
     //  middleName:Yup.string().min(2).max(15)("Please enter  middle name"),
@@ -47,15 +52,17 @@ export const businessDetailsSchema = Yup.object({
       email:Yup.string().email().required("Please enter your email"),
       gender:Yup.string().required("Please select your gender"),
       phoneNumber: Yup.string().matches(/^[0-9]{10}$/, 'Invalid phone number').required("Please enter  phone number"),
-      dob: Yup.date().max(new Date(), 'Date of birth must be in the past').required("Please enter your DOB"),
-      // aadharFrontUrl : Yup.mixed()
-      
-      // .test('fileType', 'Only JPG, JPEG, or PNG files are allowed', (value) => {
-      //   if (value) return true; // allow empty value
-      //   return (
-      //     value && ['image/jpeg', 'image/jpg', 'image/png'].includes(value.type)
-      //   );
-      // }),
+      dob: Yup.date()
+      .max(getMinDOBDate(), `You must be at least ${MIN_AGE} years old`)
+      .required("Date of birth is required"),
+      //image: Yup.mixed().required('required')
+      // image: Yup.mixed().test(
+      //   "filePresent",
+      //   "Image is required",
+      //   function (value) {
+      //     return !!value;
+      //   }
+      // )
    } )
 
    // salonDetails Schema

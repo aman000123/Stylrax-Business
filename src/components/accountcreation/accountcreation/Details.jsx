@@ -4,12 +4,11 @@ import { IoCheckbox } from "react-icons/io5";
 import { GrFormUpload } from "react-icons/gr";
 import { detailsSchema } from "../../../utils/schema";
 import styles from "./Details.module.css";
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 import { createSalon, fileUploader } from "../../../api/account.api";
 import Notify from "../../../utils/notify";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import { useEffect, useRef, useState } from "react";
-
 const initialValues = {
   name: "",
   middleName: "",
@@ -17,32 +16,25 @@ const initialValues = {
   email: "",
   phoneNumber: "",
   dob: "",
-  aadharFrontUrl:"",
-  gender:"",
+  aadharFrontUrl: "",
+  gender: "",
+ // image: "",
 };
 
 const Details = ({ setShowServicePage }) => {
-  const[selectedFile,setSelectedFile] = useState(null);
-  const [url,setUrl] = useState("");
-  console.log("url:::>",url)
+  const [selectedFile, setSelectedFile] = useState(null);
+  const [url, setUrl] = useState("");
+  console.log("url:::>", url);
   const [fileName, setFileName] = useState("");
-  useEffect(()=>{
-   
-  },[])
+  useEffect(() => {}, []);
   const fileInputRef = useRef(null);
-  const handleFileChange = async(event) => {
+  const handleFileChange = async (event) => {
     const file = event.target.files[0];
-    console.log('Selected File 1:', file.name);
-    
-      // setSelectedFile(file);
-      // setFileName(file?file.name:"");
-      // console.log('Selected File:', file);
-     const fileUrl =  await fileUploader({fileName:file.name });
-
-     console.log("fileUrl:::>",fileUrl)
-
-    uploadFileToS3(file,  fileUrl.data.url)
-    
+    console.log("Selected File 1:", file.name);
+    const fileUrl = await fileUploader({ fileName: file.name });
+    console.log("fileUrl:::>", fileUrl);
+    uploadFileToS3(file, fileUrl.data.url);
+   // onSubmit(fileUrl);
   };
   const handleUploadIconClick = () => {
     fileInputRef.current.click();
@@ -52,23 +44,22 @@ const Details = ({ setShowServicePage }) => {
   const uploadFileToS3 = async (file, url) => {
     try {
       const formData = new FormData();
-      formData.append('file', file);
+      formData.append("file", file);
       const requestOptions = {
-        method: 'PUT',
+        method: "PUT",
         body: file,
         headers: {
-          'Content-Type': file.type,
-        }
+          "Content-Type": file.type,
+        },
       };
       await fetch(url, requestOptions);
     } catch (error) {
-      console.error('Error uploading file:', error);
+      Notify.error("Error uploading file:", error);
     }
   };
 
-
   const onSubmit = async (values) => {
-    console.log("values:::>",values)
+    console.log("values:::>", values);
     try {
       const verifyForm = {
         profileType: "Salon",
@@ -78,14 +69,15 @@ const Details = ({ setShowServicePage }) => {
         email: values.email,
         dataOfBirth: values.dob,
         gender: values.gender,
-        aadharFrontUrl: values.aadharFrontUrl,
-       // aadharFrontUrl: "someurl",
-        aadharBackUrl: "someurl"
+        image:  "aa",
+        //aadharFrontUrl: values.aadharFrontUrl,
+         aadharFrontUrl: "someurl",
+         aadharBackUrl: "someurl"
       };
       const res = await createSalon(verifyForm);
       setShowServicePage(true);
-      createSalon.append(selectedFile)
-      console.log("response:::>",res.data)
+      createSalon.append(selectedFile);
+      console.log("response:::>", res.data);
     } catch (error) {
       Notify.error(error.message);
     }
@@ -94,9 +86,7 @@ const Details = ({ setShowServicePage }) => {
   return (
     <Container>
       <div className="d-flex flex-column align-items-center">
-        <div
-          className={styles.main}
-        >
+        <div className={styles.main}>
           <div className="d-flex flex-column align-items-center mb-1">
             <img src={client3} className={styles.client} alt="client" />
           </div>
@@ -133,7 +123,7 @@ const Details = ({ setShowServicePage }) => {
                   />
                 </label>
               </div>
-             
+
               <div className="d-flex flex-column align-items-center-start mb-1">
                 <label className="fw-bold">
                   Last Name
@@ -159,7 +149,7 @@ const Details = ({ setShowServicePage }) => {
                     placeholder="Samplemail.com"
                     className={styles.input}
                   />
-                   <IoCheckbox className={styles.calendar} />
+                  <IoCheckbox className={styles.calendar} />
                   <ErrorMessage
                     name="email"
                     className={styles.error}
@@ -187,16 +177,15 @@ const Details = ({ setShowServicePage }) => {
               </div>
               <div className="d-flex flex-column align-items-center-start mb-1">
                 <label className="fw-bold">
-                
                   Contact Number
                   <br />
                   <Field
                     name="phoneNumber"
-                    placeholder="8318893508"
+                    placeholder="8318893502"
                     className={styles.number}
                   />
                   <ErrorMessage
-                  component="div"
+                    component="div"
                     name="phoneNumber"
                     className={styles.error}
                   />
@@ -206,18 +195,17 @@ const Details = ({ setShowServicePage }) => {
                 <label className="fw-bold">
                   Gender
                   <br />
-                   <Field
-                   as="select"
+                  <Field
+                    as="select"
                     name="gender"
                     // placeholder="select"
                     className={styles.input}
                   >
-                  <option value="">select</option>
-                  <option value="male">Male</option>
-                  <option value="female">Female</option>
-                  <option value="other">Other</option>
-                  </Field> 
-                
+                    <option value="">select</option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                    <option value="other">Other</option>
+                  </Field>
                   <ErrorMessage
                     name="gender"
                     className={styles.error}
@@ -226,94 +214,89 @@ const Details = ({ setShowServicePage }) => {
                 </label>
               </div>
               <div className="d-flex flex-column align-items-center-start mb-1">
-              <label className="fw-bold ">
-                Adhar Card Image
-                <br />
-                <div className="d-flex">
-                  <label className={styles.front}>
-                    Front
-                    <br />
-                    <div>
-                      <input
-                      
-                        type="file"
-                        name="aadharFrontUrl"
-                        ref={fileInputRef}
-                        //  style={{ display: "none" }}
-                         onChange={handleFileChange}
-                      />
-                      
+                <label className="fw-bold ">
+                  Adhar Card Image
+                  <br />
+                  <div className="d-flex">
+                    <label className={styles.front}>
+                      Front
                       <br />
-                    
-                      {/* <button
-              
+                      <div>
+                        <button
+                          className={`${styles.btn} align-items-center-start`}
+                          onClick={handleUploadIconClick}
+                          type="button"
+                        >
+                          <input
+                            id="image"
+                            type="file"
+                            name="image"
+                            ref={fileInputRef}
+                            style={{ display: "none" }}
+                            onChange={handleFileChange}
+                          />
+                          <br />
+                          <GrFormUpload className={styles.uploadIcon} />
+                          Upload
+                        </button>
+                      </div>
+                      <span>{fileName}</span>
+                    </label>
+                    {/* <ErrorMessage
+                      component="div"
+                      name="image"
+                      className={styles.error}
+                    /> */}
+                    <label className={styles.back}>
+                      Back
+                      <button
                         className={`${styles.btn} align-items-center-start`}
-                      
                         onClick={handleUploadIconClick}
                         type="button"
-
-                      > */}
-                        {/* <GrFormUpload className={styles.uploadIcon} />
+                      >
+                        <input
+                          type="file"
+                          name="aadharFrontUrl"
+                          ref={fileInputRef}
+                          style={{ display: "none" }}
+                          onChange={handleFileChange}
+                        />
+                        <br />
+                        <GrFormUpload className={styles.uploadIcon} />
                         Upload
-                       
-                      </button> */}
-                      <ErrorMessage
-                    component="div"
-                    name="aadharFrontUrl"
-                    className={styles.error}
-                  /> 
-                     
-                    </div>
+                      </button>
+                    </label>
                     <span>{fileName}</span>
-                  </label>
-                  
-                  <label className={styles.back}>
-                    Back
-                    <br />
-                    <input
-                      type="file"
-                      name="aadharFrontUrl"
-                      ref={fileInputRef}
-                      style={{ display: "none" }}
-                      onChange={handleUploadIconClick}
-                    
-                    />
+                  </div>
+                </label>
+              </div>
+
+              <div className="d-flex flex-column align-items-center-start mb-1">
+                <label className={styles.panLabel}>
+                  Pan Card
+                  <br />
+                  <p className={styles.panCard}>
                     <br />
                     <button
-                      className={`${styles.btn} align-items-center-start`}
+                      className={`${styles.panCardButton} align-items-center-start`}
                       onClick={handleUploadIconClick}
-                     type="button"
+                      type="button"
                     >
+                      <input
+                        type="file"
+                        name="image"
+                        ref={fileInputRef}
+                        style={{ display: "none" }}
+                        onChange={handleFileChange}
+                      />
+                      <br />
                       <GrFormUpload className={styles.uploadIcon} />
                       Upload
                     </button>
-                  </label>
-                  <span>{fileName}</span>
-                </div>
-              </label>
-            </div>
+                  </p>
+                </label>
+              </div>
 
-            <div className="d-flex flex-column align-items-center-start mb-1">
-              <label className="fw-bold">
-                Pan Card
-                <br />
-                <p className={styles.panCard}>
-                
-                  <br />
-                  <input
-                    type="file"
-                    ref={fileInputRef}
-                    //style={{ display: "none" }}
-                 //   onChange={handleChange}
-                    className={styles.fileUpload}
-                  />
-                  <button className={styles.panBtn}>
-                    <GrFormUpload className={styles.uploadIcon} />
-                    Upload
-                  </button>
-                </p>
-              </label>
-            </div>
               {/* Other form fields */}
               <div className="d-flex flex-column align-items-center">
                 <button type="submit" className={styles.continue}>
