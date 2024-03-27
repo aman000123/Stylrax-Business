@@ -4,6 +4,8 @@ import styles from "./BankDetails.module.css";
 import { useFormik } from "formik";
 import PropTypes from 'prop-types';
 import {bankDetailsSchema} from "../../../utils/schema";
+import { bankDetails } from "../../../api/account.api";
+import Notify from "../../../utils/notify";
 const initialValues = {
   accountNumber:"",
   accountHolderName:"",
@@ -21,9 +23,21 @@ const BankDetails = ({nextStep}) => {
     validationSchema:bankDetailsSchema,
     validateOnChange: true,
     validateOnBlur: false,
-    onSubmit:(values)=>{
+    onSubmit:async(values)=>{
       console.log(values)
-      nextStep()
+      try{
+        const data = {
+          accountNumber:values.accountNumber,
+          accountHolderName:values.accountHolderName,
+          bankName:values.bankName,
+          ifscCode:values.ifscCode,
+        };
+        const res = await bankDetails(data)
+        nextStep();
+      } catch (error) {
+        Notify.error(error.message);
+      }
+     
     }
 })
    
@@ -34,7 +48,6 @@ return (
         <div>
           <label className='fw-bold'>Account Number</label><br/>
           <input type='text'
-          id="accountNumber"
           name="accountNumber"
           value={values.accountNumber}
           onChange={handleChange}
@@ -82,7 +95,6 @@ return (
           ):null}
         <div>
           <label className='fw-bold'>Passbook/Cancel Cheque</label><br/>
-          <p>lorem ipsum</p>
           <input
               type="file"
               id="image"

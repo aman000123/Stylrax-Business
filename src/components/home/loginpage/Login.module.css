@@ -15,7 +15,9 @@
     color: white;
     text-align: center;
 }
-
+.error{
+  color: red;
+}
 .input{
     height: 40px;
     width: 300px;

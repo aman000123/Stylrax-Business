@@ -290,7 +290,6 @@ const BusinessFreelancer = ({ nextStep }) => {
                 Pan Card
                 <br />
                 <p className={styles.panCard}>
-                  lorem ipsum
                   <br />
                   <input
                     type="file"

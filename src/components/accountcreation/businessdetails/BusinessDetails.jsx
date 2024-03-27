@@ -45,31 +45,32 @@ const BusinessDetails = ({ nextStep}) => {
     validateOnChange: true,
     validateOnBlur: false,
     onSubmit: async(values) => {
+      nextStep()
       console.log(values);
-   if (isValid) {
-        try {
-          const verifyForm = {
-            name:values.name,
-            email:values.email,
-            gstNumber:values.gstNumber,
-            companyName:values.companyName,
-            address:values.address,
-            "city":"Delhi",
-            "state":"Delhi",
-            pincode:values.pinCode,
-            "serviceType":"Men",
-            "homeService":false,
-            "mainGateImageUrl":"maingateImageUrl",
-            "bannerImages":["url1","url2"],
-            "gallaryImages":["gi_url1","gi_url2"]
-          };
-          const res = await Salon(verifyForm);
-          console.log("business res:::>",res.data)
-          nextStep();
-        } catch (error) {
-          Notify.error(error.message);
-        } 
-      }
+  //  if (isValid) {
+  //       try {
+  //         const verifyForm = {
+  //           name:values.name,
+  //           email:values.email,
+  //           gstNumber:values.gstNumber,
+  //           companyName:values.companyName,
+  //           address:values.address,
+  //           "city":"Delhi",
+  //           "state":"Delhi",
+  //           pincode:values.pinCode,
+  //           "serviceType":"Men",
+  //           "homeService":false,
+  //           "mainGateImageUrl":"maingateImageUrl",
+  //           "bannerImages":["url1","url2"],
+  //           "gallaryImages":["gi_url1","gi_url2"]
+  //         };
+  //         const res = await Salon(verifyForm);
+  //         console.log("business res:::>",res.data)
+  //         nextStep();
+  //       } catch (error) {
+  //         Notify.error(error.message);
+  //       } 
+  //     }
     },
   });
   const [selectedCity, setSelectedCity] = useState("Select City");
@@ -178,6 +179,7 @@ const BusinessDetails = ({ nextStep}) => {
             <br />
             <textarea
               type="address"
+              rows={5}
               className={styles.textarea}
               name="address"
               value={values.address}
@@ -261,7 +263,6 @@ const BusinessDetails = ({ nextStep}) => {
 
           <div>
             <label className="fw-bold">Salon Main Gate Image</label>
-            <p>lorem ipsum</p>
             <input
               type="file"
               id="image"
@@ -279,7 +280,6 @@ const BusinessDetails = ({ nextStep}) => {
           </div>
           <div>
             <label className="fw-bold">Pan Card</label>
-            <p>lorem ipsum</p>
             <input
               type="file"
               id="image"
@@ -297,7 +297,6 @@ const BusinessDetails = ({ nextStep}) => {
           </div>
           <div>
             <label className="fw-bold">Salon Gallery</label>
-            <p>lorem ipsum</p>
             <input
               type="file"
               id="image"

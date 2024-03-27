@@ -13,3 +13,4 @@ export const __endpoint_Salon = endpoint + "b2b/salons";
 //export const __endpoint_getFeature = endpoint + "admin/role/feature";
 export const __endpoint_verifyOtp = endpoint + "b2b/account/otp/verify";
 export const __endpoint_resendOtp = endpoint + "b2b/account/otp/resend";
+export const __endpoint_fileUploader = endpoint + "b2b/file/presignedUrl";

@@ -22,7 +22,7 @@ const Navbar = (props) => {
             <div key={index.id} className="d-flex">
               <div className={`${styles.icon} me-2`}>{item.icon}</div>
 
-              <NavLink href={`/salon-dashboard/${item.link}`}>
+              <NavLink href={`/${item.link}`}>
                 {item.text}
               </NavLink>
             </div>

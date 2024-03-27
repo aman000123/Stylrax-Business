@@ -1,32 +1,23 @@
-import  { useState} from "react";
+import { useState } from "react";
 import styles from "../otp/Otp.module.css";
-import OtpInput from "react-otp-input";
+import OTPInput from "react-otp-input";
 import Notify from "../../../utils/notify";
 import { useNavigate } from "react-router-dom";
 import { resendOtp, verifyOtp } from "../../../api/account.api";
 import { useDispatch } from "react-redux";
 import { storeToken } from "../../../store/auth.slice";
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
+import { Field, Formik, Form,ErrorMessage } from "formik";
+import { OTPSchema } from "../../../utils/schema";
+
+const initialValues = {
+  otp: "",
+};
 
 const Otp = ({ phoneNumber }) => {
-  Otp.propTypes = {
-    phoneNumber: PropTypes.func.isRequired,
-  };
-  const [otp, setOtp] = useState("");
-  const [ isSubmitting,setIsSubmitting] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  
-  const validateOtp = (otp) => {
-    return /^\d{4}$/.test(otp);
-  };
-  const handleOtpChange = (otpValue) => {
-    setOtp(otpValue);
-    if (otpValue.length === 4) {
-      setErrorMessage("");
-    }
-  };
 
   const renderInput = (props, index) => (
     <input
@@ -43,19 +34,16 @@ const Otp = ({ phoneNumber }) => {
       }}
     />
   );
+  const clearOtp = (formikProps) => {
+    formikProps.setFieldValue("otp", "");
+  };
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    if (!validateOtp(otp)) {
-      setErrorMessage("Please enter a valid OTP.");
-      return;
-    }
+  const onSubmit = async (values) => {
     try {
-      setIsSubmitting(true);
       const verifyData = {
         countryCode: "91",
         phoneNumber: phoneNumber,
-        otp: otp,
+        otp: values.otp,
       };
 
       const { data } = await verifyOtp(verifyData);
@@ -65,25 +53,21 @@ const Otp = ({ phoneNumber }) => {
         email: data.email,
         phoneNumber: data.phoneNumber,
         role: data.role,
-      }
+      };
       dispatch(storeToken(authData));
       if (data.profileStatus === 0) {
-        navigate("/account");
-      }
-      else {
-        navigate("/salon-dashboard");
+        navigate("/salon/account/create");
+      } else {
+        navigate("/salon/dashboard");
       }
     } catch (error) {
       Notify.error(error.message);
-    } finally {
-      setIsSubmitting(false);
     }
   };
 
   const handleResend = async (event) => {
     event.preventDefault();
     try {
-      setIsSubmitting(true);
       const resendData = {
         countryCode: "91",
         phoneNumber: phoneNumber,
@@ -92,55 +76,72 @@ const Otp = ({ phoneNumber }) => {
       console.log("Resend OTP response:", res.data);
     } catch (error) {
       Notify.error("Failed to resend OTP. Please try again later.");
-    } finally {
-      setIsSubmitting(false);
     }
   };
-
-
-
   return (
     <div className={styles.loginBorder}>
       <>
         <h3 className={styles.login}>Login/Register</h3>
-        <form className={styles.form} onSubmit={handleSubmit}>
-          <div className={styles.formGroup}>
-            <label className="mb-1">Mobile Number</label>
-            <br />
-            <input
-              type="text"
-              className={styles.input}
-              value={phoneNumber}
-              readOnly
-            />
-          </div>
-          <div className="otp-box d-flex justify-content-center  my-3">
-            <OtpInput
-              value={otp}
-              onChange={handleOtpChange}
-              numInputs={4}
-              renderSeparator={<span></span>}
-              isInputNum
-              shouldAutoFocus
-              renderInput={renderInput}
-            />
-          </div>
-          <p onClick={handleResend} type="button" className={styles.resend}>
-            Resend
-          </p>
-          {errorMessage && <div className="text-danger">{errorMessage}</div>}
-          <div>
-            <button type="submit" className={styles.btn}>
-              Submit
-            </button>
-          </div>
-        </form>
+        <Formik
+          initialValues={initialValues}
+          validationSchema={OTPSchema}
+          onSubmit={onSubmit}
+        >
+          {(props) => (
+            <Form className={styles.form}>
+              <div className={styles.formGroup}>
+                <label className="mb-1">Mobile Number</label>
+                <br />
+                <Field
+                  type="text"
+                  className={styles.input}
+                  value={phoneNumber}
+                  readOnly
+                />
+              </div>
+              <div className="otp-box d-flex justify-content-center my-3">
+                <OTPInput
+                  value={props.values.otp}
+                  onChange={(otp) => {
+                    props.handleChange({ target: { name: "otp", value: otp } });
+                  }}
+                  numInputs={4}
+                  renderSeparator={<span></span>}
+                  isInputNum
+                  className={styles.inputOtp}
+                  renderInput={renderInput}
+                />
+              </div>
+              <p type="button" onClick={handleResend} className={styles.resend}>
+                Resend
+              </p>
+              <p
+                type="button"
+                className={styles.clear}
+                onClick={() => clearOtp(props)}
+              >
+                Clear
+              </p>
+              <ErrorMessage
+                        component="div"
+                        name="otp"
+                        className={styles.error}
+                    />
+              <div>
+                <button type="submit" className={styles.btn}>
+                  Submit
+                </button>
+              </div>
+            </Form>
+          )}
+        </Formik>
       </>
     </div>
-
   );
-
 };
 
+Otp.propTypes = {
+  phoneNumber: PropTypes.string.isRequired,
+};
 
 export default Otp;

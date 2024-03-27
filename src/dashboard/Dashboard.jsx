@@ -3,8 +3,10 @@ import SalonClinic from "../components/saloondashboard/salonclinic/SalonClinic";
 import UpcomingAppointment from "../components/saloondashboard/upcoming/UpcomingAppointment";
 import { Row, Col} from "react-bootstrap";
 import orangeSpecs from "../assets/image/orangeSpecs.png";
-import styles from "../dashboardlayout/DashboardLayout.module.css";
+import styles from "./DashboardLayout.module.css";
 import { LuSwitchCamera } from "react-icons/lu";
+import Navbar from "../components/saloondashboard/navbar/Navbar";
+import { navItems } from "../data/navdata/Data";
 import SwitchSalon from "../components/saloondashboard/switchsalon/SwitchSalon";
 const DashBoardLayout = () => {
   const [showContent, setShowContent] = useState(false);
@@ -13,6 +15,7 @@ const DashBoardLayout = () => {
   };
   return (
     <>
+     <Navbar data={navItems}/>
       <div className={styles.container}>
         <div className={styles.mainDiv}>
           <div>

@@ -1,4 +1,4 @@
-import logo from "../assets/image/logo_f.svg";
+import logo from "../assets/image/stylrax_logo.png";
 const Logo = () => {
   return (
     <div>

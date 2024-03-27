@@ -10,7 +10,8 @@ import Services from '../Services/Services';
 import SalonTime from '../SalonTime/SalonTime';
 import AboutUs from '../AboutUs/AboutUs';
 import SalonBanner from '../SalonBanner/SalonBanner';
-
+import Navbar from '../../saloondashboard/navbar/Navbar';
+import { navItems } from '../../../data/navdata/Data';
 
 const data = ["Salon Details", "Salon Owner Details","Bank Details","Manage Staff",
               "Services", "Salon Time", "Salon Banner", "Salon Gallery", "Sales" ,"Cover Range",
@@ -26,6 +27,8 @@ function SalonManagement() {
 
 
   return (
+    <>
+    <Navbar data={navItems}/>
     <div className={styles.mainDiv}>
       <div className={styles.main}>
         <div>
@@ -87,7 +90,7 @@ function SalonManagement() {
         </Row>
       </div>
     </div>
-
+</>
   )
 }
 

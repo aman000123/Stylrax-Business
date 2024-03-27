@@ -17,6 +17,9 @@ input.inputOtp{
     font-size: 18px;
     padding-inline-start: 15px;
    }
+   .error{
+    color: red;
+   }
    .btn{
     background-color: white;
     color: black;
@@ -46,6 +49,11 @@ input.inputOtp{
 .resend{
     float: right;
     margin-top: -15px;
+}
+.clear{
+    margin-top: -15px;
+    margin-left: 5px;
+    margin-right: -12px;
 }
 @media (max-width:1029.7px){
     .loginBorder{

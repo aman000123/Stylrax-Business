@@ -1,14 +1,16 @@
 import * as Yup from "yup";
 
 export const LoginSchema = Yup.object().shape({
-    email: Yup.string()
-      .email("Invalid email address format")
-      .required("Email is required"),
       phoneNumber: Yup.string()
       .matches(/^\d{10}$/, "Invalid phone number")
       .required("Phone number is required"),
   });
 
+  export const OTPSchema = Yup.object().shape({
+    otp: Yup.string()
+      .matches(/^\d{4}$/, "OTP must be 4 digits")
+      .required("OTP is required"),
+  });
  export const bankDetailsSchema = Yup.object({
     accountNumber: Yup.string()
     .matches(/^\d{9,18}$/, 'Account number must be between 9 and 18 digits') 
@@ -35,17 +37,32 @@ export const businessDetailsSchema = Yup.object({
   gst: Yup.string()
   .matches(/^\d{2}[A-Z]{5}\d{4}[A-Z]{1}[A-Z\d]{1}[Z]{1}[A-Z\d]{1}$/, 'Invalid gst number') // Matches the GST format
   .required("Please enter your gst number"),
+ 
   })
 
+  const MIN_AGE = 18;
+  const getMinDOBDate = () => {
+    const currentDate = new Date();
+    return new Date(currentDate.getFullYear() - MIN_AGE, currentDate.getMonth(), currentDate.getDate());
+  };
   export const detailsSchema = Yup.object().shape({
-      name:Yup.string().min(2).max(15).required("Please enter your name"),
-      middleName:Yup.string().min(2).max(15).required("Please enter  middle name"),
+      name:Yup.string().min(2).max(15).required("Please enter first your name"),
+    //  middleName:Yup.string().min(2).max(15)("Please enter  middle name"),
       lastName:Yup.string().min(2).max(15).required("Please enter your last name"),
       email:Yup.string().email().required("Please enter your email"),
-      //gender:Yup.string().min(5).max(15).required("Please select your gender"),
+      gender:Yup.string().required("Please select your gender"),
       phoneNumber: Yup.string().matches(/^[0-9]{10}$/, 'Invalid phone number').required("Please enter  phone number"),
-      dob: Yup.date().max(new Date(), 'Date of birth must be in the past').required("Please enter your DOB"),
-     
+      dob: Yup.date()
+      .max(getMinDOBDate(), `You must be at least ${MIN_AGE} years old`)
+      .required("Date of birth is required"),
+      //image: Yup.mixed().required('required')
+      // image: Yup.mixed().test(
+      //   "filePresent",
+      //   "Image is required",
+      //   function (value) {
+      //     return !!value;
+      //   }
+      // )
    } )
 
    // salonDetails Schema
