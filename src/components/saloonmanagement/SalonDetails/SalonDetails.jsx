@@ -27,18 +27,18 @@ function SalonDetails() {
                         "name":values.salonName,
                         "email":values.email,
                         "gstNumber":values.gstNumber,
-                        "companyName":"Unique Style",
+                        "companyName":"",
                         "address":values.address,
-                        "latitude":"332.343",
-                        "longitude":"23.343",
-                        "city":"Delhi",
+                        "latitude":"",
+                        "longitude":"",
+                        "city":"",
                         "state":values.mystate,
                         "pincode":values.salonStatePinCode,
                         "serviceType":values.services,
-                        "homeService":false,
-                        "mainGateImageUrl":"maingateImageUrl",
-                        "bannerImages":["url1","url2"],
-                        "gallaryImages":["gi_url1","gi_url2"]
+                        "homeService":"",
+                        "mainGateImageUrl":"",
+                        "bannerImages":"",
+                        "gallaryImages":""
                 }
                 // Call the bankDetails function
                 const response = await salonDetails(data);

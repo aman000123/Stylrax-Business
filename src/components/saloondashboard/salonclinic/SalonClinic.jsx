@@ -59,7 +59,7 @@ function SalonClinic() {
                         <Col md={6}>
                             {
                                 clientData.map((data) => (
-                                    <Paper  key={data.id} className={styles.border}>
+                                    <Paper key={data.id} className={styles.border}>
                                         <div className={styles.mainDiv}>
                                             <div className={styles.content}>
                                                 <div className={styles.clientImage}>
@@ -86,7 +86,7 @@ function SalonClinic() {
                         <Col md={6} >
                             {
                                 appointmentData.map((data) => (
-                                    <Paper  key={data.id} className={styles.border}>
+                                    <Paper key={data.id} className={styles.border}>
                                         <div className={styles.mainDiv}>
 
                                             <div className={styles.content}>
@@ -115,7 +115,7 @@ function SalonClinic() {
                         <Col md={6} >
                             {
                                 servicesData.map((data) => (
-                                    <Paper  key={data.id} className={styles.border}>
+                                    <Paper key={data.id} className={styles.border}>
                                         <div className={styles.mainDiv}>
 
                                             <div className={styles.content}>
@@ -142,7 +142,7 @@ function SalonClinic() {
                         <Col md={6}>
                             {
                                 cancelledAppointmentsData.map((data) => (
-                                    <Paper  key={data.id} className={styles.border}>
+                                    <Paper key={data.id} className={styles.border}>
                                         <div className={styles.mainDiv}>
                                             <div className={styles.content}>
                                                 <div className={styles.cancelledImage}>
@@ -184,8 +184,8 @@ function SalonClinic() {
                             </div>
 
                             <div className={styles.lines}>
-                                <img className={styles.redLine} src={redline} alt='' />
-                                <img className={styles.greenLine} src={greenline} alt='' />
+                                {/* <img className={styles.redLine} src={redline} alt='' />
+                                <img className={styles.greenLine} src={greenline} alt='' /> */}
                             </div>
 
                         </div>
@@ -203,11 +203,11 @@ function SalonClinic() {
             <RunningBanner />
 
             <Row>
-                <Col md={6}>
+                <Col xl={6}>
                     <Stylist />
                 </Col>
 
-                <Col md={6}>
+                <Col xl={6}>
                     <OurServices />
                 </Col>
             </Row>

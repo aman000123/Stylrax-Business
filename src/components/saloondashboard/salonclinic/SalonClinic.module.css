@@ -2,7 +2,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0px 10px;
+    padding: 0px 4px;
 }
 
 .content{
@@ -69,25 +69,25 @@
 }
 
 .clientDetails p{
-    font-size: 16px;
+    font-size: 13px;
     font-weight: 630;
     padding-top: 15px;
 }
 
 .appointmentDetails p{
-    font-size: 16px;
+    font-size: 13px;
     font-weight: 630;
     padding-top: 15px;
 }
 
 .serviceDetails p{
-    font-size: 16px;
+    font-size: 13px;
     font-weight: 630;
     padding-top: 15px;
 }
 
 .cancelledDetails p{
-    font-size: 16px;
+    font-size: 13px;
     font-weight: 630;
     padding-top: 15px;
 }
@@ -117,25 +117,25 @@
 }
 
 .clientDetails p .spanTwo{
-    font-size: 18px;
+    font-size: 15px;
     font-weight: 630;
     color: #909090;
 }
 
 .appointmentDetails p .spanTwo{
-    font-size: 18px;
+    font-size: 15px;
     font-weight: 630;
     color: #909090;
 }
 
 .serviceDetails p .spanTwo{
-    font-size: 18px;
+    font-size: 15px;
     font-weight: 630;
     color: #909090;
 }
 
 .cancelledDetails p .spanTwo{
-    font-size: 18px;
+    font-size: 15px;
     font-weight: 630;
     color: #909090;
 }
@@ -155,7 +155,7 @@
     justify-content: center;
     align-items: center;
     gap: 20%;
-    height: 112px;
+    height: 116.5px;
 }
 
 .square{
@@ -353,14 +353,59 @@
     }
 }
 
-
-/* @media(max-width:1218px){
-    .lines .greenLine{
-        padding-left: 39px;
-        position: relative;
-        bottom: 40px;
+@media(max-width:768px){
+    .border{
+        margin-top: 10px;
     }
-} */
+
+    .clientDetails p{
+        font-size: 15px;
+    }
+
+    .appointmentDetails p{
+        font-size: 15px;
+    }
+
+    .serviceDetails p{
+        font-size: 15px;
+    }
+
+    .cancelledDetails p{
+        font-size: 15px;
+    }
+
+    .clientDetails p .spanOne{
+        font-size: 10px;
+    }
+
+    .appointmentDetails p .spanOne{
+        font-size: 10px;
+    }
+
+    .serviceDetails p .spanOne{
+        font-size: 10px;
+    }
+
+    .cancelledDetails p .spanOne{
+        font-size: 10px;
+    }
+
+    .clientDetails p .spanTwo{
+        font-size: 15px;
+    }
+
+    .appointmentDetails p .spanTwo{
+        font-size: 15px;
+    }
+
+    .serviceDetails p .spanTwo{
+        font-size: 15px;
+    }
+
+    .cancelledDetails p .spanTwo{
+        font-size: 15px;
+    }
+}
 
 
 

@@ -5,6 +5,7 @@
     display: flex;
     flex-direction: column;
     gap:4px;
+    margin-bottom: 15px;
 }
 
 .content{
@@ -76,6 +77,19 @@
 }
 }
 
+@media(max-width:1200px){
+    .content{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+    .paper{
+        width: 45%;
+    }
+}
+
+
 @media (max-width:1154px){
     .paper{
         padding: 0px 10px;
@@ -89,5 +103,34 @@
 
     .aboutStylist p{
         line-height: 13px;
+    }
+}  
+
+@media(max-width:662px){
+    .content{
+        flex-direction: column;
+    }
+
+    .paper{
+        width: 92%;
+    }
+}
+
+@media(max-width:435px){
+    .stylist div img{
+        height: auto;
+        width: 52px;
+    }
+
+    .aboutStylist p{
+        font-size: 12px;
+    }
+
+    .aboutStylist p .spanOne{
+        font-size: 8px;
+    }
+
+    .aboutStylist p .spanTwo{
+        font-size: 7px;
     }
 }

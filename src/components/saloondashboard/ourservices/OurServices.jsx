@@ -20,6 +20,7 @@ import osImg16 from "../../../assets/image/osImg16.png";
 import osImg17 from "../../../assets/image/osImg17.png";
 
 let ourServicesData = [
+
     {
         imgsrc1: osImg1,
         text1: "HairStyles",

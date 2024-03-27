@@ -37,6 +37,7 @@
     padding: 5px 50px 5px 8px;
     border: 2px solid #BEBEBE;
     border-radius: 5px;
+    border-style: none;
 }
 
 .formError{

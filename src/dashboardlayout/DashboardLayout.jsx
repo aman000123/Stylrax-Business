@@ -41,11 +41,11 @@ const DashBoardLayout = () => {
         </div>
 
         <Row className="mt-2">
-          <Col md={8}>
+          <Col xl={8}>
             <SalonClinic />
           </Col>
 
-          <Col md={4}>
+          <Col xl={4}>
             <UpcomingAppointment />
           </Col>
         </Row>

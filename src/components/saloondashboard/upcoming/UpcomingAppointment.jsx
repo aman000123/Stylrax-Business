@@ -85,6 +85,7 @@ let data = [
     price: "1900Rs"
   },
 
+  
   {
     imgsrc: stylistimg1,
     textOne: "Raj Shakya",
@@ -118,36 +119,90 @@ const item = [
 
   {
     day: "Thur",
-    date: 4
-  },
-
-  {
-    day: "Fri",
     date: 5
   },
 
   {
-    day: "Sat",
+    day: "Fri",
     date: 6
-  },
-  {
-    day: "Sun",
-    date: 7
   },
 
   {
-    day: "Mon",
+    day: "Sat",
+    date: 7
+  },
+  {
+    day: "Sun",
     date: 8
   },
 
   {
-    day: "Tue",
+    day: "Mon",
     date: 9
   },
 
   {
-    day: "Wed",
+    day: "Tue",
     date: 10
+  },
+
+  {
+    day: "Wed",
+    date: 11
+  },
+
+  {
+    day: "Wed",
+    date: 12
+  },
+
+  {
+    day: "Wed",
+    date: 13
+  },
+
+  {
+    day: "Wed",
+    date: 14
+  },
+
+  {
+    day: "Wed",
+    date: 15
+  },
+
+  {
+    day: "Wed",
+    date: 16
+  },
+
+  {
+    day: "Wed",
+    date: 17
+  },
+
+  {
+    day: "Wed",
+    date: 18
+  },
+  {
+    day: "Wed",
+    date: 19
+  },
+
+  {
+    day: "Wed",
+    date: 20
+  },
+
+  {
+    day: "Wed",
+    date: 21
+  },
+
+  {
+    day: "Wed",
+    date: 22
   },
 ]
 
@@ -159,39 +214,83 @@ function UpcomingAppointment() {
     dots: false,
     infinite: true,
     speed: 500,
-    slidesToShow: 6,
-    slidesToScroll: 6,
+    slidesToShow: 5,
+    slidesToScroll: 5,
     initialSlide: 0,
     arrows: false,
     // slick-next: null, // Removes the previous arrow
     // slick-prev: null, // Removes the next arrow
     responsive: [
       {
-        breakpoint: 1024,
+        breakpoint: 1252,
         settings: {
           slidesToShow: 4,
-          slidesToScroll: 3,
+          slidesToScroll: 4,
           infinite: true,
           dots: false
         }
       },
+
       {
-        breakpoint: 600,
+        breakpoint: 1200,
         settings: {
-          slidesToShow: 2,
-          slidesToScroll: 2,
+          slidesToShow: 10,
+          slidesToScroll: 10,
+          infinite: true,
+          dots: false
+        }
+      },
+
+      {
+        breakpoint: 835,
+        settings: {
+          slidesToShow: 8,
+          slidesToScroll: 8,
+          infinite: true,
+          dots: false
+        }
+      },
+
+      {
+        breakpoint: 692,
+        settings: {
+          slidesToShow: 6,
+          slidesToScroll: 6,
           initialSlide: 2,
           dots: false
         }
       },
+
       {
-        breakpoint: 480,
+        breakpoint: 562,
         settings: {
-          slidesToShow: 5,
-          slidesToScroll: 1,
+          slidesToShow: 4,
+          slidesToScroll: 4,
+          initialSlide: 2,
           dots: false
         }
-      }
+      },
+
+      {
+        breakpoint:432,
+        settings: {
+          slidesToShow: 4,
+          slidesToScroll: 4,
+          initialSlide: 2,
+          dots: false
+        }
+      },
+
+      {
+        breakpoint:354,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 3,
+          initialSlide: 2,
+          dots: false
+        }
+      },
+
     ]
   };
 
@@ -227,7 +326,7 @@ function UpcomingAppointment() {
     setSelectedDate(value.date);
   }
   return (
-    <div>
+    <div className={styles.primaryDiv}>
       <div className={styles.mainDiv} >
         <div className={styles.text}>
           <p>Upcoming Appointments</p>
@@ -249,60 +348,58 @@ function UpcomingAppointment() {
         {/* Slider */}
 
         <Slider {...settings}>
-      {item.map((value) => (
-        <div className={styles.reactslider} key={value.date}>
-          <button onClick={() => handleButtonClick(value)} className={selectedDate === value.date ? styles.buttonClicked : ''}>
-            <div className={`${styles.paperone} ${selectedDate === value.date ? styles.paperClicked : ''}`}>
-              <p>
-                <span className={styles.days}>
-                  {value.day}
-                </span><br />
-                <span className={styles.date}>
-                  {value.date}
-                </span>
-              </p>
-            </div>
-          </button>
-        </div>
-      ))}
-    </Slider>
-
-
-
-        {
-          data.map((value) => (
-            <div  key={data.id} className={styles.appointments}>
-              <Paper  className={styles.paper}>
-                <div className={styles.appointmentdetails}>
-                  <div className={styles.content}>
-                    <div className={styles.imgDiv}>
-                      <img src={value.imgsrc} alt='' />
-                    </div>
-
-                    <div className={styles.details}>
-                      <p>{value.textOne}<br />
-                        <span className={styles.spanOne}>{value.textTwo}</span><br />
-                        <span className={styles.spanTwo}>{value.textThree}</span>
-                      </p>
-                    </div>
-                  </div>
-
-
-                  {/* <div>At Home</div> */}
-
-                  <div className={styles.horizonIcon}>
-                    <MoreHorizIcon className={styles.dots} />
-                    <p>{value.price}</p>
-                  </div>
-
+          {item.map((value) => (
+            <div className={styles.reactslider} key={value.date}>
+              <button onClick={() => handleButtonClick(value)} className={selectedDate === value.date ? styles.buttonClicked : ''}>
+                <div className={`${styles.paperone} ${selectedDate === value.date ? styles.paperClicked : ''}`}>
+                  <p>
+                    <span className={styles.days}>
+                      {value.day}
+                    </span><br />
+                    <span className={styles.date}>
+                      {value.date}
+                    </span>
+                  </p>
                 </div>
-              </Paper>
+              </button>
             </div>
-          ))
-        }
-        <h6 className={styles.view}>View All</h6>
+          ))}
+        </Slider>
+
+        <div className={styles.appointmentDiv}>
+          {
+            data.map((value) => (
+                <Paper className={styles.paper}>
+                  <div className={styles.appointmentdetails}>
+                    <div className={styles.content}>
+                      <div className={styles.imgDiv}>
+                        <img src={value.imgsrc} alt=''/>
+                      </div>
+
+                      <div className={styles.details}>
+                        <p>{value.textOne}<br />
+                          <span className={styles.spanOne}>{value.textTwo}</span><br />
+                          <span className={styles.spanTwo}>{value.textThree}</span>
+                        </p>
+                      </div>
+                    </div>
+
+
+                    {/* <div>At Home</div> */}
+
+                    <div className={styles.horizonIcon}>
+                      <MoreHorizIcon className={styles.dots} />
+                      <p>{value.price}</p>
+                    </div>
+
+                  </div>
+                </Paper>
+            ))
+          }
+        </div>
       </div>
 
+      <h6 className={styles.view}>View All</h6>
     </div>
   )
 }

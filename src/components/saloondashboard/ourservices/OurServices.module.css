@@ -1,3 +1,4 @@
+
 .paper{
     display: flex;
     justify-content: center;
@@ -14,8 +15,6 @@
     padding: 13px 25px;
     border-radius: 5px;
 }
-
-
 
 .hairStyle{
     font-size: 10px;
@@ -34,9 +33,29 @@
     padding: 0px 10px;
 }
 
-@media(max-width:1342px){
+@media(max-width:1498px){
+    .mainDiv div{
+        padding: 0px 6px;
+    }
+}
+
+@media(max-width:1384px){
     .mainDiv div{
         padding: 0px 4px;
+    }
+}
+
+@media(max-width:1200px){
+    .hairStylist{
+        width: 77px;
+    }
+
+    .hairStyle{
+        font-size: 12px;
+    }
+
+    .mainDiv div{
+        padding: 0px 21px;
     }
 }
 
@@ -46,6 +65,13 @@
     }
 }
 
+@media(max-width:877px){
+    .mainDiv div{
+        padding: 0px 14px;
+    }
+}
+
+
 @media (max-width:768px){
     .mainDiv{
         margin-top: 10px;
@@ -53,23 +79,65 @@
     }
 }
 
-@media (max-width:365px){
-    .mainDiv{
-        margin-top: 8px;
-        margin-bottom: 8px;
+@media(max-width:752px){
+    .mainDiv div{
+        padding: 0px 9px;
     }
+}
 
-    .paper{
-        margin-top: 8px;
+@media(max-width:661px){
+    .mainDiv div{
+        padding: 0px 5px;
     }
+}
 
+@media(max-width:589px){
+    .mainDiv div{
+        padding: 0px 2px;
+    }
+}
+
+@media(max-width:536px){
     .hairStylist{
-        width: 85px;
-        /* font-size: 40px; */
+        width: 57px;
     }
 
     .hairStyle{
-        font-weight: 15px;
+        font-size: 10px;
+    }
+}
+
+@media(max-width:440px){
+    .hairStylist{
+        width: 47px;
+    }
+
+    .hairStyle{
+        font-size: 8px;
+    }
+}
+
+@media(max-width:400px){
+    .hairStylist{
+        width: 37px;
+    }
+
+    .hairStyle{
+        font-size: 7px;
+    }
+}
+
+
+@media (max-width:365px){
+    .paper{
+        margin-top: 8px;
+    }
+    .hairStylist{
+        width: 82px;
+    }
+
+    .hairStyle{
+        font-size: 10px;
     }
 }
 

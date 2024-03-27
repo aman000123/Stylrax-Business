@@ -1,7 +1,12 @@
+.primaryDiv{
+    margin-top: 10px;
+}
+
 .mainDiv {
     background-color: #fff;
     padding: 7px 20px;
     border-radius: 8px;
+    margin-top: -9px;
 }
 
 .text p {
@@ -151,167 +156,45 @@ button{
 
 
 
-
-
-@media (max-width:1160px) {
-    .details {
-        padding-right: 2px;
+@media(max-width:1200px){
+    .paper{
+        width: 42%;
+        padding: 5px 5px;
+        margin-top: 5px;
     }
 
-    .details p {
-        font-size: 12px;
+    .appointmentDiv{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        /* align-items: center; */
+        flex-wrap: wrap;
+        gap: 25px;
     }
 
-    .details p .spanOne {
-        font-size: 10px;
-    }
-
-    .details p .spanTwo {
-        font-size: 9px;
+    .mainDiv{
+        margin-top: 15px;
     }
 }
 
-@media (max-width:1055px) {
-
-    .imgDiv img {
-        width: 54px;
-    }
-
-    .details p {
-        line-height: 12px;
-    }
-}
-
-@media (max-width:1006px) {
-    .appointmentdetails {
-        flex-direction: row;
-    }
-
-    .content {
-        flex-direction: row;
-    }
-
-    .imgDiv img {
-        width: 43px;
-        border-radius: 7px;
-    }
-
-    .details p {
-        line-height: 11px;
-        font-size: 10px;
-        text-align: start;
-    }
-
-    .details p .spanOne {
-        font-size: 9px;
-    }
-
-    .details p .spanTwo {
-        font-size: 8px;
-    }
-
-    .content {
-        gap: 5px;
-    }
-
-    .paper {
-        padding: 0px 1px;
-    }
-}
-
-@media (max-width:913px) {
-    .imgDiv img {
-        width: 35px;
-    }
-
-    .details {
-        padding-top: 9px;
-    }
-
-    .details p {
-        font-size: 8px;
-    }
-
-    .details p .spanOne {
-        font-size: 7px;
-    }
-
-    .details p .spanTwo {
-        font-size: 6px;
-    }
-
-    .dots {
-        font-size: 16px;
-    }
-
-    .horizonIcon p {
-        font-size: 6px;
-    }
-
-}
-
-@media(max-width:769px) {
-    .appointmentdetails {
-        flex-direction: row;
-        justify-content: space-between;
-    }
-
-    .content {
-        flex-direction: row;
+@media(max-width:646px){
+    .appointmentDiv{
+        flex-direction: column;
+        align-items: center;
     }
 
     .paper{
-        padding: 0px 10px;
-    }
-
-    .imgDiv img {
-        width: 64px;
-    }
-
-    .details {
-        padding-top: 9px;
-    }
-
-    .details p {
-        font-size: 16px;
-        line-height: 17px;
-    }
-
-    .details p .spanOne {
-        font-size: 12px;
-    }
-
-    .details p .spanTwo {
-        font-size: 10px;
-    }
-
-    
-    .horizonIcon .dots {
-        font-size: 28px;
-    }
-
-    .horizonIcon p {
-        font-size: 10px;
-        font-weight: 600;
-        color: #BEBEBE;
+        width: 82%;
     }
 }
 
-@media (max-width:373px) {
-    .imgDiv img {
-        width: 61px;
+@media(max-width:424px){
+    .imgDiv img{
+        width: 51px;
     }
 
     .details p {
+        font-size: 11px;
         line-height: 14px;
-    }
-
-    .monthYear span {
-        font-size: 17px;
-    }
-
-    .text p {
-        font-size: 16px;
-        font-weight: 700;
     }
 }
