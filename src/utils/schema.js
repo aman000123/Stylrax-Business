@@ -68,13 +68,13 @@ export const businessDetailsSchema = Yup.object({
    // salonDetails Schema
 
    export const salonDetailsSchema = Yup.object({
-    salonName: Yup.string().min(2).max(15).required("Please enter your name"),
+    salonName: Yup.string().min(3).max(15).required("Please enter your Salon name"),
     email: Yup.string().email().required("Please enter your email"),
-    gstNumber: Yup.string(),
+    gstNumber: Yup.string().required("Please enter valid gst number "),
     address: Yup.string().min(5).max(100).required("Please enter your address"),
     salonStatePinCode : Yup.string().min(4).required("Please enter pin code"),
-    // mystate : Yup.
-    // services: Yup.string().required("Select any one option")
+    state: Yup.string().required("Please select any one option"),
+    services: Yup.string().required("Select any one option")
    })
 
    // SalonOwnerDetails Schema.

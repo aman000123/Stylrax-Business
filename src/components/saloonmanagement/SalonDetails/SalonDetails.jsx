@@ -1,7 +1,7 @@
 import styles from "../SalonDetails/SalonDetails.module.css";
 import salondetailimg from "../../../assets/image/salondetailimg.png";
 // import { MdEdit } from "react-icons/md";
-import { useFormik } from "formik"
+import { Formik, Form, Field, ErrorMessage } from "formik"
 import { salonDetailsSchema } from "../../../utils/schema.js";
 import { salonDetails } from "../../../api/account.api.js";
 
@@ -11,46 +11,40 @@ const initialValues = {
     gstNumber: "",
     address: "",
     salonStatePinCode: "",
-    mystate: "",
+    state: "",
     services: "",
 };
 
 function SalonDetails() {
 
-    const { values, errors, touched, handleBlurr, handleChange, handleSubmit } = useFormik({
-        initialValues,
-        validationSchema: salonDetailsSchema,
-        onSubmit: async () => {
-            try {
-                // const {accNum, accName, bankName, ifscCode} = values
-                const data = {
-                        "name":values.salonName,
-                        "email":values.email,
-                        "gstNumber":values.gstNumber,
-                        "companyName":"",
-                        "address":values.address,
-                        "latitude":"",
-                        "longitude":"",
-                        "city":"",
-                        "state":values.mystate,
-                        "pincode":values.salonStatePinCode,
-                        "serviceType":values.services,
-                        "homeService":"",
-                        "mainGateImageUrl":"",
-                        "bannerImages":"",
-                        "gallaryImages":""
-                }
-                // Call the bankDetails function
-                const response = await salonDetails(data);
-                console.log(response); // Assuming the response is logged by the bankDetails function
-                console.log('Form submitted successfully');
-                action.resetForm();
-            } catch (error) {
-                console.error('There was an error submitting the form:', error);
+    const onSubmit = async (values) => {
+        try {
+            const data = {
+                "name":values.salonName,
+                "email":values.email,
+                "gstNumber":values.gstNumber,
+                "companyName":"Unique Style",
+                "address":values.address,
+                "latitude":"332.343",
+                "longitude":"23.343",
+                "city":"Delhi",
+                "state":values.state,
+                "pincode":values.salonStatePinCode,
+                "serviceType":values.services,
+                "homeService":false,
+                "mainGateImageUrl":"maingateImageUrl",
+                "bannerImages":["url1","url2"],
+                "gallaryImages":["gi_url1","gi_url2"]
+            
             }
+            const response = await salonDetails(data);
+            console.log(response); 
+            console.log('Form submitted successfully');
+            action.resetForm();
+        } catch (error) {
+            console.error('There was an error submitting the form:', error);
         }
-    });
-    console.log(errors);
+    }
 
     return (
         <div className={styles.mainDiv}>
@@ -58,136 +52,104 @@ function SalonDetails() {
                 <div>
                     <img src={salondetailimg} alt=''></img>
                 </div>
-
-                {/* <div className={styles.text}>
-                <span>Edit</span>
-                <MdEdit className={styles.icon}/>
-            </div> */}
             </div>
 
-            <form className={styles.forms} onSubmit={handleSubmit}>
-                <label  className={styles.lab}> Salon Name</label><br />
-                <input
-                    type='textarea'
-                    placeholder='Jhon'
-                    name='salonName'
-                    id='salonName'
-                    className={styles.inputs}
-                    value={values.salonName}
-                    onChange={handleChange}
-                    onBlur={handleBlurr}
-                /><br />
+            <Formik
+                initialValues={initialValues}
+                validationSchema={salonDetailsSchema}
+                onSubmit={onSubmit}
+            >
+                <Form className={styles.forms}>
+                    <label className={styles.lab}> Salon Name</label><br />
+                    <Field
+                        type='textarea'
+                        placeholder='Jhon'
+                        name='salonName'
+                        className={styles.inputs}
+                    /><br />
 
-                {
-                    errors.salonName && touched.salonName ? (
-                        <p className={styles.formError}>{errors.salonName}</p>
-                    ) : null
-                }
+                    <ErrorMessage name="salonName" className={styles.formError} component="div" />
 
-                <label  className={styles.lab}> Email Id</label><br />
-                <input
-                    type='email'
-                    placeholder='Jhon'
-                    name='email'
-                    id="email"
-                    className={styles.inputsTwo}
-                    value={values.email}
-                    onChange={handleChange}
-                    onBlur={handleBlurr}
-                /><br />
+                    <label className={styles.lab}> Email Id</label><br />
+                    <Field
+                        type='email'
+                        placeholder='Jhon'
+                        name='email'
+                        className={styles.inputsTwo}
+                    /><br />
 
-                {
-                    errors.email && touched.email ? (
-                        <p className={styles.formError}>{errors.email}</p>
-                    ) : null
-                }
+                    <ErrorMessage name="email" className={styles.formError} component="div" />
 
-                <label  className={styles.lab}> Gst Number</label><br />
-                <input
-                    type='text'
-                    placeholder='Jhon'
-                    name='gstNumber'
-                    id="gstNumber"
-                    className={styles.inputs}
-                    value={values.gstNumber}
-                    onChange={handleChange}
-                    onBlur={handleBlurr}
-                /><br />
-                {
-                    errors.gstNumber && touched.gstNumber ? (
-                        <p className={styles.formError}>{errors.gstNumber}</p>
-                    ) : null
-                }
 
-                <label  className={styles.lab}> Address</label><br />
-                <input
-                    type='text'
-                    placeholder='Jhon'
-                    name='address'
-                    id="address"
-                    className={styles.inputsTwo}
-                    value={values.address}
-                    onChange={handleChange}
-                    onBlur={handleBlurr}
-                /><br />
+                    <label className={styles.lab}> Gst Number</label><br />
+                    <Field
+                        type='text'
+                        placeholder='Jhon'
+                        name='gstNumber'
+                        className={styles.inputs}
+                    /><br />
 
-                {
-                    errors.address && touched.address ? (
-                        <p className={styles.formError}>{errors.address}</p>
-                    ) : null
-                }
+                    <ErrorMessage name="gstNumber" className={styles.formError} component="div" />
 
-                <label  className={styles.lab}> Salon State</label><br />
-                <select
-                    name='mystate'
-                    id="mystate"
-                    className={styles.inputsThree}
-                    value={values.mystate}
-                    onChange={handleChange}
-                    onBlur={handleBlurr}
-                >
-                    <option value="uttarPradesh">Uttar Pradesh</option>
-                    <option value="madhyaPradesh">Madhya Pradesh</option>
-                    <option value="chattishgarh">Chattisgarh</option>
-                    <option value="harayana">Haryana</option>
-                    <option value="arunachalPradesh">Arunachal Pradesh</option>
-                </select><br />
+                    <label className={styles.lab}> Address</label><br />
+                    <Field
+                        type='text'
+                        placeholder='Jhon'
+                        name='address'
+                        className={styles.inputsTwo}
+                    /><br />
 
-                <label  className={styles.lab}> Salon State pincode</label><br />
-                <input
-                    type='text'
-                    placeholder='209625'
-                    name='salonStatePinCode'
-                    id="salonStatePinCode"
-                    className={styles.inputsThree}
-                    value={values.salonStatePinCode}
-                    onChange={handleChange}
-                    onBlur={handleBlurr}
-                /><br />
-                 {
-                    errors.salonStatePinCode && touched.salonStatePinCode ? (
-                        <p className={styles.formError}>{errors.salonStatePinCode}</p>
-                    ) : null
-                }
+                    <ErrorMessage name="address" className={styles.formError} component="div" />
 
-                <label  className={styles.lab}> Services For</label><br />
-                <select
-                    name='services'
-                    id="services"
-                    className={styles.inputsThree}
-                    value={values.services}
-                    onChange={handleChange}
-                    onBlur={handleBlurr}
-                >
-                    <option value="uttarPradesh">Uttar Pradesh</option>
-                    <option value="madhyaPradesh">Madhya Pradesh</option>
-                    <option value="chandigarh">Chattisgarh</option>
-                    <option value="harayana">Haryana</option>
-                    <option value="arunachalPradesh">Arunachal Pradesh</option>
-                </select><br />
 
-                <button type='submit' className={styles.btn}>Submit</button>
-            </form>
+                    <label className={styles.lab}>
+                        Salon State
+                        <br />
+                        <Field
+                            as="select"
+                            name="state" 
+                            className={styles.inputsThree}
+                        >
+                            <option value="">select</option>
+                            <option value="uttar-pradesh">Uttar-Pradesh</option>
+                            <option value="madhya-pradesh">Madhya-Pradesh</option>
+                            <option value="andra-pradesh">Andra-Pradesh</option>
+                        </Field><br />
+
+                        <ErrorMessage name="state" className={styles.formError} component="div" />
+                    </label><br/>
+
+                    <label className={styles.lab}> Salon State pincode</label><br />
+                    <Field
+                        type='text'
+                        placeholder='209625'
+                        name='salonStatePinCode'
+                        className={styles.inputsThree}
+                    /><br />
+
+                    <ErrorMessage name="salonStatePinCode" className={styles.formError} component="div" />
+
+                    <label className={styles.lab}>
+                        Service For
+                        <br />
+                        <Field
+                            as="select"
+                            name="services" 
+                            className={styles.inputsThree}
+                        >
+                            <option value="">select</option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                            <option value="Other">Other</option>
+                        </Field><br />
+
+                        <ErrorMessage name="services" className={styles.formError} component="div" />
+                    </label><br/>
+
+                    <button type='submit' className={styles.btn}>Submit</button>
+                </Form>
+            </Formik>
+
         </div>
     )
 }
