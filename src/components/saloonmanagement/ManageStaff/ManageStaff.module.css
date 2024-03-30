@@ -73,6 +73,10 @@
     background-color: #fff;
 }
 
+.staffbtn{
+    border-style: none;
+}
+
 /* popup Styling */
 
 .popupFormDiv{
@@ -136,6 +140,14 @@
     margin-left: 5px;
 }
 
+
+.formError{
+    color: red;
+    font-size: 12px;
+    text-align: start;
+    padding-left: 50px;
+    padding-top: 3px;
+}
 
 
 

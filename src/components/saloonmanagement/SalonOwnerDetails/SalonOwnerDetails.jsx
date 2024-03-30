@@ -2,8 +2,9 @@ import styles from "../SalonOwnerDetails/SalonOwnerDetails.module.css";
 import salonownerdetailimg from "../../../assets/image/salonownerdetailimg.png";
 import { Form, Formik, Field, ErrorMessage } from "formik";
 import { salonOwnerDetails } from "../../../utils/schema.js";
-import { salonownerDetails } from "../../../api/account.api.js";
-
+import { salonownerDetails, fileUploader } from "../../../api/account.api.js";
+import { GrFormUpload } from "react-icons/gr";
+import { useEffect, useRef, useState } from "react";
 
 
 const initialValues = {
@@ -12,12 +13,47 @@ const initialValues = {
     lastName: "",
     email: "",
     dob: "",
-    gender: "",
-    aadharCard: "",
-    panCard: "",
+    gender: ""
 };
 
+
 function SalonOwnerDetails() {
+    
+    const [selectedFile, setSelectedFile] = useState(null);
+    const [url, setUrl] = useState("");
+    console.log("url:::>", url);
+    const [fileName, setFileName] = useState("");
+    useEffect(() => { }, []);
+    const fileInputRef = useRef(null);
+    const handleFileChange = async (event) => {
+        const file = event.target.files[0];
+        console.log("Selected File 1:", file.name);
+        const fileUrl = await fileUploader({ fileName: file.name });
+        console.log("fileUrl:::>", fileUrl);
+        uploadFileToS3(file, fileUrl.data.url);
+        // onSubmit(fileUrl);
+    };
+    const handleUploadIconClick = () => {
+        fileInputRef.current.click();
+    };
+
+    //File Upload to S3
+    const uploadFileToS3 = async (file, url) => {
+        try {
+            const formData = new FormData();
+            formData.append("file", file);
+            const requestOptions = {
+                method: "PUT",
+                body: file,
+                headers: {
+                    "Content-Type": file.type,
+                },
+            };
+            await fetch(url, requestOptions);
+        } catch (error) {
+            Notify.error("Error uploading file:", error);
+        }
+    };
 
     const onSubmit = async (values) => {
         try {
@@ -29,15 +65,15 @@ function SalonOwnerDetails() {
                 "email": values.email,
                 "dataOfBirth": values.dob,
                 "gender": values.gender,
-                "panCardImageUrl": values.panCard,
-                "aadharFrontUrl": values.aadharCard,
+                "panCardImageUrl": "someurl",
+                "aadharFrontUrl": "someurl",
                 "aadharBackUrl": "someurl",
                 "profileImageUrl": "someUrl",
                 "serviceType": "Male"
             }
             console.log(values);
             const response = await salonownerDetails(data);
-            console.log(response); 
+            console.log(response);
             console.log('Form submitted successfully');
             action.resetForm();
         } catch (error) {
@@ -126,27 +162,75 @@ function SalonOwnerDetails() {
                         </Field><br />
 
                         <ErrorMessage name="gender" className={styles.formError} component="div" />
-                    </label><br/>
+                    </label><br />
 
                     <label className={styles.lab}> Aadhar Card</label><br />
-                    <Field
-                        type='file'
-                        name='aadharCard'
-                        placeholder="Eg : 574673102568"
-                        className={styles.aadharCard}
-                    /><br />
+                    <div className={styles.aadhar}>
+                        <label className={styles.front}>
+                            <span>Aadhar Front</span>
+                            <br />
+                            <button
+                                className={`${styles.Btn} align-items-center-start`}
+                                onClick={handleUploadIconClick}
+                                type="button"
+                            >
+                                <input
+                                    id="image"
+                                    type="file"
+                                    name="aadhar-front"
+                                    ref={fileInputRef}
+                                    style={{ display: "none" }}
+                                    onChange={handleFileChange}
+                                />
+                                <br />
+                                <GrFormUpload className={styles.uploadIcon} />
+                                Upload
+                            </button>
+                        </label><br />
 
-                    <ErrorMessage name="aadharCard" className={styles.formError} component="div" />
+                        <label className={styles.back}>
+                            Aadhar Back<br />
+                            <button
+                                className={`${styles.Btn} align-items-center-start`}
+                                onClick={handleUploadIconClick}
+                                type="button"
+                            >
+                                <input
+                                    type="file"
+                                    name="aadhar-back"
+                                    ref={fileInputRef}
+                                    style={{ display: "none" }}
+                                    onChange={handleFileChange}
+                                />
+                                <br />
+                                <GrFormUpload className={styles.uploadIcon} />
+                                Upload
+                            </button>
+                        </label>
 
-                    <label className={styles.lab}> Pan Card</label><br />
-                    <Field
-                        type='file'
-                        name='panCard'
-                        placeholder="Eg : LEUPS4916J"
-                        className={styles.panCard}
-                    /><br />
+                    </div>
 
-                    <ErrorMessage name="panCard" className={styles.formError} component="div" />
+
+
+                    <label className={styles.lab}>
+                        Pan Card
+                        <button
+                            className={`${styles.Btn} align-items-center-start`}
+                            onClick={handleUploadIconClick}
+                            type="button"
+                        >
+                            <input
+                                type="file"
+                                name="image"
+                                ref={fileInputRef}
+                                style={{ display: "none" }}
+                                onChange={handleFileChange}
+                            />
+                            <br />
+                            <GrFormUpload className={styles.uploadIcon} />
+                            Upload
+                        </button>
+                    </label><br />
 
                     <button type='submit' className={styles.btn}>Submit</button>
                 </Form>

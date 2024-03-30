@@ -1,26 +1,63 @@
 import styles from "../BankDetails/BankDetails.module.css";
 import { Field, Formik, useFormik, Form, ErrorMessage } from "formik"
 import { bankSchema } from "../../../utils/schema.js";
-import { bankDetails } from "../../../api/account.api.js";
+import { bankDetails , fileUploader } from "../../../api/account.api.js";
+import { GrFormUpload } from "react-icons/gr";
+import { useEffect, useRef, useState } from "react";
 
 const initialValues = {
     accNum: "",
     accName: "",
     bankName: "",
-    ifscCode: "",
-    passbook: "",
+    ifscCode: ""
 };
 
 function BankDetails() {
 
+    const [selectedFile, setSelectedFile] = useState(null);
+    const [url, setUrl] = useState("");
+    console.log("url:::>", url);
+    const [fileName, setFileName] = useState("");
+    useEffect(() => { }, []);
+    const fileInputRef = useRef(null);
+
+    const handleFileChange = async (event) => {
+        const file = event.target.files[0];
+        console.log("Selected File 1:", file.name);
+        const fileUrl = await fileUploader({ fileName: file.name });
+        console.log("fileUrl:::>", fileUrl);
+        uploadFileToS3(file, fileUrl.data.url);
+        // onSubmit(fileUrl);
+    };
+    const handleUploadIconClick = () => {
+        fileInputRef.current.click();
+    };
+
+    //File Upload to S3
+    const uploadFileToS3 = async (file, url) => {
+        try {
+            const formData = new FormData();
+            formData.append("file", file);
+            const requestOptions = {
+                method: "PUT",
+                body: file,
+                headers: {
+                    "Content-Type": file.type,
+                },
+            };
+            await fetch(url, requestOptions);
+        } catch (error) {
+            Notify.error("Error uploading file:", error);
+        }
+    };
+
     const onSubmit = async (values) => {
         try {
-            const { accNum, accName, bankName, ifscCode } = values
             const data = {
-                "accountNumber": accNum,
-                "accountHolderName": accName,
-                "bankName": bankName,
-                "ifscCode": ifscCode
+                "accountNumber": values.accNum,
+                "accountHolderName": values.accName,
+                "bankName": values.bankName,
+                "ifscCode": values.ifscCode
             }
             console.log(values)
             // Call the bankDetails function
@@ -80,30 +117,35 @@ function BankDetails() {
                             name='ifscCode'
                             className={styles.ifsc}
                         /><br />
-                          <ErrorMessage name="ifscCode" className={styles.formError} component="div"/>
+                        <ErrorMessage name="ifscCode" className={styles.formError} component="div" />
+ 
+                        <label className={styles.lab}>
+                            Passbook/Cancel cheque
+                            <br />
+                            <button
+                                className={`${styles.Btn} align-items-center-start`}
+                                onClick={handleUploadIconClick}
+                                type="button"
+                            >
+                                <input
+                                    type="file"
+                                    name="passbook"
+                                    ref={fileInputRef}
+                                    style={{ display: "none" }}
+                                    onChange={handleFileChange}
+                                />
+                                <br />
+                                <GrFormUpload className={styles.uploadIcon} />
+                                Upload
+                            </button>
 
-                        <label for="passbook" className={styles.lab}> Passbook/Cancel Cheque</label><br />
-                        <Field
-                            type='file'
-                            placeholder='Jhon'
-                            name='passbook'
-                            className={styles.passbook}
-                        /><br />
-
-                        <ErrorMessage name="passbook" className={styles.formError} component="div" />
+                        </label><br /> 
 
                         <button type='submit' className={styles.btn}>Submit</button>
                     </Form>
                 </Formik>
 
             </div>
-
-            {/* <div className={styles.text}>
-                <span>Edit</span>
-                <MdEdit className={styles.icon} />
-            </div> */}
-
-
         </div>
     )
 }
@@ -111,14 +153,3 @@ function BankDetails() {
 export default BankDetails;
 
 
-
-// const { values, errors, touched, handleBlurr, handleChange, handleSubmit } = useFormik({
-//     initialValues,
-//     validationSchema: bankSchema,
-//     onSubmit: (values, action) => {
-//         console.log(values);
-//         action.resetForm();
-//     }
-// });
-
-// console.log(errors);

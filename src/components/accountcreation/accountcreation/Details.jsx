@@ -22,6 +22,7 @@ const initialValues = {
 };
 
 const Details = ({ setShowServicePage }) => {
+  
   const [selectedFile, setSelectedFile] = useState(null);
   const [url, setUrl] = useState("");
   console.log("url:::>", url);
@@ -71,8 +72,8 @@ const Details = ({ setShowServicePage }) => {
         gender: values.gender,
         image:  "aa",
         //aadharFrontUrl: values.aadharFrontUrl,
-         aadharFrontUrl: "someurl",
-         aadharBackUrl: "someurl"
+        // aadharFrontUrl: "someurl",
+        // aadharBackUrl: "someurl"
       };
       const res = await createSalon(verifyForm);
       setShowServicePage(true);
@@ -240,7 +241,7 @@ const Details = ({ setShowServicePage }) => {
                           Upload
                         </button>
                       </div>
-                      <span>{fileName}</span>
+                      {/* <span>{fileName}</span> */}
                     </label>
                     {/* <ErrorMessage
                       component="div"

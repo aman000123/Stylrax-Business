@@ -86,22 +86,22 @@ export const businessDetailsSchema = Yup.object({
     email: Yup.string().email().required("Please enter your email"),
     dob: Yup.date().max(new Date(), 'Date of birth must be in the past').required("Please enter your DOB"),
     gender: Yup.string().min(4).max(15).required("Please select your gender"),
-    aadharCard: Yup.mixed()
-    .required('Aadhar card photo is required')
-    .test('fileType', 'Only JPG, JPEG, or PNG files are allowed', (value) => {
-      if (value) return true; // allow empty value
-      return (
-        value && ['image/jpeg', 'image/jpg', 'image/png'].includes(value.type)
-      );
-    }),
-    panCard: Yup.mixed()
-    .required('PAN card photo is required')
-    .test('fileType', 'Only JPG, JPEG, or PNG files are allowed', (value) => {
-      if (value) return true; // allow empty value
-      return (
-        value && ['image/jpeg', 'image/jpg', 'image/png'].includes(value.type)
-      );
-    }),
+    // aadharCard: Yup.mixed()
+    // .required('Aadhar card photo is required')
+    // .test('fileType', 'Only JPG, JPEG, or PNG files are allowed', (value) => {
+    //   if (value) return true; // allow empty value
+    //   return (
+    //     value && ['image/jpeg', 'image/jpg', 'image/png'].includes(value.type)
+    //   );
+    // }),
+    // panCard: Yup.mixed()
+    // .required('PAN card photo is required')
+    // .test('fileType', 'Only JPG, JPEG, or PNG files are allowed', (value) => {
+    //   if (value) return true; // allow empty value
+    //   return (
+    //     value && ['image/jpeg', 'image/jpg', 'image/png'].includes(value.type)
+    //   );
+    // }),
 
    })
 
@@ -112,7 +112,17 @@ export const businessDetailsSchema = Yup.object({
     accName: Yup.string().min(3).max(15).required("Please enter valid Account Name"),
     bankName: Yup.string().min(11).max(25).required("Enter  valid Bank Name"),
     ifscCode: Yup.string().matches(/^[A-Za-z]{4}[0][A-Z0-9a-z]{6}$/, 'Invalid IFSC code').required("Please enter valid IFSC code"),
-    passbook: Yup.mixed().required("Please upload a passbook image")
+  //   passbook: Yup.mixed().test('fileSize', "Passbook file is too large", value => {
+  //     if (value) {
+  //         return value.size <= 1024 * 1024; // 1MB
+  //     }
+  //     return true;
+  // }).test('fileType', "Invalid file format for passbook", value => {
+  //     if (value) {
+  //         return ['image/jpeg', 'image/png', 'application/pdf'].includes(value.type);
+  //     }
+  //     return true;
+  // }).required("Please upload a passbook image")
   });
 
 //   export const bankSchema = Yup.object({
