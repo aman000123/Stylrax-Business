@@ -1,20 +1,9 @@
-*{
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-}
 .bg{
-    /* background-image: url("../../../image/bg.webp"); */
     background-image: url("../../../assets/image/bg.webp");
     background-size: cover;
     overflow: hidden;
     padding: 60px 120px;
   }
-
-.login{
-    color: white;
-    text-align: center;
-}
 .error{
   color: red;
 }
@@ -28,72 +17,23 @@
     border: none;
     padding-inline-start: 20px;
 }
-@media(max-width:430px){
-  .input{
-    width: 240px;
-    height: 30px;
-  }
+.customPhoneInput {
+  border: 1px solid #ccc;
+  border-radius: 50px;
+  padding: 5px 30px;
+  background-color: white;
 }
-@media(max-width:389.7px){
-  .input{
-    width: 200px;
-  }
-}
-@media(max-width:340.7px){
-  .input{
-    width: 173px;
-   
-  }
-}
-@media(max-width:309.7px){
-  .input{
-    width: 150px;
-   
-  }
+.customPhoneInput input {
+    padding: 5px 10px;
+    outline: none;
+    border: none;
+    border-left: 3px solid grey;
 }
 .btn{
-    background-color: white;
-    color: black;
     height: 40px;
     width: 200px;
     border-radius: 10px;
     font-weight: 600;
-}
-@media(max-width:430px){
-  .btn{
-    width: 165px;
-    height: 30px;
-  }
-}
-@media(max-width:430px){
-  .btn{
-    width: 140px;
-  }
-}
-@media(max-width:430px){
-  .btn{
-    width: 100px;
-    font-weight: 400;
-  }
-}
-.info{
-  color: white;
-}
-@media(max-width:999px){
-  .info{
-   margin-left: -40px;
-  }
-}
-@media(max-width:900px){
-  .info{
-   margin-left: -100px;
-  }
-}
-@media(max-width:767.5px){
-  .info{
-   margin-left: -70px;
-   margin-top: -40px;
-  }
 }
 .formGroup {
     margin-bottom: 15px; 
@@ -103,191 +43,76 @@
     font-weight: bolder;
     line-height: 52px;
   }
-  @media (max-width:1190px) {
-   .text{
-    font-size: 44px;
-   }
-  }
-  @media (max-width:802px) {
-    .text{
-     font-size: 40px;
-    }
-   }
-   @media (max-width:474px) {
-    .text{
-     font-size: 36px;
-    }
-   }
-   @media (max-width:414px) {
-    .text{
-     font-size: 32px;
-    }
-   }
-   @media (max-width:389.7px) {
-    .text{
-     font-size: 30px;
-    }
-   }
-   @media (max-width:376.6px) {
-    .text{
-     font-size: 27px;
-    }
-   }
-   @media (max-width:358.6px) {
-    .text{
-     font-size: 24px;
-     margin-bottom: -5px;
-    }
-   }
-   @media (max-width:340.6px) {
-    .text{
-     font-size: 21px;
-
-    }
-   }
-   @media (max-width:320.6px) {
-    .text{
-     font-size: 19px;
-
-    }
-   }
-   @media (max-width:309.6px) {
-    .text{
-     font-size: 14px;
-     margin-top: -20px;
-
-    }
-   }
   .textOne{
     font-size: 36px;
     font-weight: 600;
     line-height: 40px;
   }
-  @media (max-width:1190px) {
-    .textOne{
-     font-size: 30px;
-    }}
-    @media (max-width:802px) {
-      .textOne{
-       font-size: 25px;
-       line-height: 30px;
-      }
-     }
-     @media (max-width:474px) {
-      .textOne{
-       font-size: 22px;
-       
-      }
-     }
-     @media (max-width:424px) {
-      .textOne{
-       font-size: 18px;
-       
-      }
-     }
-     @media (max-width:381.7px) {
-      .textOne{
-       font-size: 16px;
-       line-height: 20px;
-       }
-     }
-     @media (max-width:360.7px) {
-      .textOne{
-       font-size: 14px;
-       }
-     }
-     @media (max-width:340.7px) {
-      .textOne{
-       font-size: 12px;
-       }
-     }
-     @media (max-width:320.7px) {
-      .textOne{
-       font-size: 10px;
-       line-height: 15px;
-       }
-     }
-     @media (max-width:290px) {
-      .textOne{
-       font-size: 8px;
-       }
-     }
-  .pra{
+   .pra{
     font-size: 18px;
     font-weight: 600;
     line-height: 30px;
   }
-  @media (max-width:1190px) {
-    .pra{
-     font-size: 16px;
-    }}
-    @media (max-width:1117px) {
-      .pra{
-       font-size: 14px;
-       line-height: 20px;
-      }}
-      @media (max-width:802px) {
-        .pra{
-         font-size: 12px;
-        }
-       }
-       @media (max-width:474px) {
-        .pra{
-         font-size: 10px;
-        }
-       }
-       @media (max-width:425px) {
-        .pra{
-         font-size: 8px;
-        }
-       }
-       @media (max-width:380px) {
-        .pra{
-         font-size: 7px;
-         line-height: 15px;
-        }
-       }
-       @media (max-width:283.7px) {
-        .pra{
-         font-size: 5px;
-         line-height: 10px;
-        }
-       }
-  .loginBorder{
+   .loginBorder{
     border: 2px solid #545454; 
     border-radius: 16px; 
     padding: 60px;
-    color: white;
     background-color: #00000066;
-    display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
   }
-  @media(max-width:1030px){
-    .loginBorder{
-      padding: 40px;
+
+  /* media query */
+  @media (max-width:1200px) {
+    .pra{
+     font-size: 15px;
     }
+   .textOne{
+       font-size: 30px;
+      }
   }
-  @media(max-width:999px){
-    .loginBorder{
-      margin-left: 60px;
+  @media(max-width:992px){
+    .input{
+      width: 240px;
     }
-  }
-  @media(max-width:900px){
     .loginBorder{
-      margin-left: 40px;
-      padding: 30px;
+      padding: 27px 30px;
+      margin-left: 50px;
     }
-  }
-  @media(max-width:767.5px){
+    .textOne{
+      font-size: 22px;
+      line-height: 30px;
+     }
+     .text{
+       font-size: 39px;
+     }
+     .pra{
+      font-size: 10px;
+      line-height: 20px;
+     }}
+  @media(max-width:575px){
+    .text{
+      font-size: 15px;
+      line-height: 20px;
+    }
+    .input{
+      width: 190px;
+      height: 30px;
+    }
+    .btn{
+      width: 150px;
+      height: 30px;
+    }
+    .pra{
+      font-size: 4px;
+      line-height: 12px;
+    }
     .loginBorder{
-      margin-left: 0px;
-      margin-bottom: 0px;
+      margin-left: 0;
     }
-  }
-  @media(max-width:340.5px){
-    .loginBorder{
-     padding: 25px;
-    }
-  }
+    .textOne{
+      font-size: 15px;
+      line-height: 20px;
+      margin-right: -46px;
+    }}

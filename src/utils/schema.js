@@ -1,13 +1,14 @@
 import * as Yup from "yup";
 
 export const LoginSchema = Yup.object().shape({
-      phoneNumber: Yup.string()
-      .matches(/^\d{10}$/, "Invalid phone number")
-      .required("Phone number is required"),
-  });
+  phoneNumber: Yup.string()
+    //.matches(/^[0-9]{10}$/, "Invalid phone number")
+    .matches(/^\d{10}$/, "Invalid phone number")    
+    .required("Phone number is required"),
+});
 
   export const OTPSchema = Yup.object().shape({
-    otp: Yup.string()
+       otp: Yup.string()
       .matches(/^\d{4}$/, "OTP must be 4 digits")
       .required("OTP is required"),
   });

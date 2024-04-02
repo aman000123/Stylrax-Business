@@ -6,7 +6,7 @@ const Registration = () => {
     <main className={styles.main}>
       <Container>
         <Row className="d-flex align-items-center mb-5 mt-5">
-          <div className={`${styles.mainDiv}  align-items-center`}>
+          <div className={`${styles.mainDiv}  align-items-center d-flex`}>
             <Col md={6} className="d-flex justify-content-center">
               <div className={styles.praOne}>
                 <p>

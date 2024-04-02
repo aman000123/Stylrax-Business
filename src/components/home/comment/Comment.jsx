@@ -10,7 +10,7 @@ const Comment = () => {
       <Container>
         <Row className="align-items-center d-flex mt-5">
           <Col md={6} className="d-flex justify-content-center">
-            <div className={styles.commentDiv}>
+            <div className={`${styles.commentDiv} bg-black text-white`}>
               <img
                 src={userThree}
                 alt="user-image"
@@ -32,7 +32,7 @@ const Comment = () => {
             </div>
           </Col>
           <Col md={6} className="d-flex justify-content-center">
-            <div className={styles.praTwo}>
+            <div className={`${styles.praTwo} bg-black text-white`}>
               <img src={userOne} alt="user-image" className={styles.userOne} />
               <p className={styles.comment}>
               &quot;Salon owners, boost your <br />
