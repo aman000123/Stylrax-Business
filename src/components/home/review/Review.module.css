@@ -1,6 +1,5 @@
 .main {
     background-color: #000;
-    display: flex;
     justify-content: flex-end;
     padding: 104px 0px;
     gap: 30px;
@@ -12,24 +11,18 @@
     padding: 45px 20px;
     background-color: #fff;
     color: black;
-    display: flex;
-    flex-direction: column;
     gap: 21px;
 }
 
+.flexDiv {
+    /* margin-right: 27px; */
+}
+
 .textDiv {
-    display: flex;
-    justify-content: space-between;
-    flex-direction: column;
     margin-top: 10px;
 }
 
-.flexDiv {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-right: 27px;
-}
+
 
 .child p {
     font-size: 20px;
@@ -45,25 +38,25 @@
     height: auto;
 }
 
-@media(max-width:1323px) {
+ @media(max-width:1323px) {
     .child p {
         font-size: 17px;
         font-weight: 600;
     }
-}
+} 
 
 @media(max-width:1283px) {
     .imgDiv {
         width: 123px;
         height: 81px;
     }
-}
+} 
 
-@media(max-width:839px) {
+@media(max-width:1200px) {
     .main {
         flex-direction: column;
         background-color: #000;
-        justify-content: center;
+        justify-content: flex-end;
         align-items: center;
         padding: 57px 0px;
         padding-left: 0px;
@@ -78,54 +71,54 @@
         margin-right: 91px
     }
 
-    .child{
-    height: auto;
-    width: 405px;
+    .child {
+        height: auto;
+        width: 405px;
     }
 }
 
-@media(max-width:473px){
-    .flexDiv{
+@media(max-width:473px) {
+    .flexDiv {
         margin-right: 4px;
     }
 
-    .child{
-    height: 279px;
-    width: 303px;
-    padding: 30px 11px;
+    .child {
+        height: 279px;
+        width: 303px;
+        padding: 30px 11px;
     }
 }
 
-@media(max-width:368px){
+@media(max-width:368px) {
     .child {
         height: 265px;
         width: 267px;
         padding: 30px 11px;
-        gap:8px;
+        gap: 8px;
     }
 
-    .child p{
-    font-size: 15px;
-    font-weight: 600;
+    .child p {
+        font-size: 15px;
+        font-weight: 600;
     }
 
-    .textDiv{
+    .textDiv {
         margin-right: 47px;
     }
 
     @media(max-width:328px) {
-        .child{
+        .child {
             height: 223px;
             width: 220px;
             gap: 0px;
         }
 
-        .child p{
+        .child p {
             font-size: 13px;
             font-weight: 620;
         }
 
-        .textDiv{
+        .textDiv {
             margin-right: 3px;
         }
     }

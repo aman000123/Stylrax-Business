@@ -21,10 +21,10 @@ const data = [
 
 export default function Counter() {
     return (
-        <div className={styles.banner3}>
-            <div className={styles.textContent}>
+        <div className={`${styles.banner3} `}>
+            <div className={`${styles.textContent} d-flex justify-content-center align-items-center text-white`}>
                 {data.map((item,index) => (
-                    <div className={styles.content} key={index}>
+                    <div className={`${styles.content} text-center`} key={index}>
                         <p className={styles.num}>{item.num}</p>
                         <p className={styles.txt}>{item.txt}</p>
                     </div>

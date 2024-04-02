@@ -4,12 +4,15 @@ function About() {
 
   let data = <p>Stylrax, the Ultimate platform for freelancers and salon owners to showcase their skills
   and connect with <br/> clients. Empower your business with our innovative solutions.</p>
+
+  let data1 =  "Become a part of Stylrax and Be Your Own Boss."
+
   return (
-    <div className={styles.bgImage}>
-      <div className={styles.flexible}>
+    <div className={`${styles.bgImage} d-flex justify-content-center align-items-center text-center `}>
+      <div className={`${styles.flexible} d-flex justify-content-center align-items-center flex-column `}>
         <div className={styles.heading}>
-          <p>Become a part of Stylrax and Be Your Own Boss.</p>
-        </div>
+          <p>{data1}</p>
+        </div>  
         <div className={styles.desc}>
           {data}
         </div>
