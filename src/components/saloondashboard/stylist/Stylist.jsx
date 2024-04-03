@@ -53,8 +53,8 @@ function Stylist() {
 
             <div className={styles.content}>
                 {
-                    data.map((value) => (
-                        <paper key={data.id} className={styles.paper}>
+                    data.map((value, index) => (
+                        <paper key={index} className={styles.paper}>
                             <div className={styles.stylist}>
                                 <div>
                                     <img src={value.imgsrc} alt='' />

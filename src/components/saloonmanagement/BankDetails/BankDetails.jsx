@@ -1,7 +1,7 @@
 import styles from "../BankDetails/BankDetails.module.css";
 import { Field, Formik, useFormik } from "formik"
-import { bankSchema } from "../../../utils/schema.js";
-import { bankDetails } from "../../../api/account.api.js";
+import { bankSchema } from "../../../utils/schema";
+import { createBankAccount } from "../../../api/salon.api";
 const initialValues = {
     accNum: "",
     accName: "",
@@ -25,7 +25,7 @@ function BankDetails() {
                     "ifscCode":values.ifscCode
                 }
                 // Call the bankDetails function
-                const response = await bankDetails(data);
+                const response = await createBankAccount(data);
                 console.log(response); // Assuming the response is logged by the bankDetails function
                 console.log('Form submitted successfully');
                 action.resetForm();

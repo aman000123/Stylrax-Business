@@ -19,7 +19,7 @@ const Navbar = (props) => {
       <div>
         <ul className={`${styles.menu_list}`}>
           {props.data.map((item, index) => (
-            <div key={index.id} className="d-flex">
+            <div key={index} className="d-flex">
               <div className={`${styles.icon} me-2`}>{item.icon}</div>
 
               <NavLink href={`/${item.link}`}>
@@ -45,15 +45,5 @@ const Navbar = (props) => {
       </div>
     </nav>
   );
-};
-Navbar.propTypes = {
-  data: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.number.isRequired,
-      icon: PropTypes.node.isRequired,
-      link: PropTypes.string.isRequired,
-      text: PropTypes.string.isRequired,
-    })
-  ).isRequired,
 };
 export default Navbar;

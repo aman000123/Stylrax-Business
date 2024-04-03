@@ -54,11 +54,12 @@ const Otp = ({ phoneNumber }) => {
         phoneNumber: data.phoneNumber,
         role: data.role,
       };
-      dispatch(storeToken(authData));
+
       if (data.profileStatus === 0) {
-        navigate("/salon/account/create");
+        navigate("/account/create", { state: { token: data.authToken } });
       } else {
-        navigate("/salon/dashboard");
+        dispatch(storeToken(authData));
+        navigate("/dashboard");
       }
     } catch (error) {
       Notify.error(error.message);

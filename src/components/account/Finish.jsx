@@ -1,17 +1,17 @@
 import { startTransition } from "react";
-import styles from "./Finish.module.css";
+import styles from "./account.module.css";
 import { useNavigate } from "react-router-dom";
 const Finish = () => {
   const navigate = useNavigate();
   const handleButton = () => {
     startTransition(() => {
-      navigate('/salon-dashboard');
+      navigate('/home');
     });
   };
   return (
     <main>
       <div className="d-flex flex-column align-items-center">
-        <div className={styles.form}>
+        <div className={styles.registration__finish_container}>
           <p>
             We’re Verifying Your Details
             <br />

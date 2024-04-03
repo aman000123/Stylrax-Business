@@ -1,0 +1,7 @@
+.layout__header { height: 100px; border-bottom: 1px solid #767676;}
+
+.layout__header .logo>img { height: 28px; width: 230px;}
+
+.layout__header ul {font-size: 1rem; list-style: none;}
+
+.layout_footer_logo img { width: 200px; }

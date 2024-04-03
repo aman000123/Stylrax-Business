@@ -2,7 +2,8 @@ import React from "react";
 import { Suspense, lazy } from "react";
 import { Navigate, Outlet, useRoutes } from "react-router-dom";
 import Home from "./pages/Home";
-import AppLayout from "./layout/AppLayout";
+import NotFound from "./pages/404";
+import MainApp from "./MainApp";
 
 const SalonManagement = lazy(() =>
   import("./components/saloonmanagement/salonmanagement/SalonManagement")
@@ -15,47 +16,25 @@ const SalonAppointment = lazy(() =>
   import("./components/salonappointment/newappointment/NewAppointment")
 );
 
-const ProtectedRoutes = ({ authToken }) => {
-  console.log("authToken:", authToken);
-  return authToken !== undefined ? <Outlet /> : <Navigate to="/" />;
-};
+const CreateAccount = lazy(() => import("./pages/CreateAccount"));
 
-const AppRoute = (props) => {
+
+const AppRoute = ({ authToken }) => {
   const _routes = [
     {
-      path: "",
-      element: (
-        <Suspense fallback={"Loading"}>
-          <ProtectedRoutes {...props} />
-        </Suspense>
-      ),
       children: [
+        { path: "", element: <Navigate to="/salon/dashboard" />, exact: true },
+        { path: "/account/create", element: <CreateAccount />},
+        { path: "home", element: <Home /> },
         {
-          path: "/",
-          element: <Home />,
-        },
-        {
-          path: "salon",
-          element: <AppLayout />,
+          path: "salon", element: <MainApp authToken={authToken} />,
           children: [
-            {
-              path: "account/create",
-              element: <Stepper />,
-            },
-            {
-              path: "dashboard",
-              element: <DashBoard />,
-            },
-            {
-              path: "appointment",
-              element: <SalonAppointment />,
-            },
-            {
-              path: "management",
-              element: <SalonManagement />,
-            },
+            { path: "dashboard", element: <DashBoard /> },
+            { path: "appointment", element: <SalonAppointment /> },
+            { path: "management", element: <SalonManagement /> },
           ],
         },
+        { path: "*", element: <NotFound /> }
       ],
     },
   ];

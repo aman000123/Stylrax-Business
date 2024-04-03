@@ -3,7 +3,7 @@ import salonownerdetailimg from "../../../assets/image/salonownerdetailimg.png";
 // import { MdEdit } from "react-icons/md";
 import { useFormik } from "formik";
 import { salonOwnerDetails } from "../../../utils/schema.js";
-import { salonownerDetails } from "../../../api/account.api.js";
+import { createProfile } from "../../../api/user.api";
 
 
 
@@ -42,7 +42,7 @@ function SalonOwnerDetails() {
                         "serviceType":"Male" 
                 }
                 // Call the bankDetails function
-                const response = await salonownerDetails(data);
+                const response = await createProfile(data);
                 console.log(response); // Assuming the response is logged by the bankDetails function
                 console.log('Form submitted successfully');
                 action.resetForm();
