@@ -1,10 +1,9 @@
 import { Form, Formik } from "formik";
 import { Container } from "react-bootstrap";
-
 import { salonProfileSchema } from "../../utils/schema";
 import {  getPresignedUrl } from "../../api/file.api";
+import { getProfile } from "../../api/account.api";
 import { InputText, InputSelect, InputFile, Label } from "../../ux/controls";
-
 import client3 from "../../assets/image/client3.svg";
 import styles from "./account.module.css";
 import Section from "../../ux/Section";
@@ -57,6 +56,7 @@ const Profile = ({onContinue}) => {
     const handleOnSubmit = async (values) => {
         console.log(values)
         onContinue(values);
+       
     };
 
     const handleOnFileSelect = async(file, type, setFieldValue) => {
@@ -79,7 +79,7 @@ const Profile = ({onContinue}) => {
                     </Section>
                     <Formik
                         initialValues={initialValues}
-                       
+                        //validationSchema={salonProfileSchema}
                         onSubmit={handleOnSubmit}
                     >
                         {({ setFieldValue }) => (

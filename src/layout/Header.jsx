@@ -2,7 +2,6 @@ import  "./layout.css";
 import Logo from "./../ux/Logo";
 import { Stack } from "react-bootstrap";
 
-
 const Header = ({children}) => {
   return (
     <Stack direction="horizontal" className="bg-black text-white layout__header px-5">
