@@ -1,9 +1,10 @@
 import styles from "../BankDetails/BankDetails.module.css";
 import { Field, Formik, Form, ErrorMessage } from "formik"
 import { bankSchema } from "../../../utils/schema.js";
-import { bankDetails , fileUploader } from "../../../api/account.api.js";
+//import { bankDetails  } from "../../../api/account.api.js";
 import { GrFormUpload } from "react-icons/gr";
 import { useEffect, useRef, useState } from "react";
+import {  getPresignedUrl } from "../../api/file.api";
 
 const initialValues = {
     accNum: "",
@@ -24,7 +25,7 @@ function BankDetails() {
     const handleFileChange = async (event) => {
         const file = event.target.files[0];
         console.log("Selected File 1:", file.name);
-        const fileUrl = await fileUploader({ fileName: file.name });
+        const fileUrl = await getPresignedUrl({ fileName: file.name });
         console.log("fileUrl:::>", fileUrl);
         uploadFileToS3(file, fileUrl.data.url);
         // onSubmit(fileUrl);

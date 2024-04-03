@@ -1,7 +1,7 @@
 import styles from "../SalonOwnerDetails/SalonOwnerDetails.module.css";
 import salonownerdetailimg from "../../../assets/image/salonownerdetailimg.png";
 import { Form, Formik, Field, ErrorMessage } from "formik";
-import { salonOwnerDetails } from "../../../utils/schema.js";
+//import { salonOwnerDetails } from "../../../utils/schema.js";
 import { createProfile } from "../../../api/user.api";
 
 

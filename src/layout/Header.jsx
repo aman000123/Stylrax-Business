@@ -1,5 +1,5 @@
 import  "./layout.css";
-import Logo from "./../ux/Logo";
+import Logo from "../ux/Logo";
 import { Stack } from "react-bootstrap";
 
 const Header = ({children}) => {

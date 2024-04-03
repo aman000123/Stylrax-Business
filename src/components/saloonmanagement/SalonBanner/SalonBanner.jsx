@@ -77,7 +77,7 @@ import styles from "../SalonBanner/SalonBanner.module.css";
 import { useState } from "react";
 import { GrFormUpload, GrTrash } from "react-icons/gr"; // Import GrTrash for delete button
 import { useEffect, useRef } from "react";
-import { fileUploader } from "../../../api/account.api.js";
+//import { fileUploader } from "../../../api/account.api.js";
 
 function SalonBanner() {
   const [selectedFile, setSelectedFile] = useState(null);
@@ -89,7 +89,7 @@ function SalonBanner() {
   const handleFileChange = async (event) => {
     const file = event.target.files[0];
     console.log("Selected File:", file.name);
-    const fileUrl = await fileUploader({ fileName: file.name });
+    const fileUrl = await ({ fileName: file.name });
     console.log("fileUrl:", fileUrl);
     setSelectedFile(file); // Store the selected file
     setUrl(fileUrl.data.url);

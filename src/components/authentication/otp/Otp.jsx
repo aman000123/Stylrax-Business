@@ -59,7 +59,7 @@ const Otp = ({ phoneNumber }) => {
         navigate("/account/create", { state: { token: data.authToken } });
       } else {
         dispatch(storeToken(authData));
-        navigate("/dashboard");
+        navigate("/salon/dashboard");
       }
     } catch (error) {
       Notify.error(error.message);
