@@ -3,8 +3,8 @@ import salondetailimg from "../../../assets/image/salondetailimg.png";
 // import { MdEdit } from "react-icons/md";
 import { Formik, Form, Field, ErrorMessage } from "formik"
 import { salonDetailsSchema } from "../../../utils/schema.js";
-import { salonDetails } from "../../../api/account.api.js";
 
+s
 const initialValues = {
     salonName: "",
     email: "",

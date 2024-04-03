@@ -6,6 +6,7 @@ export const authSlice = createSlice({
   initialState: {
     token: Session.get("token") || "",
     userInfo: {
+      profileStatus : 0,
       email: "",
       phoneNumber: "",
       role: "",
@@ -18,6 +19,10 @@ export const authSlice = createSlice({
       state.userInfo = userInfo;
       Session.set("token", token);
     },
+    setUserInfo: (state, action) => {
+      state.userInfo = action.payload;
+    },
+  
     removeToken: (state) => {
       Session.remove("token");
       state.token = "";
@@ -25,6 +30,6 @@ export const authSlice = createSlice({
   },
 })
 
-export const { storeToken, removeToken } = authSlice.actions
+export const { storeToken, removeToken, setUserInfo } = authSlice.actions
 
 export default authSlice.reducer

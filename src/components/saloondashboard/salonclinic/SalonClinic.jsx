@@ -9,8 +9,8 @@ import appointment from "../../../assets/image/appointment.png"
 import services1 from "../../../assets/image/services1.png"
 import cancelledAppointment from "../../../assets/image/cancelledAppointment.png"
 import triangleSquare from "../../../assets/image/triangleSquare.png"
-import greenline from "../../../assets/image/greenline.png"
-import redline from "../../../assets/image/redline.png"
+//import greenline from "../../../assets/image/greenline.png"
+//import redline from "../../../assets/image/redline.png"
 import RunningBanner from '../runningbanner/RunningBanner';
 
 
@@ -58,8 +58,8 @@ function SalonClinic() {
                     <Row>
                         <Col md={6}>
                             {
-                                clientData.map((data) => (
-                                    <Paper key={data.id} className={styles.border}>
+                                clientData.map((data,index) => (
+                                    <Paper  key={index} className={styles.border}>
                                         <div className={styles.mainDiv}>
                                             <div className={styles.content}>
                                                 <div className={styles.clientImage}>
@@ -85,8 +85,8 @@ function SalonClinic() {
 
                         <Col md={6} >
                             {
-                                appointmentData.map((data) => (
-                                    <Paper key={data.id} className={styles.border}>
+                                appointmentData.map((data, index) => (
+                                    <Paper  key={index} className={styles.border}>
                                         <div className={styles.mainDiv}>
 
                                             <div className={styles.content}>
@@ -114,8 +114,8 @@ function SalonClinic() {
 
                         <Col md={6} >
                             {
-                                servicesData.map((data) => (
-                                    <Paper key={data.id} className={styles.border}>
+                                servicesData.map((data, index) => (
+                                    <Paper  key={index} className={styles.border}>
                                         <div className={styles.mainDiv}>
 
                                             <div className={styles.content}>
@@ -141,8 +141,8 @@ function SalonClinic() {
                         </Col>
                         <Col md={6}>
                             {
-                                cancelledAppointmentsData.map((data) => (
-                                    <Paper key={data.id} className={styles.border}>
+                                cancelledAppointmentsData.map((data, index) => (
+                                    <Paper  key={index} className={styles.border}>
                                         <div className={styles.mainDiv}>
                                             <div className={styles.content}>
                                                 <div className={styles.cancelledImage}>

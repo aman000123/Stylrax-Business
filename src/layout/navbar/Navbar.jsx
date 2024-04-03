@@ -3,7 +3,6 @@ import logo from "../../assets/image/stylrax_logo.png";
 import MenuIcon from "@mui/icons-material/Menu";
 import styles from "../navbar/Navbar.module.css";
 import { NavLink } from "react-bootstrap";
-import PropTypes from 'prop-types';
 const Navbar = (props) => {
   const [menuOpen, setMenuOpen] = useState(false);
   const toggleMenu = () => {
@@ -20,8 +19,8 @@ const Navbar = (props) => {
         <ul className={`${styles.menu_list}`}>
        
           {props.data.map((item, index) => (
-            <div key={index.id} className="d-flex">
-              <div className={`${styles.icon} me-2 text-white d-flex`}>{item.icon}</div>
+            <div key={index} className="d-flex">
+              <div className={`${styles.icon} me-2`}>{item.icon}</div>
 
               <NavLink href={`/${item.link}`}>
                 {item.text}
@@ -47,14 +46,5 @@ const Navbar = (props) => {
     </nav>
   );
 };
-Navbar.propTypes = {
-  data: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.number.isRequired,
-      icon: PropTypes.node.isRequired,
-      link: PropTypes.string.isRequired,
-      text: PropTypes.string.isRequired,
-    })
-  ).isRequired,
-};
+
 export default Navbar;

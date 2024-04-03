@@ -2,9 +2,8 @@ import styles from "../SalonOwnerDetails/SalonOwnerDetails.module.css";
 import salonownerdetailimg from "../../../assets/image/salonownerdetailimg.png";
 import { Form, Formik, Field, ErrorMessage } from "formik";
 import { salonOwnerDetails } from "../../../utils/schema.js";
-import { salonownerDetails, fileUploader } from "../../../api/account.api.js";
-import { GrFormUpload } from "react-icons/gr";
-import { useEffect, useRef, useState } from "react";
+import { createProfile } from "../../../api/user.api";
+
 
 
 const initialValues = {
@@ -18,68 +17,38 @@ const initialValues = {
 
 
 function SalonOwnerDetails() {
-    
-    const [selectedFile, setSelectedFile] = useState(null);
-    const [url, setUrl] = useState("");
-    console.log("url:::>", url);
-    const [fileName, setFileName] = useState("");
-    useEffect(() => { }, []);
-    const fileInputRef = useRef(null);
-    const handleFileChange = async (event) => {
-        const file = event.target.files[0];
-        console.log("Selected File 1:", file.name);
-        const fileUrl = await fileUploader({ fileName: file.name });
-        console.log("fileUrl:::>", fileUrl);
-        uploadFileToS3(file, fileUrl.data.url);
-        // onSubmit(fileUrl);
-    };
-    const handleUploadIconClick = () => {
-        fileInputRef.current.click();
-    };
 
-    //File Upload to S3
-    const uploadFileToS3 = async (file, url) => {
-        try {
-            const formData = new FormData();
-            formData.append("file", file);
-            const requestOptions = {
-                method: "PUT",
-                body: file,
-                headers: {
-                    "Content-Type": file.type,
-                },
-            };
-            await fetch(url, requestOptions);
-        } catch (error) {
-            Notify.error("Error uploading file:", error);
-        }
-    };
-
-    const onSubmit = async (values) => {
-        try {
-            const data = {
-                "profileType": "Salon",
-                "firstName": values.firstName,
-                "middleName": values.middleName,
-                "lastName": values.lastName,
-                "email": values.email,
-                "dataOfBirth": values.dob,
-                "gender": values.gender,
-                "panCardImageUrl": "someurl",
-                "aadharFrontUrl": "someurl",
-                "aadharBackUrl": "someurl",
-                "profileImageUrl": "someUrl",
-                "serviceType": "Male"
+    const { values, errors, touched, handleBlurr, handleChange, handleSubmit } = useFormik({
+        initialValues,
+        validationSchema: salonOwnerDetails,
+        onSubmit: async () => {
+            try {
+                // const {accNum, accName, bankName, ifscCode} = values
+                const data = {
+                    
+                        "profileType":"Salon",
+                        "firstName":values.firstName,
+                        "middleName":values.middleName,
+                        "lastName":values.lastName,
+                        "email":values.email,
+                        "dataOfBirth":values.dob,
+                        "gender":values.gender,
+                        "panCardImageUrl":values.panCard,
+                        "aadharFrontUrl":values.aadharCard,
+                        "aadharBackUrl":"someurl",
+                        "profileImageUrl":"someUrl",
+                        "serviceType":"Male" 
+                }
+                // Call the bankDetails function
+                const response = await createProfile(data);
+                console.log(response); // Assuming the response is logged by the bankDetails function
+                console.log('Form submitted successfully');
+                action.resetForm();
+            } catch (error) {
+                console.error('There was an error submitting the form:', error);
             }
-            console.log(values);
-            const response = await salonownerDetails(data);
-            console.log(response);
-            console.log('Form submitted successfully');
-            action.resetForm();
-        } catch (error) {
-            console.error('There was an error submitting the form:', error);
         }
-    }
+    });
 
     return (
         <div className={styles.mainDiv}>
