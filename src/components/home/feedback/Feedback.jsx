@@ -10,7 +10,7 @@ const Feedback = () => {
         <Row className="align-items-center d-flex mt-5 mb-5">
           <Col md={12} className="d-flex justify-content-center">
             <div className={styles.mainSection}>
-              <p className={styles.pra}>
+              <p className={`${styles.pra} text-center`}>
               &quot;Trust is at the core of Stylrax. Our thorough verification
                 process
                 <br /> ensures a safe and secure environment for both

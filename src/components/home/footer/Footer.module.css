@@ -13,7 +13,6 @@
 
 }
 .mainDiv .footerItem {
-    /* border: 2px solid white; */
     display: flex;
     flex-direction: column;
     font-size: 13px;
@@ -44,7 +43,6 @@
 
 }
 .socialMediaItems {
-    /* border: 2px solid white; */
     color: white;
     font-size: 13px;
     font-weight: 700;
@@ -52,9 +50,6 @@
     padding-top: 50px;
 
 }
-
-.socialMediaItems {}
-
 .socialMediaItems:nth-child(1) {
     flex-basis: 16%;
 

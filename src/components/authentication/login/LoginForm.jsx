@@ -33,6 +33,11 @@ const LoginForm = () => {
     }
   };
 
+  // const handleInputChange = (e) => {
+  //   const { value } = e.target;
+  //   const newValue = value.replace(/[^A-Za-z]/g, "");
+  //   setPhoneNumber(newValue);
+  // };
   return (
     <main className={styles.main}>
       <div className={styles.bg}>
@@ -40,10 +45,10 @@ const LoginForm = () => {
           <Row className="align-items-center d-flex">
             <Login />
             <Col md={6} className="d-flex justify-content-center">
-              <div className={styles.loginBorder}>
+              <div className={`${styles.loginBorder} text-white d-flex`}>
                 {!showOTPSection ? (
                   <>
-                    <h3 className={styles.login}>Login/Register</h3>
+                    <h3 className={`${styles.login} text-white text-center`}>Login/Register</h3>
                     <Formik
                       initialValues={initialValues}
                       validationSchema={LoginSchema}
@@ -57,6 +62,7 @@ const LoginForm = () => {
                             type="tel"
                             name="phoneNumber"
                             className={styles.input}
+                            //onChange={handleInputChange}
                             required
                           />
                           <ErrorMessage
@@ -66,7 +72,7 @@ const LoginForm = () => {
                           />
                         </div>
                         <div>
-                          <button type="submit" className={styles.btn}>
+                          <button type="submit" className={`${styles.btn} text-black bg-white`}>
                             Submit
                           </button>
                         </div>

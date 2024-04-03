@@ -10,7 +10,7 @@ const Navbar = (props) => {
     setMenuOpen(!menuOpen);
   };
   return (
-    <nav className={styles.nav}>
+    <nav className={`${styles.nav} bg-black d-flex`}>
       <div className="align-items-center">
         <div className={styles.logo}>
           <img src={logo} alt="logo" />
@@ -18,9 +18,10 @@ const Navbar = (props) => {
       </div>
       <div>
         <ul className={`${styles.menu_list}`}>
+       
           {props.data.map((item, index) => (
             <div key={index.id} className="d-flex">
-              <div className={`${styles.icon} me-2`}>{item.icon}</div>
+              <div className={`${styles.icon} me-2 text-white d-flex`}>{item.icon}</div>
 
               <NavLink href={`/${item.link}`}>
                 {item.text}
@@ -29,11 +30,11 @@ const Navbar = (props) => {
           ))}
         </ul>
 
-        <div className={` ${styles.menu_icon} `} onClick={toggleMenu}>
+        <div className={` ${styles.menu_icon} text-white`} onClick={toggleMenu}>
           <MenuIcon />
         </div>
         {menuOpen && (
-          <ul className={`${styles.MenuIcon}`}>
+          <ul className={`${styles.MenuIcon} bg-black text-white`}>
             {props.data.map((item, index) => (
               <div key={index} className="d-flex">
                 {item.icon}
