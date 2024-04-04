@@ -1,6 +1,6 @@
 import styles from "../SalonOwnerDetails/SalonOwnerDetails.module.css";
 import salonownerdetailimg from "../../../assets/image/salonownerdetailimg.png";
-import { Form, Formik, Field, ErrorMessage } from "formik";
+import { Form, Formik, Field, ErrorMessage, useFormik } from "formik";
 //import { salonOwnerDetails } from "../../../utils/schema.js";
 import { createProfile } from "../../../api/user.api";
 
@@ -20,7 +20,7 @@ function SalonOwnerDetails() {
 
     const { values, errors, touched, handleBlurr, handleChange, handleSubmit } = useFormik({
         initialValues,
-        validationSchema: salonOwnerDetails,
+       // validationSchema: salonOwnerDetails,
         onSubmit: async () => {
             try {
                 // const {accNum, accName, bankName, ifscCode} = values

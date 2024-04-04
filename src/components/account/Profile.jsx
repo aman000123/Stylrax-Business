@@ -9,6 +9,7 @@ import styles from "./account.module.css";
 import Section from "../../ux/Section";
 import Notify from "../../utils/notify";
 import FormContainer from "./FormContainer";
+import { handleOnFileSelect } from "./FileUploader";
 
 
 const initialValues = {
@@ -34,41 +35,30 @@ const genderOptions = [
 ]
 
 const Profile = ({onContinue}) => {
-    // //File Upload to S3
-    const uploadFileToS3 = async (file, url) => {
-        try {
-            const formData = new FormData();
-            formData.append('file', file);
-            const requestOptions = {
-                method: 'PUT',
-                body: file,
-                headers: {
-                    'Content-Type': file.type,
-                }
-            };
-            await fetch(url, requestOptions);
-        } catch (error) {
-            console.error('Error uploading file:', error);
-        }
-    };
-
-
     const handleOnSubmit = async (values) => {
         console.log(values)
         onContinue(values);
+        try {
+            const verifyForm = {
+              profileType: "Salon",
+              firstName: values.firstName,
+              middleName: values.middleName,
+              lastName: values.lastName,
+              email: values.email,
+              dataOfBirth: values.dob,
+              gender: values.gender,
+              aadharFrontUrl: values.aadharFrontUrl,
+              panUrl: values.panUrl,
+              aadharBackUrl: values.aadharBackUrl
+            };
+            const res = await getProfile(verifyForm);
+            console.log("response:::>", res);
+            //onContinue(values);
+          } catch (error) {
+            Notify.error(error.message);
+          }
        
     };
-
-    const handleOnFileSelect = async(file, type, setFieldValue) => {
-        if (!file){
-            setFieldValue(type, "");
-        }else{
-         const fileUrl = await getPresignedUrl({ fileName: file.name });
-         setFieldValue(type, fileUrl.data.path);
-         uploadFileToS3(file, fileUrl.data.url);
-        }
-             
-    }
 
     return (
         <Container>
@@ -79,7 +69,7 @@ const Profile = ({onContinue}) => {
                     </Section>
                     <Formik
                         initialValues={initialValues}
-                        //validationSchema={salonProfileSchema}
+                       // validationSchema={salonProfileSchema}
                         onSubmit={handleOnSubmit}
                     >
                         {({ setFieldValue }) => (

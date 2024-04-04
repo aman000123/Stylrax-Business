@@ -4,8 +4,7 @@ import { bankSchema } from "../../../utils/schema.js";
 //import { bankDetails  } from "../../../api/account.api.js";
 import { GrFormUpload } from "react-icons/gr";
 import { useEffect, useRef, useState } from "react";
-import {  getPresignedUrl } from "../../api/file.api";
-
+//import {  getPresignedUrl } from "../../../api/file.api";
 const initialValues = {
     accNum: "",
     accName: "",
@@ -62,13 +61,13 @@ function BankDetails() {
             }
             console.log(values)
             // Call the bankDetails function
-            const response = await bankDetails(data);
-            console.log(response); // Assuming the response is logged by the bankDetails function
-            console.log('Form submitted successfully');
-            action.resetForm();
+           const response = await bankDetails(data);
+           console.log(response); // Assuming the response is logged by the bankDetails function
+           console.log('Form submitted successfully');
+           action.resetForm();
         } catch (error) {
-            console.error('There was an error submitting the form:', error);
-        }
+           console.error('There was an error submitting the form:', error);
+       }
     }
 
     return (

@@ -20,3 +20,6 @@ export const __endpoint_salons = endpoint + "b2b/salons";
 
 //File Management APIs
 export const __endpoint_files = endpoint + "b2b/file/presignedUrl";
+
+//Bank Details APIs
+export const __endpoint_bankDetails = endpoint + "b2b/salons/38/bank";

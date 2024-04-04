@@ -17,11 +17,12 @@ const AppLayout = ({ authToken }) => {
     }, [authToken]);
 
     const loadProfileInfo = async () => {
-        const { data } = await getProfile();
+        const { data} = await getProfile();
         const storyPayload = {
             profileStatus: data.profileStatus,
             email: data.email,
             phoneNumber: data.phoneNumber,
+          //  id: salons.map(salon => salon.id),
             role: data.role,
         }
         dispatch(setUserInfo(storyPayload));

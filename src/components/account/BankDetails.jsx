@@ -5,19 +5,36 @@ import { InputText, InputFile, Label, Button } from "../../ux/controls";
 import {bankDetailsSchema} from "../../utils/schema";
 import Section from "../../ux/Section";
 import FormContainer from "./FormContainer";
+import Notify from "../../utils/notify";
+import { bankDetails } from "../../api/salon.api";
+import { handleOnFileSelect } from "./FileUploader";
 
 const initialValues = {
   accountNumber:"",
   accountHolderName:"",
   bankName:"",
   ifscCode:"",
+  bankDocumentUrl:"",
 }
 
 
 const BankDetails = ({onContinue}) => {
 
   const handleOnSubmit = async (values) => {
-    onContinue(values);
+    try {
+      const data ={
+        accountNumber:values.accountNumber,
+        accountHolderName:values.accountHolderName,
+        bankName:values.bankName,
+        ifscCode:values.ifscCode,
+        bankDocumentUrl:values.bankDocumentUrl,
+      }
+      const res = await bankDetails(data);
+      console.log("response:::>", res);
+      onContinue(values);
+    } catch (error) {
+      Notify.error(error.message);
+    }
   }
  
 return (
@@ -27,6 +44,7 @@ return (
                 <Formik
                     initialValues={initialValues}
                     onSubmit={handleOnSubmit}
+                    validationSchema={bankDetailsSchema}
                 >
                     {({ setFieldValue }) => (
                         <Form className="d-flex flex-column">

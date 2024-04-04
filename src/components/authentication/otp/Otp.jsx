@@ -46,15 +46,16 @@ const Otp = ({ phoneNumber }) => {
         otp: values.otp,
       };
 
-      const { data } = await verifyOtp(verifyData);
+      const { data} = await verifyOtp(verifyData);
 
       const authData = {
         token: data.authToken,
         email: data.email,
+       // id: salons.map(salon => salon.id),
         phoneNumber: data.phoneNumber,
         role: data.role,
       };
-
+      console.log(authData)
       if (data.profileStatus === 0) {
         navigate("/account/create", { state: { token: data.authToken } });
       } else {

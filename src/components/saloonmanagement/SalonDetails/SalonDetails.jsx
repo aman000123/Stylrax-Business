@@ -4,7 +4,6 @@ import salondetailimg from "../../../assets/image/salondetailimg.png";
 import { Formik, Form, Field, ErrorMessage } from "formik"
 import { salonDetailsSchema } from "../../../utils/schema.js";
 
-s
 const initialValues = {
     salonName: "",
     email: "",

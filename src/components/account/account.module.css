@@ -46,6 +46,12 @@
       color: black;
       font-weight: 600;
   }
+  .address{
+    outline: none;
+    padding-inline-start: 10px;
+    border-radius: 5px;
+    border: 1px solid #858585;
+  }
   @media(max-width:575px){
     .registration__form_container {
      padding: 20px 20px;
