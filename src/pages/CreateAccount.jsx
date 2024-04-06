@@ -30,6 +30,8 @@ const CreateAccount = () => {
     const [activeStep, setActiveStep] = useState(0);
     const location = useLocation();
     const { token="" } = location.state || {};
+    console.log("Location::>",location)
+    console.log("Token::>",token)
 
     //If location state is not set with access token, redirect to home
     if(!token){
@@ -62,7 +64,7 @@ const CreateAccount = () => {
                 <StepperMenu steps={steps} activeStep={activeStep} />
             </Header>
             {activeStep === 0 && <Service onContinue={onServiceSelect} />}
-            {activeStep === 1 && <Profile onContinue={handleProfileCreate} />}
+            {activeStep === 1 && <Profile onContinue={handleProfileCreate} token={token}/>}
             {activeStep === 2 && <Salon onContinue={handleBusinessDetails} />}
             {activeStep === 3 && <BankDetails onContinue={handleBankDetails} />}
             {activeStep === 4 && <Finish />}

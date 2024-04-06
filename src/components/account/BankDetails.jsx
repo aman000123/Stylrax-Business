@@ -6,8 +6,9 @@ import {bankDetailsSchema} from "../../utils/schema";
 import Section from "../../ux/Section";
 import FormContainer from "./FormContainer";
 import Notify from "../../utils/notify";
-import { bankDetails } from "../../api/salon.api";
+
 import { handleOnFileSelect } from "./FileUploader";
+import { bankDetails } from "../../api/account.api";
 
 const initialValues = {
   accountNumber:"",
@@ -18,7 +19,7 @@ const initialValues = {
 }
 
 
-const BankDetails = ({onContinue}) => {
+const BankDetails = ({onContinue,salonId}) => {
 
   const handleOnSubmit = async (values) => {
     try {
@@ -27,9 +28,9 @@ const BankDetails = ({onContinue}) => {
         accountHolderName:values.accountHolderName,
         bankName:values.bankName,
         ifscCode:values.ifscCode,
-        bankDocumentUrl:values.bankDocumentUrl,
+        //bankDocumentUrl:values.bankDocumentUrl,
       }
-      const res = await bankDetails(data);
+      const res = await bankDetails(salonId,data);
       console.log("response:::>", res);
       onContinue(values);
     } catch (error) {

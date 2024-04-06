@@ -3,8 +3,8 @@ import salonownerdetailimg from "../../../assets/image/salonownerdetailimg.png";
 import { Form, Formik, Field, ErrorMessage, useFormik } from "formik";
 //import { salonOwnerDetails } from "../../../utils/schema.js";
 import { createProfile } from "../../../api/user.api";
-
-
+//import { handleOnFileSelect } from "./FileUploader";
+import { GrFormUpload } from "react-icons/gr";
 
 const initialValues = {
     firstName: "",
@@ -60,8 +60,8 @@ function SalonOwnerDetails() {
             </div>
             <Formik
                 initialValues={initialValues}
-                validationSchema={salonOwnerDetails}
-                onSubmit={onSubmit}
+                //validationSchema={salonOwnerDetails}
+                //onSubmit={onSubmit}
             >
                 <Form>
                     <label className={styles.lab}> First Name</label><br />
@@ -140,16 +140,16 @@ function SalonOwnerDetails() {
                             <br />
                             <button
                                 className={`${styles.Btn} align-items-center-start`}
-                                onClick={handleUploadIconClick}
+                               // onClick={handleUploadIconClick}
                                 type="button"
                             >
                                 <input
                                     id="image"
                                     type="file"
                                     name="aadhar-front"
-                                    ref={fileInputRef}
+                                  //  ref={fileInputRef}
                                     style={{ display: "none" }}
-                                    onChange={handleFileChange}
+                                   // onChange={handleFileChange}
                                 />
                                 <br />
                                 <GrFormUpload className={styles.uploadIcon} />
@@ -161,15 +161,15 @@ function SalonOwnerDetails() {
                             Aadhar Back<br />
                             <button
                                 className={`${styles.Btn} align-items-center-start`}
-                                onClick={handleUploadIconClick}
+                             //   onClick={handleUploadIconClick}
                                 type="button"
                             >
                                 <input
                                     type="file"
                                     name="aadhar-back"
-                                    ref={fileInputRef}
+                                    //ref={fileInputRef}
                                     style={{ display: "none" }}
-                                    onChange={handleFileChange}
+                                   // onChange={handleFileChange}
                                 />
                                 <br />
                                 <GrFormUpload className={styles.uploadIcon} />
@@ -185,15 +185,15 @@ function SalonOwnerDetails() {
                         Pan Card
                         <button
                             className={`${styles.Btn} align-items-center-start`}
-                            onClick={handleUploadIconClick}
+                          //  onClick={handleUploadIconClick}
                             type="button"
                         >
                             <input
                                 type="file"
                                 name="image"
-                                ref={fileInputRef}
+                               // ref={fileInputRef}
                                 style={{ display: "none" }}
-                                onChange={handleFileChange}
+                               // onChange={handleFileChange}
                             />
                             <br />
                             <GrFormUpload className={styles.uploadIcon} />

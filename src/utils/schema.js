@@ -38,9 +38,9 @@ export const businessDetailsSchema = Yup.object({
   gst: Yup.string()
   .matches(/^\d{2}[A-Z]{5}\d{4}[A-Z]{1}[A-Z\d]{1}[Z]{1}[A-Z\d]{1}$/, 'Invalid gst number') // Matches the GST format
   .required("Please enter your gst number"),
-  mainGateUrl: Yup.string().required("Please upload main gate image"),
-  galleryImageUrl: Yup.string().required("Please upload gallery image"),
-  panUrl: Yup.string().required("Please upload pan image"),
+  //mainGateUrl: Yup.string().required("Please upload main gate image"),
+ // galleryImageUrl: Yup.string().required("Please upload gallery image"),
+ // panUrl: Yup.string().required("Please upload pan image"),
 })
 
 //const MIN_AGE = 18;
@@ -88,16 +88,18 @@ const getMinDOBDate = () => {
 };
 export const salonProfileSchema = Yup.object().shape({
   firstName: Yup.string().min(2).max(15).required("Please enter first your name"),
+  //middleName: Yup.string().min(2).max(15).required("Please enter middle your name"),
   lastName: Yup.string().min(2).max(15).required("Please enter your last name"),
   email: Yup.string().email().required("Please enter your email"),
-  gender: Yup.string().required("Please select your gender"),
-  phoneNumber: Yup.string().matches(/^[0-9]{10}$/, 'Invalid phone number').required("Please enter  phone number"),
+  //phoneNumber: Yup.string().matches(/^[0-9]{10}$/, 'Invalid phone number').required("Please enter  phone number"),
   dataOfBirth: Yup.date()
   .max(getMinDOBDate(), `You must be at least ${MIN_AGE} years old`)
   .required("Date of birth is required"),
-  aadharFrontUrl: Yup.string().required("Please upload aadhar front image"),
-  aadharBackUrl: Yup.string().required("Please upload aadhar back image"),
-  panUrl: Yup.string().required("Please upload pan image"),
+  gender: Yup.string().required("Please select your gender"),
+  //panCardImageUrl: Yup.string().required("Please upload pan image"),
+ // aadharFrontUrl: Yup.string().required("Please upload aadhar front image"),
+ // aadharBackUrl: Yup.string().required("Please upload aadhar back image"),
+ 
 })
 
 //  Bank Details schema

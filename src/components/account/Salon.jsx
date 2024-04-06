@@ -40,36 +40,54 @@ const initialValues = {
   state: "",
   address: "",
   panNumber: "",
-  mainGateUrl: "",
-  panUrl: "",
-  galleryImageUrl: "",
+ // mainGateUrl: "",
+ // panUrl: "",
+  //galleryImageUrl: "",
 
 };
 
 const BusinessDetails = ({onContinue}) => {
 
   const handleOnSubmit = async (values) => {
-    onContinue(values);
+    //onContinue(values);
     try {
       const verifyForm = {
-        name: values.name,
-        email: values.email,
-        gst: values.gst,
-        companyName: values.companyName,
-        pinCode: values.pinCode,
-        serviceType: values.serviceType,
-        city:values.city,
-        state:values.state,
-        address:values.address,
-        panNumber:values.panNumber,
-        mainGateUrl:values.mainGateUrl,
-        galleryImageUrl: values.galleryImageUrl,
-        panUrl: values.panUrl,
-        homeService:false,
+        // name: values.name,
+        // email: values.email,
+        // gstNumber: values.gst,
+        // companyName: values.companyName,
+        // address:"Delhi",
+        // latitude:"332.343",
+        // longitude:"23.343",
+        // city:"Delhi",
+        // state:"Delhi",
+        // pinCode: values.pinCode,
+        // serviceType: values.serviceType,
+        // homeService:false,
+        // panNumber:values.panNumber,
+        // mainGateUrl:values.mainGateUrl,
+        // galleryImageUrl: values.galleryImageUrl,
+        // panUrl: values.panUrl,
+                name:values.name,
+                email:values.email,
+                gstNumber:values.gst,
+                companyName: values.companyName,
+                address:values.address,
+                latitude:"332.343",
+                longitude:"23.343",
+                city:values.city,
+                state:values.state,
+                pincode:values.pinCode,
+                serviceType:values.serviceType,
+                homeService:false,
+                mainGateImageUrl:"maingateImageUrl",
+                bannerImages:["url1","url2"],
+                gallaryImages:["gi_url1","gi_url2"]
+       
       };
       const res = await createSalon(verifyForm);
        console.log("response:::>", res);
-       //onContinue(values);
+       onContinue(values);
     } catch (error) {
       Notify.error(error.message);
     }
@@ -81,7 +99,7 @@ const BusinessDetails = ({onContinue}) => {
       <FormContainer>
                     <Formik
                         initialValues={initialValues}
-                        // validationSchema={businessDetailsSchema}
+                         validationSchema={businessDetailsSchema}
                         onSubmit={handleOnSubmit}
                     >
                         {({ setFieldValue }) => (

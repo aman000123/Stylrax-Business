@@ -10,6 +10,7 @@ export const authSlice = createSlice({
       email: "",
       phoneNumber: "",
       role: "",
+      //id:"",
     },
   },
   reducers: {
