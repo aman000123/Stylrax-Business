@@ -3,6 +3,8 @@ import { Paper } from '@mui/material';
 import stylistimg1 from "../../../assets/image/stylistimg1.png"
 import CurrencyRupeeIcon from '@mui/icons-material/CurrencyRupee';
 import Switch from '@mui/material/Switch';
+import { useEffect, useState } from "react";
+import { getSalonSingleService } from "../../../api/salon.management";
 
 const data = [
     {
@@ -41,7 +43,19 @@ const data = [
     }
 ]
 
-function ViewMore() {
+
+function ViewMore({id}) {
+    const[service,setService] = useState([])
+    console.log("single service salon",id)
+    useEffect(()=>{
+        const getService = async()=>{
+        const res = await getSalonSingleService(id)
+        const service = res.data;
+        setService(service)
+        }
+        getService();
+        },[])
+      
     return (
         <div className={styles.mainDiv}>
             <p className={styles.para}>Haircut</p>

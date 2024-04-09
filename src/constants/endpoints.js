@@ -15,8 +15,19 @@ export const __endpoint_userProfile= endpoint + "b2b/user/profile";
 
 //Salon Management APIs
 export const __endpoint_salons = endpoint + "b2b/salons";
+export const __endpoint_addStaff = endpoint + "b2b/salons/38/employees";
+export const __endpoint_getStaff = (id)=>{return ` ${endpoint}b2b/salons/38/employees/${id}`};
 
-
+export const __endpoint_removeStaff = (id) => {
+    return `${endpoint}b2b/salons/38/employees/${id}`;
+  };
+  
+export const __endpoint_getSalonSingleService = (id) => {
+  return `${endpoint}b2b/salons/38/services/${id}`;
+};
+export const __endpoint_salonService = endpoint + "b2b/salons/38/services?categoryId=11";
+export const __endpoint_salonBusinessTime = endpoint + "b2b/salons/38/businessHours";
+export const __endpoint_addSalonService = endpoint + "b2b/salons/38/services";
 
 //File Management APIs
 export const __endpoint_files = endpoint + "b2b/file/presignedUrl";

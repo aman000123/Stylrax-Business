@@ -1,17 +1,43 @@
 import styles from "../AddService/AddService.module.css";
 import addservicesimg from "../../../assets/image/addservicesimg.png";
-
+import { addSalonService } from "../../../api/salon.management";
+import Notify from "../../../utils/notify"
 function AddService() {
+    const initialValues = {
+        serviceName:"",
+        servicePrice:"",
+        type:"",
+      }
+    //add salon service
+    const handleOnSubmit = async (values) => {
+        try {
+          const data ={
+            // "categoryId":11,
+            // serviceName:values.serviceName,
+            // servicePrice:values.servicePrice,
+            // type:values.type,
+            "categoryId":11,
+            "serviceName":"hair in Cut",
+            "servicePrice":60,
+            "type":"Men"
+          }
+          const res = await addSalonService(data);
+          console.log("response:::>", res);
+          //onContinue(values);
+        } catch (error) {
+          Notify.error(error.message);
+        }
+      }
   return (
     <div className={styles.mainDiv}>
         <div className={styles.secDiv}>
-            <form className={styles.form}>
+            <form className={styles.form} onSubmit={handleOnSubmit}>
                 <span>Add Services</span><br/>
 
                 <select name='mystate' id="state" className={styles.input1}>
-                    <option value="up" className={styles.options}>Services For</option>
-                    <option value="mp" className={styles.options}>Services For</option>
-                    <option value="cg" className={styles.options}>Services For</option>
+                    <option value="up" className={styles.options}>Male</option>
+                    <option value="mp" className={styles.options}>Female</option>
+                    <option value="cg" className={styles.options}>Others</option>
                 </select><br />
 
                 <select name='mystate' id="state" className={styles.input2}>
@@ -33,7 +59,7 @@ function AddService() {
                     <input type='text' placeholder='Service Mrp'className={styles.input5}/><br/>
                     <input type='text' placeholder='Offer Price'className={styles.input6}/><br/>
 
-                    <button className={styles.button}>Add</button>    
+                    <button className={styles.button}type="submit">Add</button>    
                     
             </form>
         </div>

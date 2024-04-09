@@ -3,8 +3,9 @@ import stylistimg1 from "../../../assets/image/stylistimg1.png"
 import { Col } from 'react-bootstrap';
 import { useFormik } from "formik"
 import { addStaffSchema } from "../../../utils/schema.js";
-
-
+import { addStaff } from "../../../api/salon.management.js";
+import Notify from "../../../utils/notify.js";
+import { RxCross2 } from "react-icons/rx";
 const initialValues = {
     name: "",
     mobileNumber: "",
@@ -14,23 +15,46 @@ const initialValues = {
     category: "",
 };
 
-function AddStaff() {
+function AddStaff({onClose}) {
     const { values, errors, touched, handleBlurr, handleChange, handleSubmit } = useFormik({
         initialValues,
         validationSchema: addStaffSchema,
-        onSubmit: (values, action) => {
+        onSubmit: async(values, action) => {
             console.log(values);
-            action.resetForm();
+            //action.resetForm();
+            try {
+                const data = {
+                        firstName:values.name,
+                        lastName:"Prasad",
+                        email:values.email,
+                        dataOfBirth:values.dob,
+                        gender:values.gender,
+                        profileImageUrl:"someUrl",
+                        specialization:"All Rounder",
+                        phoneNumber:values.mobileNumber,
+                        aadharFrontUrl:"aadharFrontUrl",
+                        aadharBackUrl: "aadharBackUrl"
+                
+                }
+                const Staff = await addStaff(data);
+                console.log("addStaff::>",Staff)
+                onClose()
+                
+            } catch (error) {
+                Notify.error(error.message);  
+            }
+
         }
     });
 
-    console.log(errors);
     return (
-
+        <>
+     
         <Col md={4}>
             <div className={styles.popupFormDiv}>
                 <div className={styles.popupFormImgDiv}>
                     <span>Staff</span>
+                    <div onClick={onClose} className={styles.crossIcon}><RxCross2 /></div>             
                     <img src={stylistimg1} alt='' />
                 </div>
 
@@ -129,8 +153,9 @@ function AddStaff() {
 
             </div>
         </Col>
-
-
+                
+                
+                </>
     )
 }
 

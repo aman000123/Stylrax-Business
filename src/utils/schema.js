@@ -130,3 +130,14 @@ export const addStaffSchema = Yup.object({
   category: Yup.string().min(3).max(15).required("Enter Valid Category"),
 });
 
+//add time
+ export const addTimeSchema = Yup.object().shape({
+  day: Yup.string().required('Day is required'),
+  isOpen: Yup.string().required('IsOpen is required'),
+  openTime: Yup.string()
+    .required('OpenTime is required'),
+   closeTime: Yup.string()
+   .required('CloseTime is required'),
+  
+});
+

@@ -256,3 +256,12 @@
 
 }
 
+.addTime{
+    float: right;
+    margin-top: 10px;
+}
+.form{
+    display: column;
+    align-items: center;
+    justify-content: center;
+}

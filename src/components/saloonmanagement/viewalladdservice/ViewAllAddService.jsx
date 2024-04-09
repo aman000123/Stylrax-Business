@@ -3,6 +3,9 @@ import styles from "../ManageStaff/ManageStaff.module.css";
 import stylistimg1 from "../../../assets/image/stylistimg1.png"
 import { Paper } from '@mui/material';
 import { CiCalendar } from "react-icons/ci";
+import { editStaff, getStaff, removeStaff } from '../../../api/salon.management';
+import { useEffect, useState } from 'react';
+import Notify from "../../../utils/notify";
 
 
 const paperTwoData = [
@@ -87,8 +90,70 @@ const paperTwoData = [
     },
 ]
 
+function ViewAllAddService({id }) {
+    const [staff,setStaff] = useState([]);
+    const [editable, setEditable] = useState(false);
+    console.log("aradhya staff::>",staff)
+    console.log("aradhya id::>",id)
 
-function ViewAllAddService() {
+    const handleEditClick = () => {
+        setEditable(!editable);
+    };
+      // Function to handle input change
+      const handleChange = (e) => {
+        const { name, value } = e.target;
+        setStaff(prevStaff => ({
+            ...prevStaff,
+            [name]: value
+        }));
+    };
+
+
+    //get staff
+    useEffect(()=>{
+    const getSalonStaff = async()=>{
+    try {
+        const res = await getStaff(id);
+        const staff = res.data;
+        setStaff(staff);
+        console.log("staff details::>",id) 
+    } catch (error) {
+       Notify.error(error.message); 
+    }
+    }
+    getSalonStaff();
+},[])
+ 
+//DELETE STAFF API 
+
+const onDelete = async(id) =>{
+    try {
+        const deletedStaff = await removeStaff(id);
+        alert("Staff deleted!");  
+        //console.log("staff deleted::>",deletedStaff)
+    } catch (error) {
+        Notify.error(error.message);
+        console.log("staff deleted::>",error)
+   
+    }
+}
+
+//Edit Staff
+const onEdit = async(id) =>{
+    try {
+        const data = {
+            specialization:staff.specialization,
+            role:"Manager"
+        }
+        const editedStaff = await editStaff(id,data);
+        //Notify.success(message);  
+        console.log("staff Edited::>",editedStaff)
+    } catch (error) {
+        Notify.error(error.message);
+        console.log("staff deleted::>",error)
+   
+    }
+}
     return (
         <div className={styles.popup}>
             <Col md={4}>
@@ -99,18 +164,19 @@ function ViewAllAddService() {
                     </div>
 
                     <form className={styles.popupForm}>
-                        <input type='text' placeholder='Name' />
-                        <input type='text' placeholder='Mobile Number' />
-                        <input type='text' placeholder='Date of Birth' />
-                        <input type='text' placeholder='Email Id' />
-                        <input type='text' placeholder='Gender' />
-                        <input type='text' placeholder='Catrgory' />
+                        <input type='text' placeholder={`${staff.firstName} ${staff.lastName}`}readOnly={!editable}/>
+                        <input type='text' placeholder={staff.phoneNumber} readOnly={!editable}/>
+                        <input type='text' placeholder={staff.dataOfBirth} readOnly={!editable}/>
+                        <input type='text' placeholder={staff.email} readOnly={!editable}/>
+                        <input type='text' placeholder={staff.gender} readOnly={!editable}/>
+                        <input type='text' placeholder={staff.specialization} onChange={handleChange} />
                     </form>
 
                     <div className={styles.popupFormButton}>
-                        <button className={styles.buttonOne}>Edit</button>
-                        <button className={styles.buttonTwo}>Delete</button>
-                    </div>
+                    <button className={styles.buttonOne} onClick={() => onEdit(staff.id)}>
+                    {editable ? 'Save' : 'Edit'}
+                    </button>           
+                   <button className={styles.buttonTwo} onClick={() => onDelete(staff.id)}>Delete</button>                    </div>
                 </div>
             </Col>
 

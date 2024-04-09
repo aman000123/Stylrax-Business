@@ -1,10 +1,11 @@
-import  { useState } from 'react'
+import  { useEffect, useState } from 'react'
 import styles from "./Services.module.css";
 import servicesimg from "../../../assets/image/servicesimg.png"
 import { Paper } from '@mui/material';
 import { IoMdAddCircle } from "react-icons/io";
 import AddService from '../AddService/AddService';
 import ViewMore from '../Viewmore/ViewMore';
+import { salonService } from '../../../api/salon.management';
 
 const data = [
     {
@@ -82,21 +83,33 @@ const data = [
 function Services() {
 
     const [addServiceVisible, setAddServiceVisible] = useState(false);
+    const [selectedServiceId, setSelectedServiceId] = useState(null);
     const [haircut, setHaircut] = useState(false);
+    const [service,setService] = useState([]);
+    console.log("service::>",service)
 
-    const viewAll = () => {
+    const viewAll = (id) => {
+        setSelectedServiceId(id);
         setHaircut(!haircut);
     }
 
-
+ 
     const handleOpen = () => {
         setAddServiceVisible(!addServiceVisible);
     };
 
+    useEffect(()=>{
+        const getService = async()=>{
+        const res = await salonService()
+        const service = res.data;
+        setService(service)
+        }
+        getService();
+        },[])
     return (
         <div>
 
-            {haircut ? (<ViewMore />) : (
+            {haircut ? (<ViewMore  id={selectedServiceId}/>) : (
                 <div className={styles.secDiv}>
                     {addServiceVisible ? (
                         <AddService />
@@ -116,15 +129,16 @@ function Services() {
                                 </select><br />
                             </div>
                             <div className={styles.services}>
-                                {data.map((value, index) => (
+                                {service?.map((value, index) => (
                                     <Paper className={styles.paper} key={index}>
                                         <div className={styles.imgDiv}>
-                                            <img src={value.img} alt='' />
+                                            <img src={servicesimg} alt='' />
                                         </div>
                                         <div className={styles.text}>
                                             <p>{value.textOne}<br />
-                                                <span className={styles.spanOne}>{value.textTwo}</span><br />
-                                                <span className={styles.spanTwo}><button onClick={viewAll}>{value.textThree}</button></span>
+                                                <span className={styles.spanOne}>{value.serviceName}</span><br />
+                                                <span className={styles.spanOne}>{value.servicePrice}</span><br />
+                                                <span className={styles.spanTwo}><button onClick={() => viewAll(value.id)}>view all</button></span>
                                             </p>
                                         </div>
                                     </Paper>

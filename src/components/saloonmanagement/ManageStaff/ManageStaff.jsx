@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types';
 import styles from "../ManageStaff/ManageStaff.module.css";
 import stylistimg1 from "../../../assets/image/stylistimg1.png"
@@ -9,99 +9,7 @@ import { styled, css } from '@mui/system';
 import { Modal as BaseModal } from '@mui/base/Modal';
 import AddStaff from '../AddStaff/AddStaff';
 import ViewAllAddService from '../viewalladdservice/ViewAllAddService';
-const data = [
-    {
-        img: stylistimg1,
-        textOne: "Debhasis",
-        textTwo: "HairStylist And ",
-        textThree: "HairArtist",
-        textFour: "4.2(1.2k) rating",
-        textFive: "View More",
-    },
-
-    {
-        img: stylistimg1,
-        textOne: "Debhasis",
-        textTwo: "HairStylist And ",
-        textThree: "HairArtist",
-        textFour: "4.2(1.2k) rating",
-        textFive: "View More",
-    },
-
-    {
-        img: stylistimg1,
-        textOne: "Debhasis",
-        textTwo: "HairStylist And ",
-        textThree: "HairArtist",
-        textFour: "4.2(1.2k) rating",
-        textFive: "View More",
-    },
-
-    {
-        img: stylistimg1,
-        textOne: "Debhasis",
-        textTwo: "HairStylist And ",
-        textThree: "HairArtist",
-        textFour: "4.2(1.2k) rating",
-        textFive: "View More",
-    },
-
-    {
-        img: stylistimg1,
-        textOne: "Debhasis",
-        textTwo: "HairStylist And ",
-        textThree: "HairArtist",
-        textFour: "4.2(1.2k) rating",
-        textFive: "View More",
-    },
-
-    {
-        img: stylistimg1,
-        textOne: "Debhasis",
-        textTwo: "HairStylist And ",
-        textThree: "HairArtist",
-        textFour: "4.2(1.2k) rating",
-        textFive: "View More",
-    },
-
-    {
-        img: stylistimg1,
-        textOne: "Debhasis",
-        textTwo: "HairStylist And ",
-        textThree: "HairArtist",
-        textFour: "4.2(1.2k) rating",
-        textFive: "View More",
-    },
-
-    {
-        img: stylistimg1,
-        textOne: "Debhasis",
-        textTwo: "HairStylist And ",
-        textThree: "HairArtist",
-        textFour: "4.2(1.2k) rating",
-        textFive: "View More",
-    },
-
-    {
-        img: stylistimg1,
-        textOne: "Debhasis",
-        textTwo: "HairStylist And ",
-        textThree: "HairArtist",
-        textFour: "4.2(1.2k) rating",
-        textFive: "View More",
-    },
-
-    {
-        img: stylistimg1,
-        textOne: "Debhasis",
-        textTwo: "HairStylist And ",
-        textThree: "HairArtist",
-        textFour: "4.2(1.2k) rating",
-        textFive: "View More",
-    },
-
-]
-
+import { salonStaff } from '../../../api/salon.management';
 
 
 
@@ -109,32 +17,57 @@ const data = [
 function ManageStaff() {
 
     // Popup one code
-    const [open, setOpen] = React.useState(false);
-    const handleOpen = () => setOpen(true);
+    const [open, setOpen] = useState(false);
+    const [staff,setStaff] = useState([]);
+    const [selectedStaffId, setSelectedStaffId] = useState(null);
+    const [addStaffOpen,setAddStaffOpen] = useState(false)
+    console.log("staff::>",staff)
+    const handleOpen = () => setAddStaffOpen(true)
+    ;
     const handleClose = () => setOpen(false);
 
     //Popup two code
-    const [isOpen, isSetOpen] = React.useState(false);
-    const ishandleOpen = () => isSetOpen(true);
-    const ishandleClose = () => isSetOpen(false);
+    const [isOpen, isSetOpen] = useState(false);
+    const ishandleOpen = (id) =>  {setOpen(true)
+        handleViewMore(id);
 
+    };
+    const ishandleClose = () => isSetOpen(false);
+    
+    const handleViewMore = (id) => {
+        console.log("View more clicked for staff ID:", id);
+        setSelectedStaffId(id);
+        setOpen(true); 
+    };
+    //GET API
+    
+useEffect(()=>{
+const getStaff = async()=>{
+const res = await salonStaff()
+const staff = res.data;
+setStaff(staff)
+setAddStaffOpen(false)
+}
+getStaff();
+},[])
 
     return (
         <>
             <div className={styles.mainDiv}>
                 {
-                    data.map((value) => (
-                        <Paper key={data.id} className={styles.paper}>
+                    staff?.map((value) => (
+                        <Paper key={value.id} className={styles.paper}>
                             <div className={styles.imgDiv}>
-                                <img src={value.img} alt='' />
+                                {/* <img src={value.profileImageUrl} alt='' /> */}
+                                <img src={stylistimg1} alt='' />
                             </div>
 
                             <div className={styles.text}>
-                                <p>{value.textOne}<br />
-                                    <span className={styles.spanOne}>{value.textTwo}</span><br />
-                                    <span className={styles.spanOne}>{value.textThree}</span><br />
-                                    <span className={styles.spanOne}>{value.textFour}</span><br />
-                                    <span className={styles.spanThree}><button type="button" onClick={handleOpen}>{value.textFive}</button></span>
+                                <p>{value.firstName}<br />
+                                    <span className={styles.spanOne}>{value.specialization}</span><br />
+                                    <span className={styles.spanOne}>{value.role}</span><br />
+                                    {/* <span className={styles.spanOne}>{value.textFour}</span><br /> */}
+                                    <span className={styles.spanThree}>  <button type="button" onClick={() => ishandleOpen(value.id)}>view more</button></span>
                                 </p>
                             </div>
                         </Paper>
@@ -142,19 +75,19 @@ function ManageStaff() {
                 }
 
                 <div className={styles.iconDiv}>
-                    <button onClick={ishandleOpen} className={styles.staffbtn}><IoMdAddCircle className={styles.icon} /></button>
+                    <button onClick={handleOpen} className={styles.staffbtn}><IoMdAddCircle className={styles.icon} /></button>
                     <p>Add Staff</p>
 
                     {
-                        isOpen && (<Modal
+                        addStaffOpen && (<Modal
                             aria-labelledby="unstyled-modal-title"
                             aria-describedby="unstyled-modal-description"
-                            open={isOpen}
+                            open={addStaffOpen}
                             onClose={ishandleClose}
                             slots={{ backdrop: StyledBackdrop }}
                         >
                             <ModalContent>
-                                <AddStaff />
+                                <AddStaff/>
                             </ModalContent>
                         </Modal>)
                     }
@@ -169,7 +102,7 @@ function ManageStaff() {
                             slots={{ backdrop: StyledBackdrop }}
                         >
                             <ModalContent>
-                                <ViewAllAddService/>
+                                <ViewAllAddService  id={selectedStaffId} onViewMore={handleViewMore}/>
                             </ModalContent>
                         </Modal>)
 

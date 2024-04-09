@@ -10,7 +10,10 @@
     height: auto;
     width: 81px;
 }
-
+.crossIcon{
+    margin-left: 300px !important;
+    margin-top: -20px;
+}
 .paper{
     height: auto;
     width: 140px;
@@ -86,6 +89,8 @@
     background-color: #fff;
     width: 358px;
     height: auto;
+    outline: none;
+    border: none;
 }
 
 
@@ -149,7 +154,12 @@
     padding-top: 3px;
 }
 
-
+.addTime{
+    margin-top: -130px;
+}
+.closeIcon{
+    margin-left: 300px;
+  }
 
 
 
