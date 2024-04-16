@@ -1,9 +1,10 @@
 import styles from "../BankDetails/BankDetails.module.css";
 import { Field, Formik, Form, ErrorMessage } from "formik"
 import { bankSchema } from "../../../utils/schema.js";
-//import { bankDetails  } from "../../../api/account.api.js";
+import { bankDetails  } from "../../../api/account.api.js";
 import { GrFormUpload } from "react-icons/gr";
 import { useEffect, useRef, useState } from "react";
+import Notify from "../../../utils/notify.js";
 //import {  getPresignedUrl } from "../../../api/file.api";
 const initialValues = {
     accNum: "",

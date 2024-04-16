@@ -6,6 +6,7 @@ import { addStaffSchema } from "../../../utils/schema.js";
 import { addStaff } from "../../../api/salon.management.js";
 import Notify from "../../../utils/notify.js";
 import { RxCross2 } from "react-icons/rx";
+import { useState } from "react";
 const initialValues = {
     name: "",
     mobileNumber: "",
@@ -16,6 +17,7 @@ const initialValues = {
 };
 
 function AddStaff({onClose}) {
+    const [open, setOpen] = useState(false)
     const { values, errors, touched, handleBlurr, handleChange, handleSubmit } = useFormik({
         initialValues,
         validationSchema: addStaffSchema,
@@ -46,6 +48,9 @@ function AddStaff({onClose}) {
 
         }
     });
+    const handleClose = () => {
+       onClose();
+    };
 
     return (
         <>
@@ -54,7 +59,7 @@ function AddStaff({onClose}) {
             <div className={styles.popupFormDiv}>
                 <div className={styles.popupFormImgDiv}>
                     <span>Staff</span>
-                    <div onClick={onClose} className={styles.crossIcon}><RxCross2 /></div>             
+                    <div onClick={handleClose} className={styles.crossIcon}><RxCross2 /></div>             
                     <img src={stylistimg1} alt='' />
                 </div>
 

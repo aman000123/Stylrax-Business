@@ -25,7 +25,6 @@ function ManageStaff() {
     const handleOpen = () => setAddStaffOpen(true)
     ;
     const handleClose = () => setOpen(false);
-
     //Popup two code
     const [isOpen, isSetOpen] = useState(false);
     const ishandleOpen = (id) =>  {setOpen(true)
@@ -82,12 +81,13 @@ getStaff();
                         addStaffOpen && (<Modal
                             aria-labelledby="unstyled-modal-title"
                             aria-describedby="unstyled-modal-description"
-                            open={addStaffOpen}
+                             open={addStaffOpen}
+                           // open = {open}
                             onClose={ishandleClose}
                             slots={{ backdrop: StyledBackdrop }}
                         >
                             <ModalContent>
-                                <AddStaff/>
+                                <AddStaff onClose={ishandleClose} />
                             </ModalContent>
                         </Modal>)
                     }
@@ -102,7 +102,7 @@ getStaff();
                             slots={{ backdrop: StyledBackdrop }}
                         >
                             <ModalContent>
-                                <ViewAllAddService  id={selectedStaffId} onViewMore={handleViewMore}/>
+                                <ViewAllAddService  id={selectedStaffId} onViewMore={handleViewMore} onClose={handleClose}/>
                             </ModalContent>
                         </Modal>)
 

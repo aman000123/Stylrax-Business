@@ -1,28 +1,36 @@
 import styles from "../AddService/AddService.module.css";
 import addservicesimg from "../../../assets/image/addservicesimg.png";
 import { addSalonService } from "../../../api/salon.management";
+import { addServiceSchema } from "../../../utils/schema";
+import { ErrorMessage, Form, Formik,Field} from "formik";
 import Notify from "../../../utils/notify"
 function AddService() {
     const initialValues = {
         serviceName:"",
         servicePrice:"",
-        type:"",
+      
       }
     //add salon service
     const handleOnSubmit = async (values) => {
+      const {serviceName,servicePrice} = values;
+      console.log(`serviceName::>${serviceName} servicePrice ::>${servicePrice}`)
         try {
           const data ={
-            // "categoryId":11,
-            // serviceName:values.serviceName,
-            // servicePrice:values.servicePrice,
-            // type:values.type,
-            "categoryId":11,
-            "serviceName":"hair in Cut",
-            "servicePrice":60,
-            "type":"Men"
+            categoryId:11,
+            serviceName:serviceName,
+            servicePrice:servicePrice,
+            serviceDuration:50,
+            type:"Men",
+
+            // categoryId:11,
+            // serviceName:serviceName,
+            // servicePrice:servicePrice,
+            // serviceDuration:50,
+            // type:"Men"
           }
           const res = await addSalonService(data);
           console.log("response:::>", res);
+          Notify.success("service added");
           //onContinue(values);
         } catch (error) {
           Notify.error(error.message);
@@ -31,7 +39,12 @@ function AddService() {
   return (
     <div className={styles.mainDiv}>
         <div className={styles.secDiv}>
-            <form className={styles.form} onSubmit={handleOnSubmit}>
+          <Formik
+          initialValues={initialValues}
+         // validationSchema={addServiceSchema}
+          onSubmit={handleOnSubmit}
+          >
+             <Form className={styles.form}>
                 <span>Add Services</span><br/>
 
                 <select name='mystate' id="state" className={styles.input1}>
@@ -55,13 +68,18 @@ function AddService() {
 
                 <span className={styles.spanOne}>Service Details</span><br/>
 
-                    <input type='text' placeholder='Service Name' className={styles.input4}/><br/>
-                    <input type='text' placeholder='Service Mrp'className={styles.input5}/><br/>
-                    <input type='text' placeholder='Offer Price'className={styles.input6}/><br/>
-
-                    <button className={styles.button}type="submit">Add</button>    
+                    < Field type='text' placeholder='Service Name'name="serviceName" className={styles.input4}  />
+                    <ErrorMessage  name="serviceName" component="div"/>
+                    <Field type='text' placeholder='Service Mrp' name="servicePrice"   
+                               className={styles.input5}/><br/>
+                    <ErrorMessage  name="servicePrice" component="div"/>
+                    <Field type='text' placeholder='Offer Price'name="offerPrice"className={styles.input6}/><br/>
+                    {/* <ErrorMessage  name="serviceName" component="div"/> */}
+                    <button className={styles.button} type="submit">Add</button>    
                     
-            </form>
+            </Form>
+            
+            </Formik>
         </div>
 
         <div className={styles.secDiv}>
@@ -70,7 +88,7 @@ function AddService() {
                 <span>Service Image</span>
                 <button>Upload</button>
             </div>
-            <span className={styles.about} >Lorem ispum dolar sit amet</span>
+            <span className={styles.about} ></span>
         </div>
     </div>
   )

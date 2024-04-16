@@ -73,7 +73,7 @@ export const businessDetailsSchema = Yup.object({
 export const salonDetailsSchema = Yup.object({
   salonName: Yup.string().min(2).max(15).required("Please enter your name"),
   email: Yup.string().email().required("Please enter your email"),
-  gstNumber: Yup.string(),
+  gstNumber: Yup.string().required("Please enter your GST Nuber"),
   address: Yup.string().min(5).max(100).required("Please enter your address"),
   salonStatePinCode: Yup.string().min(4).required("Please enter pin code"),
   // mystate : Yup.
@@ -109,7 +109,7 @@ export const bankSchema = Yup.object({
   accName: Yup.string().min(3).max(15).required("Please enter valid Account Name"),
   bankName: Yup.string().min(11).max(25).required("Enter  valid Bank Name"),
   ifscCode: Yup.string().matches(/^[A-Za-z]{4}[0][A-Z0-9a-z]{6}$/, 'Invalid IFSC code').required("Please enter valid IFSC code"),
-  passbook: Yup.mixed().required("Please upload a passbook image")
+ // passbook: Yup.mixed().required("Please upload a passbook image")
 });
 
 //   export const bankSchema = Yup.object({
@@ -141,3 +141,10 @@ export const addStaffSchema = Yup.object({
   
 });
 
+//add service
+
+export const addServiceSchema = Yup.object().shape({
+  serviceName: Yup.string(),
+  servicePrice: Yup.number(),
+ // type: Yup.string().min(4).max(15).required("Please select your gender"),
+});

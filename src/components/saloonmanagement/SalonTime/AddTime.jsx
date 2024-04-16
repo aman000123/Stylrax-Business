@@ -22,12 +22,12 @@ function AddTime({ onClose }) {
             console.log(values);
             //action.resetForm();
             try {
-                const data = {
+                const data = [{
                         day:values.day,
                         isOpen:values.isOpen,
                         openTime:values.openTime,
                         closeTime:values.closeTime,
-                }
+            }]
                 const Staff = await salonTime(data);
                 console.log("addStaff::>",Staff)
                 onClose()
