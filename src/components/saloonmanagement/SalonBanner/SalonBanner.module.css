@@ -1,0 +1,43 @@
+.imgDiv img{
+    height: auto;
+    width: 100%;
+    border: 2px solid #909090;
+    border-radius: 12px;
+    background-color: #fff;
+    padding: 30px 30px;
+
+}
+
+.Btn{
+    background-color: white;
+    padding: 0px 20px;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 57px;
+    margin-top: 6px;
+    border: 1.3px solid #858585;
+}
+
+.uploadIcon{
+    margin-left: -10px;
+    height: 30px;
+ }
+
+ .uploadAndDelete{
+    display: flex;
+ }
+
+ .Btn2{
+    background-color: white;
+    padding: 0px 20px;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 57px;
+    margin-top: 6px;
+    border: 1.3px solid #858585;
+    margin-left: -50px;
+}

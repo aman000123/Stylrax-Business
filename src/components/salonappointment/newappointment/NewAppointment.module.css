@@ -1,0 +1,359 @@
+.hair{
+    height: 60px;
+    width: 60px;
+    border-radius: 7px;
+}
+.mainDiv{
+    display: flex;
+    justify-content:flex-start ;
+    align-items: center;
+    padding-top: 15px;
+}
+.hairClinic{
+    font-weight: bolder;
+    font-size: 22px;
+}
+
+@media (max-width:767.7px){
+    .hairClinic{
+       font-size: 18px;
+       margin-top: 10px !important;
+    }
+   }
+.info{
+    font-weight: 500;
+    font-size: 15px;
+    color: #818181;
+    text-align: center;
+}
+@media(max-width:991.7px){
+    .info{
+        font-size: 11px;
+    }
+}
+@media(max-width:767.7px){
+    .info{
+       font-size: 7px;
+    }}
+    @media(max-width:575.7px){
+        .info{
+           display: none;
+        }}
+.btnDiv{
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    gap: 10px;
+    margin-top: 5px;
+}
+.btnDiv p{
+    font-size: 25px;
+    font-weight: 600;
+    color: #7A7A7A;
+}
+.btnDiv button{
+    padding: 5px 90px;
+    background-color: transparent;
+    border: 2px solid #D3D3D3;
+    border-radius: 5px;
+    font-weight: 600;
+}
+@media (max-width:1399.7px){
+    .btnDiv button{
+        padding: 5px 75px;   
+    }
+   }
+@media (max-width:1199.7px){
+    .btnDiv button{
+        padding: 5px 55px;   
+    }
+   }
+   @media (max-width:991.7px){
+    .btnDiv button{
+        padding: 5px 27px;   
+    }
+   }
+   @media (max-width:767.7px){
+    .btnDiv button{
+        padding: 5px 15px;   
+    }
+   }
+   @media (max-width:575.7px){
+    .btnDiv button{
+        padding: 5px 8px;   
+    }
+   }
+   @media (max-width:485.9px){
+    .btnDiv button{
+        padding: 5px 2px;
+        font-size: 14px;
+        margin-top: -10px;
+    }
+   }
+.active{
+    background-color: black !important;
+    color: white;
+}
+.user{
+    font-size: 8px;
+    line-height: 11px;
+    margin-bottom: -2px;
+    
+}
+@media (max-width:767.7px){
+    .user{
+        margin-left: 10px;
+    }
+}
+.userName{
+    font-size: 10px;
+    font-weight: 650;
+}
+@media (max-width:450.7px){
+    .userName{
+        font-size: 14px;
+    }}
+    @media (max-width:450.7px){
+        .user{
+           font-size: 11px;
+           line-height: 13px;
+        }
+    }
+.payment{
+    margin-top: 15px;
+    font-size: 8px;
+    line-height: 11px;
+    margin-bottom: -2px;
+    font-weight: 500;
+}
+@media (max-width:767.7px){
+    .payment{
+        margin-left: 20px;
+    }
+}
+@media (max-width:450.9px){
+    .payment{
+        font-size: 11px;
+        margin-left: 10px;
+        margin-top: 0px;
+    }
+}
+.accept{
+    color: #53AD34;
+    background-color: white;
+    font-weight: 500;
+    padding: 0px 15px;
+    border: 1px solid #D3D3D3;
+    border-radius: 5px;
+    font-size: 12px;
+   
+}
+@media (max-width:991px){
+    .accept{
+        padding: 0px 8px;
+    }
+}
+@media (max-width:450.9px){
+    .accept{
+       margin-left: 20px;
+    }}
+.userImage{
+    height: 90px;
+    width: 100px;
+}
+@media (max-width:1199.7px){
+    .userImage{
+        width: 75px;
+        margin-left: 12px;
+    }
+}
+@media (max-width:991.7px){
+    .userImage{
+        width: 60px;
+        margin-left: 6px;
+    }
+}
+@media (max-width:991.7px){
+    .userImage{
+        width: 60px;
+        margin-right: 10px;
+    }
+}
+@media (max-width:450.7px){
+    .userImage{
+        width: 91px;
+    }
+}
+.decline{
+    color: #D82626;
+    background-color: white;
+    font-weight: 500;
+    padding: 0px 15px;
+    border: 1px solid #D3D3D3;
+    border-radius: 5px;
+    font-size: 12px;
+}
+@media (max-width:991px){
+    .decline{
+        padding: 0px 8px;
+    }
+}
+.userInfo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid #D3D3D3;
+    padding: 20px 0px;
+    border-radius: 8px;
+    width: 400px !important;
+}
+@media (max-width:1399.9px){
+    .userInfo{
+        width: 360px !important;  
+    }
+}
+@media (max-width:1199.7px){
+    .userInfo{
+        width: 300px !important;  
+    }
+}
+@media (max-width:991.7px){
+    .userInfo{
+        width: 220px !important;  
+    }
+}
+@media (max-width:450.7px){
+    .userInfo{
+        width: 180px !important; 
+        margin-left: 50px !important; 
+    }
+}
+@media (max-width:370.7px){
+    .userInfo{
+        width: 160px !important;
+        margin-left: 80px !important;  
+    }
+}
+@media (max-width: 575.9px) {
+    .userInfo{
+      margin-left: 20px;
+       }}
+       @media (max-width: 450.9px) {
+        .userInfo{
+         flex-direction: column;
+         display: flex;
+         justify-content: center;
+         align-items: center;
+           }}
+.paymentType{
+    color: #53AD34;
+    font-weight: 500;
+}
+.Name{
+    font-size: 10px;
+    line-height: 8px;
+    text-align: center;
+    margin-top: 4px;
+    font-weight: 500;
+}
+.service{
+    font-size: 7px;
+    color: #7A7A7A;
+    text-align: center;
+}
+.assign{
+    height: 40px;
+    width: 71px;
+    margin-top: 10px;
+   }
+   @media (max-width:1399px){
+    .assign{
+        width: 64px;
+    }
+   }
+   @media (max-width:1199.7px){
+    .assign{
+        width: 50px;
+    }
+   }
+   @media (max-width:767.7px){
+    .assign{
+        width: 114px;
+        height: 62px;
+    }
+   }
+.clientDiv{
+   border: 2px solid #D3D3D3;
+   border-radius: 8px;
+   /* padding: 0px 6px; */
+  margin-left: -10px;
+}
+@media (max-width:991.9px){
+    .clientDiv{
+       display: none;
+    }
+}
+.staffBtn{
+    outline: none;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 90px;
+    margin-top: 10px;
+}
+.assignBtn{
+    color: #53AD34;
+    font-weight: 500;
+    border: 1px solid #D3D3D3;
+    background-color: white;
+    padding: 0px 15px;
+    font-size: 12px;
+    font-weight: 500;
+    border-radius: 5px;
+}
+.cancelBtn{
+    color: #D82626;
+    border: 1px solid #D3D3D3;
+    background-color: white;
+    padding: 0px 15px;
+    font-size: 12px;
+    font-weight: 500;
+    border-radius: 5px;
+}
+.staffDiv{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: -5px;
+    margin-bottom: 5px;
+}
+.status{
+    margin-left: 20px;
+    text-align: center;
+    line-height: 15px;
+    font-size: 12px;
+    color: #53AD34;
+}
+.status a{
+    color: #7A7A7A;
+    font-size: 10px;
+    text-align: center;
+}
+.location{
+    height: 17px;
+    width: 20px;
+    color: #7C7C7C;
+  
+}
+@media(max-width:991.7px){
+    .location{
+        display: none;
+    }
+}
+
+@media (max-width:991.7px){
+    .gender{
+        display: none;
+    }
+}

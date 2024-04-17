@@ -1,0 +1,35 @@
+.profile_menu li{
+    list-style: none;
+    margin-top: 10px;
+    margin-left: 25px;
+}
+.icon{
+    height: 50px;
+    width: 31px;
+}
+.profile_menu{
+    border-radius: 15px;
+    padding: 42px;
+    position: absolute;
+    z-index: 99;
+}
+.paper{
+    border-radius: 20px;
+    border-radius: 15px;
+    position: absolute;
+    /* margin-top: -250px !important; */
+}
+.main{
+    position: absolute;
+    background: white;
+    left: -85px;
+    margin-top: 39px;
+    cursor: pointer;
+    border-radius: 20px;
+}
+.avtar_img{
+  margin-left: -5px;  
+}
+.profile {
+    white-space: nowrap;
+  }

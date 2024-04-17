@@ -14,3 +14,38 @@ code {
 .disable{
   cursor: not-allowed;
 }
+
+
+/* Page not found style*/
+.not-found {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.not-found-content {
+  text-align: center;
+}
+
+.not-found h1 {
+  font-size: 3rem;
+  margin-bottom: 0.5rem;
+  color: #333;
+}
+
+.not-found h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: #555;
+}
+
+.not-found p {
+  margin-bottom: 1.5rem;
+  color: #777;
+}
+
+
+
+/* //////////////////////////  Global Styles  ////////////////////////// */
+

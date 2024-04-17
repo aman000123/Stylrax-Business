@@ -1,0 +1,101 @@
+.main{
+    background-image: url("../../../assets/image/bgOne.webp");
+    background-size: cover;
+    overflow: hidden;
+    padding-top: 60px;
+    padding-bottom: 50px;
+    position: relative;
+}
+.starImage{
+    position: absolute;
+    top: 265px;
+    width: 200px;
+    height: 160px;
+}
+.star{
+    position: absolute;
+    right: 10px;
+    width: 200px;
+    height: 150px;
+    top: 10px;
+ }
+ .mainSection{
+    background-color: white; 
+     padding:  50px 150px;
+    padding-left: 175px;
+    padding-right: 175px;
+
+}
+.pra{
+    color: black;
+    font-weight: 500;
+    line-height: 30px;
+    font-size: 25px;
+}
+@media (max-width:1400px) {
+    .starImage{
+     width: 150px;
+    }
+    .star{
+        width: 143px;
+       }}
+    @media (max-width:1200px) {
+        .starImage{
+            width: 120px;
+            top: 364px;
+            height: 69px;
+        }
+        .pra{
+            font-size: 20px;
+        }
+        .star{
+            width: 120px;
+            height: 85px;
+        }
+        .mainSection{
+            padding-left: 130px;
+            padding-right: 130px;
+        }
+    }
+ 
+@media (max-width:992px){
+    .starImage{
+        top: 320px;
+    }
+    .pra{
+        font-size: 16px;
+        line-height: 20px;
+    }
+    .mainSection{
+        padding-left: 110px;
+        padding-right: 110px;
+    }
+}
+@media (max-width:768px) {
+  .starImage{
+  display: none;
+}
+.star{
+    display: none;
+     }
+}
+@media (max-width:575px){
+    .pra{
+       font-size: 9px;
+    }
+    .mainSection{
+        margin-left: 40px;
+        margin-right: 40px;
+        padding: 17px 4px;
+     }
+     .main{
+        padding-top: 0;
+        padding-bottom: 0;
+     }
+}
+
+
+
+
+
+

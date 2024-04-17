@@ -1,0 +1,46 @@
+.banner3{
+   height: 140px;
+   background-color: #000;
+   }
+   
+   .textContent {
+   gap: 72px;
+   padding: 47px 0px;
+   line-height: 21px;
+   }
+   
+   .num {
+       font-size: 40px;
+       font-weight: 500;
+   }
+   
+   .txt{
+       font-size: 20px;
+   }
+
+
+   @media(max-width:768px){
+    .num {
+        font-size: 33px;
+        font-weight: 500;
+    }
+
+    .txt{
+        font-size: 16px;
+    }
+
+   }
+   
+   
+   
+   @media(max-width:576px){
+       .textContent{
+           flex-direction: column;
+           gap: 8px;
+           padding: 45px 0px;
+       }
+       
+       .banner3{
+           height: 300px;
+       }
+   }

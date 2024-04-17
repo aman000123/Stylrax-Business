@@ -1,21 +1,17 @@
 
-import { Navigate, useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { ToastContainer } from 'react-toastify';
 import AppRoute from './AppRoute';
+import './App.css';
 
 function App() {
 
-   const authToken = useSelector(state => state.auth.token);
-   const location = useLocation();
-
-   if (!authToken && location.pathname !== "/") {
-      return <Navigate to="/" />;
-   }
-
+   // Get the auth state from the store
+   const auth = useSelector(state => state.auth);
+   
    return (
       <>
-         <AppRoute authToken={authToken} />
+         <AppRoute authToken={auth.token} />
          <ToastContainer />
       </>
    );
