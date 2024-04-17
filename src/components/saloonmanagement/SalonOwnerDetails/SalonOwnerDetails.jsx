@@ -2,9 +2,11 @@ import styles from "../SalonOwnerDetails/SalonOwnerDetails.module.css";
 import salonownerdetailimg from "../../../assets/image/salonownerdetailimg.png";
 import { Form, Formik, Field, ErrorMessage } from "formik";
 import { salonProfileSchema } from "../../../utils/schema.js";
-import { createProfile } from "../../../api/user.api.js";
+import { createProfile, getProfile } from "../../../api/user.api.js";
 //import { handleOnFileSelect } from "./FileUploader";
 import { GrFormUpload } from "react-icons/gr";
+import { useEffect } from "react";
+import Notify from '../../../utils/notify.js'
 const initialValues = {
   firstName: "",
   middleName: "",
@@ -15,31 +17,43 @@ const initialValues = {
 };
 
 function SalonOwnerDetails() {
-  const handleSubmit = async (values) => {
-    try {
-      const data = {
-        profileType: "Salon",
-        firstName: values.firstName,
-        middleName: values.middleName,
-        lastName: values.lastName,
-        email: values.email,
-        dataOfBirth: values.dob,
-        gender: values.gender,
-        panCardImageUrl: "someurl",
-        aadharFrontUrl: "someurl",
-        aadharBackUrl: "someurl",
-        profileImageUrl: "someUrl",
-        serviceType: "Male",
-      };
-      const response = await createProfile(data);
-      console.log(response);
-      console.log("Form submitted successfully");
-      //action.resetForm();
-    } catch (error) {
-      console.error("There was an error submitting the form:", error);
-    }
-  };
+  // const handleSubmit = async (values) => {
+  //   try {
+  //     const data = {
+  //       profileType: "Salon",
+  //       firstName: values.firstName,
+  //       middleName: values.middleName,
+  //       lastName: values.lastName,
+  //       email: values.email,
+  //       dataOfBirth: values.dob,
+  //       gender: values.gender,
+  //       panCardImageUrl: "someurl",
+  //       aadharFrontUrl: "someurl",
+  //       aadharBackUrl: "someurl",
+  //       profileImageUrl: "someUrl",
+  //       serviceType: "Male",
+  //     };
+  //     const response = await createProfile(data);
+  //     console.log("resssssss----->",response);
+  //     console.log("Form submitted successfully");
+  //     //action.resetForm();
+  //   } catch (error) {
+  //     console.error("There was an error submitting the form:", error);
+  //   }
+  // };
 
+  useEffect(() => {
+    const fetchUserDetail = async () => {
+      try {
+        const user = await getProfile()
+        console.log("user", user);
+      } catch (error) {
+        // console.log("Error:::>",error);
+        Notify.error(error.message);
+      }
+    }
+    fetchUserDetail();
+  }, [])
   return (
     <div className={styles.mainDiv}>
       <div className={styles.imgDiv}>
@@ -50,7 +64,7 @@ function SalonOwnerDetails() {
       <Formik
         initialValues={initialValues}
         validationSchema={salonProfileSchema}
-        onSubmit={handleSubmit}
+        // onSubmit={handleSubmit}
       >
         <Form>
           <label className={styles.lab}> First Name</label>
@@ -173,7 +187,7 @@ function SalonOwnerDetails() {
                   name="aadhar-front"
                   //  ref={fileInputRef}
                   style={{ display: "none" }}
-                  // onChange={handleFileChange}
+                // onChange={handleFileChange}
                 />
                 <br />
                 <GrFormUpload className={styles.uploadIcon} />
@@ -195,7 +209,7 @@ function SalonOwnerDetails() {
                   name="aadhar-back"
                   //ref={fileInputRef}
                   style={{ display: "none" }}
-                  // onChange={handleFileChange}
+                // onChange={handleFileChange}
                 />
                 <br />
                 <GrFormUpload className={styles.uploadIcon} />
@@ -216,7 +230,7 @@ function SalonOwnerDetails() {
                 name="image"
                 // ref={fileInputRef}
                 style={{ display: "none" }}
-                // onChange={handleFileChange}
+              // onChange={handleFileChange}
               />
               <br />
               <GrFormUpload className={styles.uploadIcon} />

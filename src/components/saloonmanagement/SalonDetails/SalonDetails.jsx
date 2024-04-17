@@ -3,6 +3,7 @@ import salondetailimg from "../../../assets/image/salondetailimg.png";
 // import { MdEdit } from "react-icons/md";
 import { Formik, Form, Field, ErrorMessage } from "formik"
 import { salonDetailsSchema } from "../../../utils/schema.js";
+import { createSalon } from "../../../api/salon.api.js";
 
 const initialValues = {
     salonName: "",
@@ -36,10 +37,10 @@ function SalonDetails() {
                 "gallaryImages":["gi_url1","gi_url2"]
             
             }
-            const response = await salonDetails(data);
+            const response = await createSalon(data);
             console.log(response); 
             console.log('Form submitted successfully');
-            action.resetForm();
+            // action.resetForm();
         } catch (error) {
             console.error('There was an error submitting the form:', error);
         }

@@ -1,4 +1,4 @@
-import  { useState } from "react";
+import  { useEffect, useState } from "react";
 import SalonClinic from "../components/saloondashboard/salonclinic/SalonClinic";
 import UpcomingAppointment from "../components/saloondashboard/upcoming/UpcomingAppointment";
 import { Row, Col} from "react-bootstrap";
@@ -8,11 +8,27 @@ import { LuSwitchCamera } from "react-icons/lu";
 import Navbar from "../components/saloondashboard/navbar/Navbar";
 import { navItems } from "../data/navdata/Data";
 import SwitchSalon from "../components/saloondashboard/switchsalon/SwitchSalon";
+import Notify from '../utils/notify'
+import { getSalon } from "../api/salon.api";
 const DashBoardLayout = () => {
   const [showContent, setShowContent] = useState(false);
+  const [salons, setSalons] = useState([])
   const toggleContent = () => {
     setShowContent(!showContent);
   };
+  useEffect(() => {
+    const fetchSalons = async () => {
+      try {
+        const response = await getSalon()
+        const salons= response?.data
+        setSalons(salons);
+        console.log("response::::>>",salons)
+      } catch (error) {
+        Notify.error(error.message)
+      }
+    }
+    fetchSalons()
+  }, [])
   return (
     <>
      <Navbar data={navItems}/>
@@ -37,7 +53,7 @@ const DashBoardLayout = () => {
               </li>
             </ul>
             {showContent && (
-        <SwitchSalon/>
+        <SwitchSalon salons={salons} show={showContent}/>
     
       )}
           </div>
