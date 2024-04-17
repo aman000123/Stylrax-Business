@@ -15,7 +15,7 @@ export const bankDetailsSchema = Yup.object({
   accountNumber: Yup.string()
     .matches(/^\d{9,18}$/, 'Account number must be between 9 and 18 digits')
     .required("Please enter your account number"),
-  bankName: Yup.string().min(2).max(15).required("Please enter bank name"),
+  bankName: Yup.string().min(10).required("Please enter bank name"),
   accountHolderName: Yup.string().min(2).max(15).required("Please enter your name"),
   ifscCode: Yup.string()
     .matches(/^[A-Za-z]{4}[0][A-Z0-9a-z]{6}$/, 'Invalid IFSC code')
@@ -144,7 +144,7 @@ export const addStaffSchema = Yup.object({
 //add service
 
 export const addServiceSchema = Yup.object().shape({
-  serviceName: Yup.string(),
-  servicePrice: Yup.number(),
- // type: Yup.string().min(4).max(15).required("Please select your gender"),
+  serviceName: Yup.string().required('service name is required'),
+  servicePrice: Yup.number().required('service price is required'),
+  type: Yup.string().min(4).max(15).required("type is required"),
 });

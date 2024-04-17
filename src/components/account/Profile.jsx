@@ -33,7 +33,7 @@ const Profile = ({ onContinue ,token}) => {
 
 
   const handleOnSubmit = async (values) => {
-   // onContinue(values);
+    onContinue(values);
     try {
       const dataForm = {
         profileType:"Salon",
@@ -53,7 +53,7 @@ const Profile = ({ onContinue ,token}) => {
     
      // console.log("response:::>", res.data);
      
-      onContinue(values);
+     // onContinue(values);
     } catch (error) {
       Notify.error(error.message);
     }
@@ -68,7 +68,7 @@ const Profile = ({ onContinue ,token}) => {
           </Section>
           <Formik
             initialValues={initialValues}
-            validationSchema={salonProfileSchema}
+           // validationSchema={salonProfileSchema}
             onSubmit={handleOnSubmit}
           >
             {({ setFieldValue }) => (

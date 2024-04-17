@@ -33,5 +33,5 @@ export const __endpoint_addSalonService = endpoint + "b2b/salons/38/services";
 export const __endpoint_files = endpoint + "b2b/file/presignedUrl";
 
 //Bank Details APIs
-export const __endpoint_bankDetails = endpoint + "b2b/salons/38/bank";
-//export const __endpoint_bankDetails = (id)=>{return ` ${endpoint}b2b/salons/${id}/bank`};
+//export const __endpoint_bankDetails = endpoint + "b2b/salons/38/bank";
+export const __endpoint_bankDetails = (id)=>{return ` ${endpoint}b2b/salons/${id}/bank`};

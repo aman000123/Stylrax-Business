@@ -28,6 +28,7 @@ const accountSteps = {
 const CreateAccount = () => {
     const [steps, setSteps] = useState([]); // [accountSteps.freelancer
     const [activeStep, setActiveStep] = useState(0);
+    const [salonId, setSalonId] = useState(null);
     const location = useLocation();
     const { token="" } = location.state || {};
     console.log("Location::>",location)
@@ -42,7 +43,9 @@ const CreateAccount = () => {
         setActiveStep(activeStep + 1);
     };
 
-    const handleBusinessDetails = (data) => {
+    const handleBusinessDetails = (data,salonId) => {
+        setSalonId(salonId);
+        console.log("salon id",salonId)
         setActiveStep(activeStep + 1);
 
     }
@@ -66,7 +69,7 @@ const CreateAccount = () => {
             {activeStep === 0 && <Service onContinue={onServiceSelect} />}
             {activeStep === 1 && <Profile onContinue={handleProfileCreate} token={token}/>}
             {activeStep === 2 && <Salon onContinue={handleBusinessDetails} />}
-            {activeStep === 3 && <BankDetails onContinue={handleBankDetails} />}
+            {activeStep === 3 && <BankDetails onContinue={handleBankDetails} salonId={salonId}/>}
             {activeStep === 4 && <Finish />}
             <Footer />
         </Section>

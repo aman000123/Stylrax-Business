@@ -86,8 +86,9 @@ const BusinessDetails = ({onContinue}) => {
        
       };
       const res = await createSalon(verifyForm);
-       console.log("response:::>", res);
-       onContinue(values);
+      const salonId = res.data.id;
+       console.log("salon id:::>", salonId);
+       onContinue(values,salonId);
     } catch (error) {
       Notify.error(error.message);
     }

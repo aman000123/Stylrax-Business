@@ -19,8 +19,8 @@ const initialValues = {
 }
 
 
-const BankDetails = ({onContinue,salonId}) => {
-
+const BankDetails = ({salonId,onContinue}) => {
+console.log("bank id::>",salonId)
   const handleOnSubmit = async (values) => {
     try {
       const data ={

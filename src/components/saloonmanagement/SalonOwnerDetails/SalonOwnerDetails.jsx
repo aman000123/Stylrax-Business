@@ -2,43 +2,58 @@ import styles from "../SalonOwnerDetails/SalonOwnerDetails.module.css";
 import salonownerdetailimg from "../../../assets/image/salonownerdetailimg.png";
 import { Form, Formik, Field, ErrorMessage } from "formik";
 import { salonProfileSchema } from "../../../utils/schema.js";
-import { createProfile } from "../../../api/user.api.js";
-//import { handleOnFileSelect } from "./FileUploader";
+import { getOwnerDetails } from "../../../api/user.api.js";
 import { GrFormUpload } from "react-icons/gr";
+import Notify from "../../../utils/notify.js";
+import { useEffect, useState } from "react";
 const initialValues = {
   firstName: "",
   middleName: "",
   lastName: "",
   email: "",
-  dob: "",
+  dataOfBirth: "",
   gender: "",
 };
 
 function SalonOwnerDetails() {
-  const handleSubmit = async (values) => {
-    try {
-      const data = {
-        profileType: "Salon",
-        firstName: values.firstName,
-        middleName: values.middleName,
-        lastName: values.lastName,
-        email: values.email,
-        dataOfBirth: values.dob,
-        gender: values.gender,
-        panCardImageUrl: "someurl",
-        aadharFrontUrl: "someurl",
-        aadharBackUrl: "someurl",
-        profileImageUrl: "someUrl",
-        serviceType: "Male",
-      };
-      const response = await createProfile(data);
-      console.log(response);
-      console.log("Form submitted successfully");
-      //action.resetForm();
-    } catch (error) {
-      console.error("There was an error submitting the form:", error);
+  const [ownerDetails, setOwnerDetails] = useState([]);
+  console.log("ownerDetails::>",ownerDetails)
+
+  // const onSubmit = async (values) => {
+  //   try {
+  //     const data = {
+  //       profileType: "Salon",
+  //       firstName: values.firstName,
+  //       middleName: values.middleName,
+  //       lastName: values.lastName,
+  //       email: values.email,
+  //       dataOfBirth: values.dataOfBirth,
+  //       gender: values.gender,
+  //       panCardImageUrl: "someurl",
+  //       aadharFrontUrl: "someurl",
+  //       aadharBackUrl: "someurl",
+  //       profileImageUrl: "someUrl",
+  //       serviceType: "Male",
+  //     };
+  //     const response = await createProfile(data);
+  //     console.log(response);
+  //     Notify.success("details submitted successfully");
+  //     //action.resetForm();
+  //   } catch (error) {
+  //     Notify.error(error.message);
+  //   }
+  // };
+
+
+  // GET Owner details api
+  useEffect(()=>{
+    const getStaff = async()=>{
+    const res = await getOwnerDetails()
+    const ownerDetails = res.data;
+    setOwnerDetails(ownerDetails)
     }
-  };
+    getStaff();
+    },[])
 
   return (
     <div className={styles.mainDiv}>
@@ -48,9 +63,9 @@ function SalonOwnerDetails() {
         </div>
       </div>
       <Formik
-        initialValues={initialValues}
-        validationSchema={salonProfileSchema}
-        onSubmit={handleSubmit}
+        //initialValues={initialValues}
+       // validationSchema={salonProfileSchema}
+       // onSubmit={onSubmit}
       >
         <Form>
           <label className={styles.lab}> First Name</label>
@@ -121,14 +136,14 @@ function SalonOwnerDetails() {
           <br />
           <Field
             type="date"
-            placeholder="Jhon"
-            name="dob"
+            placeholder="10/02/2002"
+            name="dataOfBirth"
             className={styles.dob}
           />
           <br />
 
           <ErrorMessage
-            name="dob"
+            name="dataOfBirth"
             className={styles.formError}
             component="div"
           />
@@ -139,7 +154,6 @@ function SalonOwnerDetails() {
             <Field
               as="select"
               name="gender"
-              // placeholder="select"
               className={styles.inputs}
             >
               <option value="">select</option>
@@ -164,16 +178,13 @@ function SalonOwnerDetails() {
               <br />
               <button
                 className={`${styles.Btn} align-items-center-start`}
-                // onClick={handleUploadIconClick}
                 type="button"
               >
                 <input
                   id="image"
                   type="file"
                   name="aadhar-front"
-                  //  ref={fileInputRef}
                   style={{ display: "none" }}
-                  // onChange={handleFileChange}
                 />
                 <br />
                 <GrFormUpload className={styles.uploadIcon} />
@@ -187,15 +198,12 @@ function SalonOwnerDetails() {
               <br />
               <button
                 className={`${styles.Btn} align-items-center-start`}
-                //   onClick={handleUploadIconClick}
                 type="button"
               >
                 <input
                   type="file"
                   name="aadhar-back"
-                  //ref={fileInputRef}
                   style={{ display: "none" }}
-                  // onChange={handleFileChange}
                 />
                 <br />
                 <GrFormUpload className={styles.uploadIcon} />
@@ -208,15 +216,12 @@ function SalonOwnerDetails() {
             Pan Card
             <button
               className={`${styles.Btn} align-items-center-start`}
-              //  onClick={handleUploadIconClick}
               type="button"
             >
               <input
                 type="file"
                 name="image"
-                // ref={fileInputRef}
                 style={{ display: "none" }}
-                // onChange={handleFileChange}
               />
               <br />
               <GrFormUpload className={styles.uploadIcon} />
