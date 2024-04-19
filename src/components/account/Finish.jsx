@@ -5,7 +5,7 @@ const Finish = () => {
   const navigate = useNavigate();
   const handleButton = () => {
     startTransition(() => {
-      navigate('/home');
+      navigate('/salon/dashboard');
     });
   };
   return (

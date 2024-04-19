@@ -67,7 +67,7 @@ const CreateAccount = () => {
                 <StepperMenu steps={steps} activeStep={activeStep} />
             </Header>
             {activeStep === 0 && <Service onContinue={onServiceSelect} />}
-            {activeStep === 1 && <Profile onContinue={handleProfileCreate} token={token}/>}
+            {activeStep === 1 && <Profile onContinue={handleProfileCreate}/>}
             {activeStep === 2 && <Salon onContinue={handleBusinessDetails} />}
             {activeStep === 3 && <BankDetails onContinue={handleBankDetails} salonId={salonId}/>}
             {activeStep === 4 && <Finish />}

@@ -16,7 +16,6 @@ const Profile = ({ onContinue ,token}) => {
     middleName: "",
     lastName: "",
     email: "",
-    phoneNumber: "",
     dataOfBirth: "",
     gender: "",
     panCardImageUrl: "",
@@ -34,7 +33,7 @@ const Profile = ({ onContinue ,token}) => {
 
 
   const handleOnSubmit = async (values) => {
-    //onContinue(values);
+  //  onContinue(values);
     try {
       const dataForm = {
         profileType:"Salon",
@@ -69,7 +68,7 @@ const Profile = ({ onContinue ,token}) => {
           </Section>
           <Formik
             initialValues={initialValues}
-            validationSchema={salonProfileSchema}
+           validationSchema={salonProfileSchema}
             onSubmit={handleOnSubmit}
           >
             {({ setFieldValue }) => (
@@ -79,7 +78,6 @@ const Profile = ({ onContinue ,token}) => {
                 <InputText type="text" name="lastName" label="Last Name" placeholder="Abrahim" />
                 <InputText type="email" name="email" label="Email" placeholder="Samplemail.com" />
                 <InputText type="date" name="dataOfBirth" label="Date of Birth" max={new Date().toISOString().split("T")[0]} />
-                <InputText type="text" name="phoneNumber" label="Contact Number" placeholder="8318893508" />
                 <InputSelect name="gender" label="Gender" options={genderOptions} />
                 <Section className="d-flex flex-column align-items-start mb-1">
                   <Label text="Aadhar Card" />

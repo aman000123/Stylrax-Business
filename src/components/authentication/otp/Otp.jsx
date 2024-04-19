@@ -47,23 +47,19 @@ const Otp = ({ phoneNumber }) => {
       };
 
       const { data} = await verifyOtp(verifyData);
-
+      console.log("status::>",data.profileStatus)
       const authData = {
         token: data.authToken,
         email: data.email,
-       // id:  salons.map(salon => salon.id),
-      // id: salons.id,
         phoneNumber: data.phoneNumber,
         role: data.role,
       };
-      const salonIds = data.salons.map(salon => salon.id);
-      authData.salonIds = salonIds;
-      console.log("salon id:::>",salonIds)
+      dispatch(storeToken(authData));
+      
       console.log(authData)
       if (data.profileStatus === 0) {
-        navigate("/account/create", { state: { token: data.authToken } });
+        navigate("/account/create" ,{ state: { token: data.authToken } });
       } else {
-        dispatch(storeToken(authData));
         navigate("/salon/dashboard");
       }
     } catch (error) {

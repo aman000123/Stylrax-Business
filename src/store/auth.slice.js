@@ -1,6 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
 import Session from '../service/session';
-
 export const authSlice = createSlice({
   name: 'auth',
   initialState: {
@@ -16,6 +15,7 @@ export const authSlice = createSlice({
   reducers: {
     storeToken: (state, action) => {
       const { token, ...userInfo } = action.payload;
+      console.log("ara token::>",token)
       state.token = token,
       state.userInfo = userInfo;
       Session.set("token", token);
