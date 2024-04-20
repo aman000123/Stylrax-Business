@@ -25,7 +25,7 @@ const accountSteps = {
     ]
 }
 
-const CreateAccount = ({profileStatus}) => {
+const CreateAccount = () => {
     const [steps, setSteps] = useState([]); // [accountSteps.freelancer
     const [activeStep, setActiveStep] = useState(0);
     const [salonId, setSalonId] = useState(null);
@@ -33,23 +33,12 @@ const CreateAccount = ({profileStatus}) => {
     const { token="" } = location.state || {};
     console.log("Location::>",location)
     console.log("Token::>",token)
-
-    //If location state is not set with access token, redirect to home
+    
+   
     if(!token){
         return <Navigate to="/home" />;
     }
-    //////////////
-
-    useEffect(() => {
-        if (profileStatus === 1) {
-            setActiveStep(1);
-        } else if (profileStatus === 2) {
-            setActiveStep(2);
-        } else if (profileStatus === 3) {
-            setActiveStep(3);
-        }
-    }, [profileStatus]);
-    ////////////////////
+   
     const handleProfileCreate = (data) => {
         setActiveStep(activeStep + 1);
     };

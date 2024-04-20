@@ -14,8 +14,7 @@ const initialValues = {
   otp: "",
 };
 
-const Otp = ({ phoneNumber }) => {
-  const [errorMessage, setErrorMessage] = useState("");
+const Otp = ({ phoneNumber}) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -47,8 +46,8 @@ const Otp = ({ phoneNumber }) => {
       };
 
       const { data} = await verifyOtp(verifyData);
-      console.log("status::>",data.profileStatus)
-      console.log("status::>",data.profileStatus)
+      const ProfileStatus = data.profileStatus;
+      console.log("status::>", ProfileStatus)
       const authData = {
         token: data.authToken,
         email: data.email,
@@ -60,10 +59,10 @@ const Otp = ({ phoneNumber }) => {
       console.log(authData)
       if (data.profileStatus === 0) {
         navigate("/account/create" ,{ state: { token: data.authToken } });
-        navigate("/account/create" ,{ state: { token: data.authToken } });
-      } else {
-        navigate("/salon/dashboard");
       }
+      else {
+       navigate("/salon/dashboard");
+     }
     } catch (error) {
       Notify.error(error.message);
     }

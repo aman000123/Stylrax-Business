@@ -6,7 +6,7 @@ export const authSlice = createSlice({
     token: Session.get("token") || "",
     salonId:null,
     userInfo: {
-      profileStatus : "",
+      profileStatus : 0,
       email: "",
       phoneNumber: "",
       role: "",
@@ -17,20 +17,23 @@ export const authSlice = createSlice({
     storeToken: (state, action) => {
       const { token, ...userInfo } = action.payload; 
       console.log("token::>",token)
-      console.log("profile status::>",userInfo)
+      console.log("profile status::>",userInfo.profileStatus)
 
       state.token = token,
       state.userInfo = userInfo;
       Session.set("token", token);  
       
     },
+   
     setSalonID:(state,action)=>{
       state.salonId=action.payload.salonId;
       Session.set("salonId",action.payload.salonId);
     },
     setUserInfo: (state, action) => {
       state.userInfo = action.payload;
-      
+      Session.set("UserInfo::>",action.payload)
+      console.log("profile status::>",action.payload)
+
     },
   
     removeToken: (state) => {
