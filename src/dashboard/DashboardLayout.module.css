@@ -28,6 +28,11 @@
 .spanOne{
     font-size: 10px;
 }
+.salonImage{
+    width: 35px;
+    height: auto;
+    border-radius: 13px;
+}
 
 @media(max-width:632px){
     .span{

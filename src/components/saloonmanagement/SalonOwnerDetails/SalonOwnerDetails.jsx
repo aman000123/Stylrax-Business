@@ -2,10 +2,11 @@ import styles from "../SalonOwnerDetails/SalonOwnerDetails.module.css";
 import salonownerdetailimg from "../../../assets/image/salonownerdetailimg.png";
 import { Form, Formik, Field, ErrorMessage } from "formik";
 import { salonProfileSchema } from "../../../utils/schema.js";
-import { getOwnerDetails } from "../../../api/user.api.js";
+import { getProfile } from "../../../api/user.api.js";
+//import { handleOnFileSelect } from "./FileUploader";
 import { GrFormUpload } from "react-icons/gr";
-import Notify from "../../../utils/notify.js";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
+import Notify from '../../../utils/notify.js'
 const initialValues = {
   firstName: "",
   middleName: "",
@@ -16,10 +17,7 @@ const initialValues = {
 };
 
 function SalonOwnerDetails() {
-  const [ownerDetails, setOwnerDetails] = useState([]);
-  console.log("ownerDetails::>",ownerDetails)
-
-  // const onSubmit = async (values) => {
+  // const handleSubmit = async (values) => {
   //   try {
   //     const data = {
   //       profileType: "Salon",
@@ -27,7 +25,7 @@ function SalonOwnerDetails() {
   //       middleName: values.middleName,
   //       lastName: values.lastName,
   //       email: values.email,
-  //       dataOfBirth: values.dataOfBirth,
+  //       dataOfBirth: values.dob,
   //       gender: values.gender,
   //       panCardImageUrl: "someurl",
   //       aadharFrontUrl: "someurl",
@@ -36,25 +34,26 @@ function SalonOwnerDetails() {
   //       serviceType: "Male",
   //     };
   //     const response = await createProfile(data);
-  //     console.log(response);
-  //     Notify.success("details submitted successfully");
+  //     console.log("resssssss----->",response);
+  //     console.log("Form submitted successfully");
   //     //action.resetForm();
   //   } catch (error) {
-  //     Notify.error(error.message);
+  //     console.error("There was an error submitting the form:", error);
   //   }
   // };
 
-
-  // GET Owner details api
-  useEffect(()=>{
-    const getStaff = async()=>{
-    const res = await getOwnerDetails()
-    const ownerDetails = res.data;
-    setOwnerDetails(ownerDetails)
+  useEffect(() => {
+    const fetchUserDetail = async () => {
+      try {
+        const user = await getProfile()
+        console.log("user", user);
+      } catch (error) {
+        // console.log("Error:::>",error);
+        Notify.error(error.message);
+      }
     }
-    getStaff();
-    },[])
-
+    fetchUserDetail();
+  }, [])
   return (
     <div className={styles.mainDiv}>
       <div className={styles.imgDiv}>
@@ -63,9 +62,9 @@ function SalonOwnerDetails() {
         </div>
       </div>
       <Formik
-        //initialValues={initialValues}
-       // validationSchema={salonProfileSchema}
-       // onSubmit={onSubmit}
+        initialValues={initialValues}
+        validationSchema={salonProfileSchema}
+        // onSubmit={handleSubmit}
       >
         <Form>
           <label className={styles.lab}> First Name</label>
@@ -185,6 +184,7 @@ function SalonOwnerDetails() {
                   type="file"
                   name="aadhar-front"
                   style={{ display: "none" }}
+                // onChange={handleFileChange}
                 />
                 <br />
                 <GrFormUpload className={styles.uploadIcon} />
@@ -204,6 +204,7 @@ function SalonOwnerDetails() {
                   type="file"
                   name="aadhar-back"
                   style={{ display: "none" }}
+                // onChange={handleFileChange}
                 />
                 <br />
                 <GrFormUpload className={styles.uploadIcon} />
@@ -222,6 +223,7 @@ function SalonOwnerDetails() {
                 type="file"
                 name="image"
                 style={{ display: "none" }}
+              // onChange={handleFileChange}
               />
               <br />
               <GrFormUpload className={styles.uploadIcon} />

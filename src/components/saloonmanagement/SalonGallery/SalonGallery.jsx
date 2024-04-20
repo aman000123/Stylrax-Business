@@ -73,7 +73,7 @@
 // export default SalonBanner
 
 
-import styles from "../SalonBanner/SalonBanner.module.css";
+import styles from "./SalonGallery.module.css";
 import { useState } from "react";
 import { GrFormUpload, GrTrash } from "react-icons/gr"; // Import GrTrash for delete button
 import { useEffect, useRef } from "react";
