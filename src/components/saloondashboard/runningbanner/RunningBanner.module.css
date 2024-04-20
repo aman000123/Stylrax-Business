@@ -1,0 +1,209 @@
+.banner{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    /* align-items: center; */
+    background-color: #fff;
+    padding: 20px 30px;
+    margin: 20px 0px;
+    border-radius: 8px;
+}
+
+.icon{
+    padding-bottom: 14px;
+}
+
+.text{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0px 5px;
+}
+
+.text p{
+    font-size: 25px;
+    font-weight: 600;
+    
+}
+
+.runningBanner{
+    background-image: url("../../../assets/image/bgimage.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: #fff;
+    padding: 30px 50px;
+    border-radius: 8px;
+}
+
+.banner {
+    /* Your existing styles */
+    transition: background-image 0.5s ease;
+}
+
+.offer h3, .offerDetails h3, .offer p, .offerDetails p {
+    transition: opacity 0.5s ease;
+}
+
+
+
+
+.offer h3{
+    font-size: 50px;
+    font-weight: bold;
+}
+
+.offer p{
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.offerDetails h3{
+    font-size: 50px;
+    font-weight: 600;
+}
+
+.offerDetails p{
+    font-size: 16px;
+    font-weight: bold;
+}
+
+@media(max-width:1248px){
+    .offer h3{
+        font-size: 47px;
+        font-weight: 600;
+    }
+
+    .offerDetails h3{
+        font-size: 46px;
+    }
+}
+
+@media (max-width:1112px){
+    
+.offer h3{
+    font-size: 43px;
+}
+
+.offer p{
+    font-size: 18px;
+}
+
+.offerDetails h3{
+    font-size: 41px;
+}
+
+.offerDetails p{
+    font-size: 13px;
+}
+
+.runningBanner{
+    padding: 20px 14px;
+}
+
+}
+
+@media (max-width:900px){
+    .banner{
+        gap: 0px;
+    }
+    
+    .offer h3{
+        font-size: 33px;
+    }
+    
+    .offer p{
+        font-size: 15px;
+    }
+
+    .offerDetails h3{
+        font-size: 33px;
+    }
+    
+    .offerDetails p{
+        font-size: 13px;
+    }
+}
+
+@media(max-width:590px){
+    .text p{
+        font-size: 20px;
+    }
+    
+    .offer h3{
+        font-size: 27px;
+    }
+    
+    .offer p{
+        font-size: 11px;
+    }
+
+    .offerDetails h3{
+        font-size: 27px;
+    }
+    
+    .offerDetails p{
+        font-size: 11px;
+    }
+}
+
+@media(max-width:500px){
+    .offer h3{
+        font-size: 16px;
+    }
+    
+    .offer p{
+        font-size: 9px;
+    }
+
+    .offerDetails h3{
+        font-size: 16px;
+    }
+    
+    .offerDetails p{
+        font-size: 9px;
+    }
+}
+
+@media(max-width:450px){
+    .runningBanner{
+        padding: 20px 4px;
+    }
+
+    .banner{
+        padding: 17px 7px;
+    }
+
+    .text p{
+        font-size: 16px;
+    }
+}
+
+@media (max-width:400px){
+    .offer h3{
+        font-size: 13px;
+    }
+    
+    .offer p{
+        font-size: 6px;
+    }
+
+    .offerDetails h3{
+        font-size: 13px;
+    }
+    
+    .offerDetails p{
+        font-size: 6px;
+    }
+
+    .banner {
+        padding: 10px 9px;
+    }
+
+    .text p{
+        font-size: 17px;
+    }
+}

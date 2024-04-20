@@ -1,0 +1,200 @@
+.primaryDiv{
+    margin-top: 10px;
+}
+
+.mainDiv {
+    background-color: #fff;
+    padding: 7px 20px;
+    border-radius: 8px;
+    margin-top: -9px;
+}
+
+.text p {
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.calendar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.monthYear .calIcon {
+    font-size: 25px;
+}
+
+.monthYear span {
+    padding-left: 5px;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.reactslider{
+    margin-top: 15px;
+    margin-bottom: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+}
+
+.paperone{
+    height: auto;
+    width: 60px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 2px;
+    line-height: 13px;
+    border-radius: 4px;
+    padding-top: 5px; 
+}
+
+button{
+    border: 1px solid #BEBEBE;
+    border-radius: 5px;
+    background-color: #fff;
+}
+
+.paperone button {
+    border: none;
+    background-color: #fff;
+}
+
+.paperone p{
+    text-align: center;
+    line-height: 17px;
+}
+
+.paperone p .days{
+    color: #BEBEBE;
+    font-weight: 600;
+}
+
+.paperone p .date{
+    color: black;
+    font-weight: 650;
+    font-size: 20px;
+}
+
+
+.buttonClicked{
+    background-color: black;
+}
+
+.buttonClicked .paperClicked p span{
+    color: #fff;
+}
+
+
+.appointmentdetails {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    /* gap: -5px; */
+}
+
+.imgDiv img {
+    width: 72px;
+    height: auto;
+    border-radius: 11p
+}
+
+.content {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+}
+
+/* .details{
+    padding-right: 100px;
+} */
+
+.paper {
+    background-color: #fff;
+    border: 2px solid #BEBEBE;
+    border-radius: 6px;
+    padding: 9px 6px;
+    margin-top: 8px;
+}
+
+.details p {
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 17px;
+    padding-top: 7px;
+}
+
+.details p .spanOne {
+    font-size: 12px;
+    font-weight: 600;
+    color: #BEBEBE;
+}
+
+.details p .spanTwo {
+    font-size: 10px;
+    color: #BEBEBE;
+
+}
+
+.dots {
+    color: #BEBEBE;
+}
+
+.horizonIcon p {
+    font-size: 9px;
+}
+
+.view {
+    text-align: center;
+    margin-top: 5px;
+    color: #909090;
+    font-size: 12px;
+}
+
+
+
+@media(max-width:1200px){
+    .paper{
+        width: 42%;
+        padding: 5px 5px;
+        margin-top: 5px;
+    }
+
+    .appointmentDiv{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        /* align-items: center; */
+        flex-wrap: wrap;
+        gap: 25px;
+    }
+
+    .mainDiv{
+        margin-top: 15px;
+    }
+}
+
+@media(max-width:646px){
+    .appointmentDiv{
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .paper{
+        width: 82%;
+    }
+}
+
+@media(max-width:424px){
+    .imgDiv img{
+        width: 51px;
+    }
+
+    .details p {
+        font-size: 11px;
+        line-height: 14px;
+    }
+}

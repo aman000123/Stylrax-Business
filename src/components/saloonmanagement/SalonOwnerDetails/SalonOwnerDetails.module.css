@@ -1,0 +1,152 @@
+.mainDiv{
+    padding: 60px 60px;
+    background-color: #fff;
+    border-radius: 7px;
+}
+
+.imgDiv{
+    display: flex;
+    justify-content: space-between;
+}
+
+.text{
+    color: #BEBEBE;
+    font-size: 20px;
+}
+
+.text .icon {
+    padding-bottom: 2px;
+}
+
+.lab{
+    padding:10px 0px;
+    color: black;
+    font-weight: 600;
+}
+
+.inputs{
+    padding: 5px 70px 5px 10px;
+    color: #BEBEBE;
+    border: 2px solid #BEBEBE;
+    border-radius: 5px;
+}
+
+.Btn{
+    background-color: transparent;
+    padding: 0px 20px;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 57px;
+    margin-top: 6px;
+    border: 1.3px solid #858585;
+}
+
+.uploadIcon{
+    margin-left: -10px;
+    height: 30px;
+ }
+
+ .aadhar{
+    display: flex;
+ }
+
+ .back{
+    margin-left: -42px;
+ }
+ 
+
+.email {
+    padding: 5px 200px 5px 10px;
+    color: #BEBEBE;
+    border: 2px solid #BEBEBE;
+    border-radius: 5px;
+}
+
+.dob{
+    padding: 5px 20px 5px 10px;
+    color: #BEBEBE;
+    border: 2px solid #BEBEBE;
+    border-radius: 5px;
+}
+
+.formError{
+    color: red;
+    font-size: 15px;
+}
+
+.btn{
+    padding: 3px 20px;
+    background-color: #000;
+    color: #fff;
+    border: 2px solid #909090;
+    border-radius: 12px;
+    margin-top: 10px;
+}
+
+
+@media (max-width:769px){
+    .mainDiv{
+        margin-top: 29px;
+    }
+}
+
+@media (max-width:618px){
+    .email {
+        padding: 5px 70px 5px 10px;
+    }
+}
+
+@media (max-width:496px){
+    .email {
+        padding: 5px 0px 5px 10px;
+    }
+
+    .inputs{
+        padding: 5px 0px 5px 10px;
+    }
+    
+    .email {
+        padding: 5px 0px 5px 10px;
+    }
+    
+    .dob{
+        padding: 5px 0px 5px 10px;
+    }
+
+}
+
+
+@media(max-width:437px){
+    .imgDiv div img{
+        height: auto;
+        width: 150px;
+    }
+
+    .mainDiv{
+        padding: 36px 23px;
+    }
+}
+
+@media(max-width:364px){
+    .email {
+        padding: 5px 0px 5px 2px;
+        width: 156px;
+    }
+
+    .inputs{
+        padding: 5px 0px 5px 2px;
+        width: 156px;
+    }
+    
+    .email {
+        padding: 5px 0px 5px 2px;
+        width: 156px;
+    }
+    
+    .dob{
+        padding: 5px 0px 5px 2px;
+        width: 156px;
+    }
+}

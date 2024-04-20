@@ -1,0 +1,104 @@
+.main{
+    background-image: url("../../../assets/image/vectorbg.webp");
+    background-size: cover;
+    overflow: hidden;
+    margin-top: 50px;
+    margin-bottom: -30px;
+}
+.mainDiv{
+    background-image: url("../../../assets/image/overviewbg.png");
+    background-size: 1100px !important;
+    background-repeat: no-repeat;
+    position: relative;
+    margin-left: 110px;
+  }
+.clientOne{
+    position: absolute;
+    top: 183px;
+    left: 60px;
+}
+.clientTwo{
+    position: absolute;
+    left: 225px;
+    top: 75px;
+}
+.clientThree{
+    position: absolute;
+    top: 297px;
+    left: 172px;
+   }
+.clientFour{
+    position: absolute;
+    right: 274px;
+    bottom: 104px;
+   }
+.clientFive{
+    position: absolute;
+    right: 375px;
+    top: 155px;
+   }
+.info{
+    font-weight: 600;
+    font-size: 28px;
+    line-height: 30px;
+    padding-top: 150px;
+    padding-bottom: 150px;
+    margin-left: -240px;
+}
+
+/* media query */
+@media (max-width:1400px) {
+    .mainDiv{
+        margin-left: auto;
+    }
+    .info{
+        margin-left: 0px;
+}
+    .clientFive{
+       right: 190px;
+}
+.clientFour{
+    right: 100px;
+}}
+    @media (max-width:1200px){
+        .info{
+            margin-left: -100px;
+            font-size: 25px;
+      }
+    }
+    @media (max-width:992px) {
+        .clientOne{
+           left: 20px;
+    }
+    .clientFive{
+        right: 70px;
+ }
+ .clientFour{
+    right: 30px;
+}
+    .info{
+        margin-left: -26px;
+        font-size: 23px;
+  }}
+   @media (max-width:768px) {
+    .mainDiv{
+        margin-top: 40px;
+       margin-bottom: -24px;
+}
+.clientFive{
+    top: 60px;
+}
+.clientThree{
+    top: 325px;
+  }
+.clientOne{
+    top: 60px;
+}}
+@media (max-width:575px){
+    .info{
+        font-size: 17px;
+        margin-left: -5px;
+    }
+    .clientFive{
+        right: 20px;
+    }}

@@ -1,0 +1,102 @@
+.main{
+    background-image: url("../../../assets/image/vectorbg.webp");
+    background-size: cover;
+    overflow: hidden;
+}
+.container{
+    padding: 60px 60px;
+}
+.info{
+    color: black;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 35px;
+  
+}
+.mainText{
+  background-color: black;
+  color: white;
+  display: flex;
+  width: 220px !important;
+   padding: 10px 10px;
+   padding-left: 15px;
+   padding-right: 20px;
+   border-radius: 15px;
+}
+.query{
+    margin-left: 120px;
+}
+.img{
+    margin-left: 210px;
+}
+.teamImg{
+    height: 400px;
+    width: 500px;
+} 
+.ask{
+    font-size: 8px;
+    padding-top: 4px;
+}
+.span{
+    font-weight: bolder;
+    font-size: 15px;
+}
+.helperIcon{
+    width: 55px !important;
+    height: 45px !important;
+}
+ @media(max-width:1400px) {
+        .info{
+          font-size: 20px;
+          font-weight: 600;
+        }
+        .query{
+            margin-left: 0px;
+        }  
+    }
+    @media(max-width:1200px) {
+        .info{
+          font-size: 18px;
+          font-weight: 600;
+          line-height: 30px;
+        }
+        
+    }
+    @media(max-width:991px) {
+        .info{
+          font-size: 15px;
+          line-height: 25px;
+        }
+        .teamImg{
+            height: 368px;
+            width: 352px;
+        }
+    }
+        @media(max-width:768px){
+            .query{
+                margin-left: 50px;
+                padding-bottom: 20px;
+             }
+             .teamImg{
+                margin-left: -230px;
+                margin-bottom: -40px;
+              }
+        }
+        @media(max-width:575px) {
+            .info{
+              font-size: 11px;
+            }
+            .query{
+                margin-left: 0px;
+             }
+            .teamImg{
+                height: 250px;
+                width: 250px;
+                margin-left: -207px;
+              }
+              .mainText{
+                  padding: 0px 0px;
+                  padding-left: 0px;
+                  padding-right: 0px;
+              }
+        }

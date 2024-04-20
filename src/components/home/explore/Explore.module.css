@@ -1,0 +1,25 @@
+.textCenter p {
+    padding: 40px 0px;
+    color: #000;
+    font-family: Poppins;
+    font-size: 27px;
+    font-weight: 600;
+    line-height: 34px;
+    /* 125.926% */
+}
+
+@media(max-width:768px) {
+    .textCenter p {
+        font-size: 20px;
+        padding: 14px 0px;
+        line-height: 26px;
+    }
+}
+
+@media(max-width:576px) {
+    .textCenter p {
+        font-size: 16px;
+        padding: 13px 16px;
+        line-height: 19px;
+    }
+}

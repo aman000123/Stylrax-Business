@@ -1,0 +1,166 @@
+.mainDiv {
+    padding: 60px 0px;
+    background-image: url('../../../assets/image/background.png');
+}
+
+.sectionOne {
+    width: 40%;
+}
+
+.sectionOne img {
+    height: auto;
+    width: 304.5px;
+}
+
+.section2 {
+    background-color: #000;
+    width: 60%;
+    height: 432px;
+}
+
+.mt-105 {
+    margin-top: 105px;
+}
+
+
+.section2 p {
+    font-size: 25px;
+}
+
+.section2 .imgOne {
+    margin-bottom: 300px;
+}
+
+.img2 img {
+    margin-top: 186px;
+    margin-right: 10px;
+}
+
+@media (max-width:1400px) {
+    .mainDiv {
+        justify-content: center;
+        align-items: center;
+        flex-direction: row;
+    }
+
+    .section2 {
+        font-size: 28px;
+        width: 100%;
+        margin-top: 0px;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .sectionOne img {
+        height: auto;
+        width: 245.5px;
+    }
+
+    .sectionOne {
+        justify-content: center;
+        align-items: center;
+
+    }
+}
+
+@media (max-width:1200px) {
+    .sectionOne img {
+        height: auto;
+        width: 204.5px;
+    }
+
+    .section2 {
+        height: 364px;
+    }
+
+    .section2 p {
+        font-size: 22px;
+    }
+}
+
+@media(max-width:992px) {
+    .sectionOne img {
+        height: auto;
+        width: 152.5px;
+    }
+
+    .section2 {
+        height: 254px;
+    }
+
+    .section2 p {
+        font-size: 16px;
+        font-weight: 600;
+    }
+
+    .imgOne img {
+        margin-top: 100px;
+        width: 33px;
+    }
+
+    .img2 img {
+        margin-top: 118px;
+        margin-right: 7px;
+        height: 69px;
+    }
+}
+
+@media(max-width:768px) {
+    .sectionOne {
+        width: 152.5px;
+    }
+
+    .section2 {
+        width: 60%;
+        position: relative;
+        left: 76px;
+    }
+
+    .section2 p {
+        font-size: 12px;
+    }
+
+    .imgOne img {
+        margin-top: 145px;
+        width: 25px;
+    }
+
+    .img2 img {
+        margin-top: 113px;
+        margin-right: 16px;
+    }
+}
+
+
+@media(max-width:576px) {
+    .mainDiv {
+        flex-direction: column;
+    }
+
+    .section2 {
+        position: static;
+        left: 0px;
+        width: 100%;
+    }
+
+    .sectionOne img {
+        width: 100.5px;
+    }
+
+    .section2 p {
+        font-size: 11px;
+    }
+
+    .imgOne img {
+        margin-top: 147px;
+    }
+
+    .img2 img {
+        height: 56px;
+        margin-right: -39px;
+        margin-top: 92px;
+    }
+}
+
+
+

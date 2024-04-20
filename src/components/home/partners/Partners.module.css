@@ -1,0 +1,75 @@
+.bgImg{
+    background-image: url("../../../assets/image/rectangle.png");
+    padding: 84px 125px;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.bgImg div {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+
+.bgColor{
+    background-color: #fff;
+    
+}
+
+@media(max-width:1200px){
+    .bgColor img{
+        height: auto;
+        width: 95px;
+    }
+
+    .bgImg{
+        padding: 70px 125px;
+    }
+    
+}
+
+@media(max-width:992px) {
+    .bgColor img{
+        height: auto;
+        width: 85px;
+    }
+
+    .bgImg{
+        padding: 50px 100px;
+    }
+}
+
+@media(max-width:768px) {
+    .bgColor img{
+        height: auto;
+        width: 75px;
+    }
+
+    .bgImg{
+        padding: 50px 90px;
+    }
+}
+
+@media(max-width:698px) {
+    .bgColor img{
+        height: auto;
+        width: 56px;
+    }
+
+    .bgImg{
+        padding: 43px 61px;
+    }
+}
+
+@media(max-width:576px) {
+    .bgColor img{
+        height: auto;
+        width: 48px;
+    }
+
+    .bgImg{
+        padding: 19px 17px;
+    }
+}
+

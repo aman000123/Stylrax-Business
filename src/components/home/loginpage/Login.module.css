@@ -1,0 +1,118 @@
+.bg{
+    background-image: url("../../../assets/image/bg.webp");
+    background-size: cover;
+    overflow: hidden;
+    padding: 60px 120px;
+  }
+.error{
+  color: red;
+}
+.input{
+    height: 40px;
+    width: 300px;
+    border-radius: 10px; 
+    line-height: 20px;
+    font-size: 22px;
+    outline: none;
+    border: none;
+    padding-inline-start: 20px;
+}
+.customPhoneInput {
+  border: 1px solid #ccc;
+  border-radius: 50px;
+  padding: 5px 30px;
+  background-color: white;
+}
+.customPhoneInput input {
+    padding: 5px 10px;
+    outline: none;
+    border: none;
+    border-left: 3px solid grey;
+}
+.btn{
+    height: 40px;
+    width: 200px;
+    border-radius: 10px;
+    font-weight: 600;
+}
+.formGroup {
+    margin-bottom: 15px; 
+  }
+  .text{
+    font-size: 46px;
+    font-weight: bolder;
+    line-height: 52px;
+  }
+  .textOne{
+    font-size: 36px;
+    font-weight: 600;
+    line-height: 40px;
+  }
+   .pra{
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 30px;
+  }
+   .loginBorder{
+    border: 2px solid #545454; 
+    border-radius: 16px; 
+    padding: 60px;
+    background-color: #00000066;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  /* media query */
+  @media (max-width:1200px) {
+    .pra{
+     font-size: 15px;
+    }
+   .textOne{
+       font-size: 30px;
+      }
+  }
+  @media(max-width:992px){
+    .input{
+      width: 240px;
+    }
+    .loginBorder{
+      padding: 27px 30px;
+      margin-left: 50px;
+    }
+    .textOne{
+      font-size: 22px;
+      line-height: 30px;
+     }
+     .text{
+       font-size: 39px;
+     }
+     .pra{
+      font-size: 10px;
+      line-height: 20px;
+     }}
+  @media(max-width:575px){
+    .text{
+      font-size: 15px;
+      line-height: 20px;
+    }
+    .input{
+      width: 190px;
+      height: 30px;
+    }
+    .btn{
+      width: 150px;
+      height: 30px;
+    }
+    .pra{
+      font-size: 4px;
+      line-height: 12px;
+    }
+    .loginBorder{
+      margin-left: 0;
+    }
+    .textOne{
+      font-size: 15px;
+      line-height: 20px;
+      margin-right: -46px;
+    }}

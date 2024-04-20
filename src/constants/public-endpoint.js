@@ -1,1 +1,1 @@
-export const PUBLIC_URLS = ["/"];
+export const PUBLIC_URLS = ["/","b2b/user/profile"];
