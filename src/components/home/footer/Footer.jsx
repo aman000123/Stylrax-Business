@@ -41,12 +41,9 @@ function Footer() {
           <Link href="">Blogs</Link>
         </div>
         <div className={styles.footerItem}>
-          <Link href="">About Us-Salon</Link>
-          <Link href="">Book an Appointment</Link>
-          <Link href="">Join Us</Link>
-          <Link href="">Sitemap</Link>
-          <Link href="">Privacy Policy</Link>
-          <Link href="">Terms of use</Link>
+          <Link to="/home/aboutus">About US</Link>
+          <Link to="/home/privacy">Privacy Policy</Link>
+          <Link to="/home/terms-condition">Terms of use</Link>
         </div>
 
       </div>
