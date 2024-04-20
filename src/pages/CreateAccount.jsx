@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useLocation, Navigate } from "react-router-dom";
 import Salon from "../components/account/Salon";
 import BankDetails from "../components/account/BankDetails";
@@ -25,7 +25,7 @@ const accountSteps = {
     ]
 }
 
-const CreateAccount = () => {
+const CreateAccount = ({profileStatus}) => {
     const [steps, setSteps] = useState([]); // [accountSteps.freelancer
     const [activeStep, setActiveStep] = useState(0);
     const [salonId, setSalonId] = useState(null);
@@ -38,7 +38,18 @@ const CreateAccount = () => {
     if(!token){
         return <Navigate to="/home" />;
     }
+    //////////////
 
+    useEffect(() => {
+        if (profileStatus === 1) {
+            setActiveStep(1);
+        } else if (profileStatus === 2) {
+            setActiveStep(2);
+        } else if (profileStatus === 3) {
+            setActiveStep(3);
+        }
+    }, [profileStatus]);
+    ////////////////////
     const handleProfileCreate = (data) => {
         setActiveStep(activeStep + 1);
     };

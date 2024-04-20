@@ -5,7 +5,7 @@ export const authSlice = createSlice({
   initialState: {
     token: Session.get("token") || "",
     userInfo: {
-      profileStatus : 0,
+      profileStatus : "",
       email: "",
       phoneNumber: "",
       role: "",
@@ -15,7 +15,9 @@ export const authSlice = createSlice({
   reducers: {
     storeToken: (state, action) => {
       const { token, ...userInfo } = action.payload;
-      console.log("ara token::>",token)
+      console.log("token::>",token)
+      console.log("profile status::>",userInfo)
+
       state.token = token,
       state.userInfo = userInfo;
       Session.set("token", token);
