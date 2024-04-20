@@ -2,7 +2,7 @@ import styles from "../SalonOwnerDetails/SalonOwnerDetails.module.css";
 import salonownerdetailimg from "../../../assets/image/salonownerdetailimg.png";
 import { Form, Formik, Field, ErrorMessage } from "formik";
 import { salonProfileSchema } from "../../../utils/schema.js";
-import { createProfile, getProfile } from "../../../api/user.api.js";
+import { getProfile } from "../../../api/user.api.js";
 //import { handleOnFileSelect } from "./FileUploader";
 import { GrFormUpload } from "react-icons/gr";
 import { useEffect } from "react";

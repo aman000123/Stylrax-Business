@@ -5,46 +5,46 @@ import { Formik, Form, Field, ErrorMessage } from "formik"
 import { salonDetailsSchema } from "../../../utils/schema.js";
 import { createSalon } from "../../../api/salon.api.js";
 
-const initialValues = {
-    salonName: "",
-    email: "",
-    gstNumber: "",
-    address: "",
-    salonStatePinCode: "",
-    state: "",
-    services: "",
-};
+// const initialValues = {
+//     salonName: "",
+//     email: "",
+//     gstNumber: "",
+//     address: "",
+//     salonStatePinCode: "",
+//     state: "",
+//     services: "",
+// };
 
 function SalonDetails() {
 
-    const onSubmit = async (values) => {
-        try {
-            const data = {
-                "name":values.salonName,
-                "email":values.email,
-                "gstNumber":values.gstNumber,
-                "companyName":"Unique Style",
-                "address":values.address,
-                "latitude":"332.343",
-                "longitude":"23.343",
-                "city":"Delhi",
-                "state":values.state,
-                "pincode":values.salonStatePinCode,
-                "serviceType":values.services,
-                "homeService":false,
-                "mainGateImageUrl":"maingateImageUrl",
-                "bannerImages":["url1","url2"],
-                "gallaryImages":["gi_url1","gi_url2"]
-            
-            }
-            const response = await createSalon(data);
-            console.log(response); 
-            console.log('Form submitted successfully');
-            // action.resetForm();
-        } catch (error) {
-            console.error('There was an error submitting the form:', error);
-        }
-    }
+    // const onSubmit = async (values) => {
+    //     try {
+    //         const data = {
+    //             "name": values.salonName,
+    //             "email": values.email,
+    //             "gstNumber": values.gstNumber,
+    //             "companyName": "Unique Style",
+    //             "address": values.address,
+    //             "latitude": "332.343",
+    //             "longitude": "23.343",
+    //             "city": "Delhi",
+    //             "state": values.state,
+    //             "pincode": values.salonStatePinCode,
+    //             "serviceType": values.services,
+    //             "homeService": false,
+    //             "mainGateImageUrl": "maingateImageUrl",
+    //             "bannerImages": ["url1", "url2"],
+    //             "gallaryImages": ["gi_url1", "gi_url2"]
+
+    //         }
+    //         const response = await createSalon(data);
+    //         console.log(response);
+    //         console.log('Form submitted successfully');
+    //         // action.resetForm();
+    //     } catch (error) {
+    //         console.error('There was an error submitting the form:', error);
+    //     }
+    // }
 
     return (
         <div className={styles.mainDiv}>
@@ -54,7 +54,7 @@ function SalonDetails() {
                 </div>
             </div>
 
-            <Formik
+            {/* <Formik
                 initialValues={initialValues}
                 validationSchema={salonDetailsSchema}
                 onSubmit={onSubmit}
@@ -148,7 +148,31 @@ function SalonDetails() {
 
                     <button type='submit' className={styles.btn}>Submit</button>
                 </Form>
-            </Formik>
+            </Formik> */}
+            <p className={styles.lab}> Salon Name</p>
+            <h3
+                className={styles.inputsThree}>
+                hhhh</h3>
+            <p className={styles.lab}>Email</p>
+            <h3
+                className={styles.inputsThree}>
+                hhhh</h3>
+            <p className={styles.lab}>GST Number</p>
+            <h3
+                className={styles.inputsThree}>
+                hhhh</h3>
+            <p className={styles.lab}>Address</p>
+            <h3
+                className={styles.inputsThree}>
+                hhhh</h3>
+            <p className={styles.lab}>State</p>
+            <h3
+                className={styles.inputsThree}>
+                hhhh</h3>
+            <p className={styles.lab}>PinCode</p>
+            <h3
+                className={styles.inputsThree}>
+                hhhh</h3>
 
         </div>
     )
