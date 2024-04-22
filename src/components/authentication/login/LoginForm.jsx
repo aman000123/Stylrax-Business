@@ -10,7 +10,7 @@ import { LoginSchema } from "../../../utils/schema";
 const initialValues = {
   phoneNumber: "",
 };
-const LoginForm = () => {
+const LoginForm = ({profileStatus,setActiveStep}) => {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [showOTPSection, setShowOTPSection] = useState(false);
 
@@ -80,7 +80,7 @@ const LoginForm = () => {
                     </Formik>
                   </>
                 ) : (
-                  <Otp phoneNumber={phoneNumber} />
+                  <Otp phoneNumber={phoneNumber} setActiveStep={setActiveStep}/>
                 )}
               </div>
             </Col>

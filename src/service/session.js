@@ -53,17 +53,17 @@ export default class Session {
      * Sets the registered phone number in local storage.
      * @param {string} phoneNumber - The phone number to set as registered.
      */
-    static setRegisteredPhoneNumber(phoneNumber){
-        localStorage.setItem('phoneNumber', phoneNumber);
-        console.log('no'+phoneNumber);
-    }
+    // static setRegisteredPhoneNumber(phoneNumber){
+    //     localStorage.setItem('phoneNumber', phoneNumber);
+    //     console.log('no'+phoneNumber);
+    // }
 
     /**
      * Retrieves the registered phone number from local storage.
      * @returns {string|null} The registered phone number, or null if it is not set.
      */
-    static getRegisteredPhoneNumber(){
-        const storedPhoneNumber = localStorage.getItem('phoneNumber');
-        return storedPhoneNumber;
-    }
+    // static getRegisteredPhoneNumber(){
+    //     const storedPhoneNumber = localStorage.getItem('phoneNumber');
+    //     return storedPhoneNumber;
+    // }
 }

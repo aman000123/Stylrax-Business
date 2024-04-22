@@ -12,7 +12,7 @@ const initialValues = {
   middleName: "",
   lastName: "",
   email: "",
-  dob: "",
+  dataOfBirth: "",
   gender: "",
 };
 
@@ -135,14 +135,14 @@ function SalonOwnerDetails() {
           <br />
           <Field
             type="date"
-            placeholder="Jhon"
-            name="dob"
+            placeholder="10/02/2002"
+            name="dataOfBirth"
             className={styles.dob}
           />
           <br />
 
           <ErrorMessage
-            name="dob"
+            name="dataOfBirth"
             className={styles.formError}
             component="div"
           />
@@ -153,7 +153,6 @@ function SalonOwnerDetails() {
             <Field
               as="select"
               name="gender"
-              // placeholder="select"
               className={styles.inputs}
             >
               <option value="">select</option>
@@ -178,14 +177,12 @@ function SalonOwnerDetails() {
               <br />
               <button
                 className={`${styles.Btn} align-items-center-start`}
-                // onClick={handleUploadIconClick}
                 type="button"
               >
                 <input
                   id="image"
                   type="file"
                   name="aadhar-front"
-                  //  ref={fileInputRef}
                   style={{ display: "none" }}
                 // onChange={handleFileChange}
                 />
@@ -201,13 +198,11 @@ function SalonOwnerDetails() {
               <br />
               <button
                 className={`${styles.Btn} align-items-center-start`}
-                //   onClick={handleUploadIconClick}
                 type="button"
               >
                 <input
                   type="file"
                   name="aadhar-back"
-                  //ref={fileInputRef}
                   style={{ display: "none" }}
                 // onChange={handleFileChange}
                 />
@@ -222,13 +217,11 @@ function SalonOwnerDetails() {
             Pan Card
             <button
               className={`${styles.Btn} align-items-center-start`}
-              //  onClick={handleUploadIconClick}
               type="button"
             >
               <input
                 type="file"
                 name="image"
-                // ref={fileInputRef}
                 style={{ display: "none" }}
               // onChange={handleFileChange}
               />

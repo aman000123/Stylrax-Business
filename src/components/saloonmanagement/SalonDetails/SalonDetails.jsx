@@ -1,6 +1,6 @@
 import styles from "../SalonDetails/SalonDetails.module.css";
 import salondetailimg from "../../../assets/image/salondetailimg.png";
-// import { MdEdit } from "react-icons/md";
+import Notify from "../../../utils/notify.js";
 import { Formik, Form, Field, ErrorMessage } from "formik"
 import { salonDetailsSchema } from "../../../utils/schema.js";
 import { createSalon } from "../../../api/salon.api.js";

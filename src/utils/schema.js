@@ -13,19 +13,18 @@ export const OTPSchema = Yup.object().shape({
 });
 export const bankDetailsSchema = Yup.object({
   accountNumber: Yup.string()
-    .matches(/^\d{9,18}$/, 'Account number must be between 9 and 18 digits')
-    .required("Please enter your account number"),
-  bankName: Yup.string().min(2).max(15).required("Please enter bank name"),
+ .matches(/^\d{9,18}$/, 'Account number must be between 9 and 18 digits')
+  .required("Please enter your account number"),
+  bankName: Yup.string().min(10).required("Please enter bank name"),
   accountHolderName: Yup.string().min(2).max(15).required("Please enter your name"),
   ifscCode: Yup.string()
-    .matches(/^[A-Za-z]{4}[0][A-Z0-9a-z]{6}$/, 'Invalid IFSC code')
-    .required("Please enter your IFSC code"),
+  .matches(/^[A-Za-z]{4}[0][A-Z0-9a-z]{6}$/, 'Invalid IFSC code')
+   .required("Please enter your IFSC code"),
     bankDocumentUrl: Yup.string().required("Please upload passbook image"),
 });
 
 export const businessDetailsSchema = Yup.object({
   name: Yup.string().min(2).max(15).required("Please enter your name"),
-  email: Yup.string().email().required("Please enter your email"),
   companyName: Yup.string().min(5).max(15).required("Please enter company name"),
   pinCode: Yup.string().min(4).required("Please enter pin code"),
   city:Yup.string().min(2).required("Please select your city"),
@@ -38,9 +37,11 @@ export const businessDetailsSchema = Yup.object({
   gst: Yup.string()
   .matches(/^\d{2}[A-Z]{5}\d{4}[A-Z]{1}[A-Z\d]{1}[Z]{1}[A-Z\d]{1}$/, 'Invalid gst number') // Matches the GST format
   .required("Please enter your gst number"),
-  //mainGateUrl: Yup.string().required("Please upload main gate image"),
- // galleryImageUrl: Yup.string().required("Please upload gallery image"),
- // panUrl: Yup.string().required("Please upload pan image"),
+ mainGateUrl: Yup.string().required("Please upload main gate image"),
+ bannerImages: Yup.string().required("Please upload banner image"),
+ //bannerImages: Yup.array().min(1, "Please upload at least one banner image"),
+ galleryImageUrl: Yup.string().required("Please upload gallery image"),
+ 
 })
 
 //const MIN_AGE = 18;
@@ -88,17 +89,15 @@ const getMinDOBDate = () => {
 };
 export const salonProfileSchema = Yup.object().shape({
   firstName: Yup.string().min(2).max(15).required("Please enter first your name"),
-  //middleName: Yup.string().min(2).max(15).required("Please enter middle your name"),
   lastName: Yup.string().min(2).max(15).required("Please enter your last name"),
   email: Yup.string().email().required("Please enter your email"),
-  //phoneNumber: Yup.string().matches(/^[0-9]{10}$/, 'Invalid phone number').required("Please enter  phone number"),
   dataOfBirth: Yup.date()
-  .max(getMinDOBDate(), `You must be at least ${MIN_AGE} years old`)
-  .required("Date of birth is required"),
-  gender: Yup.string().required("Please select your gender"),
-  //panCardImageUrl: Yup.string().required("Please upload pan image"),
- // aadharFrontUrl: Yup.string().required("Please upload aadhar front image"),
- // aadharBackUrl: Yup.string().required("Please upload aadhar back image"),
+ .max(getMinDOBDate(), `You must be at least ${MIN_AGE} years old`)
+.required("Date of birth is required"),
+ gender: Yup.string().required("Please select your gender"),
+ panCardImageUrl: Yup.string().required("Please upload pan image"),
+ aadharFrontUrl: Yup.string().required("Please upload aadhar front image"),
+ aadharBackUrl: Yup.string().required("Please upload aadhar back image"),
  
 })
 
@@ -144,7 +143,7 @@ export const addStaffSchema = Yup.object({
 //add service
 
 export const addServiceSchema = Yup.object().shape({
-  serviceName: Yup.string(),
-  servicePrice: Yup.number(),
- // type: Yup.string().min(4).max(15).required("Please select your gender"),
+  serviceName: Yup.string().required('service name is required'),
+  servicePrice: Yup.number().required('service price is required'),
+  type: Yup.string().min(4).max(15).required("type is required"),
 });

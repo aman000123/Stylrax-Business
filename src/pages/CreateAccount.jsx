@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useLocation, Navigate } from "react-router-dom";
 import Salon from "../components/account/Salon";
 import BankDetails from "../components/account/BankDetails";
@@ -28,21 +28,24 @@ const accountSteps = {
 const CreateAccount = () => {
     const [steps, setSteps] = useState([]); // [accountSteps.freelancer
     const [activeStep, setActiveStep] = useState(0);
+    const [salonId, setSalonId] = useState(null);
     const location = useLocation();
     const { token="" } = location.state || {};
     console.log("Location::>",location)
     console.log("Token::>",token)
-
-    //If location state is not set with access token, redirect to home
+    
+   
     if(!token){
         return <Navigate to="/home" />;
     }
-
+   
     const handleProfileCreate = (data) => {
         setActiveStep(activeStep + 1);
     };
 
-    const handleBusinessDetails = (data) => {
+    const handleBusinessDetails = (data,salonId) => {
+        setSalonId(salonId);
+        console.log("salon id",salonId)
         setActiveStep(activeStep + 1);
 
     }
@@ -64,9 +67,9 @@ const CreateAccount = () => {
                 <StepperMenu steps={steps} activeStep={activeStep} />
             </Header>
             {activeStep === 0 && <Service onContinue={onServiceSelect} />}
-            {activeStep === 1 && <Profile onContinue={handleProfileCreate} token={token}/>}
+            {activeStep === 1 && <Profile onContinue={handleProfileCreate}/>}
             {activeStep === 2 && <Salon onContinue={handleBusinessDetails} />}
-            {activeStep === 3 && <BankDetails onContinue={handleBankDetails} />}
+            {activeStep === 3 && <BankDetails onContinue={handleBankDetails} salonId={salonId}/>}
             {activeStep === 4 && <Finish />}
             <Footer />
         </Section>
