@@ -1,0 +1,51 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  .mainSection {
+    font-size: 18px;
+    font-weight: 400;
+    color: #000000;
+    text-align: justify;
+  }
+  .paraSection{
+    font-size: 18px;
+    font-weight: 400;
+    color: #000000;
+    text-align: justify;
+  }
+  .menu{
+    font-size: 18px;
+    font-weight: 400;
+    color: #000000;
+  }
+  .subMenu {
+    list-style-type: none;
+    counter-reset: item;
+  }
+  .subMenu > li::before {
+    content: counters(item, ".") " ";
+    counter-increment: item;
+    font-weight: 400;
+  }
+  
+  .subMenuNav {
+    list-style-type: none;
+    counter-reset: sub-item;
+  }
+  
+  .subMenuNav > li::before {
+    font-weight: 500;
+    content: counter(item) "." counter(sub-item) "\00a0";
+    counter-increment: sub-item;
+  }
+  .romanList {
+    list-style-type: none;
+    counter-reset: roman-counter;
+  }
+  
+  .romanList li:before {
+    content: "(" counter(roman-counter, lower-roman) ") ";
+    counter-increment: roman-counter;
+  }
