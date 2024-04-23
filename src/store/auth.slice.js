@@ -10,7 +10,7 @@ export const authSlice = createSlice({
       email: "",
       phoneNumber: "",
       role: "",
-      //id:"",
+      userType:"",
     },
   },
   reducers: {
@@ -22,7 +22,7 @@ export const authSlice = createSlice({
       state.token = token,
       state.userInfo = userInfo;
       Session.set("token", token);  
-      
+      Session.set("userInfo::>",userInfo.profileStatus)
     },
    
     setSalonID:(state,action)=>{
@@ -40,10 +40,10 @@ export const authSlice = createSlice({
       Session.remove("token");
       state.token = "";
     },
-    removeSalonID: (state) => {
-      Session.remove("salonId");
-      state.salonId = null;
-    }
+    // removeSalonID: (state) => {
+    //   Session.remove("salonId");
+    //   state.salonId = null;
+    // }
 
   },
 })

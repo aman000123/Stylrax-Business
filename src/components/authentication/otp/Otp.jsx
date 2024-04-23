@@ -53,15 +53,17 @@ const Otp = ({ phoneNumber}) => {
         email: data.email,
         phoneNumber: data.phoneNumber,
         role: data.role,
+        profileStatus:data.profileStatus,
+        userType:data.userType
       };
       dispatch(storeToken(authData));
       
       console.log(authData)
-      if (data.profileStatus === 0) {
-        navigate("/account/create" ,{ state: { token: data.authToken } });
+      if (data.profileStatus === 3) {
+        navigate("/salon/dashboard");
       }
       else {
-       navigate("/salon/dashboard");
+        navigate("/account/create" ,{ state: { token: data.authToken } });
      }
     } catch (error) {
       Notify.error(error.message);

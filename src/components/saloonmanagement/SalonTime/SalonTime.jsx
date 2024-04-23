@@ -4,19 +4,34 @@ import { FaCircle } from "react-icons/fa";
 import { useEffect, useState } from "react";
 import { salonBusinessTime } from "../../../api/salon.management";
 import AddTime from "./AddTime";
-
+import Session from "../../../service/session";
+import Notify from "../../../utils/notify";
 function SalonTime() {
+    //console.log("salon id",salo)
     const [timing, setTiming] = useState([]);
+    const salonId = Session.get("salonId");
+    //console.log("salon id",salonId)
     const [showAddTimePopup, setShowAddTimePopup] = useState(false);
     console.log("time",timing)
     useEffect(() => {
         const getSalonTime = async () => {
-            const res = await salonBusinessTime();
-            const timing = res.data;
-            setTiming(timing);
+            try {
+                console.log("salon id", salonId);
+                const res = await salonBusinessTime(salonId);
+                const timing = res.data;
+                setTiming(timing);
+            } catch (error) {
+                Notify.error(error.message);
+            }
+        };
+    
+        if (salonId) {
+            getSalonTime();
+        } else {
+            console.error("Salon ID is not valid.");
         }
-        getSalonTime();
-    }, []);
+    }, [salonId]);
+    
 
     const toggleAddTimePopup = () => {
         setShowAddTimePopup(!showAddTimePopup);
