@@ -62,6 +62,10 @@ const Otp = ({ phoneNumber}) => {
       if (data.profileStatus === 3) {
         navigate("/salon/dashboard");
       }
+     // if (data.profileStatus === 2) {
+        //navigate("/account/create" ,{ state: { token: data.authToken } });
+       // handleBankDetails()
+     // }
       else {
         navigate("/account/create" ,{ state: { token: data.authToken } });
      }

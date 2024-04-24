@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useLocation, Navigate } from "react-router-dom";
 import Salon from "../components/account/Salon";
 import BankDetails from "../components/account/BankDetails";
@@ -46,16 +46,16 @@ const CreateAccount = () => {
     return <Navigate to="/home" />;
   }
 
-  // useEffect(() => {
-  //     onServiceSelect(userType);
-  // }, []);
+  {status!=0 && useEffect(() => {
+      onServiceSelect(userType);
+  }, [])}
 
   const onServiceSelect = (userType) => {
-    console.log("serviceType::>", userType);
+    console.log("user::>",userType);
     setSteps(accountSteps[userType]);
     setActiveStep(activeStep + 1);
-  };
 
+}
   const handleProfileCreate = (data) => {
     setActiveStep(activeStep + 1);
   };
@@ -64,17 +64,21 @@ const CreateAccount = () => {
     setSalonId(salonId);
     console.log("salon id", salonId);
     setActiveStep(activeStep + 1);
+    // setSteps(accountSteps[userType]);
+    // onServiceSelect(userType);
+    // console.log("user::>",userType);
+
   };
 
-  const handleBankDetails = (userType) => {
+  const handleBankDetails = (data) => {
     setActiveStep(activeStep + 1);
-    onServiceSelect(userType);
+    //onServiceSelect(userType);
   };
 
   return (
     <Section>
       <Header>
-        <StepperMenu steps={steps} activeStep={activeStep} />
+        <StepperMenu steps={steps} activeStep={activeStep}/>
       </Header>
 
       {activeStep === 0 && <Service onContinue={onServiceSelect} />}

@@ -47,7 +47,7 @@ const initialValues = {
 
 };
 
-const BusinessDetails = ({onContinue}) => {
+const BusinessDetails = ({onContinue,token}) => {
 
   const handleOnSubmit = async (values) => {
     //onContinue(values);
@@ -112,7 +112,7 @@ const BusinessDetails = ({onContinue}) => {
                                 <InputFile name="galleryImageUrl" helperText="Gallery" onFileSelect={(e)=> handleOnFileSelect(e, "galleryImageUrl", setFieldValue)} />
                                 <InputFile name="bannerImages" helperText="Banner Images" onFileSelect={(e) => handleOnFileSelect(e, 'bannerImages', setFieldValue)} /> 
 
-                                <IoAddOutline  onFileSelect={(e)=> handleOnFileSelect(e, "bannerImageUrl", setFieldValue)} className={styles.addImages}/>
+                                {/* <IoAddOutline  onFileSelect={(e)=> handleOnFileSelect(e, "bannerImageUrl", setFieldValue)} className={styles.addImages}/> */}
                             </Section>
                             <Section className="d-flex flex-column align-items-center">
                                 <Button type="submit" className={styles.registration__submit_button}>
