@@ -9,7 +9,7 @@ export const getProfile = (payload) => HTTP.Request(methods.GET, __endpoint_prof
 
 
 //Bank Details
-export const bankDetails = (id,payload) => HTTP.Request(methods.POST, __endpoint_bankDetails(id) , payload,id);
+export const bankDetails = (id,payload) => HTTP.Request(methods.POST, __endpoint_bankDetails(id) , payload);
 
 //  export const createSalon = (payload) =>
 //  HTTP.Request(methods.POST, __endpoint_createSalon, payload);

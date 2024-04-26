@@ -20,7 +20,7 @@ const initialValues = {
 
 
 const BankDetails = ({salonId,onContinue}) => {
-console.log("bank id::>",salonId)
+//console.log("bank id::>",salonId)
   const handleOnSubmit = async (values) => {
     try {
       const data ={
@@ -35,6 +35,8 @@ console.log("bank id::>",salonId)
       onContinue(values);
     } catch (error) {
       Notify.error(error.message);
+      console.log("error:::>", error);
+
     }
   }
  

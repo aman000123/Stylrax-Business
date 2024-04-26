@@ -12,6 +12,7 @@ export const authSlice = createSlice({
       role: "",
       userType:"",
     },
+    bankId:null,
   },
   reducers: {
     storeToken: (state, action) => {
@@ -37,19 +38,22 @@ export const authSlice = createSlice({
       console.log("profile status::>",action.payload)
 
     },
-  
+    setBankId: (state, action) => {
+      console.log("Setting bankId:", action.payload);
+      state.bankId = action.payload;
+    },
     removeToken: (state) => {
       Session.remove("token");
       state.token = "";
     },
-    removeSalonID: (state) => {
-      Session.remove("salonId");
-      state.salonId = null;
-    }
+    // removeSalonID: (state) => {
+    //   Session.remove("salonId");
+    //   state.salonId = null;
+    // }
 
   },
 })
 
-export const { storeToken,setSalonID,removeToken,removeSalonID, setUserInfo } = authSlice.actions
+export const { storeToken,setSalonID,removeToken,removeSalonID, setUserInfo , setBankId} = authSlice.actions
 
 export default authSlice.reducer
