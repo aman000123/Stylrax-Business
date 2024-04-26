@@ -10,7 +10,7 @@ export const authSlice = createSlice({
       email: "",
       phoneNumber: "",
       role: "",
-      //id:"",
+      userType:"",
     },
   },
   reducers: {
@@ -22,7 +22,9 @@ export const authSlice = createSlice({
       state.token = token,
       state.userInfo = userInfo;
       Session.set("token", token);  
-      
+      Session.set("userStatus::>",userInfo.profileStatus)
+      Session.set("userType::>",userInfo.userType)
+
     },
    
     setSalonID:(state,action)=>{

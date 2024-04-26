@@ -4,6 +4,8 @@ import { addSalonService } from "../../../api/salon.management";
 import { Form, Formik, Field, ErrorMessage } from "formik";
 import Notify from "../../../utils/notify";
 import { addServiceSchema } from "../../../utils/schema";
+import { useSelector } from "react-redux";
+import Session from "../../../service/session";
 function AddService() {
   const initialValues = {
     serviceName: "",
@@ -12,8 +14,15 @@ function AddService() {
     type: "",
   };
   //add salon service
+  //const salonId = useSelector((state) => state.auth.salonId);
+  //console.log("salonID:::>", salonId);
+
   const handleOnSubmit = async (values) => {
+    const salonId = Session.get("salonId");
+    console.log("salonID:::>", salonId);
+
     const { serviceName, servicePrice, serviceDuration, type } = values;
+
     // console.log(serviceName::>${serviceName} servicePrice ::>${servicePrice} ${serviceDuration} ${type})
     try {
       const data = {
@@ -23,14 +32,16 @@ function AddService() {
         serviceDuration: parseInt(serviceDuration),
         type: type,
       };
-      const res = await addSalonService({ data });
+      const res = await addSalonService({ data},salonId);
+
       console.log("response:::>", res);
-      Notify.success("service added");
+      Notify.success(res.data.message);
       //onContinue(values);
     } catch (error) {
       Notify.error(error.message);
     }
   };
+ 
   return (
     <div className={styles.mainDiv}>
       <div className={styles.secDiv}>

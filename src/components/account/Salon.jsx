@@ -41,13 +41,13 @@ const initialValues = {
   address: "",
   panNumber: "",
   mainGateUrl: "",
- // bannerImages:  [],
- bannerImages:  "",
+  //bannerImages:  [],
+  bannerImages:  "",
   galleryImageUrl: "",
 
 };
 
-const BusinessDetails = ({onContinue}) => {
+const BusinessDetails = ({onContinue,token}) => {
 
   const handleOnSubmit = async (values) => {
     //onContinue(values);
@@ -110,9 +110,9 @@ const BusinessDetails = ({onContinue}) => {
                                 <Label text="Salon Images" />
                                 <InputFile name="mainGateUrl" helperText="Main Gate" onFileSelect={(e)=>handleOnFileSelect(e,"mainGateUrl", setFieldValue)} />
                                 <InputFile name="galleryImageUrl" helperText="Gallery" onFileSelect={(e)=> handleOnFileSelect(e, "galleryImageUrl", setFieldValue)} />
-                                <InputFile name="bannerImages" helperText="Banner Images" multiple onFileSelect={(files) => handleOnFileSelect(files, 'bannerImages', setFieldValue)} /> 
-                           
-                                <IoAddOutline  onFileSelect={(e)=> handleOnFileSelect(e, "bannerImageUrl", setFieldValue)} className={styles.addImages}/>
+                                <InputFile name="bannerImages" helperText="Banner Images" onFileSelect={(e) => handleOnFileSelect(e, 'bannerImages', setFieldValue)} /> 
+
+                                {/* <IoAddOutline  onFileSelect={(e)=> handleOnFileSelect(e, "bannerImageUrl", setFieldValue)} className={styles.addImages}/> */}
                             </Section>
                             <Section className="d-flex flex-column align-items-center">
                                 <Button type="submit" className={styles.registration__submit_button}>

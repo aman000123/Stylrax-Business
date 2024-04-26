@@ -5,8 +5,9 @@ import { Paper } from '@mui/material';
 import { IoMdAddCircle } from "react-icons/io";
 import AddService from '../AddService/AddService';
 import ViewMore from '../Viewmore/ViewMore';
-import { salonService } from '../../../api/salon.management';
-
+import { salonService, serviceCategory } from '../../../api/salon.management';
+import Notify from "../../../utils/notify";
+import Session from '../../../service/session';
 const data = [
     {
         img: servicesimg,
@@ -87,7 +88,8 @@ function Services() {
     const [haircut, setHaircut] = useState(false);
     const [service,setService] = useState([]);
     console.log("service::>",service)
-
+    const salonId = Session.get("salonId");
+    console.log("salonID:::>", salonId);
     const viewAll = (id) => {
         setSelectedServiceId(id);
         setHaircut(!haircut);
@@ -100,11 +102,25 @@ function Services() {
 
     useEffect(()=>{
         const getService = async()=>{
-        const res = await salonService()
+        const res = await salonService(salonId)
         const service = res.data;
         setService(service)
         }
         getService();
+        },[])
+
+        useEffect(()=>{
+            
+             const category = async()=>{
+               try {
+                const res = await serviceCategory()
+                console.log("category::>",res)
+                Notify.success(res.data.message)
+               } catch (error) {
+                Notify.error(error.message)
+               }
+             }   
+           category()
         },[])
     return (
         <div>

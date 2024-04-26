@@ -25,9 +25,11 @@ export const __endpoint_removeStaff = (id) => {
 export const __endpoint_getSalonSingleService = (id) => {
   return `${endpoint}b2b/salons/38/services/${id}`;
 };
-export const __endpoint_salonService = endpoint + "b2b/salons/38/services?categoryId=11";
-export const __endpoint_salonBusinessTime = endpoint + "b2b/salons/38/businessHours";
-export const __endpoint_addSalonService = endpoint + "b2b/salons/38/services";
+export const __endpoint_salonService = (id)=>{return ` ${endpoint}b2b/salons/${id}/services?categoryId=1`};
+//export const __endpoint_salonBusinessTime = endpoint + "b2b/salons/38/businessHours";
+export const __endpoint_salonBusinessTime = (id)=>{return ` ${endpoint}b2b/salons/${id}/businessHours`};
+export const __endpoint_addSalonService = (id)=>{return ` ${endpoint}b2b/salons/${id}/services`};
+export const __endpoint_serviceCategory = endpoint + "b2b/services/categories";
 
 //File Management APIs
 export const __endpoint_files = endpoint + "b2b/file/presignedUrl";
