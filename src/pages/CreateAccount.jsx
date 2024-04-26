@@ -37,6 +37,7 @@ const CreateAccount = () => {
   console.log("userType::>", userType);
   const [activeStep, setActiveStep] = useState(status);
   //const salonId = useSelector(state => state.auth.salonId);
+
   console.log("aradhya id",salonId)
   const location = useLocation();
   const { token = "" } = location.state || {};
@@ -49,6 +50,8 @@ const CreateAccount = () => {
   //     setSalonId(storedSalonId);
   //   }
   // }, []);
+
+  
   if (!token) {
     return <Navigate to="/home" />;
   }

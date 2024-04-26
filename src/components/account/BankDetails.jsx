@@ -9,6 +9,9 @@ import Notify from "../../utils/notify";
 
 import { handleOnFileSelect } from "./FileUploader";
 import { bankDetails } from "../../api/account.api";
+import Session from "../../service/session";
+import { useSelector } from "react-redux";
+import { useState } from "react";
 
 const initialValues = {
   accountNumber:"",
@@ -20,9 +23,19 @@ const initialValues = {
 
 
 const BankDetails = ({salonId,onContinue}) => {
-//console.log("bank id::>",salonId)
-  const handleOnSubmit = async (values) => {
-    try {
+  console.log("bank id:::>", salonId);
+
+
+
+const salons = useSelector((state) => state.auth.salons);
+
+const salonIdd = salons[0]?.id ?? null;
+
+console.log("salonID:::>", salonIdd);
+ 
+   const handleOnSubmit = async (values) => {
+     try {
+  
       const data ={
         accountNumber:values.accountNumber,
         accountHolderName:values.accountHolderName,
@@ -30,8 +43,11 @@ const BankDetails = ({salonId,onContinue}) => {
         ifscCode:values.ifscCode,
         //bankDocumentUrl:values.bankDocumentUrl,
       }
-      const res = await bankDetails(salonId,data);
-      console.log("response:::>", res);
+      //const response = await bankDetails(salonId,data);
+
+      //const res = await bankDetails(salonIdd,data);
+      const response = await bankDetails(salonId ? salonId : salonIdd, data);
+      console.log("response:::>", response);
       onContinue(values);
     } catch (error) {
       Notify.error(error.message);
