@@ -11,7 +11,9 @@ export const authSlice = createSlice({
       phoneNumber: "",
       role: "",
       userType:"",
+    
     },
+  salons:[] 
   },
   reducers: {
     storeToken: (state, action) => {
@@ -37,19 +39,23 @@ export const authSlice = createSlice({
       console.log("profile status::>",action.payload)
 
     },
-  
+  storeSalons:(state,action) =>{
+    state.salons=action.payload.salons
+    Session.set("salons",action.payload.salons)
+    console.log("anill::>",action.payload.salons)
+  },
     removeToken: (state) => {
       Session.remove("token");
       state.token = "";
     },
-    removeSalonID: (state) => {
-      Session.remove("salonId");
-      state.salonId = null;
-    }
+   removeSalons:(state)=>{
+    Session.remove("salons");
+    state.salons =[];
+   }
 
   },
 })
 
-export const { storeToken,setSalonID,removeToken,removeSalonID, setUserInfo } = authSlice.actions
+export const { storeToken,setSalonID,removeToken,removeSalonID, setUserInfo , storeSalons,removeSalons} = authSlice.actions
 
 export default authSlice.reducer

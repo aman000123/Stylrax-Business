@@ -4,8 +4,8 @@ import OTPInput from "react-otp-input";
 import Notify from "../../../utils/notify";
 import { useNavigate } from "react-router-dom";
 import { resendOtp, verifyOtp } from "../../../api/account.api";
-import { useDispatch } from "react-redux";
-import { storeToken } from "../../../store/auth.slice";
+import { useDispatch, useSelector } from "react-redux";
+import { storeSalons, storeToken } from "../../../store/auth.slice";
 import PropTypes from "prop-types";
 import { Field, Formik, Form,ErrorMessage } from "formik";
 import { OTPSchema } from "../../../utils/schema";
@@ -17,7 +17,7 @@ const initialValues = {
 const Otp = ({ phoneNumber}) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-
+  
   const renderInput = (props, index) => (
     <input
       {...props}
@@ -46,6 +46,9 @@ const Otp = ({ phoneNumber}) => {
       };
 
       const { data} = await verifyOtp(verifyData);
+      const salons = data.salons;
+      console.log("salons::>",salons)
+
       const ProfileStatus = data.profileStatus;
       console.log("status::>", ProfileStatus)
       const authData = {
@@ -56,8 +59,12 @@ const Otp = ({ phoneNumber}) => {
         profileStatus:data.profileStatus,
         userType:data.userType
       };
+      if(data.profileStatus===2 || 0){
+        dispatch(storeSalons({ salons: data.salons }));
+
+      }
+
       dispatch(storeToken(authData));
-      
       console.log(authData)
       if (data.profileStatus === 3) {
         navigate("/salon/dashboard");

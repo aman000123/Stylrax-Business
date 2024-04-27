@@ -9,6 +9,9 @@ import Notify from "../../utils/notify";
 import { IoAddOutline } from "react-icons/io5";
 import { InputText, InputSelect, InputFile, Label, Button, TextArea } from "../../ux/controls";
 import FormContainer from "./FormContainer";
+import { setSalonID } from "../../store/auth.slice";
+import { useDispatch } from "react-redux";
+
 const stateOptions = [
   { value: "", text: "Select State" },
   { value: "Utter Pradesh", text: "Utter Pradesh" },
@@ -48,7 +51,7 @@ const initialValues = {
 };
 
 const BusinessDetails = ({onContinue,token}) => {
-
+const dispatch = useDispatch();
   const handleOnSubmit = async (values) => {
     //onContinue(values);
     try {
@@ -75,6 +78,8 @@ const BusinessDetails = ({onContinue,token}) => {
        
       };
       const res = await createSalon(verifyForm);
+      console.log("respn::>",res)
+      //dispatch(setSalonID(res.id));
       const salonId = res.data.id;
        console.log("salon id:::>", salonId);
        onContinue(values,salonId);

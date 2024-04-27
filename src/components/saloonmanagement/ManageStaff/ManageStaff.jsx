@@ -4,27 +4,127 @@ import styles from "../ManageStaff/ManageStaff.module.css";
 import stylistimg1 from "../../../assets/image/stylistimg1.png"
 import { Paper } from '@mui/material';
 import { IoMdAddCircle } from "react-icons/io";
+
 import clsx from 'clsx';
 import { styled, css } from '@mui/system';
 import { Modal as BaseModal } from '@mui/base/Modal';
 import AddStaff from '../AddStaff/AddStaff';
 import ViewAllAddService from '../viewalladdservice/ViewAllAddService';
-import { salonStaff } from '../../../api/salon.management';
+const data = [
+    {
+        img: stylistimg1,
+        textOne: "Debhasis",
+        textTwo: "HairStylist And ",
+        textThree: "HairArtist",
+        textFour: "4.2(1.2k) rating",
+        textFive: "View More",
+    },
+
+    {
+        img: stylistimg1,
+        textOne: "Debhasis",
+        textTwo: "HairStylist And ",
+        textThree: "HairArtist",
+        textFour: "4.2(1.2k) rating",
+        textFive: "View More",
+    },
+
+    {
+        img: stylistimg1,
+        textOne: "Debhasis",
+        textTwo: "HairStylist And ",
+        textThree: "HairArtist",
+        textFour: "4.2(1.2k) rating",
+        textFive: "View More",
+    },
+
+    {
+        img: stylistimg1,
+        textOne: "Debhasis",
+        textTwo: "HairStylist And ",
+        textThree: "HairArtist",
+        textFour: "4.2(1.2k) rating",
+        textFive: "View More",
+    },
+
+    {
+        img: stylistimg1,
+        textOne: "Debhasis",
+        textTwo: "HairStylist And ",
+        textThree: "HairArtist",
+        textFour: "4.2(1.2k) rating",
+        textFive: "View More",
+    },
+
+    {
+        img: stylistimg1,
+        textOne: "Debhasis",
+        textTwo: "HairStylist And ",
+        textThree: "HairArtist",
+        textFour: "4.2(1.2k) rating",
+        textFive: "View More",
+    },
+
+    {
+        img: stylistimg1,
+        textOne: "Debhasis",
+        textTwo: "HairStylist And ",
+        textThree: "HairArtist",
+        textFour: "4.2(1.2k) rating",
+        textFive: "View More",
+    },
+
+    {
+        img: stylistimg1,
+        textOne: "Debhasis",
+        textTwo: "HairStylist And ",
+        textThree: "HairArtist",
+        textFour: "4.2(1.2k) rating",
+        textFive: "View More",
+    },
+
+    {
+        img: stylistimg1,
+        textOne: "Debhasis",
+        textTwo: "HairStylist And ",
+        textThree: "HairArtist",
+        textFour: "4.2(1.2k) rating",
+        textFive: "View More",
+    },
+
+    {
+        img: stylistimg1,
+        textOne: "Debhasis",
+        textTwo: "HairStylist And ",
+        textThree: "HairArtist",
+        textFour: "4.2(1.2k) rating",
+        textFive: "View More",
+    },
+
+]
+
+
+
+
+import { salonStaff } from "../../../api/salon.management";
 
 
 
 
 function ManageStaff() {
+  // Popup one code
+  const [open, setOpen] = useState(false);
+  const [staff, setStaff] = useState([]);
+  const [selectedStaffId, setSelectedStaffId] = useState(null);
+  const [addStaffOpen, setAddStaffOpen] = useState(false);
+  console.log("staff::>", staff);
+  const handleOpen = () => setAddStaffOpen(true);
+  const handleClose = () => setOpen(false);
+
 
     // Popup one code
-    const [open, setOpen] = useState(false);
-    const [staff,setStaff] = useState([]);
-    const [selectedStaffId, setSelectedStaffId] = useState(null);
-    const [addStaffOpen,setAddStaffOpen] = useState(false)
-    console.log("staff::>",staff)
-    const handleOpen = () => setAddStaffOpen(true)
-    ;
-    const handleClose = () => setOpen(false);
+  
+
     //Popup two code
     const [isOpen, isSetOpen] = useState(false);
     const ishandleOpen = (id) =>  {setOpen(true)
