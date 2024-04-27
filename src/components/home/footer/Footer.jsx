@@ -42,8 +42,10 @@ function Footer() {
         </div>
         <div className={styles.footerItem}>
           <Link to="/home/aboutus">About US</Link>
+          <Link to="/home/codeofconduct">Code Of Conduct</Link>
           <Link to="/home/privacy">Privacy Policy</Link>
           <Link to="/home/terms-condition">Terms of use</Link>
+          <Link to="/home/condition-user">Terms of user</Link>
         </div>
 
       </div>
