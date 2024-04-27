@@ -22,10 +22,10 @@ export const __endpoint_removeStaff = (id) => {
     return `${endpoint}b2b/salons/38/employees/${id}`;
   };
   
-export const __endpoint_getSalonSingleService = (id) => {
-  return `${endpoint}b2b/salons/38/services/${id}`;
+export const __endpoint_getSalonSingleService = (salonId,id) => {
+  return `${endpoint}b2b/salons/${salonId}/services/${id}`;
 };
-export const __endpoint_salonService = (id)=>{return ` ${endpoint}b2b/salons/${id}/services?categoryId=1`};
+export const __endpoint_salonService = (id)=>{return ` ${endpoint}b2b/salons/${id}/services`};
 //export const __endpoint_salonBusinessTime = endpoint + "b2b/salons/38/businessHours";
 export const __endpoint_salonBusinessTime = (id)=>{return ` ${endpoint}b2b/salons/${id}/businessHours`};
 export const __endpoint_addSalonService = (id)=>{return ` ${endpoint}b2b/salons/${id}/services`};
