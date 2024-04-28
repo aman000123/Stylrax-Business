@@ -7,7 +7,6 @@ import Privacy from "./pages/Privacy";
 import About from "./pages/About";
 import TermsAndCondition from "./pages/TermsAndCondition";
 import CodeOfConduct from "./components/privacypolicy/codeOfConduct/CodeOfConduct";
-import TermConditionUser from "./components/privacypolicy/termOfConditionUser/TermConditionUser";
 
 const SalonManagement = lazy(() =>
   import("./components/saloonmanagement/salonmanagement/SalonManagement")
@@ -33,7 +32,6 @@ const AppRoute = ({ authToken }) => {
       },
       { path: "/home/privacy", element: <Privacy/>},
       { path: "/home/terms-condition", element: <TermsAndCondition/>},
-      { path: "/home/condition-user", element: <TermConditionUser/>},
       { path: "/home/codeofconduct", element: <CodeOfConduct/>},
       { path: "/home/aboutus", element: <About/>},
 

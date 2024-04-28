@@ -45,7 +45,6 @@ function Footer() {
           <Link to="/home/codeofconduct">Code Of Conduct</Link>
           <Link to="/home/privacy">Privacy Policy</Link>
           <Link to="/home/terms-condition">Terms of use</Link>
-          <Link to="/home/condition-user">Terms of user</Link>
         </div>
 
       </div>

@@ -516,7 +516,7 @@ const TermsOfUse = () => {
                 third-party service provider of the Company, the Vendor shall,
                 at all times, (a) maintain high quality of Services to be
                 extended to the Users; (b) maintain high check over behaviour
-                of the employees; (c) maintain and abide by an internal <a href="/home/codeofconduct">code of conduct</a>
+                of the employees; (c) maintain and abide by an internal <Link to="/home/codeofconduct">code of conduct</Link>
                 ; and (d) take all necessary steps to uphold the
                 reputation of the brand name and logo of Stylrax.
               </li>
@@ -606,7 +606,7 @@ const TermsOfUse = () => {
               </li>
               <li className="mb-3">
                 Each Vendor shall maintain the such records/documents on the
-                Platform as required to be maintained under the internal <a href="/home/codeofconduct">code of conduct</a>  for such period prescribed. Such records/documents
+                Platform as required to be maintained under the internal <Link to="/home/codeofconduct">code of conduct</Link> for such period prescribed. Such records/documents
                 may include the logs or records of interaction and services.
               </li>
               <li className="mb-3">
@@ -671,7 +671,7 @@ const TermsOfUse = () => {
               </li>
               <li className="mb-3">
                 your violation of any of these Terms or the Privacy Policy or
-                the internal <a href="code of conduct"></a>;
+                the internal<Link to="/home/codeofconduct">code of conduct</Link>;
               </li>
               <li className="mb-3">
                 your violation of any third party right, including any
@@ -741,7 +741,7 @@ const TermsOfUse = () => {
               </li>
               <li className="mb-3">
                 if the Vendor breaches any material obligation under these
-                Terms or Privacy Policy or the internal <a href="/home/codeofconduct">code of conduct</a>,
+                Terms or Privacy Policy or the internal <Link to="/home/codeofconduct">code of conduct</Link>,
               </li>
               <li className="mb-3">
                 if the Vendor cancels the appointments frequently without
