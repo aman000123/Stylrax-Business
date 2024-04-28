@@ -13,6 +13,7 @@
 .crossIcon{
     margin-left: 300px !important;
     margin-top: -20px;
+    cursor: pointer;
 }
 .paper{
     height: auto;

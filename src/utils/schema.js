@@ -44,32 +44,7 @@ export const businessDetailsSchema = Yup.object({
  
 })
 
-//const MIN_AGE = 18;
-//const getMinDOBDate = () => {
- // const currentDate = new Date();
- // return new Date(currentDate.getFullYear() - MIN_AGE, currentDate.getMonth(), currentDate.getDate());
-//};
-//export const detailsSchema = Yup.object().shape({
-  //name: Yup.string().min(2).max(15).required("Please enter first your name"),
-  //  middleName:Yup.string().min(2).max(15)("Please enter  middle name"),
-  //lastName: Yup.string().min(2).max(15).required("Please enter your last name"),
- // email: Yup.string().email().required("Please enter your email"),
-  //serviceType: Yup.string().required("Please select your gender"),
- // phoneNumber: Yup.string().matches(/^[0-9]{10}$/, 'Invalid phone number').required("Please enter  phone number"),
- // dob: Yup.date()
- //   .max(getMinDOBDate(), `You must be at least ${MIN_AGE} years old`)
- //   .required("Date of birth is required"),
-  //image: Yup.mixed().required('required')
-  // image: Yup.mixed().test(
-  //   "filePresent",
-  //   "Image is required",
-  //   function (value) {
-  //     return !!value;
-  //   }
-  // )
-//})
 
-// salonDetails Schema
 
 export const salonDetailsSchema = Yup.object({
   salonName: Yup.string().min(2).max(15).required("Please enter your name"),
@@ -77,8 +52,7 @@ export const salonDetailsSchema = Yup.object({
   gstNumber: Yup.string().required("Please enter your GST Nuber"),
   address: Yup.string().min(5).max(100).required("Please enter your address"),
   salonStatePinCode: Yup.string().min(4).required("Please enter pin code"),
-  // mystate : Yup.
-  // services: Yup.string().required("Select any one option")
+ 
 })
 
 // SalonOwnerDetails Schema.
@@ -108,15 +82,9 @@ export const bankSchema = Yup.object({
   accName: Yup.string().min(3).max(15).required("Please enter valid Account Name"),
   bankName: Yup.string().min(11).max(25).required("Enter  valid Bank Name"),
   ifscCode: Yup.string().matches(/^[A-Za-z]{4}[0][A-Z0-9a-z]{6}$/, 'Invalid IFSC code').required("Please enter valid IFSC code"),
- // passbook: Yup.mixed().required("Please upload a passbook image")
 });
 
-//   export const bankSchema = Yup.object({
-//     accNum: Yup.string().min(11, 'Account Number must be at least 11 characters').max(16, 'Account Number must be at most 16 characters').required("Please enter a valid Account Number"),
-//     accName: Yup.string().min(3, 'Account Name must be at least 3 characters').max(50, 'Account Name must be at most 50 characters').required("Please enter a valid Account Name"),
-//     bankName: Yup.string().min(3, 'Bank Name must be at least 3 characters').max(50, 'Bank Name must be at most 50 characters').required("Please enter a valid Bank Name"),
-//     ifscCode: Yup.string().matches(/^[A-Za-z]{4}[0][A-Z0-9a-z]{6}$/, 'Invalid IFSC code').required("Please enter a valid IFSC code"),
-// });
+
 
 // Add staff schema
 
@@ -144,6 +112,16 @@ export const addStaffSchema = Yup.object({
 
 export const addServiceSchema = Yup.object().shape({
   serviceName: Yup.string().required('service name is required'),
+  serviceDuration: Yup.string().required('service duration is required'),
+
   servicePrice: Yup.number().required('service price is required'),
-  type: Yup.string().min(4).max(15).required("type is required"),
+  type: Yup.string().required("Please select your gender"),
+});
+
+export const viewMoreSchema = Yup.object().shape({
+  categoryId: Yup.number().required('Category ID is required'),
+  serviceDuration: Yup.string().required('service duration is required'),
+  serviceName: Yup.string().required('Service Name is required'),
+  servicePrice: Yup.number().required('service price is required'),
+  type: Yup.string().required('Type is required'),
 });

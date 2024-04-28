@@ -187,7 +187,7 @@ getStaff();
                             slots={{ backdrop: StyledBackdrop }}
                         >
                             <ModalContent>
-                                <AddStaff onClose={ishandleClose} />
+                                <AddStaff onClose={()=> setAddStaffOpen(false)} />
                             </ModalContent>
                         </Modal>)
                     }

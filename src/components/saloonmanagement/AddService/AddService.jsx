@@ -2,20 +2,25 @@ import styles from "../AddService/AddService.module.css";
 import addservicesimg from "../../../assets/image/addservicesimg.png";
 import { addSalonService } from "../../../api/salon.management";
 import { Form, Formik, Field, ErrorMessage } from "formik";
+import {  InputSelect} from "../../../ux/controls";
+
 import Notify from "../../../utils/notify";
 import { addServiceSchema } from "../../../utils/schema";
-import { useSelector } from "react-redux";
 import Session from "../../../service/session";
 function AddService() {
+  const genderOptions = [
+    { value: "", text: "Select" },
+    { value: "male", text: "Male" },
+    { value: "female", text: "Female" },
+    { value: "other", text: "Other" },
+  ];
   const initialValues = {
     serviceName: "",
     servicePrice: "",
     serviceDuration: "",
     type: "",
   };
-  //add salon service
-  //const salonId = useSelector((state) => state.auth.salonId);
-  //console.log("salonID:::>", salonId);
+
 
   const handleOnSubmit = async (values) => {
     const salonId = Session.get("salonId");
@@ -23,20 +28,18 @@ function AddService() {
 
     const { serviceName, servicePrice, serviceDuration, type } = values;
 
-    // console.log(serviceName::>${serviceName} servicePrice ::>${servicePrice} ${serviceDuration} ${type})
     try {
       const data = {
         categoryId: 11,
         serviceName: serviceName,
-        servicePrice: parseInt(servicePrice),
+        servicePrice: parseFloat(servicePrice),
         serviceDuration: parseInt(serviceDuration),
         type: type,
       };
-      const res = await addSalonService({ data},salonId);
+      const res = await addSalonService(data,salonId);
 
       console.log("response:::>", res);
-      Notify.success(res.data.message);
-      //onContinue(values);
+      Notify.success("Service added");
     } catch (error) {
       Notify.error(error.message);
     }
@@ -60,7 +63,7 @@ function AddService() {
               name="serviceName"
               className={styles.input4}
             />
-            <ErrorMessage name="serviceName" component="div" />
+            <ErrorMessage name="serviceName" component="div" className={styles.error}/>
             <Field
               type="text"
               placeholder="Service Mrp"
@@ -68,7 +71,7 @@ function AddService() {
               className={styles.input5}
             />
             <br />
-            <ErrorMessage name="servicePrice" component="div" />
+            <ErrorMessage name="servicePrice" component="div" className={styles.error}/>
             <Field
               type="text"
               placeholder="Service Duration"
@@ -76,15 +79,17 @@ function AddService() {
               className={styles.input6}
             />
             <br />
-            <ErrorMessage name="serviceDuration" component="div" />
+            <ErrorMessage name="serviceDuration" component="div"className={styles.error} />
             <Field
               type="text"
               placeholder="type"
               name="type"
               className={styles.input6}
-            />
+            /> 
+            {/* <InputSelect name="gender"  options={genderOptions} /> */}
+                
             <br />
-            <ErrorMessage name="type" component="div" />
+            <ErrorMessage name="type" component="div" className={styles.error}/>
             <button className={styles.button} type="submit">
               Add
             </button>
