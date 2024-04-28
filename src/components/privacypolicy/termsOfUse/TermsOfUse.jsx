@@ -28,7 +28,7 @@ const TermsOfUse = () => {
             and our <Link to="/home/privacy">Privacy Policy</Link> at (collectively referred to
             as the “Agreement”). You can accept the Terms by:
           </p>
-          <ul className={styles.termCondition}>
+          <ul className={`${styles.termCondition} p-0`}>
             <li>
               Clicking to accept or agree to the Terms, where it is made
               available to you by Company on the Platform for any particular
@@ -91,9 +91,9 @@ const TermsOfUse = () => {
     <div className="container">
       <div className="row">
         <div className="col">
-          <ol className={styles.subMenu}>
+          <ol className={`${styles.subMenu} ps-0`}>
             <li className={`${styles.mainMenu} fw-bold mt-3`}>The website</li>
-            <ol className={styles.subMenuNav}>
+            <ol className={`${styles.subMenuNav} ps-2 `}>
               <li className="mb-2">
                 This Platform www.stylrax.com (“Website”) and Stylrax (“Mobile
                 Application”) (collectively referred to as “Platform”) is
@@ -121,7 +121,7 @@ const TermsOfUse = () => {
               Contract Act, 1872 or the relevant laws in your jurisdiction.
             </p>
             <li className={`${styles.mainMenu} fw-bold mt-3 mb-2`}>VENDOR USER ACCOUNT</li>
-            <ol className={styles.subMenuNav}>
+            <ol className={`${styles.subMenuNav} ps-2 `}>
               <li className="mb-2">
                 For the purposes of providing Services on the Platform, the
                 Vendor is required to obtain registration in accordance with
@@ -189,11 +189,11 @@ const TermsOfUse = () => {
             <li className={`${styles.mainMenu} fw-bold mt-3 mb-2`}>
               REPRESENTATION AND WARRANTIES
             </li>
-            <ol className={styles.subMenuNav}>
+            <ol className={`${styles.subMenuNav} ps-2 `}>
               <li className="mb-2">
                 When you use our Platform, you are representing to us that:
               </li>
-              <ol className={styles.romanList} type="i">
+              <ol className={`${styles.romanList} ps-3`} type="i">
                 <li className="mb-2">
                   Your use of the Platform shall not violate any applicable
                   law, and that you fulfil the eligibility criteria set forth
@@ -288,13 +288,13 @@ const TermsOfUse = () => {
               </li>
             </ol>
             <li className={`${styles.mainMenu} fw-bold mt-3 mb-2`}>SCOPE OF SERVICES</li>
-            <ol className={styles.subMenuNav}>
+            <ol className={`${styles.subMenuNav} ps-2 `}>
               <li>
                 By agreeing to become a service provider on the Platform, a
                 Vendor may avail the following features and functions on the
                 Platform (“Features”):
               </li>
-              <ol className={styles.romanList} type="i">
+              <ol className={`${styles.romanList} ps-3`} type="i">
                 <li className="mb-3">
                   Register themselves on the Platform while displaying
                   necessary information including but not limited to name,
@@ -365,7 +365,7 @@ const TermsOfUse = () => {
                 The services shall include, but not be limited to the
                 following:
               </li>
-              <ol className={styles.romanList} type="i">
+              <ol className={`${styles.romanList} ps-3`} type="i">
                 <li className="mb-3">
                   responding to a User’s request for consultation and
                   honouring the requests that have been made on the Platform;
@@ -485,7 +485,7 @@ const TermsOfUse = () => {
             <li className={`${styles.mainMenu} fw-bold mt-3 mb-2`}>
               INFORMATION OWNERSHIP AND LIABILITY
             </li>
-            <ol className={styles.subMenuNav}>
+            <ol className={`${styles.subMenuNav} ps-2 `}>
               <li className="mb-3">
                 The Company reserves the copyright and the right to sue any
                 Vendor for copying or using such information without obtaining
@@ -499,7 +499,7 @@ const TermsOfUse = () => {
               </li>
             </ol>
             <li className={`${styles.mainMenu} fw-bold mt-3 mb-2`}>RELATIONSHIP</li>
-            <ol className={styles.subMenuNav}>
+            <ol className={`${styles.subMenuNav} ps-2 `}>
               <li className="mb-3">
                 These Terms shall be construed as “contract for service”
                 entered into between the Company and the Vendor.
@@ -516,8 +516,8 @@ const TermsOfUse = () => {
                 third-party service provider of the Company, the Vendor shall,
                 at all times, (a) maintain high quality of Services to be
                 extended to the Users; (b) maintain high check over behaviour
-                of the employees; (c) maintain and abide by an internal code
-                of conduct; and (d) take all necessary steps to uphold the
+                of the employees; (c) maintain and abide by an internal <Link to="/home/codeofconduct">code of conduct</Link>
+                ; and (d) take all necessary steps to uphold the
                 reputation of the brand name and logo of Stylrax.
               </li>
               <li className="mb-3">
@@ -556,7 +556,7 @@ const TermsOfUse = () => {
             <li className={`${styles.mainMenu} fw-bold mt-3 mb-2`}>
               USE AND PROTECTION OF INTELLECTUAL PROPERTY RIGHTS
             </li>
-            <ol className={styles.subMenuNav}>
+            <ol className={`${styles.subMenuNav} ps-2 `}>
               <li className="mb-3">
                 Stylrax, the Platform and the Services are protected by
                 copyright, trademarks, patents, trade secret and/or other
@@ -589,7 +589,7 @@ const TermsOfUse = () => {
             <li className={`${styles.mainMenu} fw-bold mt-3 mb-2`}>
               OBLIGATIONS AND RESTRICTIONS ON THE VENDORS
             </li>
-            <ol className={styles.subMenuNav}>
+            <ol className={`${styles.subMenuNav} ps-2 `}>
               <li className="mb-3">
                 Every Vendor must be qualified in the area of expertise that
                 he / she represents as being his / her qualification.
@@ -606,8 +606,7 @@ const TermsOfUse = () => {
               </li>
               <li className="mb-3">
                 Each Vendor shall maintain the such records/documents on the
-                Platform as required to be maintained under the internal code
-                of conduct for such period prescribed. Such records/documents
+                Platform as required to be maintained under the internal <Link to="/home/codeofconduct">code of conduct</Link> for such period prescribed. Such records/documents
                 may include the logs or records of interaction and services.
               </li>
               <li className="mb-3">
@@ -665,14 +664,14 @@ const TermsOfUse = () => {
             Parties’) from and against any and all claims, demands, damages,
             obligations, losses, liabilities, cause of action, costs and
             expenses (including any legal fees) arising from:
-            <ol className={styles.romanList} type="i">
+            <ol className={`${styles.romanList} ps-3`} type="i">
               <li className="mb-3">
                 your use of and access to the Platform and Services, including
                 the Vendor User Account;
               </li>
               <li className="mb-3">
                 your violation of any of these Terms or the Privacy Policy or
-                the internal code of conduct;
+                the internal<Link to="/home/codeofconduct">code of conduct</Link>;
               </li>
               <li className="mb-3">
                 your violation of any third party right, including any
@@ -706,7 +705,7 @@ const TermsOfUse = () => {
             <li className={`${styles.mainMenu} fw-bold mt-3 mb-2`}>
               LIMITATION OF LIABILITY
             </li>
-            <ol className={styles.subMenuNav}>
+            <ol className={`${styles.subMenuNav} ps-2 `}>
               <li>
                 In no event shall Stylark, its officers, directors, employees,
                 agents, distributors, co-branders, licensors, licensees,
@@ -732,7 +731,7 @@ const TermsOfUse = () => {
             <li className={`${styles.mainMenu} fw-bold mt-3 mb-2`}>TERMINATION</li>
             The Company reserves its right to terminate/block the Vendor User
             Account on the grounds including:
-            <ol className="roman-list" type="i">
+            <ol className={`${styles.romanList} ps-3`} type="i">
               <li className="mb-3">
                 if the Vendor(s) furnishes false information,
               </li>
@@ -742,7 +741,7 @@ const TermsOfUse = () => {
               </li>
               <li className="mb-3">
                 if the Vendor breaches any material obligation under these
-                Terms or Privacy Policy or the internal code of conduct,
+                Terms or Privacy Policy or the internal <Link to="/home/codeofconduct">code of conduct</Link>,
               </li>
               <li className="mb-3">
                 if the Vendor cancels the appointments frequently without
