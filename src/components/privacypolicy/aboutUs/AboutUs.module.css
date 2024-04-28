@@ -53,3 +53,6 @@ ul li::before {
   content: "-";
   padding-right: 0.5em;
 }
+.meetSpan{
+  color: #000000;
+}

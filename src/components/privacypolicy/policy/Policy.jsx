@@ -24,7 +24,7 @@ const Policy = () => {
               This Privacy Policy must be read in conjunction with the
               <a href="/home/condition-user"><b>“Terms of Use”</b></a> and all the terms and
               conditions therein. If you do not agree with Privacy Policy and
-              the Terms of Use, do not access or use the Website/Application.
+              the  <a href="https://stage.stylrax.in/termsOfUse">Terms of Use</a>, do not access or use the Website/Application.
             </p>
           </div>
         </div>

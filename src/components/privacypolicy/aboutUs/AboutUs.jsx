@@ -108,19 +108,19 @@ const AboutUs = () => {
             <div className="col">
               <ol className=" meet-section" >
                 <li>
-                  <span className="text-dark">Raghav Jain:</span> As the visionary founder, Raghav
+                  <span className={`${styles.meetSpan} fw-bold`}>Raghav Jain:</span> As the visionary founder, Raghav
                   Jain leads our team with a deep passion for revolutionizing
                   the salon services industry. With their expertise, we
                   continuously develop and grow the Salon App.
                 </li>
                 <li>
-                  <span>Maneesh Srivastava:</span>Our lead developer,
+                  <span className={`${styles.meetSpan} fw-bold`}>Maneesh Srivastava:</span>Our lead developer,
                   Srivastava, ensures a seamless user experience on our app.
                   Their technical knowledge and commitment to innovation drive
                   our platform's success.
                 </li>
                 <li>
-                  <span>Raghav Jain:</span>Leading our marketing efforts is
+                  <span className={`${styles.meetSpan} fw-bold`}>Raghav Jain:</span>Leading our marketing efforts is
                   Raghav Jain. They create awareness and promote the Salon App
                   through strategic campaigns, reaching a wider audience and
                   driving growth. Transform your salon experience. Download the
