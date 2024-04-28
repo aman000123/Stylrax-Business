@@ -11,6 +11,7 @@ import {
 import { useEffect, useState } from "react";
 import Notify from "../../../utils/notify";
 import { RxCross2 } from "react-icons/rx";
+import Session from "../../../service/session";
 
 const paperTwoData = [
   {
@@ -99,6 +100,7 @@ function ViewAllAddService({ id, onClose }) {
   const [editable, setEditable] = useState(false);
   const [editedData, setEditedData] = useState({});
   const [specialization,setSpecialization] = useState("");
+  const salonId = Session.get("salonId");
   //console.log("aradhya staff::>", staff);
   //console.log("aradhya id::>", id);
 
@@ -116,7 +118,7 @@ function ViewAllAddService({ id, onClose }) {
   useEffect(() => {
     const getSalonStaff = async () => {
       try {
-        const res = await getStaff(id);
+        const res = await getStaff(salonId,id);
         const staff = res.data;
         setStaff(staff);
         console.log("staff details::>", id);
@@ -125,14 +127,14 @@ function ViewAllAddService({ id, onClose }) {
       }
     };
     getSalonStaff();
-  }, []);
+  }, [salonId,id]);
 
   //DELETE STAFF API
 
   const onDelete = async (id) => {
     try {
-      const deletedStaff = await removeStaff(id);
-      Notify.success("Staff deleted!");
+      const deletedStaff = await removeStaff(salonId,id);
+      Notify.success("staff deleted");
       //console.log("staff deleted::>",deletedStaff)
     } catch (error) {
       Notify.error(error.message);
@@ -147,8 +149,8 @@ function ViewAllAddService({ id, onClose }) {
         specialization: specialization,
         role: "Manager"
       };
-      const editedStaff = await editStaff(staff.id,updatedData);
-      Notify.success('Sspecilization edited');
+      const editedStaff = await editStaff(salonId,staff.id,updatedData);
+      Notify.success("Updated record");
     
     } catch (error) {
       Notify.error(error.message);

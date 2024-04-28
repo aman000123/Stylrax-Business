@@ -36,7 +36,7 @@ function AddService() {
         serviceDuration: parseInt(serviceDuration),
         type: type,
       };
-      const res = await addSalonService(data,salonId);
+      const res = await addSalonService(salonId,data);
 
       console.log("response:::>", res);
       Notify.success("Service added");

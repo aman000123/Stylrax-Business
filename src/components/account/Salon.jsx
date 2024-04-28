@@ -35,6 +35,7 @@ const serviceOptions = [
 
 const initialValues = {
   name: "",
+//  email: "",
   gst: "",
   companyName: "",
   pinCode: "",

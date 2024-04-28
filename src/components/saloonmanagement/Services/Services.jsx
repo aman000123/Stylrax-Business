@@ -24,11 +24,11 @@ function Services() {
     const [haircut, setHaircut] = useState(false);
     const [selectedStaffId, setSelectedStaffId] = useState(null);
     const [services, setServices] = useState([]);
-
+    const salonId = Session.get("salonId");
     useEffect(() => {
         const fetchServices = async () => {
             try {
-                const res = await salonService(Session.get("salonId"));
+                const res = await salonService(salonId);
                 setServices(res.data);
                 Notify.success(res.data.message);
             } catch (error) {
@@ -36,7 +36,7 @@ function Services() {
             }
         };
         fetchServices();
-    }, []);
+    }, [salonId]);
 
     useEffect(() => {
         const fetchCategories = async () => {
