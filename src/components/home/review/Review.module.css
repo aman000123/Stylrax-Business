@@ -23,12 +23,12 @@
 }
 
 .about{
-    width: 300px;
-    height: 200px;
+    width: 350px;
+    height: 300px;
 }
 .aboutTwo{
-    width: 300px;
-    height: 200px;
+    width: 350px;
+    height: 300px;
 }
 
 .child p {
@@ -80,7 +80,7 @@
 
     .child {
         height: auto;
-        width: 405px;
+        width: 480px;
     }
 }
 
@@ -94,6 +94,15 @@
         width: 303px;
         padding: 30px 11px;
     }
+   .image{
+    display: none;
+   }
+   .textDiv p {
+    display: none;
+   }
+   .textDiv h6 {
+    display: none;
+   }
 }
 
 @media(max-width:368px) {

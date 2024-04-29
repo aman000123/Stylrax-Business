@@ -38,14 +38,8 @@ export const businessDetailsSchema = Yup.object({
   .matches(/^\d{2}[A-Z]{5}\d{4}[A-Z]{1}[A-Z\d]{1}[Z]{1}[A-Z\d]{1}$/, 'Invalid gst number') // Matches the GST format
   .required("Please enter your gst number"),
  mainGateUrl: Yup.string().required("Please upload main gate image"),
-<<<<<<< Updated upstream
- //bannerImages: Yup.string().required("Please upload banner image"),
- bannerImages: Yup.array().min(1, "Please upload at least one banner image"),
- galleryImageUrl: Yup.array().min(1,"Please upload gallery image"),
-=======
  bannerImages: Yup.array().min(1, "Please upload at least one banner image"),
  galleryImageUrl: Yup.array().min(1, "Please upload at least one gallery image"),
->>>>>>> Stashed changes
  
 })
 

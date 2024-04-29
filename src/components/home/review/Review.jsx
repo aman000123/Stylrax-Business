@@ -55,7 +55,7 @@ export default function Review() {
               className={`${styles.flexDiv} d-flex justify-content-center align-items-center`}
             >
               <div className={styles.imgDiv}>
-                <img src={value.img} alt="" />
+                <img src={value.img} alt="" className={styles.image}/>
               </div>
               <div
                 className={`${styles.textDiv} d-flex justify-content-between flex-column`}
