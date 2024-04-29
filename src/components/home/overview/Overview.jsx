@@ -15,12 +15,17 @@ const Overview = () => {
             <img src={client4} alt="client-img" className={styles.clientFour} />
             <img src={client5} alt="client-img" className={styles.clientFive} />
             <Col md={12} className="d-flex justify-content-center">
-              <p className={`${styles.info} d-flex text-center justify-content-center text-white`}>
-                Stylrax, the Ultimate platform for <br />
+              <p
+                className={`${styles.info} d-flex text-center justify-content-center text-white`}
+              >
+                {/* Stylrax, the Ultimate platform for <br />
                 freelancers and Salon owners to showcase <br />
                 their skills and connect with clients.
                 <br /> Empower your business with our innovative <br />
-                solutions.
+                solutions. */}
+                With its streamlined process and <br />comprehensive sales overview,
+                Stylrax stands <br />as the ultimate platform for salon<br /> professionals
+                like you!
               </p>
             </Col>
             <img src={client1} alt="client-img" className={styles.clientOne} />

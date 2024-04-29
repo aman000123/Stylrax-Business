@@ -48,7 +48,7 @@ const LoginForm = ({setActiveStep}) => {
               <div className={`${styles.loginBorder} text-white d-flex`}>
                 {!showOTPSection ? (
                   <>
-                    <h3 className={`${styles.login} text-white text-center`}>Login/Register</h3>
+                    <h3 className={`${styles.login} text-white text-center`}>Please provide your number to login/register with us.</h3>
                     <Formik
                       initialValues={initialValues}
                       validationSchema={LoginSchema}
@@ -56,11 +56,12 @@ const LoginForm = ({setActiveStep}) => {
                     >
                       <Form className={styles.form}>
                         <div className={styles.formGroup}>
-                          <label className="mb-1">Mobile Number</label>
+                          {/* <label className="mb-1">Mobile Number</label> */}
                           <br />
                           <Field
                             type="tel"
                             name="phoneNumber"
+                            placeholder="Your phone number"
                             className={styles.input}
                            // onChange={handleInputChange}
                            onKeyPress={(e) => {
@@ -78,7 +79,7 @@ const LoginForm = ({setActiveStep}) => {
                             className={styles.error}
                           />
                         </div>
-                        <div>
+                        <div className="d-flex justify-content-center">
                           <button type="submit" className={`${styles.btn} text-black bg-white`}>
                             Submit
                           </button>

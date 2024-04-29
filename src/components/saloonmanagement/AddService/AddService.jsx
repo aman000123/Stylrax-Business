@@ -2,7 +2,7 @@ import styles from "../AddService/AddService.module.css";
 import addservicesimg from "../../../assets/image/addservicesimg.png";
 import { addSalonService } from "../../../api/salon.management";
 import { Form, Formik, Field, ErrorMessage } from "formik";
-import {  InputSelect} from "../../../ux/controls";
+// import {  InputSelect} from "../../../ux/controls";
 
 import Notify from "../../../utils/notify";
 import { addServiceSchema } from "../../../utils/schema";

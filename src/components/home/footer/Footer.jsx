@@ -14,7 +14,7 @@ function Footer() {
       <div className={styles.links}>
         <div className={styles.footerItem}>
           <img src={logo} />
-          <i className={styles.designs}>Lorem Impsum Sit Dot emet</i>
+          <i className={styles.designs}></i>
         </div>
         <div className={styles.footerItem}>
           <Link href="">Hair Salon</Link>

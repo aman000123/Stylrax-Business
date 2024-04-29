@@ -68,13 +68,13 @@ return (
                     {({ setFieldValue }) => (
                         <Form className="d-flex flex-column">
                         <InputText type="text" name="accountNumber" label="Account Number" placeholder="Account Number" />
-                        <InputText type="text" name="accountHolderName" label="Account Holder Name" placeholder="Account Holder Name" />
+                        <InputText type="text" name="accountHolderName" label="Account Holder's Name" placeholder="Account Holder's Name" />
                         <InputText type="text" name="bankName" label="Bank Name" placeholder="Bank Name" />
 
                         <InputText type="text" name="ifscCode" label="IFSC Code" placeholder="IFSC Code" />
                       
                         <Section className="d-flex flex-column align-items-start mb-4">
-                            <Label text="Passbook/Cancel Cheque" />
+                            <Label text="Passbook/Cancelled Cheque" />
                             <InputFile name="bankDocumentUrl" onFileSelect={(e)=>handleOnFileSelect(e,"bankDocumentUrl", setFieldValue)} />
                         </Section>
                         <Section className="d-flex flex-column align-items-center">

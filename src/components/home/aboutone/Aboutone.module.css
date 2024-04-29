@@ -161,6 +161,9 @@
         margin-top: 92px;
     }
 }
+ul li{
+    list-style: none;
+}
 
 
 

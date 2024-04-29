@@ -22,8 +22,7 @@ const NewAppointment = () => {
             HairClinic
             <span className={styles.info}>
               {" "}
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore
+              Convenient and personalized hair grooming and styling solutions, just for you.
             </span>
           </p>
         </div>

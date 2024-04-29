@@ -17,7 +17,7 @@ const Comment = () => {
                 className={styles.userThree}
               />
               <p className={styles.comment}>
-              &quot;Freelancers, take control of <br />
+              Freelancers, take control of <br />
                 your career! With Stylrax,
                 <br /> you can easily showcase
                 <br /> your skills, connect with
@@ -26,7 +26,7 @@ const Comment = () => {
                 <br />
                 Join our platform to
                 <br /> experience a new level of <br />
-                professional freedom.&quot;
+                professional freedom.
               </p>
               <img src={userTwo} alt="user-image" className={styles.userTwo} />
             </div>
@@ -35,14 +35,14 @@ const Comment = () => {
             <div className={`${styles.praTwo} bg-black text-white`}>
               <img src={userOne} alt="user-image" className={styles.userOne} />
               <p className={styles.comment}>
-              &quot;Salon owners, boost your <br />
+              Salon owners, boost your <br />
                 business with Stylrax. List
                 <br /> your salon, attract new <br />
                 clients, and streamline your <br />
                 appointment booking
                 <br /> process. Elevate your salon &apos; <br />
                 online presence with our <br />
-                tailored solutions.&quot;
+                tailored solutions.
               </p>
               <div className={styles.img}>
                 <img src={logo} alt="user-image" className={styles.logo} />
