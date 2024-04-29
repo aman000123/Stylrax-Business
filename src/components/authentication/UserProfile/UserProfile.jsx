@@ -42,7 +42,7 @@ const UserProfile = () => {
             </div>
             <div className='d-flex'>
             <PiUserCircleLight className={styles.icon}/>
-            <li onClick={handleEditProfile} className={styles.profile}>Edit Profile</li>
+            <li onClick={handleEditProfile} className={styles.profile}>Edit profile</li>
             </div>
             <div className='d-flex'onClick={handleLogout}>
                 <IoLogOutOutline className={`${styles.icon}`}/>

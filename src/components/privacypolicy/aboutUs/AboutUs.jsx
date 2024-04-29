@@ -113,19 +113,19 @@ const AboutUs = () => {
                   the salon services industry. With their expertise, we
                   continuously develop and grow the Salon App.
                 </li>
-                <li>
+                {/* <li>
                   <span className={`${styles.meetSpan} fw-bold`}>Maneesh Srivastava:</span>Our lead developer,
                   Srivastava, ensures a seamless user experience on our app.
                   Their technical knowledge and commitment to innovation drive
                   our platform's success.
-                </li>
-                <li>
+                </li> */}
+                {/* <li>
                   <span className={`${styles.meetSpan} fw-bold`}>Raghav Jain:</span>Leading our marketing efforts is
                   Raghav Jain. They create awareness and promote the Salon App
                   through strategic campaigns, reaching a wider audience and
                   driving growth. Transform your salon experience. Download the
                   STYLRAX now!
-                </li>
+                </li> */}
               </ol>
               <p>
                 Take your salon business to new heights. Partner with us today!

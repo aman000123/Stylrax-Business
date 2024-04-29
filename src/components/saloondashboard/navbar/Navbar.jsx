@@ -3,7 +3,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import styles from "../navbar/Navbar.module.css";
 import { NavLink } from "react-bootstrap";
 import Logo from "../../../ux/Logo";
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 const Navbar = (props) => {
   const [menuOpen, setMenuOpen] = useState(false);
   const toggleMenu = () => {

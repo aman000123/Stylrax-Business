@@ -90,7 +90,7 @@ function BankDetails() {
 
                         <ErrorMessage name="accNum" className={styles.formError} component="div" />
 
-                        <label className={styles.lab}> Account Holder Name</label><br />
+                        <label className={styles.lab}>Account Holder's Name</label><br />
                         <Field
                             type='text'
                             placeholder='Jhon'
@@ -121,7 +121,7 @@ function BankDetails() {
                         <ErrorMessage name="ifscCode" className={styles.formError} component="div" />
  
                         <label className={styles.lab}>
-                            Passbook/Cancel cheque
+                        Passbook/Cancelled Cheque
                             <br />
                             <button
                                 className={`${styles.Btn} align-items-center-start`}

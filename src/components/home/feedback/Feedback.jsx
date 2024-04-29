@@ -11,13 +11,16 @@ const Feedback = () => {
           <Col md={12} className="d-flex justify-content-center">
             <div className={styles.mainSection}>
               <p className={`${styles.pra} text-center`}>
-              &quot;Trust is at the core of Stylrax. Our thorough verification
-                process
-                <br /> ensures a safe and secure environment for both
-                professionals
-                <br /> and clients. Build your reputation and trust with our
-                trusted
-                <br /> community.&quot;
+                Trust is at the core of Stylrax. Our detailed registration<br />
+                process of customers and a secure payment gateway ensures a safe<br />
+                environment for both professional and customers.
+                {/* &quot;Trust is at the core of Stylrax. Our thorough verification */}
+                {/* process */}
+                {/* <br /> ensures a safe and secure environment for both */}
+                {/* professionals */}
+                {/* <br /> and clients. Build your reputation and trust with our */}
+                {/* trusted */}
+                {/* <br /> community.&quot; */}
               </p>
             </div>
           </Col>
