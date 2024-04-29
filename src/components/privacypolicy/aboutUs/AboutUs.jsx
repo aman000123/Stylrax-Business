@@ -5,6 +5,7 @@ const AboutUs = () => {
     <>
       <div className={styles.mainSection}>
         <div className="container">
+          <h3 className="d-flex justify-content-center">About-Us</h3>
           <div className="row">
             <div className="col">
               <h5 className="px-3 fw-bold">Who We Are:</h5>
