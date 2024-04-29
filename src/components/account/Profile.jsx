@@ -33,7 +33,7 @@ const Profile = ({ onContinue ,token}) => {
 
 
   const handleOnSubmit = async (values) => {
-  //  onContinue(values);
+    onContinue(values);
     try {
       const dataForm = {
         profileType:"Salon",
@@ -50,10 +50,9 @@ const Profile = ({ onContinue ,token}) => {
         serviceType: "Male",
       };
       const res = await createProfile(dataForm,token)
-    
-     // console.log("response:::>", res.data);
+     console.log("response:::>", res.data);
      
-      onContinue(values);
+    //  onContinue(values);
     } catch (error) {
       Notify.error(error.message);
     }

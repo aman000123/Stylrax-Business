@@ -14,9 +14,9 @@ export const salonStaff = (id,payload) => HTTP.Request(methods.GET, __endpoint_a
 export const salonService = (salonId,payload) => HTTP.Request(methods.GET, __endpoint_salonService(salonId) , payload);
 export const getSalonSingleService = (salonId,id,payload) => HTTP.Request(methods.GET, __endpoint_getSalonSingleService(salonId,id) , payload);
 export const serviceCategory = (payload) => HTTP.Request(methods.GET, __endpoint_serviceCategory, payload);
-export const salonBusinessTime = (payload,id) => HTTP.Request(methods.GET, __endpoint_salonBusinessTime(id) , payload,id);
+export const salonBusinessTime = (salonId,payload) => HTTP.Request(methods.GET, __endpoint_salonBusinessTime(salonId) , payload);
 export const removeService = (salonId,id,payload) => HTTP.Request(methods.DELETE, __endpoint_getSalonSingleService(salonId,id) , payload);
 export const serviceEdit = (salonId,id,payload) => HTTP.Request(methods.PUT, __endpoint_getSalonSingleService(salonId,id) , payload);
 
 export const addSalonService = (salonId,payload) => HTTP.Request(methods.POST, __endpoint_addSalonService(salonId) , payload);
-export const salonTime = (payload) => HTTP.Request(methods.POST, __endpoint_salonBusinessTime , payload);
+export const salonTime = (salonId,payload) => HTTP.Request(methods.POST, __endpoint_salonBusinessTime(salonId) , payload);

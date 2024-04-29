@@ -22,7 +22,14 @@
     margin-top: 10px;
 }
 
-
+.about{
+    width: 300px;
+    height: 200px;
+}
+.aboutTwo{
+    width: 300px;
+    height: 200px;
+}
 
 .child p {
     font-size: 20px;

@@ -4,7 +4,7 @@ import poster from "../../../assets/image/poster.png";
 let data = [
   {
     about: (
-      <p>
+      <p className={styles.about}>
         &quot;Love this platform! Easy sign-up, smooth appointments, and a safe
         space for freelancers and salons. Highly recommended for a hassle-free
         experience!&quot;
@@ -17,7 +17,7 @@ let data = [
 
   {
     about: (
-      <p>
+      <p className={styles.aboutTwo}>
         &quot;Totally impressed by how this platform has made my life easier! I
         am able to work with more clients, make more money and all of this
         without any discomfort. Stylrax takes care of everything for me—all I
@@ -50,7 +50,7 @@ export default function Review() {
       <div className={`${styles.main} d-flex align-items-center`}>
         {data.map((value) => (
           <div className={`${styles.child} d-flex flex-column`}>
-            <p>{value.about}</p>
+            <p >{value.about}</p>
             <div
               className={`${styles.flexDiv} d-flex justify-content-center align-items-center`}
             >

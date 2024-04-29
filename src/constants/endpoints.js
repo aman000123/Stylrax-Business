@@ -28,7 +28,7 @@ export const __endpoint_getSalonSingleService = (salonId,id) => {
 };
 export const __endpoint_salonService = (id)=>{return ` ${endpoint}b2b/salons/${id}/services`};
 //export const __endpoint_salonBusinessTime = endpoint + "b2b/salons/38/businessHours";
-export const __endpoint_salonBusinessTime = (id)=>{return ` ${endpoint}b2b/salons/${id}/businessHours`};
+export const __endpoint_salonBusinessTime = (salonId)=>{return ` ${endpoint}b2b/salons/${salonId}/businessHours`};
 export const __endpoint_addSalonService = (salonId)=>{return ` ${endpoint}b2b/salons/${salonId}/services`};
 export const __endpoint_serviceCategory = endpoint + "b2b/services/categories";
 
