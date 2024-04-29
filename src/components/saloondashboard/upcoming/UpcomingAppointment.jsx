@@ -118,7 +118,7 @@ const item = [
   },
 
   {
-    day: "Thur",
+    day: "Thu",
     date: 5
   },
 

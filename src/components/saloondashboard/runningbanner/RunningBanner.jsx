@@ -9,9 +9,9 @@ function RunningBanner() {
     const banners = [
         {
             background: 'url("../../../assets/image/bgimage.png")',
-            offer: '20%',
-            offerDetails: 'HairClinic',
-            description: <p>Lorem ispum dolar<br/> dot nhuiinsuing gone <br/>ruling ispium</p>
+            offer: 'Flat 20% Off',
+            // offerDetails: 'HairClinic',
+            // description: <p>Lorem ispum dolar<br/> dot nhuiinsuing gone <br/>ruling ispium</p>
         },
         {
             background: 'url("../../../assets/image/bgimage.png")',
@@ -46,7 +46,7 @@ function RunningBanner() {
             <div className={styles.runningBanner}>
                 <div className={styles.offer}>
                    <h3>{banners[currentIndex].offer}</h3>
-                    <p>Flat off on any hair style</p>
+                    <p>on all hair styling</p>
                 </div>
                 <div className={styles.offerDetails}>
                     <h3>{banners[currentIndex].offerDetails}</h3>

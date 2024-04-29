@@ -3,18 +3,18 @@ import styles from "../counter/Counter.module.css";
 
 const data = [
     {
-        num: "40,000",
-        txt: "Partners already on board"
+        // num: "40,000",
+        txt: "Genuine Customers"
     },
 
     {
-        num: "₹1547Cr",
-        txt: "Paid out to partners in 2022"
+        // num: "₹1547Cr",
+        txt: "Nearby Service Areas"
     },
 
     {
-        num: "1,250,000+",
-        txt: "Services delivered each month"
+        // num: "1,250,000+",
+        txt: "Safe and Secure Platform"
     },
 ]
 

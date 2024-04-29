@@ -10,13 +10,17 @@ const Registration = () => {
             <Col md={6} className="d-flex justify-content-center">
               <div className={styles.praOne}>
                 <p>
-                &quot;Joining <strong>Stylrax</strong> is simple. Complete
+                  {/* &quot;Joining <strong>Stylrax</strong> is simple. Complete
                   <br /> our easy <strong>Registration</strong> process to{" "}
                   <br />
                   unlock a world of opportunities for
                   <br /> your <strong>freelance or salon business</strong>. Get
                   <br />
                   started on your journey to success <br />
+                  today!&quot; */}
+                  &quot;Joining Stylrax is simple, easy and fast! Complete our easy
+                  registration process to unlock a world of opportunities for
+                  your salon business. Get started on your journey to success
                   today!&quot;
                 </p>
               </div>

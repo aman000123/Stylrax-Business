@@ -80,12 +80,12 @@ const Profile = ({ onContinue ,token}) => {
                 <InputText type="date" name="dataOfBirth" label="Date of Birth" max={new Date().toISOString().split("T")[0]} />
                 <InputSelect name="gender" label="Gender" options={genderOptions} />
                 <Section className="d-flex flex-column align-items-start mb-1">
-                  <Label text="Aadhar Card" />
+                  <Label text="Aadhaar Card" />
                   <InputFile name="aadharFrontUrl" helperText="Front" onFileSelect={(e) => handleOnFileSelect(e, "aadharFrontUrl", setFieldValue)} />
                   <InputFile name="aadharBackUrl" helperText="Back" onFileSelect={(e) => handleOnFileSelect(e, "aadharBackUrl", setFieldValue)} />
                 </Section>
                 <Section className="d-flex flex-column align-items-start mb-4">
-                  <InputFile name="panCardImageUrl" label="Pan Card" onFileSelect={(e) => handleOnFileSelect(e, "panCardImageUrl", setFieldValue)} />
+                  <InputFile name="panCardImageUrl" label="PAN Card" onFileSelect={(e) => handleOnFileSelect(e, "panCardImageUrl", setFieldValue)} />
                 </Section>
                 <Section className="d-flex flex-column align-items-center">
                   <button type="submit" className={styles.registration__submit_button}>

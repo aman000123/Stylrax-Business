@@ -19,12 +19,12 @@ const SwitchSalon = ({salons,show,onSelectSalon}) => {
         <div className={styles.mainDiv}>
           <div className='d-flex'>
             <LuSwitchCamera className={styles.switch} />
-            <p>Switch Salon</p>
+            <p>Switch salon</p>
           </div>
           <p className='fw-bold'>or</p>
           <div className='d-flex mt-0'>
             <MdOutlineAddBox className={styles.add} />
-            <p>Click Here to Add New Salon</p>
+            <p>Click here to add a new salon</p>
           </div>
         </div>
         <p className={styles.select}>Select Your Salon</p>

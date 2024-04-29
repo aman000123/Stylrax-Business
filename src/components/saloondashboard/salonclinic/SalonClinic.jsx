@@ -18,7 +18,7 @@ let clientData = [
     {
         imgsrc: ClientIcon,
         clients: "Clients",
-        num: "Number of Clients",
+        num: "Total number of clients",
         digit: 900,
     },
 ]
@@ -27,7 +27,7 @@ let appointmentData = [
     {
         imgsrc: appointment,
         clients: "Appointments",
-        num: "Number of Appointments",
+        num: "Total upcoming appointments",
         digit: 900,
     }
 ]
@@ -36,7 +36,7 @@ let servicesData = [
     {
         imgsrc: services1,
         clients: "Services",
-        num: " Total Number of Services",
+        num: "Total number of services",
         digit: "06",
     }
 ]
@@ -45,7 +45,7 @@ let cancelledAppointmentsData = [
     {
         imgsrc: cancelledAppointment,
         clients: "Cancelled Appointments",
-        num: "Total Cancelled Appointments",
+        num: "Total cancelled appointments",
         digit: "06",
     }
 ]

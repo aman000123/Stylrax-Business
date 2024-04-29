@@ -1,24 +1,24 @@
 import styles from "../abouttwo/Abouttwo.module.css";
 import doubleQuotes from "../../../assets/image/doubleQuotes.svg.png";
 import cross from "../../../assets/image/cross.png";
-import meeting from "../../../assets/image/meeting.png";
+// import meeting from "../../../assets/image/meeting.png";
 
 export default function AboutTwo() {
     return (
         <div className={`${styles.main}`}>
-            <div>
+            {/* <div>
                 <img src={meeting} alt="" className={styles.meeting}></img>
-            </div>
-            <div className={`${styles.section1}  `}>
+            </div> */}
+            {/* <div className={`${styles.section1}  `}>
                 <img src={doubleQuotes} alt='' className={styles.quotes} />
-                <div className={styles.text}>
-                    <p className="text-white"> Choose Stylrax for a dynamic and supportive<br /> community.
+                <div className={styles.text}> */}
+                    {/* <p className="text-white"> Choose Stylrax for a dynamic and supportive<br /> community.
                         We provide a user-friendly<br /> interface, seamless appointment
                         management,<br /> and a secure environment for professionals to<br /> thrive
-                    </p>
-                </div>
+                    </p> */}
+                {/* </div>
                 <img src={cross} alt='' className={styles.crossImg} />
-            </div>
+            </div> */}
         </div>
     )
 }

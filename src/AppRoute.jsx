@@ -32,6 +32,7 @@ const AppRoute = ({ authToken }) => {
       },
       { path: "/home/privacy", element: <Privacy/>},
       { path: "/home/terms-condition", element: <TermsAndCondition/>},
+      { path: "/home/codeofconduct", element: <CodeOfConduct/>},
       { path: "/home/aboutus", element: <About/>},
 
         {
