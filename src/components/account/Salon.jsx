@@ -6,7 +6,6 @@ import { createSalon } from "../../api/salon.api";
 import { handleOnFileSelect } from "./FileUploader";
 import styles from "./account.module.css";
 import Notify from "../../utils/notify";
-import { IoAddOutline } from "react-icons/io5";
 import {
   InputText,
   InputSelect,
@@ -16,21 +15,23 @@ import {
   TextArea,
 } from "../../ux/controls";
 import FormContainer from "./FormContainer";
-import { setSalonID } from "../../store/auth.slice";
-import { useDispatch } from "react-redux";
+
+import { useState } from "react";
+import { getPresignedUrl } from "../../api/file.api";
 
 const stateOptions = [
   { value: "", text: "Select State" },
   { value: "Utter Pradesh", text: "Utter Pradesh" },
-  { value: "MP", text: "MP" },
+  { value: "Bihar", text: "Bihar" },
+  { value: "Haryana", text: "Haryana" },
 ];
 
 const cityOptions = [
   { value: "", text: "Select City" },
   { value: "Kanpur", text: "Kanpur" },
   { value: "Noida", text: "Noida" },
-  { value: "Anchorage", text: "Anchorage" },
-  { value: "Fairbanks", text: "Fairbanks" },
+  { value: "Lucknow", text: "Lucknow" },
+  { value: "Bhopal", text: "Bhopal" },
 ];
 
 const serviceOptions = [
@@ -51,13 +52,14 @@ const initialValues = {
   address: "",
   panNumber: "",
   mainGateUrl: "",
-  //bannerImages:  [],
-  bannerImages: "",
-  galleryImageUrl: "",
+  bannerImages: [],
+  galleryImageUrl: [],
 };
 
 const BusinessDetails = ({ onContinue, token }) => {
-  const dispatch = useDispatch();
+  const [bannerImages, setBannerImages] = useState([]);
+  const [galleryImages, setGalleryImages] = useState([]);
+
   const handleOnSubmit = async (values) => {
     //onContinue(values);
     try {
@@ -74,17 +76,13 @@ const BusinessDetails = ({ onContinue, token }) => {
         pincode: values.pinCode,
         serviceType: values.serviceType,
         homeService: false,
-        // mainGateImageUrl:"maingateImageUrl",
-        // bannerImages:["url1","url2"],
-        // gallaryImages:["gi_url1","gi_url2"]
+
         mainGateImageUrl: values.mainGateUrl,
-        // bannerImages:values.bannerImages,
-        bannerImages: ["url1", "url2"],
-        gallaryImages: ["gi_url1", "gi_url2"],
+        bannerImages: bannerImages,
+        gallaryImages: galleryImages,
       };
       const res = await createSalon(verifyForm);
       console.log("respn::>", res);
-      //dispatch(setSalonID(res.id));
       const salonId = res.data.id;
       console.log("salon id:::>", salonId);
       onContinue(values, salonId);
@@ -92,7 +90,36 @@ const BusinessDetails = ({ onContinue, token }) => {
       Notify.error(error.message);
     }
   };
+  const handleOnFile = async (files, field, setFieldValue) => {
+    try {
+      files = Array.isArray(files) ? files : [files];
+      const uploadPromises = files.map(async (file) => {
+        const response = await getPresignedUrl({ fileName: file.name });
+        const requestOptions = {
+          method: "PUT",
+          body: file,
+          headers: {
+            "Content-Type": file.type,
+          },
+        };
+        await fetch(response.data.url, requestOptions);
+        return response.data.path;
+      });
+      const urls = await Promise.all(uploadPromises);
 
+      // Check if field is for bannerImages or galleryImageUrl
+      if (field === "bannerImages") {
+        setBannerImages([...bannerImages, ...urls]);
+      } else if (field === "galleryImageUrl") {
+        setGalleryImages([...galleryImages, ...urls]);
+      }
+
+      // Set field value using Formik's setFieldValue
+      setFieldValue(field, urls);
+    } catch (error) {
+      console.error("Error uploading image:", error);
+    }
+  };
   return (
     <Container>
       <Section className="d-flex flex-column align-items-center">
@@ -125,26 +152,25 @@ const BusinessDetails = ({ onContinue, token }) => {
                 <InputText
                   type="text"
                   name="panNumber"
-                  label="PAN Number"
-                  placeholder="PAN Number"
+                  label="Pan Number"
+                  placeholder="Pan Number"
                 />
                 <TextArea
                   rows="5"
                   name="address"
-                  label="Salon Complete Address"
-                  placeholder="Salon Complete Address"
+                  label="Salon Address"
+                  placeholder="Salon Address"
                   className={styles.address}
-                />
-
-                <InputSelect
-                  name="state"
-                  label="Salon State"
-                  options={stateOptions}
                 />
                 <InputSelect
                   name="city"
                   label="Salon City"
                   options={cityOptions}
+                />
+                <InputSelect
+                  name="state"
+                  label="Salon State"
+                  options={stateOptions}
                 />
                 <InputText
                   type="text"
@@ -154,12 +180,10 @@ const BusinessDetails = ({ onContinue, token }) => {
                 />
                 <InputSelect
                   name="serviceType"
-                  label="Services For"
+                  label="Service For"
                   options={serviceOptions}
                 />
-                <Section className="d-flex flex-column align-items-start">
-                  {/* <InputFile name="panUrl" label="Pan Card" onFileSelect={(file) => handleOnFileSelect(file, 'panUrl', setFieldValue)} />                             */}
-                </Section>
+                <Section className="d-flex flex-column align-items-start"></Section>
                 <Section className="d-flex flex-column align-items-start mb-4">
                   <Label text="Salon Images" />
                   <InputFile
@@ -173,18 +197,16 @@ const BusinessDetails = ({ onContinue, token }) => {
                     name="galleryImageUrl"
                     helperText="Gallery"
                     onFileSelect={(e) =>
-                      handleOnFileSelect(e, "galleryImageUrl", setFieldValue)
+                      handleOnFile(e, "galleryImageUrl", setFieldValue)
                     }
                   />
                   <InputFile
                     name="bannerImages"
                     helperText="Banner Images"
                     onFileSelect={(e) =>
-                      handleOnFileSelect(e, "bannerImages", setFieldValue)
+                      handleOnFile(e, "bannerImages", setFieldValue)
                     }
                   />
-
-                  {/* <IoAddOutline  onFileSelect={(e)=> handleOnFileSelect(e, "bannerImageUrl", setFieldValue)} className={styles.addImages}/> */}
                 </Section>
                 <Section className="d-flex flex-column align-items-center">
                   <Button

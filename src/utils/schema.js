@@ -38,9 +38,8 @@ export const businessDetailsSchema = Yup.object({
   .matches(/^\d{2}[A-Z]{5}\d{4}[A-Z]{1}[A-Z\d]{1}[Z]{1}[A-Z\d]{1}$/, 'Invalid gst number') // Matches the GST format
   .required("Please enter your gst number"),
  mainGateUrl: Yup.string().required("Please upload main gate image"),
- bannerImages: Yup.string().required("Please upload banner image"),
- //bannerImages: Yup.array().min(1, "Please upload at least one banner image"),
- galleryImageUrl: Yup.string().required("Please upload gallery image"),
+ bannerImages: Yup.array().min(1, "Please upload at least one banner image"),
+ galleryImageUrl: Yup.array().min(1, "Please upload at least one gallery image"),
  
 })
 
@@ -115,13 +114,13 @@ export const addServiceSchema = Yup.object().shape({
   serviceDuration: Yup.string().required('service duration is required'),
 
   servicePrice: Yup.number().required('service price is required'),
-  type: Yup.string().required("Please select your gender"),
+  type:Yup.string().min(4).max(15).required("Please select your service"),
 });
 
 export const viewMoreSchema = Yup.object().shape({
-  categoryId: Yup.number().required('Category ID is required'),
-  serviceDuration: Yup.string().required('service duration is required'),
+  categoryId: Yup.number().required('Category ID must be a number'),
+  serviceDuration: Yup.number().required('Service duration must be a number'),
   serviceName: Yup.string().required('Service Name is required'),
-  servicePrice: Yup.number().required('service price is required'),
+  servicePrice: Yup.number().required('Service price must be a number'),
   type: Yup.string().required('Type is required'),
 });

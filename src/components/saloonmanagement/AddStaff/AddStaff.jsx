@@ -7,6 +7,7 @@ import { addStaff } from "../../../api/salon.management.js";
 import Notify from "../../../utils/notify.js";
 import { RxCross2 } from "react-icons/rx";
 import { useState } from "react";
+import Session from "../../../service/session.js";
 const initialValues = {
     name: "",
     mobileNumber: "",
@@ -18,6 +19,7 @@ const initialValues = {
 
 function AddStaff({onClose}) {
     const [open, setOpen] = useState(false)
+    const salonId = Session.get("salonId")
     const { values, errors, touched, handleBlurr, handleChange, handleSubmit } = useFormik({
         initialValues,
         validationSchema: addStaffSchema,
@@ -38,7 +40,7 @@ function AddStaff({onClose}) {
                         aadharBackUrl: "aadharBackUrl"
                 
                 }
-                const Staff = await addStaff(data);
+                const Staff = await addStaff(salonId,data);
                 console.log("addStaff::>",Staff)
                 onClose()
                 

@@ -107,6 +107,7 @@ const data = [
 
 
 import { salonStaff } from "../../../api/salon.management";
+import Session from '../../../service/session';
 
 
 
@@ -120,12 +121,7 @@ function ManageStaff() {
   console.log("staff::>", staff);
   const handleOpen = () => setAddStaffOpen(true);
   const handleClose = () => setOpen(false);
-
-
-    // Popup one code
-  
-
-    //Popup two code
+  const salonId = Session.get("salonId");
     const [isOpen, isSetOpen] = useState(false);
     const ishandleOpen = (id) =>  {setOpen(true)
         handleViewMore(id);
@@ -142,7 +138,7 @@ function ManageStaff() {
     
 useEffect(()=>{
 const getStaff = async()=>{
-const res = await salonStaff()
+const res = await salonStaff(salonId)
 const staff = res.data;
 setStaff(staff)
 setAddStaffOpen(false)
