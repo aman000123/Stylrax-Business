@@ -21,6 +21,7 @@ const Profile = ({ onContinue ,token}) => {
     panCardImageUrl: "",
     aadharFrontUrl: "",
     aadharBackUrl: "",
+    profileImageUrl:"",
   };
 
   const genderOptions = [
@@ -33,7 +34,7 @@ const Profile = ({ onContinue ,token}) => {
 
 
   const handleOnSubmit = async (values) => {
-    onContinue(values);
+   // onContinue(values);
     try {
       const dataForm = {
         profileType:"Salon",
@@ -46,13 +47,13 @@ const Profile = ({ onContinue ,token}) => {
         panCardImageUrl: values.panCardImageUrl,
         aadharFrontUrl: values.aadharFrontUrl,
         aadharBackUrl: values.aadharBackUrl,
-        profileImageUrl:"someUrl",
+        profileImageUrl:values.profileImageUrl,
         serviceType: "Male",
       };
       const res = await createProfile(dataForm,token)
      console.log("response:::>", res.data);
      
-    //  onContinue(values);
+      onContinue(values);
     } catch (error) {
       Notify.error(error.message);
     }
@@ -83,8 +84,11 @@ const Profile = ({ onContinue ,token}) => {
                   <InputFile name="aadharFrontUrl" helperText="Front" onFileSelect={(e) => handleOnFileSelect(e, "aadharFrontUrl", setFieldValue)} />
                   <InputFile name="aadharBackUrl" helperText="Back" onFileSelect={(e) => handleOnFileSelect(e, "aadharBackUrl", setFieldValue)} />
                 </Section>
-                <Section className="d-flex flex-column align-items-start mb-4">
+                <Section className="d-flex flex-column align-items-start mb-1">
                   <InputFile name="panCardImageUrl" label="PAN Card" onFileSelect={(e) => handleOnFileSelect(e, "panCardImageUrl", setFieldValue)} />
+                </Section>
+                <Section className="d-flex flex-column align-items-start mb-4">
+                  <InputFile name="profileImageUrl" label="Profile Image" onFileSelect={(e) => handleOnFileSelect(e, "profileImageUrl", setFieldValue)} />
                 </Section>
                 <Section className="d-flex flex-column align-items-center">
                   <button type="submit" className={styles.registration__submit_button}>

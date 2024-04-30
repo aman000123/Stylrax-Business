@@ -122,6 +122,7 @@
     padding-left: 10px;
     color: #BEBEBE;
     text-decoration-color: #BEBEBE;
+    outline: none;
 }
 
 .popupFormButton{
@@ -149,10 +150,10 @@
 
 .formError{
     color: red;
-    font-size: 12px;
+    font-size: 13px;
     text-align: start;
     padding-left: 50px;
-    padding-top: 3px;
+    margin-bottom: -10px;
 }
 
 .addTime{

@@ -26,7 +26,11 @@
     border: 2px solid #BEBEBE;
     border-radius: 5px;
 }
-
+.documents{
+    padding-top: 15px;
+    height: 170px;
+    width: 170px;
+}
 .ifsc{
     padding: 5px 200px 5px 8px;
     border: 2px solid #BEBEBE;
