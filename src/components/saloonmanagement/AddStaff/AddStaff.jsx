@@ -1,13 +1,16 @@
-import styles from "../ManageStaff/ManageStaff.module.css";
-import { Formik, Form, Field, ErrorMessage } from "formik";
+import React, { useRef } from "react";
+import { Formik, Form, Field, ErrorMessage} from "formik"; // Import setFieldValue
 import { Col } from "react-bootstrap";
 import { addStaffSchema } from "../../../utils/schema.js";
 import { addStaff } from "../../../api/salon.management.js";
 import Notify from "../../../utils/notify.js";
 import { RxCross2 } from "react-icons/rx";
 import { handleOnFileSelect } from "../../account/FileUploader.jsx";
-
+import stylistimg1 from "../../../assets/image/stylistimg1.png"
 import Session from "../../../service/session.js";
+import { RiEditCircleLine } from "react-icons/ri";
+import InputFile from "../../../ux/controls/InputFile.jsx";
+import styles from "../ManageStaff/ManageStaff.module.css";
 
 const initialValues = {
   name: "",
@@ -56,6 +59,8 @@ function AddStaff({ onClose }) {
           <div onClick={handleClose} className={styles.crossIcon}>
             <RxCross2 />
           </div>
+          {/* <img src={stylistimg1} alt='' />
+          <RiEditCircleLine/> */}
         </div>
 
         <Formik
@@ -63,59 +68,65 @@ function AddStaff({ onClose }) {
           validationSchema={addStaffSchema}
           onSubmit={handleSubmit}
         >
-          <Form className={styles.popupForm}>
-            <Field type="text" placeholder="Name" name="name" />
-            <ErrorMessage
-              name="name"
-              component="div"
-              className={styles.formError}
-            />
+          {({ setFieldValue }) => ( 
+            <Form className={styles.popupForm}>
+              <Field type="text" placeholder="Name" name="name" />
+              <ErrorMessage
+                name="name"
+                component="div"
+                className={styles.formError}
+              />
 
-            <Field
-              type="text"
-              placeholder="Mobile Number"
-              name="mobileNumber"
-            />
-            <ErrorMessage
-              name="mobileNumber"
-              component="div"
-              className={styles.formError}
-            />
+              <Field
+                type="text"
+                placeholder="Mobile Number"
+                name="mobileNumber"
+              />
+              <ErrorMessage
+                name="mobileNumber"
+                component="div"
+                className={styles.formError}
+              />
 
-            <Field type="text" placeholder="Date of Birth" name="dob" />
-            <ErrorMessage
-              name="dob"
-              component="div"
-              className={styles.formError}
-            />
+              <Field type="text" placeholder="Date of Birth" name="dob" />
+              <ErrorMessage
+                name="dob"
+                component="div"
+                className={styles.formError}
+              />
 
-            <Field type="text" placeholder="Email Id" name="email" />
-            <ErrorMessage
-              name="email"
-              component="div"
-              className={styles.formError}
-            />
+              <Field type="text" placeholder="Email Id" name="email" />
+              <ErrorMessage
+                name="email"
+                component="div"
+                className={styles.formError}
+              />
 
-            <Field type="text" placeholder="Gender" name="gender" />
-            <ErrorMessage
-              name="gender"
-              component="div"
-              className={styles.formError}
-            />
+              <Field type="text" placeholder="Gender" name="gender" />
+              <ErrorMessage
+                name="gender"
+                component="div"
+                className={styles.formError}
+              />
 
-            <Field type="text" placeholder="Category" name="category" />
-            <ErrorMessage
-              name="category"
-              component="div"
-              className={styles.formError}
-            />
-
-            <div className={styles.popupFormButton}>
-              <button className={styles.buttonOne} type="submit">
-                Submit
-              </button>
-            </div>
-          </Form>
+              <Field type="text" placeholder="Category" name="category" />
+              <ErrorMessage
+                name="category"
+                component="div"
+                className={styles.formError}
+              />
+              <div className={styles.staffImage}>
+                <label>Profile Image
+              <InputFile name="profileImageUrl"  onFileSelect={(e) => handleOnFileSelect(e, "profileImageUrl", setFieldValue)} className={styles.iconE}/>
+              </label>
+              </div>
+              <div className={styles.popupFormButton}>
+                <button className={styles.buttonOne} type="submit">
+                  Submit
+                </button>
+              </div>
+            </Form>
+          )}
         </Formik>
       </div>
     </Col>

@@ -124,7 +124,20 @@
     text-decoration-color: #BEBEBE;
     outline: none;
 }
-
+.staffImage {
+    margin-left: -150px;
+    padding-top: 5px;
+    font-weight: 400 !important;
+}
+.iconE  img{
+    margin-right: -95px !important;
+    position: relative;
+}
+.profile{
+    height: 100px;
+    width: 100px;
+    border-radius: 10px;
+}
 .popupFormButton{
     padding: 20px 0px;
 }

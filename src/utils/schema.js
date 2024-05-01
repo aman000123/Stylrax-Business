@@ -96,6 +96,8 @@ export const addStaffSchema = Yup.object({
    email: Yup.string().email().required("Please enter your email"),
   gender: Yup.string().min(4).max(15).required("Please select your gender"),
   category: Yup.string().min(3).max(15).required("Enter Valid Category"),
+  profileImageUrl: Yup.string().required("Please upload profile image"),
+
 });
 
 //add time

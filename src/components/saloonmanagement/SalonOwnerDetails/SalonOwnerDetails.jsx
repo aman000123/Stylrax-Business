@@ -36,10 +36,8 @@ function SalonOwnerDetails() {
 
   return (
     <div className={styles.mainDiv}>
-    <div className={styles.imgDiv}>
-      <div>
-        <img src={salonownerdetailimg} alt=""></img>
-      </div>
+      <div >
+      <img src={details.profileImageUrl} className={styles.imgDiv}/>
     </div>
     <Formik
       initialValues={initialValues}
@@ -149,13 +147,6 @@ function SalonOwnerDetails() {
           </div>
           <br />
         </label>
-        {/* <label className={styles.lab}>
-          Profile Image
-          <div className="gap-5">
-            <img src={details.profileImageUrl} className={styles.documents} />
-          </div>
-          <br />
-        </label> */}
         <br />
       </Form>
     </Formik>

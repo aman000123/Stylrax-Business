@@ -4,7 +4,7 @@ export const authSlice = createSlice({
   name: 'auth',
   initialState: {
     token: Session.get("token") || "",
-    salonId:null,
+    salonId:Session.get("salonId") || null,
     userInfo: {
       profileStatus : 0,
       email: "",
@@ -52,6 +52,10 @@ export const authSlice = createSlice({
     Session.remove("salons");
     state.salons =[];
    },
+   removeSalonID: (state) => {
+    Session.remove("salonId");
+    state.salonId = null;
+  },
    removeUserInfo: (state) => {
     Session.remove("UserInfo::>");
     Session.remove("userStatus::>");

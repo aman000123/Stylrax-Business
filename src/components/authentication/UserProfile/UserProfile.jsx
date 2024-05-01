@@ -4,7 +4,7 @@ import { PiUserCircleLight } from "react-icons/pi";
 import { IoLogOutOutline } from "react-icons/io5";
 import { Paper } from '@mui/material';
 import { useDispatch } from 'react-redux';
-import { removeToken, removeUserInfo } from '../../../store/auth.slice';
+import { removeSalonID, removeSalons, removeToken, removeUserInfo } from '../../../store/auth.slice';
 import styles from "../UserProfile/UserProfile.module.css";
 import { useNavigate } from 'react-router-dom';
 const UserProfile = () => {
@@ -24,6 +24,8 @@ const UserProfile = () => {
   const handleLogout = () => {
     dispatch(removeToken());
     dispatch(removeUserInfo());
+    dispatch(removeSalonID());
+    dispatch(removeSalons());
     navigate("/home")
     console.log("Logout");
   };

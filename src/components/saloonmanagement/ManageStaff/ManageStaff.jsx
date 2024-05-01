@@ -153,8 +153,8 @@ getStaff();
                     staff?.map((value) => (
                         <Paper key={value.id} className={styles.paper}>
                             <div className={styles.imgDiv}>
-                                {/* <img src={value.profileImageUrl} alt='' /> */}
-                                <img src={stylistimg1} alt='' />
+                                <img src={value.profileImageUrl} alt='' />
+                                {/* <img src={stylistimg1} alt='' /> */}
                             </div>
 
                             <div className={styles.text}>
