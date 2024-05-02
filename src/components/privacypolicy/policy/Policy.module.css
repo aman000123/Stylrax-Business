@@ -1,63 +1,60 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  .title {
-    display: flex;
-    justify-content: center;
-    margin: 20px 20px;
-  }
-  .heading{
-      text-align: justify;
-  }
-  .mainList{
-    font-size: 18px;
-    text-align: justify;
-  }
-  .sub-list h5 {
-    font-size: large;
-  }
-  
-  .sub-sub-list h5 {
-    font-size: large;
-  }
-  
-  .sub-list ol {
-    list-style-type: lower-roman;
-    font-size: large;
-  }
-  
-  .sub-sub-list ol {
-    list-style-type: lower-alpha;
-  }
-  
-  .main-list {
-    font-size: large;
-    text-align: justify;
-  }
-  
-  .heading mark {
-    background-color: yellow;
-    color: black;
-  }
-  
-  .title mark {
-    background-color: rgb(211, 211, 242);
-    color: black;
-  }
-  
-  @media screen and (max-width: 992px) {
-    .second-section {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      text-align: center;
-      align-content: center;
-    }
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.title {
+  display: flex;
+  justify-content: center;
+  /* margin: 20px 20px; */
+}
+.heading {
+  text-align: justify;
+}
+.mainList {
+  font-size: 18px;
+  text-align: justify;
+}
+.sub-list h5 {
+  font-size: large;
+}
 
-    .test-1{
-      text-align: justify;
-    }
+.sub-sub-list h5 {
+  font-size: large;
+}
+
+.sub-list ol {
+  list-style-type: lower-roman;
+  font-size: large;
+}
+
+.sub-sub-list ol {
+  list-style-type: lower-alpha;
+}
+
+.main-list {
+  font-size: large;
+  text-align: justify;
+}
+
+.heading mark {
+  color: black;
+}
+
+.title mark {
+  color: black;
+}
+
+@media screen and (max-width: 992px) {
+  .second-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    align-content: center;
   }
-  
+
+  .test-1 {
+    text-align: justify;
+  }
+}

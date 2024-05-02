@@ -32,9 +32,9 @@
   text-align: justify;
 }
 .subMenu > li::before {
-  content: counters(item, ".") "";
+  content: counters(item, ".") ". ";
   counter-increment: item;
-  font-weight: 400;
+  font-weight: 500;
 }
 
 .subMenuNav {
