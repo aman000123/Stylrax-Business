@@ -6,7 +6,7 @@ const TermsOfUse = () => {
     <div className="container">
     <div className="row">
       <div className="col">
-        <h3 className="text-center mt-5">
+        <h3 className="text-center mt-3">
           <u>Term And Condition of Use - Vendor</u>
         </h3>
         <p className="text-center mt-3">(Effective: dd/mm/yy, 2023)</p>

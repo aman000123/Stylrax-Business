@@ -7,7 +7,7 @@ const Policy = () => {
         <div class="col">
           <div className={styles.title}>
             <h5>
-              <mark>Privacy Policy</mark>
+              <h3 className="text-center mt-3"><u>Privacy Policy</u></h3>
             </h5>
           </div>
           <div className={styles.heading}>

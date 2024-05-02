@@ -4,7 +4,7 @@ const CodeOfConduct = () => {
     <>
       <div class="container">
         <div class="row">
-          <h3 class="text-center mt-5">CODE OF BUSINESS CONDUCT FOR VENDORS</h3>
+          <h3 className="text-center mt-3"><u>CODE OF BUSINESS CONDUCT FOR VENDORS</u></h3>
           <p class="text-center mt-2 fw-bold">
             [STYLRAX SOLUTIONS INDIA PRIVATE LIMITED]
           </p>
