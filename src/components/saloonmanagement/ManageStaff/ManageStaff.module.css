@@ -6,10 +6,6 @@
     
 }
 
-.imgDiv img{
-    height: auto;
-    width: 81px;
-}
 .crossIcon{
     margin-left: 300px !important;
     margin-top: -20px;
@@ -137,6 +133,7 @@
     height: 100px;
     width: 100px;
     border-radius: 10px;
+    padding-bottom: 3px;
 }
 .popupFormButton{
     padding: 20px 0px;

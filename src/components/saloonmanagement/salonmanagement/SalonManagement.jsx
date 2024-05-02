@@ -83,7 +83,7 @@ function SalonManagement() {
           <Row className={styles.rowone}>
             <Col md={2} className={styles.colone}>
               <div className={styles.list}>
-                <p> Management</p>
+                <p className="fw-bold"> Management</p>
                 {data.map((value) => (
                   <div
                     key={data.key}

@@ -1,5 +1,5 @@
 import Avatar from '@mui/material/Avatar';
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { PiUserCircleLight } from "react-icons/pi";
 import { IoLogOutOutline } from "react-icons/io5";
 import { Paper } from '@mui/material';
@@ -7,10 +7,31 @@ import { useDispatch } from 'react-redux';
 import { removeSalonID, removeSalons, removeToken, removeUserInfo } from '../../../store/auth.slice';
 import styles from "../UserProfile/UserProfile.module.css";
 import { useNavigate } from 'react-router-dom';
+import Session from '../../../service/session';
+
 const UserProfile = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const menuRef = useRef(null);
+  const profile = Session.get("profileImageUrl")
+  const firstName = Session.get("firstName")
+
+  console.log("radhya image::>",profile)
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (menuRef.current && !menuRef.current.contains(event.target)) {
+        setMenuOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+
   const toggleMenu = (e) => {
     e.stopPropagation();
     setMenuOpen(!menuOpen);
@@ -26,24 +47,23 @@ const UserProfile = () => {
     dispatch(removeUserInfo());
     dispatch(removeSalonID());
     dispatch(removeSalons());
-    navigate("/home")
+    
+    navigate("/home");
     console.log("Logout");
   };
 
   return (
-    <div>
+    <div ref={menuRef}>
       <div onClick={toggleMenu} className={styles.avtar}>
-        <Avatar alt="Demy Sharp" src="/static/images/avatar/1.jpg" tabIndex={-1}/>
+        <img src={profile} className={styles.avtar_img} tabIndex={-1} />
       </div>
       {menuOpen && (
         <Paper  className= {styles.paper} elevation={10} >
             <Paper className={styles.main} elevation={10}>
           <ul className={`${styles.profile_menu}  text-white bg-black`}>
             <div className='d-flex'>
-            <Avatar alt="Demy Sharp" src="/static/images/avatar/1.jpg" className={styles.avtar_img} />
-            <li className='mx-3'>D</li>
-            {/* <Avatar alt={`${firstName} ${lastName}`} src="/static/images/avatar/1.jpg" tabIndex={-1}/> */}
-            {/* <li className='mx-3'>{firstName.charAt(0).toUpperCase()}</li> */}
+            <img src={profile} className={styles.avtar_img} />
+            <li className='mx-3'>{firstName}</li>
             </div>
             <div className='d-flex'>
             <PiUserCircleLight className={styles.icon}/>

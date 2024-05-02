@@ -10,99 +10,6 @@ import { styled, css } from '@mui/system';
 import { Modal as BaseModal } from '@mui/base/Modal';
 import AddStaff from '../AddStaff/AddStaff';
 import ViewAllAddService from '../viewalladdservice/ViewAllAddService';
-const data = [
-    {
-        img: stylistimg1,
-        textOne: "Debhasis",
-        textTwo: "HairStylist And ",
-        textThree: "HairArtist",
-        textFour: "4.2(1.2k) rating",
-        textFive: "View More",
-    },
-
-    {
-        img: stylistimg1,
-        textOne: "Debhasis",
-        textTwo: "HairStylist And ",
-        textThree: "HairArtist",
-        textFour: "4.2(1.2k) rating",
-        textFive: "View More",
-    },
-
-    {
-        img: stylistimg1,
-        textOne: "Debhasis",
-        textTwo: "HairStylist And ",
-        textThree: "HairArtist",
-        textFour: "4.2(1.2k) rating",
-        textFive: "View More",
-    },
-
-    {
-        img: stylistimg1,
-        textOne: "Debhasis",
-        textTwo: "HairStylist And ",
-        textThree: "HairArtist",
-        textFour: "4.2(1.2k) rating",
-        textFive: "View More",
-    },
-
-    {
-        img: stylistimg1,
-        textOne: "Debhasis",
-        textTwo: "HairStylist And ",
-        textThree: "HairArtist",
-        textFour: "4.2(1.2k) rating",
-        textFive: "View More",
-    },
-
-    {
-        img: stylistimg1,
-        textOne: "Debhasis",
-        textTwo: "HairStylist And ",
-        textThree: "HairArtist",
-        textFour: "4.2(1.2k) rating",
-        textFive: "View More",
-    },
-
-    {
-        img: stylistimg1,
-        textOne: "Debhasis",
-        textTwo: "HairStylist And ",
-        textThree: "HairArtist",
-        textFour: "4.2(1.2k) rating",
-        textFive: "View More",
-    },
-
-    {
-        img: stylistimg1,
-        textOne: "Debhasis",
-        textTwo: "HairStylist And ",
-        textThree: "HairArtist",
-        textFour: "4.2(1.2k) rating",
-        textFive: "View More",
-    },
-
-    {
-        img: stylistimg1,
-        textOne: "Debhasis",
-        textTwo: "HairStylist And ",
-        textThree: "HairArtist",
-        textFour: "4.2(1.2k) rating",
-        textFive: "View More",
-    },
-
-    {
-        img: stylistimg1,
-        textOne: "Debhasis",
-        textTwo: "HairStylist And ",
-        textThree: "HairArtist",
-        textFour: "4.2(1.2k) rating",
-        textFive: "View More",
-    },
-
-]
-
 
 
 
@@ -120,7 +27,13 @@ function ManageStaff() {
   const [addStaffOpen, setAddStaffOpen] = useState(false);
   console.log("staff::>", staff);
   const handleOpen = () => setAddStaffOpen(true);
-  const handleClose = () => setOpen(false);
+  //const handleClose = () => setOpen(false);
+  const handleClose = (e) => {
+    if (!e.target.closest(".popup")) {
+        setOpen(false);
+    }
+};
+
   const salonId = Session.get("salonId");
     const [isOpen, isSetOpen] = useState(false);
     const ishandleOpen = (id) =>  {setOpen(true)
@@ -153,7 +66,7 @@ getStaff();
                     staff?.map((value) => (
                         <Paper key={value.id} className={styles.paper}>
                             <div className={styles.imgDiv}>
-                                <img src={value.profileImageUrl} alt='' />
+                                <img src={value.profileImageUrl} alt="" className={styles.profile} />
                                 {/* <img src={stylistimg1} alt='' /> */}
                             </div>
 
@@ -194,11 +107,12 @@ getStaff();
                             aria-labelledby="unstyled-modal-title"
                             aria-describedby="unstyled-modal-description"
                             open={open}
-                            onClose={handleClose}
+                            onClose={ishandleClose}
+                           // onClose={handleClose}
                             slots={{ backdrop: StyledBackdrop }}
                         >
                             <ModalContent>
-                                <ViewAllAddService  id={selectedStaffId} onViewMore={handleViewMore} onClose={handleClose}/>
+                                <ViewAllAddService  id={selectedStaffId} onViewMore={handleViewMore} onClose={()=> setOpen(false)}/>
                             </ModalContent>
                         </Modal>)
 

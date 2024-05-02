@@ -6,6 +6,7 @@ import Logo from "../../../ux/Logo";
 // import PropTypes from 'prop-types';
 const Navbar = (props) => {
   const [menuOpen, setMenuOpen] = useState(false);
+  
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
   };
