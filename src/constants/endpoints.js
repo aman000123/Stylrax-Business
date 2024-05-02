@@ -15,6 +15,8 @@ export const __endpoint_userProfile= endpoint + "b2b/user/profile";
 
 //Salon Management APIs
 export const __endpoint_salons = endpoint + "b2b/salons";
+export const __endpoint_singleSalon = (salonId)=>{return ` ${endpoint}b2b/salons/${salonId}`};
+
 export const __endpoint_addStaff = (id)=>{return ` ${endpoint}b2b/salons/${id}/employees`};
 
 export const __endpoint_getStaff = (salonId,id)=>{return ` ${endpoint}b2b/salons/${salonId}/employees/${id}`};

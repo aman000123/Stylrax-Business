@@ -28,8 +28,11 @@
     border-radius: 20px;
 }
 .avtar_img{
-  margin-left: -5px;  
+  margin-left: -5px; 
 }
 .profile {
     white-space: nowrap;
+}
+  .avtar{
+cursor: pointer;
   }

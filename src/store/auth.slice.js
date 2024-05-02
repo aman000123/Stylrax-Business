@@ -4,7 +4,7 @@ export const authSlice = createSlice({
   name: 'auth',
   initialState: {
     token: Session.get("token") || "",
-    salonId:null,
+    salonId:Session.get("salonId") || null,
     userInfo: {
       profileStatus : 0,
       email: "",
@@ -42,7 +42,7 @@ export const authSlice = createSlice({
   storeSalons:(state,action) =>{
     state.salons=action.payload.salons
     Session.set("salons",action.payload.salons)
-    console.log("anill::>",action.payload.salons)
+    console.log("salons::>",action.payload.salons)
   },
     removeToken: (state) => {
       Session.remove("token");
@@ -51,11 +51,26 @@ export const authSlice = createSlice({
    removeSalons:(state)=>{
     Session.remove("salons");
     state.salons =[];
-   }
-
+   },
+   removeSalonID: (state) => {
+    Session.remove("salonId");
+    state.salonId = null;
+  },
+   removeUserInfo: (state) => {
+    Session.remove("UserInfo::>");
+    Session.remove("userStatus::>");
+    Session.remove("userType::>");
+  state.userInfo = {
+    profileStatus: 0,
+    email: "",
+    phoneNumber: "",
+    role: "",
+    userType: "",
+  };
+  },
   },
 })
 
-export const { storeToken,setSalonID,removeToken,removeSalonID, setUserInfo , storeSalons,removeSalons} = authSlice.actions
+export const { storeToken,setSalonID,removeUserInfo,removeToken,removeSalonID, setUserInfo , storeSalons,removeSalons} = authSlice.actions
 
 export default authSlice.reducer

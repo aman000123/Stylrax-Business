@@ -1,174 +1,136 @@
-import styles from "../ManageStaff/ManageStaff.module.css";
-import stylistimg1 from "../../../assets/image/stylistimg1.png"
-import { Col } from 'react-bootstrap';
-import { useFormik } from "formik"
+import React, { useRef } from "react";
+import { Formik, Form, Field, ErrorMessage} from "formik"; // Import setFieldValue
+import { Col } from "react-bootstrap";
 import { addStaffSchema } from "../../../utils/schema.js";
 import { addStaff } from "../../../api/salon.management.js";
 import Notify from "../../../utils/notify.js";
 import { RxCross2 } from "react-icons/rx";
-import { useState } from "react";
+import { handleOnFileSelect } from "../../account/FileUploader.jsx";
+import stylistimg1 from "../../../assets/image/stylistimg1.png"
 import Session from "../../../service/session.js";
+import { RiEditCircleLine } from "react-icons/ri";
+import InputFile from "../../../ux/controls/InputFile.jsx";
+import styles from "../ManageStaff/ManageStaff.module.css";
+
 const initialValues = {
-    name: "",
-    mobileNumber: "",
-    dob: "",
-    email: "",
-    gender: "",
-    category: "",
+  name: "",
+  mobileNumber: "",
+  dob: "",
+  email: "",
+  gender: "",
+  category: "",
+  profileImageUrl: "",
 };
 
-function AddStaff({onClose}) {
-    const [open, setOpen] = useState(false)
-    const salonId = Session.get("salonId")
-    const { values, errors, touched, handleBlurr, handleChange, handleSubmit } = useFormik({
-        initialValues,
-        validationSchema: addStaffSchema,
-        onSubmit: async(values, action) => {
-            console.log(values);
-            //action.resetForm();
-            try {
-                const data = {
-                        firstName:values.name,
-                        lastName:"Prasad",
-                        email:values.email,
-                        dataOfBirth:values.dob,
-                        gender:values.gender,
-                        profileImageUrl:"someUrl",
-                        specialization:"All Rounder",
-                        phoneNumber:values.mobileNumber,
-                        aadharFrontUrl:"aadharFrontUrl",
-                        aadharBackUrl: "aadharBackUrl"
-                
-                }
-                const Staff = await addStaff(salonId,data);
-                console.log("addStaff::>",Staff)
-                onClose()
-                
-            } catch (error) {
-                Notify.error(error.message);  
-            }
+function AddStaff({ onClose }) {
+  const salonId = Session.get("salonId");
 
-        }
-    });
-    const handleClose = () => {
-       onClose();
-    };
+  const handleClose = () => {
+    onClose();
+  };
 
-    return (
-        <>
-     
-        <Col md={4}>
-            <div className={styles.popupFormDiv}>
-                <div className={styles.popupFormImgDiv}>
-                    <span>Staff</span>
-                    <div onClick={handleClose} className={styles.crossIcon}><RxCross2 /></div>             
-                    <img src={stylistimg1} alt='' />
-                </div>
+  const handleSubmit = async (values) => {
+    try {
+      const data = {
+        firstName: values.name,
+        lastName: "Prasad",
+        email: values.email,
+        dataOfBirth: values.dob,
+        gender: values.gender,
+        profileImageUrl: values.profileImageUrl,
+        specialization: "All Rounder",
+        phoneNumber: values.mobileNumber,
+        aadharFrontUrl: "aadharFrontUrl",
+        aadharBackUrl: "aadharBackUrl",
+      };
+      const Staff = await addStaff(salonId, data);
+      console.log("addStaff::>", Staff);
+      onClose();
+    } catch (error) {
+      Notify.error(error.message);
+    }
+  };
 
-                <form className={styles.popupForm} onSubmit={handleSubmit}>
-                    <input
-                        type='text'
-                        placeholder='Name'
-                        name='name'
-                        value={values.name}
-                        onChange={handleChange}
-                        onBlur={handleBlurr}
-                    />
+  return (
+    <Col md={4}>
+      <div className={styles.popupFormDiv}>
+        <div className={styles.popupFormImgDiv}>
+          <span>Staff</span>
+          <div onClick={handleClose} className={styles.crossIcon}>
+            <RxCross2 />
+          </div>
+          {/* <img src={stylistimg1} alt='' />
+          <RiEditCircleLine/> */}
+        </div>
 
-                    {
-                        errors.name && touched.name ? (
-                            <p className={styles.formError}>{errors.name}</p>
-                        ) : null
-                    }
+        <Formik
+          initialValues={initialValues}
+          validationSchema={addStaffSchema}
+          onSubmit={handleSubmit}
+        >
+          {({ setFieldValue }) => ( 
+            <Form className={styles.popupForm}>
+              <Field type="text" placeholder="Name" name="name" />
+              <ErrorMessage
+                name="name"
+                component="div"
+                className={styles.formError}
+              />
 
-                    <input
-                        type='text'
-                        placeholder='Mobile Number'
-                        name='mobileNumber'
-                        value={values.mobileNumber}
-                        onChange={handleChange}
-                        onBlur={handleBlurr}
-                    />
-                    {
-                        errors.mobileNumber && touched.mobileNumber ? (
-                            <p className={styles.formError}>{errors.mobileNumber}</p>
-                        ) : null
-                    }
+              <Field
+                type="text"
+                placeholder="Mobile Number"
+                name="mobileNumber"
+              />
+              <ErrorMessage
+                name="mobileNumber"
+                component="div"
+                className={styles.formError}
+              />
 
-                    <input
-                        type='text'
-                        placeholder='Date of Birth'
-                        name="dob"
-                        value={values.dob}
-                        onChange={handleChange}
-                        onBlur={handleBlurr}
-                    />
-                    {
-                        errors.dob && touched.dob ? (
-                            <p className={styles.formError}>{errors.dob}</p>
-                        ) : null
-                    }
+              <Field type="text" placeholder="Date of Birth" name="dob" />
+              <ErrorMessage
+                name="dob"
+                component="div"
+                className={styles.formError}
+              />
 
-                    <input
-                        type='text'
-                        placeholder='Email Id'
-                        name="email"
-                        value={values.email}
-                        onChange={handleChange}
-                        onBlur={handleBlurr}
-                    />
-                    {
-                        errors.email && touched.email ? (
-                            <p className={styles.formError}>{errors.email}</p>
-                        ) : null
-                    }
+              <Field type="text" placeholder="Email Id" name="email" />
+              <ErrorMessage
+                name="email"
+                component="div"
+                className={styles.formError}
+              />
 
-                    <input
-                        type='text'
-                        placeholder='Gender'
-                        name="gender"
-                        value={values.gender}
-                        onChange={handleChange}
-                        onBlur={handleBlurr}
-                    />
-                    {
-                        errors.gender && touched.gender ? (
-                            <p className={styles.formError}>{errors.gender}</p>
-                        ) : null
-                    }
+              <Field type="text" placeholder="Gender" name="gender" />
+              <ErrorMessage
+                name="gender"
+                component="div"
+                className={styles.formError}
+              />
 
-                    <input
-                        type='text'
-                        placeholder='Category'
-                        name="category"
-                        value={values.category}
-                        onChange={handleChange}
-                        onBlur={handleBlurr}
-                    />
-
-                    {
-                        errors.category && touched.category ? (
-                            <p className={styles.formError}>{errors.category}</p>
-                        ) : null
-                    }
-
-                    <div className={styles.popupFormButton}>
-                        <button className={styles.buttonOne} type="submit">Submit</button>
-                    </div>
-                </form>
-
-
-            </div>
-        </Col>
-                
-                
-                </>
-    )
+              <Field type="text" placeholder="Category" name="category" />
+              <ErrorMessage
+                name="category"
+                component="div"
+                className={styles.formError}
+              />
+              <div className={styles.staffImage}>
+                <label>Profile Image
+              <InputFile name="profileImageUrl"  onFileSelect={(e) => handleOnFileSelect(e, "profileImageUrl", setFieldValue)} className={styles.iconE}/>
+              </label>
+              </div>
+              <div className={styles.popupFormButton}>
+                <button className={styles.buttonOne} type="submit">
+                  Submit
+                </button>
+              </div>
+            </Form>
+          )}
+        </Formik>
+      </div>
+    </Col>
+  );
 }
 
-export default AddStaff
-
-
-
-
-
+export default AddStaff;

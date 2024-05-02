@@ -71,7 +71,8 @@ export const salonProfileSchema = Yup.object().shape({
  panCardImageUrl: Yup.string().required("Please upload pan image"),
  aadharFrontUrl: Yup.string().required("Please upload aadhar front image"),
  aadharBackUrl: Yup.string().required("Please upload aadhar back image"),
- 
+ profileImageUrl: Yup.string().required("Please upload profile image"),
+
 })
 
 //  Bank Details schema
@@ -90,10 +91,13 @@ export const bankSchema = Yup.object({
 export const addStaffSchema = Yup.object({
   name: Yup.string().min(3).max(15).required("Please enter valid Account Name"),
   mobileNumber: Yup.string().matches(/^[0-9]{10}$/, 'Invalid phone number').required("Please enter  phone number"),
-  dob: Yup.date().max(new Date(), 'Date of birth must be in the past').required("Please enter your DOB"),
-  email: Yup.string().email().required("Please enter your email"),
+  dob: Yup.date()
+  .max(getMinDOBDate(), `You must be at least ${MIN_AGE} years old`) ,
+   email: Yup.string().email().required("Please enter your email"),
   gender: Yup.string().min(4).max(15).required("Please select your gender"),
   category: Yup.string().min(3).max(15).required("Enter Valid Category"),
+  profileImageUrl: Yup.string().required("Please upload profile image"),
+
 });
 
 //add time

@@ -46,11 +46,11 @@ ul {
 
 ul li {
   padding-left: 1em;
-  text-indent: -1em;
+  /* text-indent: -1em; */
 }
 
 ul li::before {
-  content: "-";
+  /* content: "-"; */
   padding-right: 0.5em;
 }
 .meetSpan{

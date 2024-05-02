@@ -5,9 +5,10 @@ import { Paper, Button } from '@mui/material';
 import { IoMdAddCircle } from "react-icons/io";
 import AddService from '../AddService/AddService';
 import ViewMore from '../Viewmore/ViewMore';
-import { salonService, serviceCategory } from '../../../api/salon.management';
+//import {serviceCategory } from '../../../api/salon.management';
 import Notify from "../../../utils/notify";
 import Session from '../../../service/session';
+import { singleSalon } from "../../../api/salon.api";
 
 const data = [
     {
@@ -28,9 +29,12 @@ function Services() {
     useEffect(() => {
         const fetchServices = async () => {
             try {
-                const res = await salonService(salonId);
-                setServices(res.data);
-                Notify.success(res.data.message);
+                const response = await singleSalon(salonId);
+                const services = response.data.services;
+                console.log("salon services::>", services);
+
+                setServices(services);
+               // Notify.success(services.data.message);
             } catch (error) {
                 Notify.error(error.message);
             }
@@ -38,18 +42,21 @@ function Services() {
         fetchServices();
     }, [salonId]);
 
-    useEffect(() => {
-        const fetchCategories = async () => {
-            try {
-                const res = await serviceCategory();
-                Notify.success(res.data.message);
-            } catch (error) {
-                Notify.error(error.message);
-            }
-        };
-        fetchCategories();
-    }, []);
+    // useEffect(() => {
+    //     const fetchCategories = async () => {
+    //         try {
+    //             const res = await serviceCategory();
+    //             Notify.success(res.data.message);
+    //         } catch (error) {
+    //             Notify.error(error.message);
+    //         }
+    //     };
+    //     fetchCategories();
+    // }, []);
 
+    const handleCloseViewMore = () => {
+        setHaircut(false);
+    };
     const handleViewMore = (id) => {
         setSelectedStaffId(id);
         setHaircut(true);
@@ -66,7 +73,7 @@ function Services() {
     return (
         <div>
             {haircut ? (
-                <ViewMore id={selectedStaffId} onViewMore={() => setHaircut(false)} onClose={()=> setAddServiceVisible(false)}/>
+                <ViewMore id={selectedStaffId} onViewMore={() => setHaircut(false)} onClose={handleCloseViewMore}/>
             ) : (
                 <div className={styles.secDiv}>
                     {addServiceVisible ? (
@@ -74,7 +81,7 @@ function Services() {
                     ) : (
                         <div className={styles.addService}>
                             <div className={styles.services}>
-                                {services.map((service, index) => (
+                                {services?.map((service, index) => (
                                     <Paper className={styles.paper} key={index}>
                                         <div className={styles.imgDiv}>
                                         <img src={servicesimg} alt='' />
@@ -83,6 +90,7 @@ function Services() {
                                             <p>{service.textOne}<br />
                                                 <span className={styles.spanOne}>{service.serviceName}</span><br />
                                                 <span className={styles.spanOne}>{service.servicePrice}</span><br />
+
                                                 <span className={styles.spanTwo}>
                                                     <button onClick={() => handleViewMore(service.id)}>View All</button>
                                                 </span>

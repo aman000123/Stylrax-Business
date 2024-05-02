@@ -1,10 +1,8 @@
 import styles from "../SalonOwnerDetails/SalonOwnerDetails.module.css";
 import salonownerdetailimg from "../../../assets/image/salonownerdetailimg.png";
-import { Form, Formik, Field, ErrorMessage } from "formik";
+import { Form, Formik, Field,} from "formik";
 import { salonProfileSchema } from "../../../utils/schema.js";
 import { getProfile } from "../../../api/user.api.js";
-//import { handleOnFileSelect } from "./FileUploader";
-import { GrFormUpload } from "react-icons/gr";
 import { useEffect, useState } from "react";
 import Notify from '../../../utils/notify.js'
 const initialValues = {
@@ -18,30 +16,7 @@ const initialValues = {
 
 function SalonOwnerDetails() {
   const [details, setDetails] = useState({});
-  // const handleSubmit = async (values) => {
-  //   try {
-  //     const data = {
-  //       profileType: "Salon",
-  //       firstName: values.firstName,
-  //       middleName: values.middleName,
-  //       lastName: values.lastName,
-  //       email: values.email,
-  //       dataOfBirth: values.dob,
-  //       gender: values.gender,
-  //       panCardImageUrl: "someurl",
-  //       aadharFrontUrl: "someurl",
-  //       aadharBackUrl: "someurl",
-  //       profileImageUrl: "someUrl",
-  //       serviceType: "Male",
-  //     };
-  //     const response = await createProfile(data);
-  //     console.log("resssssss----->",response);
-  //     console.log("Form submitted successfully");
-  //     //action.resetForm();
-  //   } catch (error) {
-  //     console.error("There was an error submitting the form:", error);
-  //   }
-  // };
+
 
   useEffect(() => {
     const fetchUserDetail = async () => {
@@ -52,7 +27,6 @@ function SalonOwnerDetails() {
 
         console.log("user", details);
       } catch (error) {
-        // console.log("Error:::>",error);
         Notify.error(error.message);
       }
     }
@@ -62,10 +36,8 @@ function SalonOwnerDetails() {
 
   return (
     <div className={styles.mainDiv}>
-    <div className={styles.imgDiv}>
-      <div>
-        <img src={salonownerdetailimg} alt=""></img>
-      </div>
+      <div >
+      <img src={details.profileImageUrl} className={styles.imgDiv}/>
     </div>
     <Formik
       initialValues={initialValues}
@@ -82,11 +54,7 @@ function SalonOwnerDetails() {
         />
         <br />
 
-        <ErrorMessage
-          name="firstName"
-          className={styles.formError}
-          component="div"
-        />
+      
 
         <label className={styles.lab}> Middle Name</label>
         <br />
@@ -98,11 +66,7 @@ function SalonOwnerDetails() {
         />
         <br />
 
-        <ErrorMessage
-          name="middleName"
-          className={styles.formError}
-          component="div"
-        />
+       
 
         <label className={styles.lab}> Last Name</label>
         <br />
@@ -114,11 +78,6 @@ function SalonOwnerDetails() {
         />
         <br />
 
-        <ErrorMessage
-          name="lastName"
-          className={styles.formError}
-          component="div"
-        />
 
         <label className={styles.lab}> Email ID</label>
         <br />
@@ -126,15 +85,11 @@ function SalonOwnerDetails() {
           type="email"
           placeholder={details.email}
           name="email"
-          className={styles.email}
+          className={styles.inputs}
         />
         <br />
 
-        <ErrorMessage
-          name="email"
-          className={styles.formError}
-          component="div"
-        />
+       
 
         <label className={styles.lab}> Date of Birth</label>
         <br />
@@ -142,15 +97,10 @@ function SalonOwnerDetails() {
           type="text"
           placeholder={details.dataOfBirth}
           name="dataOfBirth"
-          className={styles.dob}
+          className={styles.inputs}
         />
         <br />
 
-        <ErrorMessage
-          name="dataOfBirth"
-          className={styles.formError}
-          component="div"
-        />
 
         <label className={styles.lab}>
           Gender
@@ -163,11 +113,7 @@ function SalonOwnerDetails() {
           >
           </Field>
           <br />
-          <ErrorMessage
-            name="gender"
-            className={styles.formError}
-            component="div"
-          />
+        
         </label>
         <br />
 

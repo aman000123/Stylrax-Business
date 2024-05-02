@@ -4,7 +4,7 @@ import { PiUserCircleLight } from "react-icons/pi";
 import { IoLogOutOutline } from "react-icons/io5";
 import { Paper } from '@mui/material';
 import { useDispatch } from 'react-redux';
-import { removeToken } from '../../../store/auth.slice';
+import { removeSalonID, removeSalons, removeToken, removeUserInfo } from '../../../store/auth.slice';
 import styles from "../UserProfile/UserProfile.module.css";
 import { useNavigate } from 'react-router-dom';
 const UserProfile = () => {
@@ -23,6 +23,9 @@ const UserProfile = () => {
 
   const handleLogout = () => {
     dispatch(removeToken());
+    dispatch(removeUserInfo());
+    dispatch(removeSalonID());
+    dispatch(removeSalons());
     navigate("/home")
     console.log("Logout");
   };
@@ -39,6 +42,8 @@ const UserProfile = () => {
             <div className='d-flex'>
             <Avatar alt="Demy Sharp" src="/static/images/avatar/1.jpg" className={styles.avtar_img} />
             <li className='mx-3'>D</li>
+            {/* <Avatar alt={`${firstName} ${lastName}`} src="/static/images/avatar/1.jpg" tabIndex={-1}/> */}
+            {/* <li className='mx-3'>{firstName.charAt(0).toUpperCase()}</li> */}
             </div>
             <div className='d-flex'>
             <PiUserCircleLight className={styles.icon}/>

@@ -172,13 +172,13 @@ function ViewAllAddService({ id, onClose }) {
         <div className={styles.popupFormDiv}>
           <div className={styles.popupFormImgDiv}>
             <span>Staff</span>
-            <img src={stylistimg1} alt="" />
+            <img src={staff.profileImageUrl} alt="" className={styles.profile}/>
           </div>
 
           <form className={styles.popupForm}>
             <input
               type="text"
-              placeholder={`${staff.firstName} ${staff.lastName}`}
+              placeholder={`${staff.firstName}`}
               readOnly
             />
             <input type="text" placeholder={staff.phoneNumber} readOnly />

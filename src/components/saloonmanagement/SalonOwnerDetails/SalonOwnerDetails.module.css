@@ -7,6 +7,9 @@
 .imgDiv{
     display: flex;
     justify-content: space-between;
+    height: 180px;
+    width: 180px;
+    border-radius: 15px;
 }
 
 .text{
@@ -29,6 +32,7 @@
     color: #BEBEBE;
     border: 2px solid #BEBEBE;
     border-radius: 5px;
+    outline: none;
 }
 
 .Btn{
@@ -151,6 +155,7 @@
     }
 }
 .documents{
-    height: 150px;
-    width: 200px;
+    padding-top: 15px;
+    height: 170px;
+    width: 170px;
 }
