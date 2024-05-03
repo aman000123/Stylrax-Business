@@ -7,7 +7,7 @@ import { Form, Formik, Field, ErrorMessage } from "formik";
 import Notify from "../../../utils/notify";
 import { addServiceSchema } from "../../../utils/schema";
 import Session from "../../../service/session";
-function AddService() {
+function AddService({onClose}) {
   const genderOptions = [
     { value: "", text: "Select" },
     { value: "male", text: "Male" },
@@ -40,6 +40,7 @@ function AddService() {
 
       console.log("response:::>", res);
       Notify.success("Service added");
+      onClose();
     } catch (error) {
       Notify.error(error.message);
     }

@@ -8,12 +8,32 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DateCalendar } from '@mui/x-date-pickers/DateCalendar';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import main from "../pastappointment/PastAppointment.module.css";
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { completedAppointments } from "../../../api/appointments.api";
+import Session from "../../../service/session";
+import Notify from "../../../utils/notify";
+
 const PastAppointment = () => {
   const [selectedDate, setSelectedDate] = useState(dayjs());
+  const [completed, setCompleted] = useState([]);
+  const salonId = Session.get('salonId')
   const handleDateChange = (newDate) => {
     setSelectedDate(newDate);
   };
+
+  useEffect(()=>{
+    const appointments = async()=>{
+      try {
+        const response = await completedAppointments(salonId);
+        const completed = response.data;
+        console.log("completed::>",completed)
+        setCompleted(completed);
+      } catch (error) {
+        Notify.error(error.message);
+      }
+    };
+    appointments();
+  }, [salonId])
   return (
     <div>
      
@@ -48,14 +68,15 @@ const PastAppointment = () => {
         <Col  md={12} lg={8} sm={12}   className={main.userDiv}>
         
           <Row>
-            {appointments.slice(0, 12).map((appointment, index) => (
+            {completed.slice(0,12).map((appointment, index) => (
               <Col md={5} sm={5} xs={5}  key={index} className='me-4'>
                 <Row className="mb-2">
                   <div className={main.userInfo}>
                     <Col md={4}>
                       <div>
                         <img
-                          src={appointment.userImage}
+                           //src={appointment.userImage}
+                           src={appointment.user.profileImageUrl}
                           className={main.userImage}
                           alt="User"
                         />
@@ -64,19 +85,19 @@ const PastAppointment = () => {
                     <Col md={3}>
                       <p className={main.user}>
                         <span className={main.userName}>
-                          {appointment.name}
+                          `{`${appointment.user.firstName} ${appointment.user.lastName}`}
                         </span>
                         <br />
                         <span>{appointment.service}</span>
                         <br />
-                        <span>{appointment.time}<span className={main.gender}>Male</span></span>                        <br />
-                        <span>{appointment.location}</span>&nbsp;
-                          <span className={main.locationDistance}><GrFormLocation className={main.location}/>1.5km</span>
+                        <span>{appointment.startTime}<span className={main.gender}>{appointment.serviceType}</span></span>                        <br />
+                        <span>{appointment.date}</span>&nbsp;
+                          {/* <span className={main.locationDistance}><GrFormLocation className={main.location}/>1.5km</span> */}
                       </p>
                       {/* <button className={main.accept}>Accept</button> */}
                     </Col>
                     <Col md={2}>
-                      <p className={main.payment}>
+                      {/* <p className={main.payment}>
                         {appointment.paymentAmount}
                         <br />
                         <span>Payment</span>
@@ -84,7 +105,7 @@ const PastAppointment = () => {
                         <span className={main.paymentType}>
                           {appointment.paymentType}
                         </span>
-                      </p>
+                      </p> */}
                      
                       {/* <button className={main.decline}>Decline</button> */}
                     </Col>

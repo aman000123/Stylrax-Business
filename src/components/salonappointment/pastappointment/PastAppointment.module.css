@@ -16,13 +16,15 @@
     margin-left: 60px;
     margin-top: -420px;
 }
-@media(max-width:1440px){
+@media(max-width:1600px){
     .calendar{
         margin-left: auto;
+        margin-top: -10px;
     }}
   @media(max-width:1399.9px){
     .calendar{
-        margin-top: -345px;
+        /* margin-top: -345px; */
+        margin-top: -10px;
     }
   }
 @media(max-width:1199.9px){

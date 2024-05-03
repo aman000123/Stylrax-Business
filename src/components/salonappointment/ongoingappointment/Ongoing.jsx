@@ -2,8 +2,35 @@ import {Row, Col } from "react-bootstrap";
 import styles from "../upcomingappointment/UpComing.module.css";
 import { appointments} from "../../../data/appointment/Appointment";
 import { GrFormLocation } from "react-icons/gr";
+import { useEffect, useState } from "react";
+import Session from "../../../service/session";
+import { ongoingAppointments } from "../../../api/appointments.api";
+import Notify from "../../../utils/notify";
+
 const Ongoing = () => {
+  const currentDate = new Date();
+
+  // Format it as "yyyy-mm-dd"
+  const formattedDate = currentDate.toISOString().split('T')[0];
+  console.log("date::>",formattedDate)
+
+  const [ongoing, setOngoing] = useState([]);
+  const salonId = Session.get('salonId')
+  useEffect(()=>{
+    const appointments = async()=>{
+      try {
+        const response = await ongoingAppointments(salonId,formattedDate);
+        const ongoing = response.data;
+        console.log(" ongoing completed::>",ongoing)
+        setOngoing(ongoing);
+      } catch (error) {
+        Notify.error(error.message);
+      }
+    };
+    appointments();
+  }, [salonId])
   return (
+    
     
     <Row>
         {appointments.slice(0, 10).map((appointment, index) => (

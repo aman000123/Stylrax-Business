@@ -1,6 +1,6 @@
 import HTTP from "../service/http";
 import { methods } from "../constants";
-import { __endpoint_addSalonService, __endpoint_addStaff, __endpoint_getSalonSingleService, __endpoint_getStaff, __endpoint_removeStaff, __endpoint_salonBusinessTime, __endpoint_salonService, __endpoint_serviceCategory } from "../constants/endpoints";
+import { __endpoint_addSalonService, __endpoint_addStaff, __endpoint_getSalonSingleService, __endpoint_getStaff, __endpoint_removeStaff, __endpoint_salonBusinessTime, __endpoint_salonGallery, __endpoint_salonService, __endpoint_serviceCategory } from "../constants/endpoints";
 
 //salon staff
 export const addStaff = (salonId,payload) => HTTP.Request(methods.POST, __endpoint_addStaff(salonId) , payload);
@@ -20,3 +20,6 @@ export const serviceEdit = (salonId,id,payload) => HTTP.Request(methods.PUT, __e
 
 export const addSalonService = (salonId,payload) => HTTP.Request(methods.POST, __endpoint_addSalonService(salonId) , payload);
 export const salonTime = (salonId,payload) => HTTP.Request(methods.POST, __endpoint_salonBusinessTime(salonId) , payload);
+
+//salon gallery
+export const salonGallery = (salonId,payload) => HTTP.Request(methods.GET, __endpoint_salonGallery(salonId) , payload);

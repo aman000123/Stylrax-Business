@@ -54,6 +54,7 @@ function ViewMore({ onClose, id }) {
       await serviceEdit(salonId, id, values);
       Notify.success("Service Updated Successfully");
       toggleEditMode();
+      onClose();
     } catch (error) {
       Notify.error(error.message);
     }

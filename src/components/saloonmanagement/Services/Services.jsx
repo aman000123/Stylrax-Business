@@ -9,16 +9,9 @@ import ViewMore from '../Viewmore/ViewMore';
 import Notify from "../../../utils/notify";
 import Session from '../../../service/session';
 import { singleSalon } from "../../../api/salon.api";
+import { salonService } from '../../../api/salon.management';
 
-const data = [
-    {
-        img: servicesimg,
-        textOne: "Hair Style",
-        textTwo: "12 Types ",
-        textThree: "View More",
-    },
-    // Add more data items as needed
-];
+
 
 function Services() {
     const [addServiceVisible, setAddServiceVisible] = useState(false);
@@ -29,8 +22,8 @@ function Services() {
     useEffect(() => {
         const fetchServices = async () => {
             try {
-                const response = await singleSalon(salonId);
-                const services = response.data.services;
+                const response = await salonService(salonId);
+                const services = response.data;
                 console.log("salon services::>", services);
 
                 setServices(services);

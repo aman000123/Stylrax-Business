@@ -7,15 +7,18 @@ import { doLogin } from "../../../api/account.api";
 import Notify from "../../../utils/notify";
 import { Field, Formik, ErrorMessage, Form } from "formik";
 import { LoginSchema } from "../../../utils/schema";
+
 const initialValues = {
   phoneNumber: "",
 };
-const LoginForm = ({setActiveStep}) => {
+
+const LoginForm = ({ setActiveStep }) => {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [showOTPSection, setShowOTPSection] = useState(false);
 
-  const onSubmit = async (values) => {
+  const onSubmit = async (values, { setSubmitting }) => {
     try {
+      setSubmitting(true); 
       console.log(values);
       const { phoneNumber } = values;
       const data = {
@@ -30,14 +33,14 @@ const LoginForm = ({setActiveStep}) => {
       setShowOTPSection(true);
     } catch (error) {
       Notify.error(error.message);
+    } finally {
+      setSubmitting(false); 
+      setSubmittingText(false);
     }
   };
 
-  // const handleInputChange = (e) => {
-  //   const { value } = e.target;
-  //   const newValue = value.replace(/[^A-Za-z]/g, "");
-  //   setPhoneNumber(newValue);
-  // };
+  const [submittingText, setSubmittingText] = useState("Submit"); 
+
   return (
     <main className={styles.main}>
       <div className={styles.bg}>
@@ -52,39 +55,47 @@ const LoginForm = ({setActiveStep}) => {
                     <Formik
                       initialValues={initialValues}
                       validationSchema={LoginSchema}
-                      onSubmit={onSubmit}
+                      onSubmit={(values, { setSubmitting }) => {
+                        setSubmitting(true); 
+                        setSubmittingText("Submitting..."); 
+                        onSubmit(values, { setSubmitting }); 
+                      }}
                     >
-                      <Form className={styles.form}>
-                        <div className={styles.formGroup}>
-                          {/* <label className="mb-1">Mobile Number</label> */}
-                          <br />
-                          <Field
-                            type="tel"
-                            name="phoneNumber"
-                            placeholder="Your phone number"
-                            className={styles.input}
-                           // onChange={handleInputChange}
-                           onKeyPress={(e) => {
-                            // Allow only digits (0-9)
-                            const charCode = e.which ? e.which : e.keyCode;
-                            if (charCode > 31 && (charCode < 48 || charCode > 57)) {
-                              e.preventDefault();
-                            }
-                          }}
-                            required
-                          />
-                          <ErrorMessage
-                            component="div"
-                            name="phoneNumber"
-                            className={styles.error}
-                          />
-                        </div>
-                        <div className="d-flex justify-content-center">
-                          <button type="submit" className={`${styles.btn} text-black bg-white`}>
-                            Submit
-                          </button>
-                        </div>
-                      </Form>
+                      {({ isSubmitting }) => (
+                        <Form className={styles.form}>
+                          <div className={styles.formGroup}>
+                            <br />
+                            <Field
+                              type="tel"
+                              name="phoneNumber"
+                              placeholder="Your phone number"
+                              className={styles.input}
+                              onKeyPress={(e) => {
+                                // Allow only digits (0-9)
+                                const charCode = e.which ? e.which : e.keyCode;
+                                if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+                                  e.preventDefault();
+                                }
+                              }}
+                              required
+                            />
+                            <ErrorMessage
+                              component="div"
+                              name="phoneNumber"
+                              className={styles.error}
+                            />
+                          </div>
+                          <div className="d-flex justify-content-center">
+                            <button
+                              type="submit"
+                              className={`${styles.btn} text-black bg-white`}
+                              disabled={isSubmitting} 
+                            >
+                              {submittingText} 
+                            </button>
+                          </div>
+                        </Form>
+                      )}
                     </Formik>
                   </>
                 ) : (

@@ -11,21 +11,27 @@ export const authSlice = createSlice({
       phoneNumber: "",
       role: "",
       userType:"",
-    
+      profileImageUrl: "",
+      firstName: "",
     },
   salons:[] 
   },
   reducers: {
     storeToken: (state, action) => {
-      const { token, ...userInfo } = action.payload; 
+      const { token,profileImageUrl,firstName, ...userInfo } = action.payload; 
+      console.log("profile Image::>",profileImageUrl)
+      console.log("First Name::>",firstName)
+
       console.log("token::>",token)
       console.log("profile status::>",userInfo.profileStatus)
 
       state.token = token,
-      state.userInfo = userInfo;
+      state.userInfo = { ...userInfo, profileImageUrl };
       Session.set("token", token);  
       Session.set("userStatus::>",userInfo.profileStatus)
       Session.set("userType::>",userInfo.userType)
+      Session.set("profileImageUrl", profileImageUrl); 
+      Session.set("firstName", firstName); 
 
     },
    
@@ -60,12 +66,15 @@ export const authSlice = createSlice({
     Session.remove("UserInfo::>");
     Session.remove("userStatus::>");
     Session.remove("userType::>");
+    Session.remove("profileImageUrl");
+    Session.remove("firsttName");
   state.userInfo = {
     profileStatus: 0,
     email: "",
     phoneNumber: "",
     role: "",
     userType: "",
+    profileImageUrl: ""
   };
   },
   },

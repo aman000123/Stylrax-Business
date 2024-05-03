@@ -29,6 +29,9 @@
 }
 .avtar_img{
   margin-left: -5px; 
+  height: 40px;
+  width: 40px;
+  border-radius: 50px;
 }
 .profile {
     white-space: nowrap;
