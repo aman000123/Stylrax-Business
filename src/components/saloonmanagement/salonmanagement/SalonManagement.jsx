@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Row, Col } from "react-bootstrap";
 import styles from "../salonmanagement/SalonManagement.module.css";
 import orangeSpecs from "../../../assets/image/orangeSpecs.png";
@@ -12,9 +12,29 @@ import SalonTime from "../SalonTime/SalonTime";
 import SalonBanner from "../SalonGallery/SalonGallery";
 import Navbar from "../../saloondashboard/navbar/Navbar";
 import { navItems } from "../../../data/navdata/Data";
+import Session from "../../../service/session";
+import { singleSalon } from "../../../api/salon.api";
+import Notify from "../../../utils/notify.js";
 
 function SalonManagement() {
   const [activeButton, setActiveButton] = useState("Salon Details");
+
+  const [salonDetails, setSalonDetails] = useState([]);
+  const salonId = Session.get("salonId");
+  useEffect(() => {
+    const getSalon = async () => {
+      try {
+        const response = await singleSalon(salonId);
+        const salonDetails = response.data;
+        console.log("salon management::>", salonDetails);
+        setSalonDetails(salonDetails);
+      } catch (error) {
+        Notify.error(error.message);
+      }
+    };
+
+    getSalon();
+  }, [salonId]);
   const handleButtonClick = (buttonName) => {
     setActiveButton(buttonName);
   };
@@ -61,10 +81,12 @@ function SalonManagement() {
     ),
     "Salon gallery": (
       <Col md={10} className={styles.coltwo}>
-        <SalonBanner />
+        <SalonBanner salonDetails={salonDetails}/>
       </Col>
     ),
   };
+
+
   return (
     <>
       <Navbar data={navItems} />

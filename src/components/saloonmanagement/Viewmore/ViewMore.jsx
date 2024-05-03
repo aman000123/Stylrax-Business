@@ -97,6 +97,10 @@ function ViewMore({ onClose, id }) {
                 placeholder={!editable ? service.serviceName : "Service Name"}
                 name="serviceName"
                 disabled={!editable}
+                style={{
+                  color: editable ? '#000' : '#888', 
+                   borderColor: editable ? '#000' : '#ddd' 
+                }}
               />
               <Field
                 type="text"
@@ -118,6 +122,10 @@ function ViewMore({ onClose, id }) {
                 placeholder={!editable ? service.type : "Type"}
                 name="type"
                 disabled={!editable}
+                style={{
+                  color: editable ? '#000' : '#888', 
+                   borderColor: editable ? '#000' : '#ddd' 
+                }}
               />
               <div className={styles.popupFormButton}>
                 {!editable ? (

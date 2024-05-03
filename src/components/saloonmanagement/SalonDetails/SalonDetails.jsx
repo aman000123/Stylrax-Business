@@ -27,7 +27,7 @@ function SalonDetails() {
     <div className={styles.mainDiv}>
       <div className={styles.imgDiv}>
         <div>
-          <img src={salondetailimg} alt=""></img>
+          <img src={salondetailimg} alt="" className={styles.imgDiv}/>
         </div>
       </div>
 

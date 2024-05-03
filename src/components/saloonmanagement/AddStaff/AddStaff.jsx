@@ -1,4 +1,3 @@
-import React, { useRef } from "react";
 import { Formik, Form, Field, ErrorMessage} from "formik"; // Import setFieldValue
 import { Col } from "react-bootstrap";
 import { addStaffSchema } from "../../../utils/schema.js";
@@ -6,9 +5,7 @@ import { addStaff } from "../../../api/salon.management.js";
 import Notify from "../../../utils/notify.js";
 import { RxCross2 } from "react-icons/rx";
 import { handleOnFileSelect } from "../../account/FileUploader.jsx";
-import stylistimg1 from "../../../assets/image/stylistimg1.png"
 import Session from "../../../service/session.js";
-import { RiEditCircleLine } from "react-icons/ri";
 import InputFile from "../../../ux/controls/InputFile.jsx";
 import styles from "../ManageStaff/ManageStaff.module.css";
 
@@ -117,7 +114,7 @@ function AddStaff({ onClose }) {
               />
               <div className={styles.staffImage}>
                 <label>Profile Image
-              <InputFile name="profileImageUrl"  onFileSelect={(e) => handleOnFileSelect(e, "profileImageUrl", setFieldValue)} className={styles.iconE}/>
+              <InputFile name="profileImageUrl"  onFileSelect={(e) => handleOnFileSelect(e, "profileImageUrl", setFieldValue)} className={styles.custom}/>
               </label>
               </div>
               <div className={styles.popupFormButton}>

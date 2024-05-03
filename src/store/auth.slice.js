@@ -67,14 +67,15 @@ export const authSlice = createSlice({
     Session.remove("userStatus::>");
     Session.remove("userType::>");
     Session.remove("profileImageUrl");
-    Session.remove("firsttName");
+    Session.remove("firstName");
   state.userInfo = {
     profileStatus: 0,
     email: "",
     phoneNumber: "",
     role: "",
     userType: "",
-    profileImageUrl: ""
+    profileImageUrl: "",
+    firstName: "",
   };
   },
   },

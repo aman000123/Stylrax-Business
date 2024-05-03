@@ -23,10 +23,10 @@ function Services() {
         const fetchServices = async () => {
             try {
                 const response = await salonService(salonId);
-                const services = response.data;
-                console.log("salon services::>", services);
+                const servicesData = response.data;
+                console.log("salon services::>", servicesData);
 
-                setServices(services);
+                setServices(servicesData);
                // Notify.success(services.data.message);
             } catch (error) {
                 Notify.error(error.message);
@@ -74,7 +74,7 @@ function Services() {
                     ) : (
                         <div className={styles.addService}>
                             <div className={styles.services}>
-                                {services?.map((service, index) => (
+                                {services.map((service, index) => (
                                     <Paper className={styles.paper} key={index}>
                                         <div className={styles.imgDiv}>
                                         <img src={servicesimg} alt='' />
