@@ -45,6 +45,9 @@ code {
   color: #777;
 }
 
+.phone-container .flag-dropdown, .phone-container .flag-dropdown > div{
+  border-radius: 20px !important;
+}
 
 
 /* //////////////////////////  Global Styles  ////////////////////////// */
