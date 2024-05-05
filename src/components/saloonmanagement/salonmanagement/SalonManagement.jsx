@@ -21,12 +21,15 @@ function SalonManagement() {
 
   const [salonDetails, setSalonDetails] = useState([]);
   const salonId = Session.get("salonId");
+  const name = Session.get("firstName");
+
   useEffect(() => {
     const getSalon = async () => {
       try {
         const response = await singleSalon(salonId);
         const salonDetails = response.data;
-        console.log("salon management::>", salonDetails);
+        const image =salonDetails.salon.mainGateImageUrl;
+        console.log("salon management::>", salonDetails.salon.mainGateImageUrl);
         setSalonDetails(salonDetails);
       } catch (error) {
         Notify.error(error.message);
@@ -92,12 +95,11 @@ function SalonManagement() {
       <Navbar data={navItems} />
       <div className={styles.mainDiv}>
         <div className={styles.main}>
-          <div>
-            <img src={orangeSpecs} />
-          </div>
+          <div className={styles.salonImage}>
+          <img src={salonDetails.salon ? salonDetails.salon.mainGateImageUrl : ''} alt="" />          </div>
 
           <div>
-            <p>HairClinic</p>
+            <p>{name}</p>
           </div>
         </div>
 
