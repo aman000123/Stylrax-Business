@@ -1,3 +1,5 @@
+import PhoneInput from "react-phone-input-2";
+import "react-phone-input-2/lib/style.css";
 import Login from "../../home/loginpage/Login";
 import styles from "../../home/loginpage/Login.module.css";
 import { useState } from "react";
@@ -7,20 +9,23 @@ import { doLogin } from "../../../api/account.api";
 import Notify from "../../../utils/notify";
 import { Field, Formik, ErrorMessage, Form } from "formik";
 import { LoginSchema } from "../../../utils/schema";
+import PhoneInputComponent from "./PhoneInputComponent";
 
 const initialValues = {
   phoneNumber: "",
 };
 
-const LoginForm = ({ setActiveStep }) => {
+
+const LoginForm = ({  setActiveStep  }) => {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [showOTPSection, setShowOTPSection] = useState(false);
 
   const onSubmit = async (values, { setSubmitting }) => {
     try {
       setSubmitting(true); 
-      console.log(values);
+      console.log("Submitting form with values:", values);
       const { phoneNumber } = values;
+      console.log("Values ::", values);
       const data = {
         countryCode: "91",
         phoneNumber: phoneNumber,
@@ -28,14 +33,16 @@ const LoginForm = ({ setActiveStep }) => {
         deviceToken: "staff3deviceid",
       };
       const res = await doLogin(data);
-      console.log("response ::>", res.data);
+      console.log("Response:", res.data);
       setPhoneNumber(phoneNumber);
       setShowOTPSection(true);
     } catch (error) {
-      Notify.error(error.message);
-    } finally {
-      setSubmitting(false); 
-      setSubmittingText(false);
+      console.error("Error:", error);
+      if (error.response && error.response.data && error.response.data.message) {
+        setFieldError("phoneNumber", error.response.data.message);
+      } else {
+        Notify.error(error.message);
+      }
     }
   };
 
@@ -51,7 +58,9 @@ const LoginForm = ({ setActiveStep }) => {
               <div className={`${styles.loginBorder} text-white d-flex`}>
                 {!showOTPSection ? (
                   <>
-                    <h3 className={`${styles.login} text-white text-center`}>Please provide your number to login/register with us.</h3>
+                    <h3 className={`${styles.login} text-white text-center`}>
+                      Please provide your number to login/register with us.
+                    </h3>
                     <Formik
                       initialValues={initialValues}
                       validationSchema={LoginSchema}
@@ -61,24 +70,10 @@ const LoginForm = ({ setActiveStep }) => {
                         onSubmit(values, { setSubmitting }); 
                       }}
                     >
-                      {({ isSubmitting }) => (
-                        <Form className={styles.form}>
+                      {({ handleSubmit }) => (
+                        <Form className={styles.form} onSubmit={handleSubmit}>
                           <div className={styles.formGroup}>
-                            <br />
-                            <Field
-                              type="tel"
-                              name="phoneNumber"
-                              placeholder="Your phone number"
-                              className={styles.input}
-                              onKeyPress={(e) => {
-                                // Allow only digits (0-9)
-                                const charCode = e.which ? e.which : e.keyCode;
-                                if (charCode > 31 && (charCode < 48 || charCode > 57)) {
-                                  e.preventDefault();
-                                }
-                              }}
-                              required
-                            />
+                            <PhoneInputComponent />
                             <ErrorMessage
                               component="div"
                               name="phoneNumber"
@@ -89,9 +84,8 @@ const LoginForm = ({ setActiveStep }) => {
                             <button
                               type="submit"
                               className={`${styles.btn} text-black bg-white`}
-                              disabled={isSubmitting} 
                             >
-                              {submittingText} 
+                              Submit
                             </button>
                           </div>
                         </Form>
@@ -99,7 +93,10 @@ const LoginForm = ({ setActiveStep }) => {
                     </Formik>
                   </>
                 ) : (
-                  <Otp phoneNumber={phoneNumber} setActiveStep={setActiveStep}/>
+                  <Otp
+                    phoneNumber={phoneNumber}
+                    setActiveStep={setActiveStep}
+                  />
                 )}
               </div>
             </Col>
@@ -109,5 +106,6 @@ const LoginForm = ({ setActiveStep }) => {
     </main>
   );
 };
+
 
 export default LoginForm;

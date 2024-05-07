@@ -8,6 +8,7 @@ import { storeSalons, storeToken } from "../../../store/auth.slice";
 import PropTypes from "prop-types";
 import { Field, Formik, Form, ErrorMessage } from "formik";
 import { OTPSchema } from "../../../utils/schema";
+import PhoneInputComponent from "../login/PhoneInputComponent";
 
 const initialValues = {
   otp: "",
@@ -107,12 +108,8 @@ const Otp = ({ phoneNumber }) => {
               <div className={styles.formGroup}>
                 <label className="mb-1">Mobile Number</label>
                 <br />
-                <Field
-                  type="text"
-                  className={styles.input}
-                  value={phoneNumber}
-                  readOnly
-                />
+                <PhoneInputComponent value={phoneNumber}
+                  readOnly />
               </div>
               <div className="otp-box d-flex justify-content-center my-3">
                 <OTPInput
