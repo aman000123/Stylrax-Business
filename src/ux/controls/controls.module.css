@@ -15,7 +15,14 @@
     border: 1px solid #858585;
     font-size: 12px;
 }
-
+.control{
+    background-color: transparent; 
+    padding: 5px 10px;
+    border-radius: 20px;
+    border: 1px solid #858585;
+    font-size: 12px;
+    margin-left: -71px;
+}
 
 
 .control__input_error {

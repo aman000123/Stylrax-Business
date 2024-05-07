@@ -25,7 +25,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 170px;
+    gap: 100px;
     background-color: #fff;
     border: 2px solid #909090;
     border-radius: 20px;
@@ -67,6 +67,9 @@
 
 .timeDiv div .spanOne{
     display: block;
+    outline: none;
+    border: none;
+   width: fit-content;
 }
 
 .timeDiv .timeIcon{
@@ -87,7 +90,13 @@
     padding-right: 2px;
     
 }
-
+.addTime{
+    background-color: #000;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    float: right;
+}
 
 @media(max-width:1448px){
     .secDiv{

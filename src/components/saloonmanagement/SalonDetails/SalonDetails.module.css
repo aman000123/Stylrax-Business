@@ -9,8 +9,13 @@
     justify-content: start;
     width: fit-content;
     padding-bottom: 20px;
+   
 }
-
+.salonImage{
+    height: 180px;
+    width: 180px;
+    border-radius: 15px;
+}
 /* .text{
     color: #BEBEBE;
     font-size: 20px;

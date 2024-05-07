@@ -1,16 +1,73 @@
 import styles from "../SalonTime/SalonTime.module.css";
 import { IoTimeSharp } from "react-icons/io5";
-import { FaCircle } from "react-icons/fa";
 import { useEffect, useState } from "react";
 import { salonBusinessTime, salonTime } from "../../../api/salon.management";
 import AddTime from "./AddTime";
 import Session from "../../../service/session";
 import Notify from "../../../utils/notify";
+import Switch from '@mui/material/Switch';
+import { Formik, Form, Field } from 'formik';
+import * as Yup from 'yup';
 
+const openTimeData = [
+    { day: "Monday" },
+    { day: "Tuesday" },
+    { day: "Wednesday" },
+    { day: "Thursday" },
+    { day: "Friday" },
+    { day: "Saturday" },
+    { day: "Sunday" },
+];
+const initialValues = [
+    {
+        day:"Monday",
+        isOpen:"",
+        openTime:"",
+        closeTime:""
+    },
+    {
+        day:"Tuesday",
+        isOpen:"",
+        openTime:"",
+        closeTime:""
+    },
+    {
+        day:"Wednesday",
+        isOpen:"",
+        openTime:"",
+        closeTime:""
+    },
+    {
+        day:"Thursday",
+        isOpen:"",
+        openTime:"",
+        closeTime:""
+    },
+    {
+        day:"Friday",
+        isOpen:"",
+        openTime:"",
+        closeTime:""
+    },
+    {
+        day:"Saturday",
+        isOpen:"",
+        openTime:"",
+        closeTime:""
+    },
+    {
+        day:"Sunday",
+        isOpen:"",
+        openTime:"",
+        closeTime:""
+    },
+]
+console.log("Initial Values:", initialValues);
 function SalonTime() {
-    const [timing, setTiming] = useState([]);
     const salonId = Session.get("salonId");
     const [showAddTimePopup, setShowAddTimePopup] = useState(false);
+    const [add, setAdd] = useState(false);
+    const [timing, setTiming] = useState([]);
 
     useEffect(() => {
         const getSalonTime = async () => {
@@ -34,75 +91,67 @@ function SalonTime() {
         setShowAddTimePopup(!showAddTimePopup);
     }
 
-    const addTime = async () => {
-        try {
-            const data = [
-                {
-                    "day": "Monday",
-                    "isOpen": true,
-                    "openTime": "10:00 AM",
-                    "closeTime": "08:00 PM"
-                },
-                {
-                    "day": "Tuesday",
-                    "isOpen": true,
-                    "openTime": "10:00 AM",
-                    "closeTime": "08:00 PM"
-                },
-                {
-                    "day": "Wednesday",
-                    "isOpen": true,
-                    "openTime": "10:00 AM",
-                    "closeTime": "08:00 PM"
-                }
-            ];
-            const res = await salonTime(salonId, data);
-            Notify.success(res.message);
-        } catch (error) {
-            Notify.error(error.message);
-        }
+   
+
+    const handleSubmit = async (values, { setSubmitting }) => {
+        console.log("Form submitted with values:", values);
+      
     }
 
-    return (
+ return (
         <div className={styles.mainDiv}>
             <div className={styles.actionButton}>
                 <button className={styles.salon}>Salon</button>
-                <button className={styles.doorBuddy}>Doorbuddy</button>
+                <button type="submit" className={styles.addTime} onClick={() => setAdd(!add)}>
+                    {add ? "Save" : "Add"}
+                </button>
             </div>
 
-            {timing?.map((value) => (
-                <div key={value.id} className={styles.secDiv}>
-                    <div className={styles.day}> {value.day} </div>
+            <Formik
+                initialValues={initialValues}
+                onSubmit={handleSubmit}
+            >
+                {({ isSubmitting }) => (
+                    <Form>
+                        {openTimeData.map((value, index) => {
+                            return (
+                                <div key={index} className={styles.secDiv}>
+                                    <div className={styles.day}>{value.day}</div>
 
-                    <div className={styles.timeDiv}>
-                        <div className={styles.height}>
-                            <span className={styles.spanOne}>{value.openTime}</span>
-                            <span className={styles.spanTwo}>open</span>
-                        </div>
+                                    <div className={styles.timeDiv}>
+                                        <div className={styles.height}>
+                                            <Field
+                                                type="text"
+                                                className={styles.spanOne}
+                                            />
+                                            <span className={styles.spanTwo}>Open</span>
+                                        </div>
+                                        <IoTimeSharp className={styles.timeIcon} />
+                                    </div>
 
-                        <IoTimeSharp className={styles.timeIcon}/>
-                    </div>
+                                    <div className={styles.timeDiv}>
+                                        <div className={styles.height}>
+                                            <Field
+                                                type="text"
+                                                className={styles.spanOne}
+                                            />
+                                            <span className={styles.spanTwo}>Close</span>
+                                        </div>
+                                        <IoTimeSharp className={styles.timeIcon} />
+                                    </div>
 
-                    <div className={styles.timeDiv}>
-                        <div className={styles.height}>
-                            <span className={styles.spanOne}>{value.closeTime}</span>
-                            <span className={styles.spanTwo}>Close</span>
-                        </div>
+                                    <div >
+                                        <Switch />
+                                    </div>
+                                </div>
+                            );
+                        })}
 
-                        <IoTimeSharp className={styles.timeIcon}/>
-                    </div>
+                       
+                    </Form>
+                )}
+            </Formik>
 
-                    <div className={styles.circleDiv}>
-                        <FaCircle className={styles.blackCircle} onClick={addTime}/>
-                    </div>
-                </div>
-            ))}
-            
-            {/* <div className={styles.addTime}>
-                <button type="button" className="bg-black text-white rounded p-2 flex-end" onClick={toggleAddTimePopup}>ADD</button>
-            </div> */}
-            
-            {showAddTimePopup && <AddTime onClose={toggleAddTimePopup} />}
         </div>
     )
 }

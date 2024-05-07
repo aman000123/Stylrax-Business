@@ -1,12 +1,13 @@
+import { useState } from "react";
 import styles from "../otp/Otp.module.css";
 import OTPInput from "react-otp-input";
 import Notify from "../../../utils/notify";
 import { useNavigate } from "react-router-dom";
 import { resendOtp, verifyOtp } from "../../../api/account.api";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { storeSalons, storeToken } from "../../../store/auth.slice";
 import PropTypes from "prop-types";
-import { Field, Formik, Form, ErrorMessage } from "formik";
+import { Field, Formik, Form,ErrorMessage } from "formik";
 import { OTPSchema } from "../../../utils/schema";
 import PhoneInputComponent from "../login/PhoneInputComponent";
 
@@ -14,10 +15,10 @@ const initialValues = {
   otp: "",
 };
 
-const Otp = ({ phoneNumber }) => {
+const Otp = ({ phoneNumber}) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-
+  
   const renderInput = (props, index) => (
     <input
       {...props}
@@ -46,38 +47,41 @@ const Otp = ({ phoneNumber }) => {
         otp: values.otp,
       };
 
-      const { data } = await verifyOtp(verifyData);
+      const { data} = await verifyOtp(verifyData);
       const salons = data.salons;
-      console.log("salons::>", salons);
+      console.log("salons::>",salons)
 
       const ProfileStatus = data.profileStatus;
-      console.log("status::>", ProfileStatus);
+      console.log("status::>", ProfileStatus)
       const authData = {
         token: data.authToken,
         email: data.email,
         phoneNumber: data.phoneNumber,
         role: data.role,
-        profileStatus: data.profileStatus,
-        userType: data.userType,
+        profileStatus:data.profileStatus,
+        userType:data.userType,
         profileImageUrl:data.profile.profileImageUrl,
         firstName:data.profile.firstName,
-
       };
-      // if (data.profileStatus === 2 || data.profileStatus === 0) {
-      //   dispatch(storeSalons({ salons: data.salons }));
-      // }
+      if(data.profileStatus===2 || 0){
+        dispatch(storeSalons({ salons: data.salons }));
+
+      }
 
       dispatch(storeToken(authData));
-      console.log(authData);
+      console.log(authData)
       if (data.profileStatus === 3) {
         navigate("/salon/dashboard");
-      } else {
-        navigate("/account/create", { state: { token: data.authToken } });
       }
+     // if (data.profileStatus === 2) {
+        //navigate("/account/create" ,{ state: { token: data.authToken } });
+       // handleBankDetails()
+     // }
+      else {
+        navigate("/account/create" ,{ state: { token: data.authToken } });
+     }
     } catch (error) {
       Notify.error(error.message);
-    } finally {
-      setSubmitting(false); 
     }
   };
 
@@ -115,9 +119,7 @@ const Otp = ({ phoneNumber }) => {
                 <OTPInput
                   value={props.values.otp}
                   onChange={(otp) => {
-                    props.handleChange({
-                      target: { name: "otp", value: otp },
-                    });
+                    props.handleChange({ target: { name: "otp", value: otp } });
                   }}
                   numInputs={4}
                   renderSeparator={<span></span>}
@@ -126,11 +128,7 @@ const Otp = ({ phoneNumber }) => {
                   renderInput={renderInput}
                 />
               </div>
-              <p
-                type="button"
-                onClick={handleResend}
-                className={styles.resend}
-              >
+              <p type="button" onClick={handleResend} className={styles.resend}>
                 Resend
               </p>
               <p
@@ -141,12 +139,12 @@ const Otp = ({ phoneNumber }) => {
                 Clear
               </p>
               <ErrorMessage
-                component="div"
-                name="otp"
-                className={styles.error}
-              />
+                        component="div"
+                        name="otp"
+                        className={styles.error}
+                    />
               <div>
-                <button
+              <button
                   type="submit"
                   className={styles.btn}
                   disabled={props.isSubmitting} // Disable button while submitting

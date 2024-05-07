@@ -91,6 +91,10 @@ function ViewAllAddService({ id, onClose }) {
               type="text"
               placeholder={staff.specialization}
               readOnly={!editable}
+              style={{
+                color: editable ? '#000' : '#888', 
+                 borderColor: editable ? '#000' : '#ddd' 
+              }}
               onChange={(e) => setSpecialization(e.target.value)}
             />
           </form>
