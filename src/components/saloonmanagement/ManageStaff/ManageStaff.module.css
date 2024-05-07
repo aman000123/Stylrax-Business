@@ -169,7 +169,19 @@
 .closeIcon{
     margin-left: 300px;
   }
-
+.gender {
+    border: 2px solid #BEBEBE;
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    padding-bottom: 3px;
+    margin-top: 20px;
+    padding-right: 120px;
+    padding-left: 10px;
+    color:grey;
+    text-decoration-color: #BEBEBE;
+    outline: none;
+}
 
 
 
@@ -317,7 +329,22 @@
     height: auto;
     }
 }
-
+.sweet-alert-container {
+    z-index: 9999; /* Adjust the z-index value as necessary */
+  }
+.popupForm .dob{
+    border: 2px solid #BEBEBE;
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    padding-bottom: 3px;
+    margin-top: 20px;
+    padding-right: 120px;
+    padding-left: 10px;
+    color:grey;
+    text-decoration-color: #BEBEBE;
+    outline: none;   
+}  
 /* view All details */
 
 /* @media(max-width:1286px){

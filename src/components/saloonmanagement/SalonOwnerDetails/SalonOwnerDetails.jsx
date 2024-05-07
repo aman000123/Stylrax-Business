@@ -1,5 +1,4 @@
 import styles from "../SalonOwnerDetails/SalonOwnerDetails.module.css";
-import salonownerdetailimg from "../../../assets/image/salonownerdetailimg.png";
 import { Form, Formik, Field,} from "formik";
 import { salonProfileSchema } from "../../../utils/schema.js";
 import { getProfile } from "../../../api/user.api.js";
@@ -35,7 +34,7 @@ function SalonOwnerDetails() {
   
 
   return (
-    <div className={styles.mainDiv}>
+    <div className={`${styles.mainDiv} ${styles.addSalon}`}>
       <div >
       <img src={details.profileImageUrl} className={styles.imgDiv}/>
     </div>

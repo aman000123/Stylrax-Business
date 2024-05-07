@@ -46,18 +46,18 @@ const DashBoardLayout = () => {
     fetchSalons();
   }, []);
 
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (switchSalonRef.current && !switchSalonRef.current.contains(event.target)) {
-        setShowContent(false); // Close the SwitchSalon component if clicked outside
-      }
-    };
+  // useEffect(() => {
+  //   const handleClickOutside = (event) => {
+  //     if (switchSalonRef.current && !switchSalonRef.current.contains(event.target)) {
+  //       setShowContent(false); // Close the SwitchSalon component if clicked outside
+  //     }
+  //   };
 
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
-  }, [switchSalonRef]);
+  //   document.addEventListener('mousedown', handleClickOutside);
+  //   return () => {
+  //     document.removeEventListener('mousedown', handleClickOutside);
+  //   };
+  // }, [switchSalonRef]);
 
   return (
     <>

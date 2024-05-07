@@ -92,7 +92,8 @@ export const addStaffSchema = Yup.object({
   name: Yup.string().min(3).max(15).required("Please enter valid Account Name"),
   mobileNumber: Yup.string().matches(/^[0-9]{10}$/, 'Invalid phone number').required("Please enter  phone number"),
   dob: Yup.date()
-  .max(getMinDOBDate(), `You must be at least ${MIN_AGE} years old`) ,
+  .max(getMinDOBDate(), `You must be at least ${MIN_AGE} years old`)
+ .required("Date of birth is required"),
    email: Yup.string().email().required("Please enter your email"),
   gender: Yup.string().min(4).max(15).required("Please select your gender"),
   category: Yup.string().min(3).max(15).required("Enter Valid Category"),

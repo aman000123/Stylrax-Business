@@ -15,6 +15,7 @@
     border-radius: 6px;
     height: 25px;
     width: 25px;
+    cursor: pointer;
 }
 .select{
    margin-left: 30px;

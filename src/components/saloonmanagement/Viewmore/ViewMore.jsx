@@ -11,6 +11,7 @@ import servicesimg from "../../../assets/image/servicesimg.png";
 import styles from "../ManageStaff/ManageStaff.module.css";
 import { RxCross2 } from "react-icons/rx";
 import Session from "../../../service/session.js";
+import Swal from 'sweetalert2';
 import { viewMoreSchema } from "../../../utils/schema.js";
 
 function ViewMore({ onClose, id }) {
@@ -39,7 +40,24 @@ function ViewMore({ onClose, id }) {
     setEditable(!editable);
   };
 
-  const onDelete = async () => {
+  const onDelete = () => {
+    // Show confirmation dialog
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You will not be able to recover this service!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        deleteService();
+      }
+    });
+  };
+
+  const deleteService = async () => {
     try {
       await removeService(salonId, id);
       Notify.success("Record Deleted!");
