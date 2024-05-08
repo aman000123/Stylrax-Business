@@ -1,23 +1,15 @@
-import { Container } from "react-bootstrap";
-import { Form, Formik } from "formik";
-import { businessDetailsSchema } from "../../utils/schema";
-import Section from "../../ux/Section";
-import { createSalon } from "../../api/salon.api";
-import { handleOnFileSelect } from "./FileUploader";
-import styles from "./account.module.css";
-import Notify from "../../utils/notify";
-import {
-  InputText,
-  InputSelect,
-  InputFile,
-  Label,
-  Button,
-  TextArea,
-} from "../../ux/controls";
-import FormContainer from "./FormContainer";
-
 import { useState } from "react";
-import { getPresignedUrl } from "../../api/file.api";
+import { createSalon } from "../../../api/salon.api";
+import { getPresignedUrl } from "../../../api/file.api";
+import { Container} from "react-bootstrap";
+import Section from "../../../ux/Section";
+import FormContainer from "../../account/FormContainer";
+import { Form, Formik } from "formik";
+import { businessDetailsSchema } from "../../../utils/schema";
+import { Button, InputFile, InputSelect, InputText, Label, TextArea } from "../../../ux/controls";
+import { handleOnFileSelect } from "../../account/FileUploader";
+import Notify from "../../../utils/notify";
+import styles from "../../account/account.module.css";
 
 const stateOptions = [
   { value: "", text: "Select State" },
@@ -56,7 +48,7 @@ const initialValues = {
   galleryImageUrl: [],
 };
 
-const BusinessDetails = ({ onContinue, token }) => {
+const NewSalon = ({onClose}) => {
   const [bannerImages, setBannerImages] = useState([]);
   const [galleryImages, setGalleryImages] = useState([]);
 
@@ -82,10 +74,9 @@ const BusinessDetails = ({ onContinue, token }) => {
         gallaryImages: galleryImages,
       };
       const res = await createSalon(verifyForm);
+      Notify.success("New Salon Added")
+      onClose();
       console.log("respn::>", res);
-      const salonId = res.data.id;
-      console.log("salon id:::>", salonId);
-      onContinue(values, salonId);
     } catch (error) {
       Notify.error(error.message);
     }
@@ -121,7 +112,7 @@ const BusinessDetails = ({ onContinue, token }) => {
     }
   };
   return (
-    <Container>
+    <>
       <Section className="d-flex flex-column align-items-center">
         <FormContainer>
           <Formik
@@ -221,8 +212,8 @@ const BusinessDetails = ({ onContinue, token }) => {
           </Formik>
         </FormContainer>
       </Section>
-    </Container>
+    </>
   );
 };
 
-export default BusinessDetails;
+export default NewSalon;

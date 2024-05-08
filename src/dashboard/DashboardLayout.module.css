@@ -1,6 +1,7 @@
 .mainDiv{
     display: flex;
-    font-style: poppins
+    font-style: poppins;
+    cursor: pointer;
 }
 
 .secDiv ul li{

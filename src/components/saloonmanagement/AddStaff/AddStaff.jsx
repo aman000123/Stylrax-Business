@@ -41,6 +41,7 @@ function AddStaff({ onClose }) {
         aadharBackUrl: "aadharBackUrl",
       };
       const Staff = await addStaff(salonId, data);
+      Notify.success("Staff Added")
       console.log("addStaff::>", Staff);
       onClose();
     } catch (error) {
@@ -85,7 +86,7 @@ function AddStaff({ onClose }) {
                 className={styles.formError}
               />
 
-              <Field type="text" placeholder="Date of Birth" name="dob" />
+              <Field type="date" placeholder="Date of Birth" name="dob" max={new Date().toISOString().split("T")[0]}className={styles.dob}/>
               <ErrorMessage
                 name="dob"
                 component="div"
@@ -99,7 +100,12 @@ function AddStaff({ onClose }) {
                 className={styles.formError}
               />
 
-              <Field type="text" placeholder="Gender" name="gender" />
+              <Field as="select" name="gender" className={styles.gender}>
+                <option value="">Select Gender</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Other">Other</option>
+              </Field>
               <ErrorMessage
                 name="gender"
                 component="div"
