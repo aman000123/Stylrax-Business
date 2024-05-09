@@ -14,7 +14,8 @@ export const authSlice = createSlice({
       profileImageUrl: "",
       firstName: "",
     },
-  salons:[] 
+  salons:[] ,
+  selectedRowId: null 
   },
   reducers: {
     storeToken: (state, action) => {
@@ -50,6 +51,10 @@ export const authSlice = createSlice({
     Session.set("salons",action.payload.salons)
     console.log("salons::>",action.payload.salons)
   },
+  setSelectedRowId: (state, action) => {
+    state.selectedRowId = action.payload;
+    Session.set("RowId",action.payload.selectedRowId)
+    console.log("Selected Row ID:", action.payload);  },
     removeToken: (state) => {
       Session.remove("token");
       state.token = "";

@@ -17,8 +17,8 @@ import { viewMoreSchema } from "../../../utils/schema.js";
 function ViewMore({ onClose, id }) {
   const [service, setService] = useState({});
   const [editable, setEditable] = useState(false);
+  const [refreshKey, setRefreshKey] = useState(0);
   const salonId = Session.get("salonId");
-
   useEffect(() => {
     const getService = async () => {
       try {
@@ -62,6 +62,7 @@ function ViewMore({ onClose, id }) {
       await removeService(salonId, id);
       Notify.success("Record Deleted!");
       onClose();
+      setRefreshKey((prevKey) => prevKey + 1);
     } catch (error) {
       Notify.error(error.message);
     }
@@ -91,10 +92,10 @@ function ViewMore({ onClose, id }) {
 
         <Formik
           initialValues={{
-            categoryId: service.categoryId,
+            categoryId: parseInt(service.categoryId),
             serviceDuration: service.serviceDuration,
             serviceName: service.serviceName,
-            servicePrice: service.servicePrice,
+            servicePrice: parseFloat(service.servicePrice),
             type: service.type,
           }}
           enableReinitialize={true}

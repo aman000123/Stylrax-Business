@@ -125,8 +125,8 @@ const NewSalon = ({onClose}) => {
                 <InputText
                   type="text"
                   name="name"
-                  label="Name"
-                  placeholder="Name"
+                  label="Salon Name"
+                  placeholder="Salon Name"
                 />
                 <InputText
                   type="text"
