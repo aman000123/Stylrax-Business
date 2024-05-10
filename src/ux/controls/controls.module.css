@@ -15,6 +15,20 @@
     border: 1px solid #858585;
     font-size: 12px;
 }
+.control__input_button{
+    background-color: transparent;
+    padding: 5px 10px;
+    border-radius: 20px;
+    border: 1px solid #858585;
+    font-size: 12px;
+    margin-right: 65px;
+}
+.fileName{
+    margin-left: 28px;
+    font-size: 15px;
+    margin-bottom: -5px !important;
+}
+
 .control{
     background-color: transparent; 
     padding: 5px 10px;

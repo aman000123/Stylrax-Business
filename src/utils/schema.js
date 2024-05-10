@@ -24,13 +24,13 @@ export const bankDetailsSchema = Yup.object({
 });
 
 export const businessDetailsSchema = Yup.object({
-  name: Yup.string().min(2).max(15).required("Please enter your name"),
-  companyName: Yup.string().min(5).max(15).required("Please enter company name"),
-  pinCode: Yup.string().min(4).required("Please enter pin code"),
-  city:Yup.string().min(2).required("Please select your city"),
-  state:Yup.string().min(2).required("Please select your state"),
-  serviceType:Yup.string().min(4).max(15).required("Please select your service"),
-  address: Yup.string().min(5).max(100).required("Please enter your address"),
+  name: Yup.string().min(2).required("Please enter your name"),
+  companyName: Yup.string().required("Please enter company name"),
+  pinCode: Yup.string().required("Please enter pin code"),
+  city:Yup.string().required("Please select your city"),
+  state:Yup.string().required("Please select your state"),
+  serviceType:Yup.string().required("Please select your service"),
+  address: Yup.string().required("Please enter your address"),
   panNumber: Yup.string()
   //.matches(/[A-Z]{5}[0-9]{4}[A-Z]{1}$/, 'Invalid pan number')
   .required("Please enter your pan number"),
@@ -96,8 +96,10 @@ export const addStaffSchema = Yup.object({
  .required("Date of birth is required"),
    email: Yup.string().email().required("Please enter your email"),
   gender: Yup.string().min(4).max(15).required("Please select your gender"),
-  //specilization: Yup.string().min(3).required("Enter Valid Category"),
-  //profileImageUrl: Yup.string().required("Please upload profile image"),
+  specialization: Yup.string().min(3).required("Please enter your specilization"),
+  profileImageUrl: Yup.string().required("Please upload profile image"),
+  aadharFrontUrl: Yup.string().required("Please upload aadhar front image"),
+  aadharBackUrl: Yup.string().required("Please upload aadhar back image"),
 
 });
 

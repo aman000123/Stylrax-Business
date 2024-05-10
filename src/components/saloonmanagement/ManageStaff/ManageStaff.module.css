@@ -125,7 +125,9 @@
     padding-top: 5px;
     font-weight: 400 !important;
 }
-
+.profile_Image{
+    margin-left: -37px;
+}
 .profile{
     height: 100px;
     width: 100px;
@@ -157,12 +159,19 @@
 
 .formError{
     color: red;
-    font-size: 13px;
+    font-size: 15px;
     text-align: start;
     padding-left: 50px;
     margin-bottom: -10px;
 }
-
+.formError_Profile{
+    margin-left: 95px;
+    color: red;
+    font-size: 15px;
+    text-align: start;
+    padding-left: 50px;
+    margin-bottom: -10px;
+}
 .addTime{
     margin-top: -130px;
 }
@@ -183,6 +192,9 @@
     outline: none;
 }
 
+.dob {
+   
+}
 
 
 

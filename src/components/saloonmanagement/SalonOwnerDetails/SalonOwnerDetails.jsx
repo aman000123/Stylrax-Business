@@ -17,7 +17,7 @@ const initialValues = {
   gender: "",
 };
 
-function SalonOwnerDetails() {
+function SalonOwnerDetails({onClose}) {
   const [details, setDetails] = useState({});
   const [imageUrls, setImageUrls] = useState({});
   const [isVisible, setIsVisible] = useState(true);
@@ -61,7 +61,7 @@ function SalonOwnerDetails() {
  
   return (
     <div className={`${styles.mainDiv} ${styles.addSalon}`}>
-    {/* <RxCross2 onClick={handleClose}/> */}
+    <RxCross2 onClick={onClose} className={styles.close_Icon}/>
       <div>
         <img
           src={imageUrls.profile || details.profileImageUrl}
