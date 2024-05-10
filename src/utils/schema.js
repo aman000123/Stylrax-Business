@@ -32,11 +32,11 @@ export const businessDetailsSchema = Yup.object({
   serviceType:Yup.string().min(4).max(15).required("Please select your service"),
   address: Yup.string().min(5).max(100).required("Please enter your address"),
   panNumber: Yup.string()
-  .matches(/[A-Z]{5}[0-9]{4}[A-Z]{1}$/, 'Invalid pan number')
+  //.matches(/[A-Z]{5}[0-9]{4}[A-Z]{1}$/, 'Invalid pan number')
   .required("Please enter your pan number"),
-  gst: Yup.string()
-  .matches(/^\d{2}[A-Z]{5}\d{4}[A-Z]{1}[A-Z\d]{1}[Z]{1}[A-Z\d]{1}$/, 'Invalid gst number') // Matches the GST format
-  .required("Please enter your gst number"),
+  // gst: Yup.string()
+  // .matches(/^\d{2}[A-Z]{5}\d{4}[A-Z]{1}[A-Z\d]{1}[Z]{1}[A-Z\d]{1}$/, 'Invalid gst number') // Matches the GST format
+  // .required("Please enter your gst number"),
  mainGateUrl: Yup.string().required("Please upload main gate image"),
  bannerImages: Yup.array().min(1, "Please upload at least one banner image"),
  galleryImageUrl: Yup.array().min(1, "Please upload at least one gallery image"),
@@ -96,7 +96,7 @@ export const addStaffSchema = Yup.object({
  .required("Date of birth is required"),
    email: Yup.string().email().required("Please enter your email"),
   gender: Yup.string().min(4).max(15).required("Please select your gender"),
-  category: Yup.string().min(3).max(15).required("Enter Valid Category"),
+  //specilization: Yup.string().min(3).required("Enter Valid Category"),
   //profileImageUrl: Yup.string().required("Please upload profile image"),
 
 });
@@ -117,13 +117,14 @@ export const addStaffSchema = Yup.object({
 export const addServiceSchema = Yup.object().shape({
   serviceName: Yup.string().required('service name is required'),
   serviceDuration: Yup.string().required('service duration is required'),
+  //categoryId: Yup.number().required('service price is required'),
 
   servicePrice: Yup.number().required('service price is required'),
   type:Yup.string().min(4).max(15).required("Please select your service"),
 });
 
 export const viewMoreSchema = Yup.object().shape({
-  categoryId: Yup.number().required('Category ID must be a number'),
+ // categoryId: Yup.number().required('Category ID must be a number'),
   serviceDuration: Yup.number().required('Service duration must be a number'),
   serviceName: Yup.string().required('Service Name is required'),
   servicePrice: Yup.number().required('Service price must be a number'),

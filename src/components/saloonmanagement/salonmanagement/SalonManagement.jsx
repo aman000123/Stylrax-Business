@@ -1,14 +1,12 @@
 import { useEffect, useState } from "react";
 import { Row, Col } from "react-bootstrap";
 import styles from "../salonmanagement/SalonManagement.module.css";
-import orangeSpecs from "../../../assets/image/orangeSpecs.png";
 import SalonDetails from "../SalonDetails/SalonDetails";
 import SalonOwnerDetails from "../SalonOwnerDetails/SalonOwnerDetails";
 import BankDetails from "../BankDetails/BankDetails";
 import ManageStaff from "../ManageStaff/ManageStaff";
 import Services from "../Services/Services";
 import SalonTime from "../SalonTime/SalonTime";
-// import AboutUs from '../AboutUs/AboutUs';
 import SalonBanner from "../SalonGallery/SalonGallery";
 import Navbar from "../../saloondashboard/navbar/Navbar";
 import { navItems } from "../../../data/navdata/Data";

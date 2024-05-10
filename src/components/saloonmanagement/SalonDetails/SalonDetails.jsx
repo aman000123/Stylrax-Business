@@ -1,5 +1,4 @@
 //import styles from "../SalonDetails/SalonDetails.module.css";
-import salondetailimg from "../../../assets/image/salondetailimg.png";
 import Session from "../../../service/session";
 import { useEffect, useState } from "react";
 import { singleSalon } from "../../../api/salon.api";
@@ -27,7 +26,10 @@ function SalonDetails() {
     <div className={styles.mainDiv}>
       <div className={styles.imgDiv}>
         <div>
-          <img src={salondetailimg} alt="" className={styles.imgDiv}/>
+          <img
+            src={salonDetails.mainGateImageUrl}
+            className={styles.documents}
+          />{" "}
         </div>
       </div>
 
@@ -112,15 +114,6 @@ function SalonDetails() {
             readOnly
           />
         </div>
-        <label className={styles.lab}>
-          <span>Main gate Image</span>
-          <div>
-            <img
-              src={salonDetails.mainGateImageUrl}
-              className={styles.documents}
-            />
-          </div>
-        </label>
       </form>
     </div>
   );

@@ -345,12 +345,18 @@
     text-decoration-color: #BEBEBE;
     outline: none;   
 }  
-/* view All details */
+.popupFormImgDiv .staffImg  {
+    height: 100px;
+    width: 100px;
+    border-radius: 100px;
+}
 
-/* @media(max-width:1286px){
-    .popup{
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-    }
-} */
+.popupFormImgDiv .editProfile{
+    height: 30px;
+    width: 30px;
+    border: 2px solid #00000099;
+    border-radius: 100%;
+    color: grey;
+    margin-left: -23px;
+    margin-bottom: -41px;
+}

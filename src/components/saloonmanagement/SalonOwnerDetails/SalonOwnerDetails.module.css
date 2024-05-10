@@ -2,7 +2,7 @@
     padding: 60px 60px;
     background-color: #fff;
     border-radius: 7px;
-    height: 1200px;
+    height: 1250px;
 }
 
 .imgDiv{
@@ -159,4 +159,13 @@
     padding-top: 15px;
     height: 170px;
     width: 170px;
+}
+.mainDiv .editProfile{
+    margin-left: 143px;
+    margin-top: -69px;
+    height: 30px;
+    width: 30px;
+    border: 2px solid #00000099;
+    border-radius: 100%;
+    color: grey;
 }
