@@ -45,3 +45,6 @@ export const __endpoint_bankDetails = (id)=>{return ` ${endpoint}b2b/salons/${id
 export const __endpoint_completedAppointments = (id)=>{return ` ${endpoint}b2b/salons/${id}/appointments?status=completed`};
 export const __endpoint_pendingAppointments = (id)=>{return ` ${endpoint}b2b/salons/${id}/appointments?status=pending`};
 export const __endpoint_ongoingAppointments = (id)=>{return ` ${endpoint}b2b/salons/${id}/appointments`};
+
+// Static Page APIs
+export const __endpoint_staticPageUrl = endpoint + "b2b/file/doc/";
