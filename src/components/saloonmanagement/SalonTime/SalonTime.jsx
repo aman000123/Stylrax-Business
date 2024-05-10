@@ -75,7 +75,7 @@ function SalonTime() {
           <button
             type="button"
             className={styles.addTime}
-            onClick={handleAdd} // "Add" बटन के लिए क्लिक हैंडलर
+            onClick={handleAdd} 
           >
             Add
           </button>

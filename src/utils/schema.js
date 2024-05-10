@@ -13,10 +13,10 @@ export const OTPSchema = Yup.object().shape({
 });
 export const bankDetailsSchema = Yup.object({
   accountNumber: Yup.string()
- .matches(/^\d{9,18}$/, 'Account number must be between 9 and 18 digits')
+  .matches(/^[0-9]+$/, "Account number must contain only digits")
   .required("Please enter your account number"),
-  bankName: Yup.string().min(10).required("Please enter bank name"),
-  accountHolderName: Yup.string().min(2).max(15).required("Please enter your name"),
+  bankName: Yup.string().required("Please enter bank name"),
+  accountHolderName: Yup.string().required("Please enter your name"),
   ifscCode: Yup.string()
   .matches(/^[A-Za-z]{4}[0][A-Z0-9a-z]{6}$/, 'Invalid IFSC code')
    .required("Please enter your IFSC code"),
@@ -24,7 +24,7 @@ export const bankDetailsSchema = Yup.object({
 });
 
 export const businessDetailsSchema = Yup.object({
-  name: Yup.string().min(2).required("Please enter your name"),
+  name: Yup.string().required("Please enter your name"),
   companyName: Yup.string().required("Please enter company name"),
   pinCode: Yup.string().required("Please enter pin code"),
   city:Yup.string().required("Please select your city"),
@@ -32,7 +32,7 @@ export const businessDetailsSchema = Yup.object({
   serviceType:Yup.string().required("Please select your service"),
   address: Yup.string().required("Please enter your address"),
   panNumber: Yup.string()
-  //.matches(/[A-Z]{5}[0-9]{4}[A-Z]{1}$/, 'Invalid pan number')
+  .matches(/[A-Z]{5}[0-9]{4}[A-Z]{1}$/, 'Invalid pan number')
   .required("Please enter your pan number"),
   // gst: Yup.string()
   // .matches(/^\d{2}[A-Z]{5}\d{4}[A-Z]{1}[A-Z\d]{1}[Z]{1}[A-Z\d]{1}$/, 'Invalid gst number') // Matches the GST format
@@ -46,11 +46,11 @@ export const businessDetailsSchema = Yup.object({
 
 
 export const salonDetailsSchema = Yup.object({
-  salonName: Yup.string().min(2).max(15).required("Please enter your name"),
+  salonName: Yup.string().required("Please enter your name"),
   email: Yup.string().email().required("Please enter your email"),
   gstNumber: Yup.string().required("Please enter your GST Nuber"),
-  address: Yup.string().min(5).max(100).required("Please enter your address"),
-  salonStatePinCode: Yup.string().min(4).required("Please enter pin code"),
+  address: Yup.string().required("Please enter your address"),
+  salonStatePinCode: Yup.string().required("Please enter pin code"),
  
 })
 
@@ -61,8 +61,8 @@ const getMinDOBDate = () => {
   return new Date(currentDate.getFullYear() - MIN_AGE, currentDate.getMonth(), currentDate.getDate());
 };
 export const salonProfileSchema = Yup.object().shape({
-  firstName: Yup.string().min(2).max(15).required("Please enter first your name"),
-  lastName: Yup.string().min(2).max(15).required("Please enter your last name"),
+  firstName: Yup.string().required("Please enter first your name"),
+  lastName: Yup.string().required("Please enter your last name"),
   email: Yup.string().email().required("Please enter your email"),
   dataOfBirth: Yup.date()
  .max(getMinDOBDate(), `You must be at least ${MIN_AGE} years old`)
@@ -78,9 +78,9 @@ export const salonProfileSchema = Yup.object().shape({
 //  Bank Details schema
 
 export const bankSchema = Yup.object({
-  accNum: Yup.string().min(11).max(16).required("Please enter valid Account Number"),
-  accName: Yup.string().min(3).max(15).required("Please enter valid Account Name"),
-  bankName: Yup.string().min(11).max(25).required("Enter  valid Bank Name"),
+  accNum: Yup.string().required("Please enter valid Account Number"),
+  accName: Yup.string().required("Please enter valid Account Name"),
+  bankName: Yup.string().required("Enter  valid Bank Name"),
   ifscCode: Yup.string().matches(/^[A-Za-z]{4}[0][A-Z0-9a-z]{6}$/, 'Invalid IFSC code').required("Please enter valid IFSC code"),
 });
 
@@ -89,14 +89,14 @@ export const bankSchema = Yup.object({
 // Add staff schema
 
 export const addStaffSchema = Yup.object({
-  name: Yup.string().min(3).max(15).required("Please enter valid Account Name"),
+  name: Yup.string().required("Please enter valid Account Name"),
   mobileNumber: Yup.string().matches(/^[0-9]{10}$/, 'Invalid phone number').required("Please enter  phone number"),
   dob: Yup.date()
   .max(getMinDOBDate(), `You must be at least ${MIN_AGE} years old`)
  .required("Date of birth is required"),
    email: Yup.string().email().required("Please enter your email"),
-  gender: Yup.string().min(4).max(15).required("Please select your gender"),
-  specialization: Yup.string().min(3).required("Please enter your specilization"),
+  gender: Yup.string().required("Please select your gender"),
+  specialization: Yup.string().required("Please enter your specilization"),
   profileImageUrl: Yup.string().required("Please upload profile image"),
   aadharFrontUrl: Yup.string().required("Please upload aadhar front image"),
   aadharBackUrl: Yup.string().required("Please upload aadhar back image"),
@@ -122,7 +122,7 @@ export const addServiceSchema = Yup.object().shape({
   //categoryId: Yup.number().required('service price is required'),
 
   servicePrice: Yup.number().required('service price is required'),
-  type:Yup.string().min(4).max(15).required("Please select your service"),
+  type:Yup.string().required("Please select your service"),
 });
 
 export const viewMoreSchema = Yup.object().shape({

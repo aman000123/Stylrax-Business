@@ -11,7 +11,7 @@ import servicesimg from "../../../assets/image/servicesimg.png";
 import styles from "../ManageStaff/ManageStaff.module.css";
 import { RxCross2 } from "react-icons/rx";
 import Session from "../../../service/session.js";
-import Swal from 'sweetalert2';
+import Swal from "sweetalert2";
 import { viewMoreSchema } from "../../../utils/schema.js";
 
 function ViewMore({ onClose, id }) {
@@ -100,16 +100,19 @@ function ViewMore({ onClose, id }) {
           }}
           enableReinitialize={true}
           validationSchema={viewMoreSchema}
-          //onSubmit={onServiceEdit}
           onSubmit={(values, actions) => {}}
         >
           {({ values }) => (
             <Form className={styles.popupForm}>
               <Field
-                type="text"
+                type="number"
                 placeholder={!editable ? service.categoryId : "Category ID"}
                 name="categoryId"
                 disabled={!editable}
+                style={{
+                  color: editable ? "#000" : "#888",
+                  borderColor: editable ? "#000" : "#ddd",
+                }}
               />
               <Field
                 type="text"
@@ -117,35 +120,58 @@ function ViewMore({ onClose, id }) {
                 name="serviceName"
                 disabled={!editable}
                 style={{
-                  color: editable ? '#000' : '#888', 
-                   borderColor: editable ? '#000' : '#ddd' 
+                  color: editable ? "#000" : "#888",
+                  borderColor: editable ? "#000" : "#ddd",
                 }}
               />
               <Field
-                type="text"
+                type="number"
                 placeholder={!editable ? service.servicePrice : "Service Price"}
                 name="servicePrice"
                 disabled={!editable}
+                style={{
+                  color: editable ? "#000" : "#888",
+                  borderColor: editable ? "#000" : "#ddd",
+                }}
               />
               <Field
-                type="text"
+                type="number"
                 placeholder={
                   !editable ? service.serviceDuration : "Service Duration"
                 }
                 name="serviceDuration"
                 disabled={!editable}
-              />
-
-              <Field
-                type="text"
-                placeholder={!editable ? service.type : "Type"}
-                name="type"
-                disabled={!editable}
                 style={{
-                  color: editable ? '#000' : '#888', 
-                   borderColor: editable ? '#000' : '#ddd' 
+                  color: editable ? "#000" : "#888",
+                  borderColor: editable ? "#000" : "#ddd",
                 }}
               />
+
+              <Field name="type">
+                {({ field }) => (
+                  <select
+                    {...field}
+                    disabled={!editable}
+                    className={styles.type_gender}
+                    style={{
+                      color: editable ? "#000" : "#888",
+                      borderColor: editable ? "#000" : "#ddd",
+                    }}
+                  >
+                    <option value="">
+                      {!editable ? service.type : "Type"}
+                    </option>
+                    {/* Render options if editable */}
+                    {editable && (
+                      <>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                        <option value="Other">Other</option>
+                      </>
+                    )}
+                  </select>
+                )}
+              </Field>
               <div className={styles.popupFormButton}>
                 {!editable ? (
                   <button className={styles.buttonOne} onClick={toggleEditMode}>

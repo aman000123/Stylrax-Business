@@ -44,7 +44,7 @@ const NewAppointment = () => {
             onClick={() => handleButtonClick("button3")}
             className={activeButton === "button3" ? styles.active : ""}
           >
-            Past
+            Completed
           </button>
         </div>
         {activeButton === "button1" && <div><Ongoing/></div>}

@@ -1,11 +1,24 @@
 import { useState, useEffect } from "react";
 import { Form, Formik, Field } from "formik";
-import { getProfile } from "../../../api/user.api.js";
-import Notify from "../../../utils/notify.js";
-import styles from "../SalonOwnerDetails/SalonOwnerDetails.module.css";
+import { MdOutlineEdit } from "react-icons/md";
+import { getProfile, updateProfile } from "../../api/user.api.js";
+import Notify from "../../utils/notify.js";
+import { salonProfileSchema } from "../../utils/schema.js";
+import styles from "../saloonmanagement/SalonOwnerDetails/SalonOwnerDetails.module.css";
+import { getPresignedUrl } from "../../api/file.api.js";
+import { RxCross2 } from "react-icons/rx";
+const initialValues = {
+  firstName: "",
+  middleName: "",
+  lastName: "",
+  email: "",
+  dataOfBirth: "",
+  gender: "",
+};
 
-function SalonOwnerDetails({ onClose }) {
+function EditProfile({onClose}) {
   const [details, setDetails] = useState({});
+  const [imageUrls, setImageUrls] = useState({});
   useEffect(() => {
     const fetchUserDetail = async () => {
       try {
@@ -19,16 +32,52 @@ function SalonOwnerDetails({ onClose }) {
     fetchUserDetail();
   }, []);
 
+  const handleOnFileSelect = async (event, imageType) => {
+    try {
+      const file = event.target.files[0];
+      const imageUrl = URL.createObjectURL(file);
+      setImageUrls((prevState) => ({
+        ...prevState,
+        [imageType]: imageUrl,
+      }));
+      const presignedUrl = await getPresignedUrl({ fileName: file.name });
+      console.log("presendUrl::>",presignedUrl.data.url);
+      const requestOptions = {
+        method: 'PUT',
+        body: file,
+        headers: {
+          'Content-Type': file.type,
+        }
+      };
+      await fetch(presignedUrl.data.url, requestOptions);
+      await updateProfile({ profileImageUrl: presignedUrl.data.path });
+    } catch (error) {
+      console.error("Error uploading image:", error);
+    }
+  };
+
+ 
   return (
     <div className={`${styles.mainDiv} ${styles.addSalon}`}>
+    <RxCross2 onClick={onClose} className={styles.close_Icon}/>
       <div>
         <img
-          src={details.profileImageUrl}
+          src={imageUrls.profile || details.profileImageUrl}
           className={styles.imgDiv}
           alt="Profile"
         />
+        <label htmlFor="profileImageInput">
+          <MdOutlineEdit className={styles.editProfile}/>
+        </label>
+        <input
+          id="profileImageInput"
+          type="file"
+          accept="image/*"
+          style={{ display: "none" }}
+          onChange={(event) => handleOnFileSelect(event, "profile")}
+        />
       </div>
-      <Formik>
+      <Formik initialValues={initialValues} validationSchema={salonProfileSchema}>
         <Form>
           <label className={styles.lab}>First Name</label>
           <br />
@@ -37,7 +86,6 @@ function SalonOwnerDetails({ onClose }) {
             placeholder={details.firstName}
             name="firstName"
             className={styles.inputs}
-            disabled
           />
           <br />
           <label className={styles.lab}>Middle Name</label>
@@ -47,7 +95,6 @@ function SalonOwnerDetails({ onClose }) {
             placeholder={details.middleName}
             name="middleName"
             className={styles.inputs}
-            disabled
           />
           <br />
           <label className={styles.lab}>Last Name</label>
@@ -57,7 +104,6 @@ function SalonOwnerDetails({ onClose }) {
             placeholder={details.lastName}
             name="lastName"
             className={styles.inputs}
-            disabled
           />
           <br />
           <label className={styles.lab}>Email ID</label>
@@ -67,7 +113,6 @@ function SalonOwnerDetails({ onClose }) {
             placeholder={details.email}
             name="email"
             className={styles.inputs}
-            disabled
           />
           <br />
           <label className={styles.lab}>Date of Birth</label>
@@ -77,7 +122,6 @@ function SalonOwnerDetails({ onClose }) {
             placeholder={details.dataOfBirth}
             name="dataOfBirth"
             className={styles.inputs}
-            disabled
           />
           <br />
           <label className={styles.lab}>Gender</label>
@@ -87,7 +131,6 @@ function SalonOwnerDetails({ onClose }) {
             name="gender"
             placeholder={details.gender}
             className={styles.inputs}
-            disabled
           />
           <br />
           <label className={styles.lab}>Aadhar Card</label>
@@ -133,4 +176,4 @@ function SalonOwnerDetails({ onClose }) {
   );
 }
 
-export default SalonOwnerDetails;
+export default EditProfile;
