@@ -48,11 +48,11 @@ const DashBoardLayout = () => {
 
   // useEffect(() => {
   //   const handleClickOutside = (event) => {
-  //     if (switchSalonRef.current && !switchSalonRef.current.contains(event.target)) {
+  //     if (switchSalonRef.current && !switchSalonRef.current.contains(event.target) && !event.target.classList.contains('popup')) {
   //       setShowContent(false); // Close the SwitchSalon component if clicked outside
   //     }
   //   };
-
+  
   //   document.addEventListener('mousedown', handleClickOutside);
   //   return () => {
   //     document.removeEventListener('mousedown', handleClickOutside);

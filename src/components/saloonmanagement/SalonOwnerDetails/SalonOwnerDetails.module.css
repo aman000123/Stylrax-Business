@@ -169,3 +169,8 @@
     border-radius: 100%;
     color: grey;
 }
+.close_Icon{
+    margin-left: 348px;
+    margin-top: -90px;
+    cursor: pointer;
+}

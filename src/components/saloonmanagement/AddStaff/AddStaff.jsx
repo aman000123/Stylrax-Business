@@ -6,11 +6,9 @@ import Notify from "../../../utils/notify.js";
 import { RxCross2 } from "react-icons/rx";
 import { handleOnFileSelect } from "../../account/FileUploader.jsx";
 import Session from "../../../service/session.js";
-import InputFile from "../../../ux/controls/InputFile.jsx";
+import InputFile from "../../../ux/controls/Input.jsx";
 import styles from "../ManageStaff/ManageStaff.module.css";
-import servicesimg from "../../../assets/image/servicesimg.png";
-import { getPresignedUrl } from "../../../api/file.api.js";
-import { MdOutlineEdit } from "react-icons/md";
+
 import { useState } from "react";
 const initialValues = {
   name: "",
@@ -41,7 +39,7 @@ function AddStaff({ onClose }) {
         dataOfBirth: values.dob,
         gender: values.gender,
         profileImageUrl: values.profileImageUrl,
-        specialization: "All Rounder",
+        specialization: values.specialization,
         phoneNumber: values.mobileNumber,
         aadharFrontUrl: values.aadharFrontUrl,
         aadharBackUrl: values.aadharBackUrl,
@@ -56,28 +54,7 @@ function AddStaff({ onClose }) {
       Notify.error(error.message);
     }
   };
-  const handleOnFile = async (event, imageType) => {
-    try {
-      const file = event.target.files[0];
-      const imageUrls = URL.createObjectURL(file);
-      setImageUrls((prevState) => ({
-        ...prevState,
-        [imageType]: imageUrls,
-      }));
-      const presignedUrl = await getPresignedUrl({ fileName: file.name });
-      console.log("presendUrl::>",presignedUrl.data.url);
-      const requestOptions = {
-        method: 'PUT',
-        body: file,
-        headers: {
-          'Content-Type': file.type,
-        }
-      };
-      await fetch(presignedUrl.data.url, requestOptions);
-    } catch (error) {
-      console.error("Error uploading image:", error);
-    }
-  };
+ 
   return (
     <Col md={4}>
       <div className={styles.popupFormDiv}>
@@ -86,26 +63,8 @@ function AddStaff({ onClose }) {
           <div onClick={handleClose} className={styles.crossIcon}>
           
             <RxCross2 />
-            {/* <img
-          src={imageUrls.profile }
-          className={styles.staffImg}
-          alt="Profile"
-          
-        />
-        <label htmlFor="profileImageUrl">
-          <MdOutlineEdit className={styles.editProfile}/>
-        </label>
-        <input
-          name="profileImageUrl"
-          id="profileImageUrl"
-
-          type="file"
-          accept="image/*"
-          style={{ display: "none" }}
-          onChange={(event) => handleOnFile(event, "profile")}
-        /> */}
+           
           </div>
-          {/* <RiEditCircleLine/> */}
         </div>
 
         <Formik
@@ -159,26 +118,41 @@ function AddStaff({ onClose }) {
                 className={styles.formError}
               />
  
-               {/* <Field type="text" placeholder="Specialization" name="specialization" />
+               <Field type="text" placeholder="Specialization" name="specialization" />
               <ErrorMessage
                 name="specialization"
                 component="div"
                 className={styles.formError}
-              />  */}
+              /> 
                <div className={styles.staffImage}>
-                <label>Profile Image
+                <label className={styles.profile_Image}>Profile Image</label>
               <InputFile name="profileImageUrl"  onFileSelect={(e) => handleOnFileSelect(e, "profileImageUrl", setFieldValue)}/>
-              </label>
+              <ErrorMessage
+                name="profileImageUrl"
+                component="div"
+                className={styles.formError_Profile}
+              /> 
               </div>
                <div className={styles.staffImage}>
                 <label>Adhar Front Image
               <InputFile name="aadharFrontUrl"  onFileSelect={(e) => handleOnFileSelect(e, "aadharFrontUrl", setFieldValue)}/>
+              <ErrorMessage
+                name="aadharFrontUrl"
+                component="div"
+                className={styles.formError}
+              /> 
               </label>
               </div>
               <div className={styles.staffImage}>
                 <label>Adhar Back Image
-              <InputFile name="aadharBackUrl"  onFileSelect={(e) => handleOnFileSelect(e, "aadharBackUrl", setFieldValue)}/>
-              </label>
+                <InputFile name="aadharBackUrl"  onFileSelect={(e) => handleOnFileSelect(e, "aadharBackUrl", setFieldValue)}/> 
+                <ErrorMessage
+                name="aadharBackUrl"
+                component="div"
+                className={styles.formError}
+              />            
+                </label>
+               
               </div>
               <div className={styles.popupFormButton}>
                 <button className={styles.buttonOne} type="submit">
