@@ -191,10 +191,18 @@
     text-decoration-color: #BEBEBE;
     outline: none;
 }
-
-.dob {
-   
-}
+.type_gender{
+    border: 2px solid #BEBEBE;
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    padding-bottom: 3px;
+    margin-top: 20px;
+    padding-right: 197px;
+    padding-left: 10px;
+    color:grey;
+    text-decoration-color: #BEBEBE;
+    outline: none;}
 
 
 

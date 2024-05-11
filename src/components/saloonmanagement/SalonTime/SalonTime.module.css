@@ -1,5 +1,5 @@
 .mainDiv{
-    margin: 5px 40px;
+    /* margin: 5px 40px; */
 }
 
 .actionButton{
@@ -23,23 +23,22 @@
 
 .secDiv{
     display: flex;
-    align-items: center;
-    justify-content: center;
     gap: 100px;
     background-color: #fff;
     border: 2px solid #909090;
     border-radius: 20px;
     margin-top: 10px;
-    padding: 12px 0px;
+    padding: 12px 20px;
 }
 
 .secDiv .day{
     font-size: 20px;
     font-weight: bold;
+    width: 40px;
 }
 
 .height {
-    line-height: 12px;
+    line-height: 13px;
 }
 
 .height span{
@@ -52,24 +51,29 @@
 
 .height .spanTwo{
     font-size: 11px;
-    padding-left: 5px;
 }
 
-.timeDiv{
+.secDiv .timeDiv{
     display: flex;
-    align-items: center;
-    justify-content: center;
+    align-items: self-start;
+    justify-content: flex-start;
     gap: 80px;
     border: 2px solid #909090;
     border-radius: 17.111px;
-    padding: 5px 10px;
+    padding: 8px 40px;
+    margin-left: auto;
 }
-
+@media(max-width:575px){
+    .secDiv .timeDiv{
+        padding: 0;
+    }
+}
 .timeDiv div .spanOne{
     display: block;
     outline: none;
     border: none;
    width: fit-content;
+   padding-bottom: 4px;
 }
 
 .timeDiv .timeIcon{
@@ -100,14 +104,30 @@
 
 @media(max-width:1448px){
     .secDiv{
-        gap: 119px;
     }
 }
 
-@media(max-width:1286px){
-    .timeDiv{
-        gap: 35px;
+@media(max-width:1200px){
+  .secDiv .timeDiv{
+       padding: 8px 20px;
     }
+    @media(max-width:991px){
+        .secDiv .timeDiv{
+         width: 100px; } 
+    }  
+    @media(max-width:767px){
+        .secDiv .timeDiv{
+         width: 80px;
+         margin-left: 40px;
+         } 
+    }  
+    @media(max-width:575px){
+        .secDiv .timeDiv{
+            font-size: 10px;
+            margin-left: 2px;
+            width: 62px;
+         } 
+    } 
 }
 
 @media(max-width:1180px){
@@ -150,6 +170,7 @@
 @media(max-width:667px){
     .secDiv .day{
         font-size: 14px;
+        margin-left: 10px;
     }
 
     .timeDiv{
@@ -159,6 +180,7 @@
 
     .timeDiv .spanOne{
         font-size: 11px;
+        margin-left: -14px;
     }
 
     .timeDiv .spanTwo{
@@ -193,6 +215,7 @@
 @media(max-width:536px){
     .secDiv .day{
         font-size: 11px;
+        margin-top: 13px;
     }
 
     .secDiv{

@@ -31,9 +31,9 @@
     font-size: 10px;
 }
 .salonImage{
-    width: 35px;
-    height: auto;
-    border-radius: 13px;
+    width: 44px;
+    height: 44px;
+    border-radius: 5px;
 }
 
 @media(max-width:632px){

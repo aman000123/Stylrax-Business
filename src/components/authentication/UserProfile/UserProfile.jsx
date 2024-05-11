@@ -11,7 +11,7 @@ import { styled, css } from '@mui/system';
 import { Modal as BaseModal } from '@mui/base/Modal';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import SalonOwnerDetails from '../../saloonmanagement/SalonOwnerDetails/SalonOwnerDetails';
+import EditProfile from '../../editprofile/EditProfile';
 const UserProfile = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const navigate = useNavigate();
@@ -91,7 +91,7 @@ const UserProfile = () => {
           slots={{ backdrop: StyledBackdrop }}
         >
           <ModalContent>
-            <SalonOwnerDetails onClose={togglePopup} />
+            <EditProfile onClose={togglePopup} />
           </ModalContent>
         </Modal>
       )}    </div>

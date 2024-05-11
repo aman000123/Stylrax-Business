@@ -121,37 +121,7 @@ function SalonManagement() {
               </div>
             </Col>
             {currentComponent[activeButton]}
-            {/* {activeButton === "Salon details" && (<Col md={10} className={styles.coltwo}>
-              <SalonDetails />
-            </Col>)}
-
-            {activeButton === "Salon owner details" && (<Col md={10} className={styles.coltwo}>
-              <SalonOwnerDetails />
-            </Col>)}
-
-            {activeButton === "Bank details" && (<Col md={10} className={styles.coltwo}>
-              <BankDetails />
-            </Col>)}
-
-            {activeButton === "Manage staff" && (<Col md={10} className={styles.coltwo}>
-              <ManageStaff />
-            </Col>)}
-
-            {activeButton === "Services" && (<Col md={10} className={styles.coltwo}>
-              <Services />
-            </Col>)}
-
-            {activeButton === "Salon timings" && (<Col md={10} className={styles.coltwo}>
-              <SalonTime />
-            </Col>)}
-
-            {activeButton === "About Us" && (<Col md={10} className={styles.coltwo}>
-              <AboutUs />
-            </Col>)}
-
-            {activeButton === "Salon gallery" && (<Col md={10} className={styles.coltwo}>
-              <SalonBanner />
-            </Col>)} */}
+       
           </Row>
         </div>
       </div>

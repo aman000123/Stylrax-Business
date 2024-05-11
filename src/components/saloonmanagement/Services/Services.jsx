@@ -5,10 +5,8 @@ import { Paper, Button } from '@mui/material';
 import { IoMdAddCircle } from "react-icons/io";
 import AddService from '../AddService/AddService';
 import ViewMore from '../Viewmore/ViewMore';
-//import {serviceCategory } from '../../../api/salon.management';
 import Notify from "../../../utils/notify";
 import Session from '../../../service/session';
-import { singleSalon } from "../../../api/salon.api";
 import { salonService } from '../../../api/salon.management';
 
 

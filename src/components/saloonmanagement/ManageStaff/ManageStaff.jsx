@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import styles from "../ManageStaff/ManageStaff.module.css";
-import stylistimg1 from "../../../assets/image/stylistimg1.png";
 import { Paper } from "@mui/material";
 import { IoMdAddCircle } from "react-icons/io";
 

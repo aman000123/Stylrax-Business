@@ -134,8 +134,8 @@ const BusinessDetails = ({ onContinue, token }) => {
                 <InputText
                   type="text"
                   name="name"
-                  label="Name"
-                  placeholder="Name"
+                  label="Salon Name"
+                  placeholder="Salon Name"
                 />
                 <InputText
                   type="text"

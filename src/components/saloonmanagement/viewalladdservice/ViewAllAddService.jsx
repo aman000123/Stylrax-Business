@@ -15,6 +15,8 @@ function ViewAllAddService({ id, onClose }) {
   const [staff, setStaff] = useState({});
   const [editable, setEditable] = useState(false);
   const [specialization, setSpecialization] = useState("");
+  const [role, setRole] = useState("");
+
   const [showConfirmation, setShowConfirmation] = useState(false); // State for showing confirmation dialog
   const salonId = Session.get("salonId");
 
@@ -40,7 +42,7 @@ function ViewAllAddService({ id, onClose }) {
     try {
       const updatedData = {
         specialization: specialization,
-        role: "Staff"
+        role: role,
       };
       await editStaff(salonId, staff.id, updatedData);
       Notify.success("Record updated");
@@ -91,13 +93,26 @@ function ViewAllAddService({ id, onClose }) {
             <input type="text" placeholder={staff.gender} readOnly />
             <input
               type="text"
-              placeholder={staff.specialization}
+              placeholder={!editable?staff.specialization:"Specilization"}
               readOnly={!editable}
               style={{
                 color: editable ? '#000' : '#888', 
                 borderColor: editable ? '#000' : '#ddd' 
               }}
               onChange={(e) => setSpecialization(e.target.value)}
+            />
+             <input
+              type="text"
+              disabled={!editable}
+              placeholder={
+                !editable ? staff.role : "Role"
+              }            
+              readOnly={!editable}
+              style={{
+                color: editable ? '#000' : '#888', 
+                borderColor: editable ? '#000' : '#ddd' 
+              }}
+              onChange={(e) => setRole(e.target.value)}
             />
           </form>
 

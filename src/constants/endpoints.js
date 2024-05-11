@@ -29,7 +29,7 @@ export const __endpoint_removeStaff = (salonId,id) => {
 export const __endpoint_getSalonSingleService = (salonId,id) => {
   return `${endpoint}b2b/salons/${salonId}/services/${id}`;
 };
-export const __endpoint_salonService = (salonId,id)=>{return ` ${endpoint}b2b/salons/${salonId}/services?categoryId=${id}`};
+export const __endpoint_salonService = (salonId)=>{return ` ${endpoint}b2b/salons/${salonId}/services`};
 export const __endpoint_salonBusinessTime = (salonId)=>{return ` ${endpoint}b2b/salons/${salonId}/businessHours`};
 export const __endpoint_addSalonService = (salonId)=>{return ` ${endpoint}b2b/salons/${salonId}/services`};
 export const __endpoint_serviceCategory = endpoint + "b2b/services/categories";
