@@ -216,6 +216,8 @@
     padding: 20px 0px;
     border-radius: 8px;
     width: 400px !important;
+    margin-top: -190px;
+    margin-bottom: 70px;
 }
 @media (max-width:991.9px){
     .userInfo{

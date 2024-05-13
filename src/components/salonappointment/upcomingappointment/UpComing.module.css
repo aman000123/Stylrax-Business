@@ -214,6 +214,8 @@
     padding: 20px 0px;
     border-radius: 8px;
     width: 400px !important;
+    /* margin-top: -200px !important;
+    margin-bottom: 60px; */
 }
 @media (max-width:1399.9px){
     .userInfo{
@@ -322,7 +324,7 @@
 }
 .status a{
     color: #7A7A7A;
-    font-size: 10px;
+    font-size: 12px;
     text-align: center;
 }
 .location{
@@ -352,4 +354,13 @@
 }
 .gender{
     margin-left: 6px;
+}
+.centered p{
+    margin-bottom: 3px;
+}
+.centered {
+    display: flex;
+    align-items: center;
+
+    justify-content: center;
 }

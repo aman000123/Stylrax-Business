@@ -45,6 +45,12 @@ export const __endpoint_bankDetails = (id)=>{return ` ${endpoint}b2b/salons/${id
 export const __endpoint_completedAppointments = (id)=>{return ` ${endpoint}b2b/salons/${id}/appointments?status=completed`};
 export const __endpoint_pendingAppointments = (id)=>{return ` ${endpoint}b2b/salons/${id}/appointments?status=pending`};
 export const __endpoint_ongoingAppointments = (id)=>{return ` ${endpoint}b2b/salons/${id}/appointments`};
+<<<<<<< Updated upstream
 
 // Static Page APIs
 export const __endpoint_staticPageUrl = endpoint + "b2b/file/doc/";
+=======
+export const __endpoint_cancelledAppointments = (id)=>{return ` ${endpoint}b2b/salons/${id}/appointments?status=cancelled`};
+export const __endpoint_detailsAppointments = (id)=>{return ` ${endpoint}b2b/appointments/${id}`};
+
+>>>>>>> Stashed changes

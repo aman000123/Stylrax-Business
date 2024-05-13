@@ -22,12 +22,12 @@ const CreateAccount = lazy(() => import("./pages/CreateAccount"));
 
 
 const AppRoute = ({ authToken }) => {
-  const isAuthTokenValid = authToken && authToken !== 'expired';
+ // const isAuthTokenValid = authToken && authToken !== 'expired';
   const _routes = [
     {
       children: [
-        { path: "", element: isAuthTokenValid ? <Navigate to="/salon/dashboard" /> : <Navigate to="/home" />, exact: true },
-        // { path: "", element: <Navigate to="/salon/dashboard" />, exact: true },
+        // { path: "", element: isAuthTokenValid ? <Navigate to="/salon/dashboard" /> : <Navigate to="/home" />, exact: true },
+         { path: "", element: <Navigate to="/salon/dashboard" />, exact: true },
         { path: "/account/create", element: <CreateAccount />},
         { path: "home", element: <Home />
        
