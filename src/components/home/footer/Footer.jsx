@@ -1,8 +1,8 @@
-import { Link } from 'react-router-dom';
-import styles from '../footer/Footer.module.css';
+import { Link } from "react-router-dom";
+import styles from "../footer/Footer.module.css";
 import logo from "../../../assets/image/logo.png";
-import AppStore from '../../../assets/image/img-appstore.svg';
-import GooglePlays from '../../../assets/image/img-gplay.svg'
+import AppStore from "../../../assets/image/img-appstore.svg";
+import GooglePlays from "../../../assets/image/img-gplay.svg";
 import { MdFacebook } from "react-icons/md";
 import { FaInstagram } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
@@ -30,7 +30,6 @@ function Footer() {
           <Link href="">Stylrax Anti-Aging Treatment Clinic</Link>
           <Link href="">Stylrax Cosmetic Treatment Clinic</Link>
           <Link href="">Stylrax Clinic</Link>
-
         </div>
         <div className={styles.footerItem}>
           <Link href="">Pricing</Link>
@@ -46,10 +45,9 @@ function Footer() {
           <Link to="/home/privacy">Privacy Policy</Link>
           <Link to="/home/terms-condition">Terms of use</Link>
         </div>
-
       </div>
       <div className={styles.socialMedia}>
-        <div className={styles.socialMediaItems}>
+        {/* <div className={styles.socialMediaItems}>
           <p className={styles.social}>Get Social</p>
           <div className={styles.socialIcons}>
             <MdFacebook />
@@ -65,18 +63,17 @@ function Footer() {
             <input type="text" placeholder='Enter Mobile Number' />
             <button>Submit</button>
           </form>
-        </div>
+        </div> */}
         <div className={styles.socialMediaItems}>
           <p>Download Our App </p>
           <div className={styles.downloadsLogo}>
-            <img src={AppStore} alt="Apple store"  />
+            <img src={AppStore} alt="Apple store" />
             <img src={GooglePlays} alt="Google play store" />
           </div>
-
         </div>
       </div>
     </div>
-  )
+  );
 }
 
-export default Footer
+export default Footer;

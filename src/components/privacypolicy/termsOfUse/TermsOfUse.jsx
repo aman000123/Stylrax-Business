@@ -1,7 +1,5 @@
-import StaticPage from '../../common/StaticPage'
+import StaticPage from "../../common/StaticPage";
 
 export default function TermsOfUse() {
-  return (
-   <StaticPage endpoint={"termsAndConditions"} />
-  )
+  return <StaticPage endpoint={"termsAndConditions"} />;
 }
