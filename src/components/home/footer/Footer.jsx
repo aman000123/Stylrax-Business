@@ -46,8 +46,8 @@ function Footer() {
           <Link to="/home/terms-condition">Terms of use</Link>
         </div>
       </div>
-      <div className={styles.socialMedia}>
-        {/* <div className={styles.socialMediaItems}>
+      {/* <div className={styles.socialMedia}>
+        <div className={styles.socialMediaItems}>
           <p className={styles.social}>Get Social</p>
           <div className={styles.socialIcons}>
             <MdFacebook />
@@ -63,7 +63,7 @@ function Footer() {
             <input type="text" placeholder='Enter Mobile Number' />
             <button>Submit</button>
           </form>
-        </div> */}
+        </div>
         <div className={styles.socialMediaItems}>
           <p>Download Our App </p>
           <div className={styles.downloadsLogo}>
@@ -71,7 +71,7 @@ function Footer() {
             <img src={GooglePlays} alt="Google play store" />
           </div>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 }
