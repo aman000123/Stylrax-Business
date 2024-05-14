@@ -68,15 +68,17 @@ const UserProfile = () => {
           <ul className={`${styles.profile_menu}  text-white bg-black`}>
             <div className='d-flex'>
             <img src={profile} className={styles.avtar_img} />
-            <li className='mx-3'>{firstName}</li>
+            <li className='mx-4 pb-2'>{firstName}</li>
             </div>
             <div className='d-flex'onClick={togglePopup}>
             <PiUserCircleLight className={styles.icon}/>
-            <li className={styles.profile}>Edit profile</li>
+            <li className={styles.profile}>View profile</li>
+            {/* <li >View profile</li> */}
+
             </div>
             <div className='d-flex'onClick={handleLogout}>
                 <IoLogOutOutline className={`${styles.icon}`}/>
-            <li >Logout</li>
+            <li className={styles.logout}>Logout</li>
             </div>
           </ul>
           </Paper>

@@ -81,7 +81,7 @@ function AddService({ onClose }) {
               onChange={handleCategoryChange}
               value={selectedCategoryId} 
             >
-              <option value="">Select Category</option>
+              <option value="">Select Service</option>
               {categories.map((category) => (
                 <option key={category.id} value={category.id}>
                   {category.name}
@@ -94,10 +94,11 @@ function AddService({ onClose }) {
               type="text"
               placeholder="Service Name"
               name="serviceName"
-              className={styles.input4}
+              className={styles.input5}
             />
+            <br/>
             <ErrorMessage name="serviceName" component="div" className={styles.error} />
-            <br />
+          
             <Field
               type="text"
               placeholder="Service Mrp"
@@ -108,7 +109,7 @@ function AddService({ onClose }) {
             <ErrorMessage name="servicePrice" component="div" className={styles.error} />
             <Field
               type="text"
-              placeholder="Service Duration"
+              placeholder="Service Duration (mins)"
               name="serviceDuration"
               className={styles.input6}
             />

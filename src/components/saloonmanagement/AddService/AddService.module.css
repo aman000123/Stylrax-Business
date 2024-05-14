@@ -138,3 +138,11 @@
     color: #909090;
     outline: none;
 }
+
+@media (max-width:767px){
+.mainDiv  {
+    display: flex;
+  justify-content: center;
+}
+}
+    

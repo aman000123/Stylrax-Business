@@ -75,7 +75,11 @@
    width: fit-content;
    padding-bottom: 4px;
 }
-
+@media (max-width:575) {
+    .timeDiv div .spanOne input{
+        width: 50px !important;
+    }
+}
 .timeDiv .timeIcon{
     font-size: 25px;
 }

@@ -1,0 +1,71 @@
+@media (max-width:575px) {
+    .mainDiv{
+        width: 300px;
+    }
+}
+.imgDiv{
+    display: flex;
+    justify-content: space-between;
+    height: 180px;
+    width: 180px;
+    border-radius: 15px;
+    justify-content: center;
+}
+.mainDiv{
+    padding: 60px 60px;
+    background-color: #fff;
+    border-radius: 7px;
+    height: 1250px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.close_Icon{
+    margin-left: 348px;
+    margin-top: -90px;
+    cursor: pointer;
+}
+.mainDiv .editProfile{
+    margin-left: 143px;
+    margin-top: -69px;
+    height: 30px;
+    width: 30px;
+    border: 2px solid #00000099;
+    border-radius: 100%;
+    color: grey;
+}
+.documents{
+    padding-top: 15px;
+    height: 130px;
+    width: 130px;
+}
+.lab{
+    padding:10px 0px;
+    color: black;
+    font-weight: 600;
+}
+.inputs{
+    padding: 5px 70px 5px 10px;
+    color: #BEBEBE;
+    border: 2px solid #BEBEBE;
+    border-radius: 5px;
+    outline: none;
+}
+@media (max-width:575px) {
+    .inputs{
+        padding: 5px 0px 5px 10px;
+    }
+    .mainDiv{
+        padding: 60px 55px;
+    }
+    .documents{
+        height: 90px;
+        width: 95px; 
+    }
+    .close_Icon{
+        margin-left: 175px;
+    }
+    .lab{
+        margin-bottom: -20px;
+    }
+}

@@ -11,6 +11,12 @@
     margin-top: -20px;
     cursor: pointer;
 }
+@media (max-width:575px) {
+    .crossIcon{
+       margin-right: 98px !important;
+    }
+}
+
 .paper{
     height: auto;
     width: 140px;
@@ -89,7 +95,12 @@
     outline: none;
     border: none;
 }
-
+/* @media (max-width:767px) {
+    .popupForm{
+        display: flex;
+        justify-content: center;
+    }
+} */
 
 .popupFormImgDiv{
     display: flex;
@@ -198,21 +209,11 @@
     border-left: none;
     padding-bottom: 3px;
     margin-top: 20px;
-    padding-right: 197px;
+    padding-right: 180px;
     padding-left: 10px;
     color:grey;
     text-decoration-color: #BEBEBE;
     outline: none;}
-
-
-
-
-
-
-
-
-
-
 .appointmentDiv{
     background-color: #fff;
     border: 2px solid #BEBEBE;
@@ -324,7 +325,7 @@
     }
 }
 
-@media(max-width:586px){
+@media(max-width:575px){
     .text p{
         line-height: 13px;
     }
@@ -332,14 +333,25 @@
     .paper{
         width: 134px;
     }
+    .formError{
+        margin-left: -37px;
+    }
+    .colDiv{
+        padding-top: 15px;
+     display: flex;
+     justify-content: center;
+    }
+    .type_gender{
+        margin-right: 180px;
+    }
 }
 
-@media(max-width:425px){
+/* @media(max-width:425px){
     .mainDiv{
         flex-direction: column;
         align-items: center;
     }
-}
+} */
 
 
 

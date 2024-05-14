@@ -1,22 +1,11 @@
 import { useState, useEffect } from "react";
-import { Form, Formik, Field } from "formik";
+import { getPresignedUrl } from "../../api/file.api.js";
+import Notify from "../../utils/notify.js";
+import { RxCross2 } from "react-icons/rx";
 import { MdOutlineEdit } from "react-icons/md";
 import { getProfile, updateProfile } from "../../api/user.api.js";
-import Notify from "../../utils/notify.js";
-import { salonProfileSchema } from "../../utils/schema.js";
-import styles from "../saloonmanagement/SalonOwnerDetails/SalonOwnerDetails.module.css";
-import { getPresignedUrl } from "../../api/file.api.js";
-import { RxCross2 } from "react-icons/rx";
-const initialValues = {
-  firstName: "",
-  middleName: "",
-  lastName: "",
-  email: "",
-  dataOfBirth: "",
-  gender: "",
-};
-
-function EditProfile({onClose}) {
+import styles from "./EditProfile.module.css";
+function SalonOwnerDetails({onClose}) {
   const [details, setDetails] = useState({});
   const [imageUrls, setImageUrls] = useState({});
   useEffect(() => {
@@ -55,11 +44,9 @@ function EditProfile({onClose}) {
       console.error("Error uploading image:", error);
     }
   };
-
- 
   return (
-    <div className={`${styles.mainDiv} ${styles.addSalon}`}>
-    <RxCross2 onClick={onClose} className={styles.close_Icon}/>
+    <div className={styles.mainDiv}>
+      <RxCross2 onClick={onClose} className={styles.close_Icon}/>
       <div>
         <img
           src={imageUrls.profile || details.profileImageUrl}
@@ -77,63 +64,71 @@ function EditProfile({onClose}) {
           onChange={(event) => handleOnFileSelect(event, "profile")}
         />
       </div>
-      <Formik initialValues={initialValues} validationSchema={salonProfileSchema}>
-        <Form>
-          <label className={styles.lab}>First Name</label>
-          <br />
-          <Field
-            type="text"
-            placeholder={details.firstName}
-            name="firstName"
-            className={styles.inputs}
-          />
-          <br />
-          <label className={styles.lab}>Middle Name</label>
-          <br />
-          <Field
+      <div>
+        <label className={styles.lab}>Salon Name</label>
+        <br />
+        <input
+          type="text"
+          placeholder={details.firstName}
+          name="firstName"
+          className={styles.inputs}
+          disabled
+        />
+      </div>
+      <div>
+        <label className={styles.lab}>Middle Name</label>
+        <br />
+        <input
             type="text"
             placeholder={details.middleName}
             name="middleName"
             className={styles.inputs}
-          />
-          <br />
-          <label className={styles.lab}>Last Name</label>
-          <br />
-          <Field
-            type="text"
-            placeholder={details.lastName}
-            name="lastName"
-            className={styles.inputs}
-          />
-          <br />
-          <label className={styles.lab}>Email ID</label>
-          <br />
-          <Field
-            type="email"
-            placeholder={details.email}
-            name="email"
-            className={styles.inputs}
-          />
-          <br />
-          <label className={styles.lab}>Date of Birth</label>
-          <br />
-          <Field
-            type="text"
-            placeholder={details.dataOfBirth}
-            name="dataOfBirth"
-            className={styles.inputs}
-          />
-          <br />
-          <label className={styles.lab}>Gender</label>
-          <br />
-          <Field
-            type="text"
-            name="gender"
-            placeholder={details.gender}
-            className={styles.inputs}
-          />
-          <br />
-          <label className={styles.lab}>Aadhar Card</label>
+            disabled
+        />
+      </div>
+      <div>
+        <label className={styles.lab}>Last Name</label>
+        <br />
+        <input
+         placeholder={details.lastName}
+         name="lastName"
+         className={styles.inputs}
+         disabled
+        />
+      </div>
+      <div>
+        <label className={styles.lab}>Email</label>
+        <br />
+        <input
+          placeholder={details.email}
+          name="email"
+          className={styles.inputs}
+          disabled
+        />
+      </div>
+      <div>
+        <label className={styles.lab}>Date of Birth</label>
+        <br />
+        <input
+           type="text"
+           placeholder={details.dataOfBirth}
+           name="dataOfBirth"
+           className={styles.inputs}
+           disabled
+        />
+      </div>
+      <div>
+        <label className={styles.lab}>Gender</label>
+        <br />
+        <input
+           type="text"
+           name="gender"
+           placeholder={details.gender}
+           className={styles.inputs}
+           disabled
+        />
+      </div>
+      <label className={styles.lab}>Aadhar Card</label>
           <br />
           <div className="d-flex gap-4">
             <div className={styles.aadhar}>
@@ -170,10 +165,8 @@ function EditProfile({onClose}) {
             />
           </div>
           <br />
-        </Form>
-      </Formik>
     </div>
   );
 }
 
-export default EditProfile;
+export default SalonOwnerDetails;

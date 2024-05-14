@@ -1,9 +1,10 @@
 import {  getPresignedUrl } from "../../api/file.api";
-
+import Notify from "../../utils/notify";
 export const handleOnFileSelect = async (file, type, setFieldValue) => {
     if (!file) {
         setFieldValue(type, "");
     } else {
+       try {
         const fileUrl = await getPresignedUrl({ fileName: file.name });
         setFieldValue(type, fileUrl.data.path);
         const formData = new FormData();
@@ -16,5 +17,8 @@ export const handleOnFileSelect = async (file, type, setFieldValue) => {
             }
         };
         await fetch(fileUrl.data.url, requestOptions);
+       } catch (error) {
+        Notify.error(error.message);
+       }
     }
 };
