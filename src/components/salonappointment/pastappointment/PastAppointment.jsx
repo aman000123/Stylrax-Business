@@ -12,10 +12,14 @@ import { useEffect, useState } from 'react';
 import { completedAppointments } from "../../../api/appointments.api";
 import Session from "../../../service/session";
 import Notify from "../../../utils/notify";
+import Popup from "../Popup";
 
 const PastAppointment = () => {
   const [selectedDate, setSelectedDate] = useState(dayjs());
+  const [selectedAppointmentId, setSelectedAppointmentId] = useState(null);
+
   const [completed, setCompleted] = useState([]);
+  const [showPopup, setShowPopup] = useState(false);
   const salonId = Session.get('salonId')
   const handleDateChange = (newDate) => {
     setSelectedDate(newDate);
@@ -34,6 +38,12 @@ const PastAppointment = () => {
     };
     appointments();
   }, [salonId])
+
+  const handleViewDetails = (appointmentId) => {
+    setSelectedAppointmentId(appointmentId);
+    console.log("ara id",appointmentId)
+    setShowPopup(true);
+  };
   return (
     <div>
      
@@ -68,14 +78,13 @@ const PastAppointment = () => {
         <Col  md={12} lg={8} sm={12}   className={main.userDiv}>
         
           <Row>
-            {completed.slice(0,12).map((appointment, index) => (
+            {completed.map((appointment, index) => (
               <Col md={5} sm={5} xs={5}  key={index} className='me-4'>
                 <Row className="mb-2">
                   <div className={main.userInfo}>
                     <Col md={4}>
                       <div>
                         <img
-                           //src={appointment.userImage}
                            src={appointment.user.profileImageUrl}
                           className={main.userImage}
                           alt="User"
@@ -85,36 +94,23 @@ const PastAppointment = () => {
                     <Col md={3}>
                       <p className={main.user}>
                         <span className={main.userName}>
-                          `{`${appointment.user.firstName} ${appointment.user.lastName}`}
+                          `{`${appointment.user.firstName}`}
                         </span>
                         <br />
                         <span>{appointment.service}</span>
                         <br />
                         <span>{appointment.startTime}<span className={main.gender}>{appointment.serviceType}</span></span>                        <br />
                         <span>{appointment.date}</span>&nbsp;
-                          {/* <span className={main.locationDistance}><GrFormLocation className={main.location}/>1.5km</span> */}
                       </p>
-                      {/* <button className={main.accept}>Accept</button> */}
                     </Col>
                     <Col md={2}>
-                      {/* <p className={main.payment}>
-                        {appointment.paymentAmount}
-                        <br />
-                        <span>Payment</span>
-                        <br />
-                        <span className={main.paymentType}>
-                          {appointment.paymentType}
-                        </span>
-                      </p> */}
-                     
-                      {/* <button className={main.decline}>Decline</button> */}
+                   
                     </Col>
                     <Col md={3}>
                     <div className={main.status}>
-                        {appointment.status}<br/>
-                        <Link>View Details</Link>
-                      </div>
-                      
+        {appointment.status}<br/>
+        <Link onClick={() => handleViewDetails(appointment.id)}>View Details</Link>
+      </div>
                     </Col>
                     
                   </div>
@@ -126,7 +122,7 @@ const PastAppointment = () => {
          
         </Col> 
        </Row>
-     
+     <Popup data= {selectedAppointmentId} show={showPopup} onHide = {()=>setShowPopup(false)} />
     </div>
   );
 }

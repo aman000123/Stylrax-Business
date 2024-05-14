@@ -48,3 +48,7 @@ export const __endpoint_ongoingAppointments = (id)=>{return ` ${endpoint}b2b/sal
 
 // Static Page APIs
 export const __endpoint_staticPageUrl = endpoint + "b2b/file/doc/";
+
+export const __endpoint_cancelledAppointments = (id)=>{return ` ${endpoint}b2b/salons/${id}/appointments?status=cancelled`};
+export const __endpoint_detailsAppointments = (id)=>{return ` ${endpoint}b2b/appointments/${id}`};
+

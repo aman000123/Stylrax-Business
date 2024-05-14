@@ -32,13 +32,13 @@ const NewAppointment = () => {
             onClick={() => handleButtonClick("button1")}
             className={activeButton === "button1" ? styles.active : ""}
           >
-            Ongoing
+            Cancelled
           </button>
           <button
             onClick={() => handleButtonClick("button2")}
             className={activeButton === "button2" ? styles.active : ""}
           >
-            Upcoming
+            Pending
           </button>
           <button
             onClick={() => handleButtonClick("button3")}
