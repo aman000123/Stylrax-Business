@@ -18,6 +18,7 @@ function ViewMore({ onClose, id }) {
   const [service, setService] = useState({});
   const [editable, setEditable] = useState(false);
   const [refreshKey, setRefreshKey] = useState(0);
+
   const salonId = Session.get("salonId");
   useEffect(() => {
     const getService = async () => {
@@ -44,10 +45,10 @@ function ViewMore({ onClose, id }) {
     // Show confirmation dialog
     Swal.fire({
       title: "Are you sure?",
-      text: "You will not be able to recover this service!",
+      text: "You want to delete this service!",
       icon: "warning",
       showCancelButton: true,
-      confirmButtonColor: "#3085d6",
+      confirmButtonColor: "black",
       cancelButtonColor: "#d33",
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
@@ -80,8 +81,10 @@ function ViewMore({ onClose, id }) {
   };
 
   return (
-    <Col md={4}>
-      <div className={styles.popupFormDiv}>
+
+    <Col md={4} className={styles.colDiv}>
+          <div className={styles.popupFormDiv}>
+
         <div className={styles.popupFormImgDiv}>
           <span>Service</span>
           <div onClick={handleClose} className={styles.crossIcon}>
@@ -137,7 +140,7 @@ function ViewMore({ onClose, id }) {
               <Field
                 type="number"
                 placeholder={
-                  !editable ? service.serviceDuration : "Service Duration"
+                  !editable ? `${service.serviceDuration} mins` : "Service Duration"
                 }
                 name="serviceDuration"
                 disabled={!editable}
@@ -166,7 +169,7 @@ function ViewMore({ onClose, id }) {
                       <>
                         <option value="Male">Male</option>
                         <option value="Female">Female</option>
-                        <option value="Other">Other</option>
+                        <option value="Both">Other</option>
                       </>
                     )}
                   </select>
@@ -197,8 +200,9 @@ function ViewMore({ onClose, id }) {
             </Form>
           )}
         </Formik>
-      </div>
+        </div>
     </Col>
+    
   );
 }
 

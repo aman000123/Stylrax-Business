@@ -10,6 +10,7 @@ import InputFile from "../../../ux/controls/Input.jsx";
 import styles from "../ManageStaff/ManageStaff.module.css";
 
 import { useState } from "react";
+import PhoneInputComponent from "../../authentication/login/PhoneInputComponent.jsx";
 const initialValues = {
   name: "",
   mobileNumber: "",
@@ -80,12 +81,13 @@ function AddStaff({ onClose }) {
                 component="div"
                 className={styles.formError}
               />
- 
-              <Field
+  
+               <Field
                 type="text"
                 placeholder="Mobile Number"
                 name="mobileNumber"
               />
+              {/* <PhoneInputComponent/> */}
               <ErrorMessage
                 name="mobileNumber"
                 component="div"

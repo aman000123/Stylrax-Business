@@ -149,10 +149,10 @@ function ConfirmationDialog({ onClose, onConfirm }) {
   useEffect(() => {
     Swal.fire({
       title: "Are you sure?",
-      text: "You will not be able to recover this staff member!",
+      text: "You want to delete this staff member!",
       icon: "warning",
       showCancelButton: true,
-      confirmButtonColor: "#3085d6",
+      confirmButtonColor: "black",
       cancelButtonColor: "#d33",
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {

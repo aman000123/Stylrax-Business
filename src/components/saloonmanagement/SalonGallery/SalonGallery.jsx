@@ -45,13 +45,26 @@ const SalonGallery = ({salonDetails}) => {
     <div>
     <h6 className="pt-4 ">Banner Images</h6>      
     <div className="pt-1">
-      <Row>
+      {/* <Row>
       <Col  lg={2} md={3} sm={4} xs={4}>
         {bannerImages.map((imageUrl, index) => (
           <img key={index} src={imageUrl} alt={`Banner ${index + 1}`} className={styles.documents}/>
         ))}
         </Col>
-        </Row>
+        </Row> */}
+         <Row >
+        {bannerImages &&
+         bannerImages.length > 0 &&
+          bannerImages.map((imageUrl, index) => (
+            <Col key={index} lg={2} md={3} sm={4} xs={4}>
+              <img
+                src={imageUrl}
+                alt={`Banner Image ${index}`}
+                className={styles.documents}
+              />
+            </Col>
+          ))}
+      </Row>
       </div>
     </div>
     </>

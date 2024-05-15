@@ -12,6 +12,21 @@
     padding: 42px;
     position: absolute;
     z-index: 99;
+    margin-left: -60px;
+}
+@media (max-width:767px) {
+    .profile_menu{
+        margin-left: 60px;
+        padding: 20px 30px;
+    }
+    .profile_menu .profile{
+    margin-left: 20px;
+    margin-top: 13px;
+   }
+   .profile_menu .logout{
+    margin-left: 20px;
+    margin-top: 13px;
+   }
 }
 .paper{
     border-radius: 20px;

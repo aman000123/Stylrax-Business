@@ -1,10 +1,8 @@
 import { useState, useEffect } from "react";
-import { Form, Formik, Field } from "formik";
 import { getProfile } from "../../../api/user.api.js";
 import Notify from "../../../utils/notify.js";
 import styles from "../SalonOwnerDetails/SalonOwnerDetails.module.css";
-
-function SalonOwnerDetails({ onClose }) {
+function SalonOwnerDetails() {
   const [details, setDetails] = useState({});
   useEffect(() => {
     const fetchUserDetail = async () => {
@@ -18,79 +16,83 @@ function SalonOwnerDetails({ onClose }) {
     };
     fetchUserDetail();
   }, []);
-
   return (
-    <div className={`${styles.mainDiv} ${styles.addSalon}`}>
+    <div className={styles.mainDiv}>
+      <div className={styles.imgDiv}>
+        <div>
+          <img
+                   src={details.profileImageUrl}
+                   className={styles.imgDiv}
+                   alt="Profile"
+          />
+        </div>
+      </div>
+
       <div>
-        <img
-          src={details.profileImageUrl}
-          className={styles.imgDiv}
-          alt="Profile"
+        <label className={styles.lab}>Salon Name</label>
+        <br />
+        <input
+          type="text"
+          placeholder={details.firstName}
+          name="firstName"
+          className={styles.inputs}
+          disabled
         />
       </div>
-      <Formik>
-        <Form>
-          <label className={styles.lab}>First Name</label>
-          <br />
-          <Field
-            type="text"
-            placeholder={details.firstName}
-            name="firstName"
-            className={styles.inputs}
-            disabled
-          />
-          <br />
-          <label className={styles.lab}>Middle Name</label>
-          <br />
-          <Field
+      <div>
+        <label className={styles.lab}>Middle Name</label>
+        <br />
+        <input
             type="text"
             placeholder={details.middleName}
             name="middleName"
             className={styles.inputs}
             disabled
-          />
-          <br />
-          <label className={styles.lab}>Last Name</label>
-          <br />
-          <Field
-            type="text"
-            placeholder={details.lastName}
-            name="lastName"
-            className={styles.inputs}
-            disabled
-          />
-          <br />
-          <label className={styles.lab}>Email ID</label>
-          <br />
-          <Field
-            type="email"
-            placeholder={details.email}
-            name="email"
-            className={styles.inputs}
-            disabled
-          />
-          <br />
-          <label className={styles.lab}>Date of Birth</label>
-          <br />
-          <Field
-            type="text"
-            placeholder={details.dataOfBirth}
-            name="dataOfBirth"
-            className={styles.inputs}
-            disabled
-          />
-          <br />
-          <label className={styles.lab}>Gender</label>
-          <br />
-          <Field
-            type="text"
-            name="gender"
-            placeholder={details.gender}
-            className={styles.inputs}
-            disabled
-          />
-          <br />
-          <label className={styles.lab}>Aadhar Card</label>
+        />
+      </div>
+      <div>
+        <label className={styles.lab}>Last Name</label>
+        <br />
+        <input
+         placeholder={details.lastName}
+         name="lastName"
+         className={styles.inputs}
+         disabled
+        />
+      </div>
+      <div>
+        <label className={styles.lab}>Email</label>
+        <br />
+        <input
+          placeholder={details.email}
+          name="email"
+          className={styles.inputs}
+          disabled
+        />
+      </div>
+      <div>
+        <label className={styles.lab}>Date of Birth</label>
+        <br />
+        <input
+           type="text"
+           placeholder={details.dataOfBirth}
+           name="dataOfBirth"
+           className={styles.inputs}
+           disabled
+        />
+      </div>
+      <div>
+        <label className={styles.lab}>Gender</label>
+        <br />
+        <input
+           type="text"
+           name="gender"
+           placeholder={details.gender}
+           className={styles.inputs}
+           disabled
+        />
+      </div>
+      <label className={styles.lab}>Aadhar Card</label>
           <br />
           <div className="d-flex gap-4">
             <div className={styles.aadhar}>
@@ -127,8 +129,6 @@ function SalonOwnerDetails({ onClose }) {
             />
           </div>
           <br />
-        </Form>
-      </Formik>
     </div>
   );
 }

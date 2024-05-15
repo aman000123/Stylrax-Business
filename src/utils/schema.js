@@ -87,18 +87,29 @@ export const bankSchema = Yup.object({
 
 
 // Add staff schema
-
+const imageFileTypes = ['image/jpeg','image/jpg', 'image/png'];
 export const addStaffSchema = Yup.object({
   name: Yup.string().required("Please enter valid Account Name"),
-  mobileNumber: Yup.string().matches(/^[0-9]{10}$/, 'Invalid phone number').required("Please enter  phone number"),
+  mobileNumber: Yup.string()
+  .matches(/^\d{10}$/, 'Mobile number must be exactly 10 digits')
+  .required("Please enter a valid 10-digit phone number"),
   dob: Yup.date()
   .max(getMinDOBDate(), `You must be at least ${MIN_AGE} years old`)
  .required("Date of birth is required"),
    email: Yup.string().email().required("Please enter your email"),
   gender: Yup.string().required("Please select your gender"),
   specialization: Yup.string().required("Please enter your specilization"),
-  profileImageUrl: Yup.string().required("Please upload profile image"),
-  aadharFrontUrl: Yup.string().required("Please upload aadhar front image"),
+  profileImageUrl: Yup.string()
+  .test('fileType', 'Only image files are allowed', (value) => {
+    if (value) {
+      const extension = value.split('.').pop();
+      return imageFileTypes.includes(`image/${extension}`);
+    }
+    return false; // Force to upload a file, so if no file is uploaded, validation should fail
+  })
+
+  .required("Please upload profile image"),
+      aadharFrontUrl: Yup.string().required("Please upload aadhar front image"),
   aadharBackUrl: Yup.string().required("Please upload aadhar back image"),
 
 });
@@ -117,12 +128,13 @@ export const addStaffSchema = Yup.object({
 //add service
 
 export const addServiceSchema = Yup.object().shape({
-  serviceName: Yup.string().required('service name is required'),
-  serviceDuration: Yup.string().required('service duration is required'),
-  //categoryId: Yup.number().required('service price is required'),
+  serviceName: Yup.string().matches(/^[a-zA-Z\s]*$/, 'Service name must contain only letters').required('Service name is required'),
+  serviceDuration: Yup.string().matches(/^\d+$/, 'Service duration must contain only numbers').required('Service duration is required'),
+  servicePrice: Yup.number()
+    .max(99999, 'Service price cannot exceed 99999')
+    .required('Service price is required'),
+  type: Yup.string().matches(/^[a-zA-Z\s]*$/, 'Service type must contain only letters').required("Please select your service"),
 
-  servicePrice: Yup.number().required('service price is required'),
-  type:Yup.string().required("Please select your service"),
 });
 
 export const viewMoreSchema = Yup.object().shape({

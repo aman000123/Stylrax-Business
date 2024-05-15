@@ -20,17 +20,16 @@
     color: #BEBEBE;
     font-weight: 500;
 }
-
- /* .addService{
-    display: flex;
-    flex-direction: column;
-} */
-
 .services{
     display: flex;
     flex-wrap: wrap;
 } 
-
+@media (max-width:575px) {
+    .services{
+        display: flex;
+        justify-content: center;
+    }
+}
 .imgDiv img{
     height: auto;
     width: 81px;

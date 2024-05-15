@@ -108,9 +108,9 @@ const PastAppointment = () => {
                     </Col>
                     <Col md={3}>
                     <div className={main.status}>
-        {appointment.status}<br/>
-        <Link onClick={() => handleViewDetails(appointment.id)}>View Details</Link>
-      </div>
+                   {appointment.status}<br/>
+                  <Link onClick={() => handleViewDetails(appointment.id)}>View Details</Link>
+                   </div>
                     </Col>
                     
                   </div>

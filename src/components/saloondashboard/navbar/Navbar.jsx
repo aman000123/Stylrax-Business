@@ -34,11 +34,13 @@ const Navbar = (props) => {
           <MenuIcon />
         </div>
         {menuOpen && (
-          <ul className={`${styles.MenuIcon} text-white`}>
+          <ul className={`${styles.MenuIcon} text-white pt-4`}>
             {props.data.map((item, index) => (
-              <div key={index} className="d-flex">
+              <div key={index} className="d-flex gap-3 pb-2">
                  <span className={`${styles.icon}`}>{item.icon}</span>
-                <li>{item.text}</li>
+                 <NavLink href={`/${item.link}`}>
+                {item.text}
+              </NavLink>              
               </div>
             ))}
           </ul>

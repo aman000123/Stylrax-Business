@@ -94,6 +94,9 @@
 @media (max-width:769px){
     .mainDiv{
         margin-top: 29px;
+        display: flex;
+        flex-direction: column;
+        align-items: center; 
     }
 }
 
@@ -125,7 +128,7 @@
 
 @media(max-width:437px){
     .imgDiv div img{
-        height: auto;
+        /* height: auto; */
         width: 150px;
     }
 
@@ -139,7 +142,7 @@
         padding: 5px 0px 5px 2px;
         width: 156px;
     }
-
+     
     .inputs{
         padding: 5px 0px 5px 2px;
         width: 156px;
@@ -157,20 +160,8 @@
 }
 .documents{
     padding-top: 15px;
-    height: 170px;
-    width: 170px;
+    height: 130px;
+    width: 130px;
 }
-.mainDiv .editProfile{
-    margin-left: 143px;
-    margin-top: -69px;
-    height: 30px;
-    width: 30px;
-    border: 2px solid #00000099;
-    border-radius: 100%;
-    color: grey;
-}
-.close_Icon{
-    margin-left: 348px;
-    margin-top: -90px;
-    cursor: pointer;
-}
+
+

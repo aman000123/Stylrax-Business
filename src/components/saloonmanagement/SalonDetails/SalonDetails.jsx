@@ -26,7 +26,7 @@ function SalonDetails() {
         <div>
           <img
             src={salonDetails.mainGateImageUrl}
-            className={styles.documents}
+            className={styles.imgDiv}
           />{" "}
         </div>
       </div>
