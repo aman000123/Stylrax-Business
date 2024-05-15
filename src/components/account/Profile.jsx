@@ -28,7 +28,7 @@ const Profile = ({ onContinue ,token}) => {
     { value: "", text: "Select" },
     { value: "male", text: "Male" },
     { value: "female", text: "Female" },
-    { value: "other", text: "Other" },
+    { value: "both", text: "Both" },
   ];
 
 

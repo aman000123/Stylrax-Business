@@ -12,6 +12,8 @@ const NewAppointment = () => {
   const handleButtonClick = (buttonName) => {
     setActiveButton(buttonName);
   };
+
+  
   return (
     <main>
         <Navbar data={navItems}/>

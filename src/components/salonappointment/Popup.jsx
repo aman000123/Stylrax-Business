@@ -17,7 +17,7 @@ import { useState } from 'react';
         const appointments = async()=>{
           try {
             const response = await detailsAppointments(appointmentId);
-            console.log("aradhya::>",appointmentId)
+            console.log("aradhya::>",response)
             const ongoing = response.data;
             console.log(" ongoing completed::>",ongoing)
             setAppointmentDetails(ongoing);
@@ -60,7 +60,7 @@ import { useState } from 'react';
       <p> {appointmentDetails?.appointmentId}</p>
       {/* <p> {appointmentDetails?.date}</p> */}
       <p> {appointmentDetails?.status}</p>
-      <p> {appointmentDetails?.salon?.address}</p>
+      <p> {appointmentDetails?.userAddress?.streetAddress}</p>
       <p> {appointmentDetails?.salon?.name}</p>
       <p> {appointmentDetails?.salon?.id}</p>
       <p> {appointmentDetails?.salon?.state}</p>

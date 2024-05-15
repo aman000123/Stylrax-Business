@@ -15,24 +15,10 @@ import {
   TextArea,
 } from "../../ux/controls";
 import FormContainer from "./FormContainer";
-
+import { data } from "./Data";
 import { useState } from "react";
 import { getPresignedUrl } from "../../api/file.api";
 
-const stateOptions = [
-  { value: "", text: "Select State" },
-  { value: "Uttar Pradesh", text: "Uttar Pradesh" },
-  { value: "Bihar", text: "Bihar" },
-  { value: "Haryana", text: "Haryana" },
-];
-
-const cityOptions = [
-  { value: "", text: "Select City" },
-  { value: "Kanpur", text: "Kanpur" },
-  { value: "Noida", text: "Noida" },
-  { value: "Lucknow", text: "Lucknow" },
-  { value: "Bhopal", text: "Bhopal" },
-];
 
 const serviceOptions = [
   { value: "", text: "Select Service" },
@@ -59,6 +45,10 @@ const initialValues = {
 const BusinessDetails = ({ onContinue, token }) => {
   const [bannerImages, setBannerImages] = useState([]);
   const [galleryImages, setGalleryImages] = useState([]);
+  const [cityOptions, setCityOptions] = useState([
+    { value: "", text: "Select City" },
+  ]);
+  const states = Object.keys(data);
 
   const handleOnSubmit = async (values) => {
     //onContinue(values);
@@ -117,8 +107,17 @@ const BusinessDetails = ({ onContinue, token }) => {
       // Set field value using Formik's setFieldValue
       setFieldValue(field, urls);
     } catch (error) {
-      console.error("Error uploading image:", error);
+      Notify.error(error.message);
     }
+  };
+
+  const handleStateChange = (selectedState) => {
+    const selectedCities = data[selectedState];
+    const cityOptions = selectedCities.map((city) => ({
+      value: city,
+      text: city,
+    }));
+    setCityOptions([{ value: "", text: "Select City" }, ...cityOptions]);
   };
   return (
     <Container>
@@ -162,16 +161,23 @@ const BusinessDetails = ({ onContinue, token }) => {
                   placeholder="Salon Address"
                   className={styles.address}
                 />
-                <InputSelect
-                  name="city"
-                  label="Salon City"
-                  options={cityOptions}
-                />
+               
                 <InputSelect
                   name="state"
                   label="Salon State"
-                  options={stateOptions}
+                  options={states.map((state) => ({
+                    value: state,
+                    text: state,
+                  }))}
+                  onChange={(e) => {
+                    setFieldValue("state", e.target.value);
+                    handleStateChange(e.target.value);
+                  }}
                 />
+                 <InputSelect
+                  name="city"
+                  label="Salon City"
+                  options={cityOptions}                />
                 <InputText
                   type="text"
                   name="pinCode"

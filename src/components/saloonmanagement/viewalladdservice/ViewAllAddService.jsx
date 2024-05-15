@@ -9,7 +9,7 @@ import {
 import Notify from "../../../utils/notify";
 import { RxCross2 } from "react-icons/rx";
 import Session from "../../../service/session";
-import Swal from 'sweetalert2';
+import Swal from "sweetalert2";
 
 function ViewAllAddService({ id, onClose }) {
   const [staff, setStaff] = useState({});
@@ -63,7 +63,7 @@ function ViewAllAddService({ id, onClose }) {
   const handleDeleteConfirmation = async () => {
     try {
       await removeStaff(salonId, staff.id);
-      Notify.success('Staff deleted');
+      Notify.success("Staff deleted");
       onClose();
     } catch (error) {
       Notify.error(error.message);
@@ -77,43 +77,58 @@ function ViewAllAddService({ id, onClose }) {
         <div className={styles.popupFormDiv}>
           <div className={styles.popupFormImgDiv}>
             <span>Staff</span>
-            <div className={styles.crossIcon} onClick={handleClose}><RxCross2/></div>  
-            <img src={staff.profileImageUrl} alt="" className={styles.profile}/>
+            <div className={styles.crossIcon} onClick={handleClose}>
+              <RxCross2 />
+            </div>
+            <img
+              src={staff.profileImageUrl}
+              alt=""
+              className={styles.profile}
+            />
           </div>
 
           <form className={styles.popupForm}>
-            <input
-              type="text"
-              placeholder={`${staff.firstName}`}
-              readOnly
-            />
+            <input type="text" placeholder={`${staff.firstName}`} readOnly />
             <input type="text" placeholder={staff.phoneNumber} readOnly />
             <input type="text" placeholder={staff.dataOfBirth} readOnly />
             <input type="text" placeholder={staff.email} readOnly />
             <input type="text" placeholder={staff.gender} readOnly />
             <input
               type="text"
-              placeholder={!editable?staff.specialization:"Specilization"}
+              placeholder={!editable ? staff.specialization : "Specilization"}
               readOnly={!editable}
               style={{
-                color: editable ? '#000' : '#888', 
-                borderColor: editable ? '#000' : '#ddd' 
+                color: editable ? "#000" : "#888",
+                borderColor: editable ? "#000" : "#ddd",
               }}
               onChange={(e) => setSpecialization(e.target.value)}
             />
-             <input
+            <input
               type="text"
               disabled={!editable}
-              placeholder={
-                !editable ? staff.role : "Role"
-              }            
+              placeholder={!editable ? staff.role : "Role"}
               readOnly={!editable}
               style={{
-                color: editable ? '#000' : '#888', 
-                borderColor: editable ? '#000' : '#ddd' 
+                color: editable ? "#000" : "#888",
+                borderColor: editable ? "#000" : "#ddd",
               }}
               onChange={(e) => setRole(e.target.value)}
             />
+            <div className={`${styles.adhar_images} row`}>
+              <div className="col">
+                <div>Adhar Front</div>
+                <img
+                  src={staff.aadharFrontUrl}
+                  alt="adhar front"
+                  className="mb-3"
+                />
+              </div>
+              <div className="col">
+                <div>Adhar Back</div>
+
+                <img src={staff.aadharBackUrl} alt="adhar back"/>
+              </div>
+            </div>
           </form>
 
           <div className={styles.popupFormButton}>
@@ -122,25 +137,24 @@ function ViewAllAddService({ id, onClose }) {
                 Edit
               </button>
             ) : (
-              <button
-                className={styles.buttonOne}
-                onClick={onEdit}
-              >
+              <button className={styles.buttonOne} onClick={onEdit}>
                 Save
               </button>
             )}
-            <button
-              className={styles.buttonTwo}
-              onClick={onDelete}
-            >
+            <button className={styles.buttonTwo} onClick={onDelete}>
               Delete
             </button>{" "}
           </div>
         </div>
       </Col>
-      
+
       {/* SweetAlert2 Confirmation Dialog */}
-      {showConfirmation && <ConfirmationDialog onClose={handleClose} onConfirm={handleDeleteConfirmation} />}
+      {showConfirmation && (
+        <ConfirmationDialog
+          onClose={handleClose}
+          onConfirm={handleDeleteConfirmation}
+        />
+      )}
     </div>
   );
 }
