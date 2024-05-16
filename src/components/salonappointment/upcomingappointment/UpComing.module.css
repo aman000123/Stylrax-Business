@@ -355,12 +355,3 @@
 .gender{
     margin-left: 6px;
 }
-.centered p{
-    margin-bottom: 3px;
-}
-.centered {
-    display: flex;
-    align-items: center;
-
-    justify-content: center;
-}

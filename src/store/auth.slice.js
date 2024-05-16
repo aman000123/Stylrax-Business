@@ -5,6 +5,8 @@ export const authSlice = createSlice({
   initialState: {
     token: Session.get("token") || "",
     salonId:Session.get("salonId") || null,
+    salonName: Session.get("salonName") || "",
+    salonImage: Session.get("salonImage") || "",
     userInfo: {
       profileStatus : 0,
       email: "",
@@ -35,7 +37,14 @@ export const authSlice = createSlice({
       Session.set("firstName", firstName); 
 
     },
-   
+    setSalonName: (state, action) => {
+      state.salonName = action.payload.salonName;
+      Session.set("salonName", action.payload.salonName);
+    },
+    setSalonImage: (state, action) => {
+      state.salonImage = action.payload.salonImage;
+      Session.set("salonImage", action.payload.salonImage);
+    },
     setSalonID:(state,action)=>{
       state.salonId=action.payload.salonId;
       Session.set("salonId",action.payload.salonId);
@@ -86,6 +95,7 @@ export const authSlice = createSlice({
   },
 })
 
-export const { storeToken,setSalonID,removeUserInfo,removeToken,removeSalonID, setUserInfo , storeSalons,removeSalons} = authSlice.actions
+export const { storeToken,setSalonID,removeUserInfo,removeToken,removeSalonID, setUserInfo , storeSalons,removeSalons ,setSalonName,
+  setSalonImage,} = authSlice.actions
 
 export default authSlice.reducer
