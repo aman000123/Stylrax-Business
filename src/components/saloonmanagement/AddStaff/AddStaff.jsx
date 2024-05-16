@@ -86,6 +86,17 @@ function AddStaff({ onClose }) {
                 type="text"
                 placeholder="Mobile Number"
                 name="mobileNumber"
+                pattern="[0-9]*"
+                onKeyDown={(e) => {
+                  // Allow only numeric keys
+                  if (!/^\d$/.test(e.key)) {
+                    e.preventDefault();
+                  }
+                  const maxLength = 10;
+                  if (e.target.value.length >= maxLength && e.key !== 'Backspace') {
+                    e.preventDefault();
+                  }
+                }}
               />
               {/* <PhoneInputComponent/> */}
               <ErrorMessage

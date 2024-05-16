@@ -82,8 +82,14 @@ const UpComingAppointment = () => {
                 </Col>
               ))}
             </Row>
-              <Popup data= {selectedAppointmentId} show={showPopup} onHide = {()=>setShowPopup(false)}/>
-              </>
+            {showPopup && (
+        <Popup
+          data={selectedAppointmentId}
+          show={showPopup}
+          onHide={() => setShowPopup(false)}
+        />
+      )}                
+     </>
   );
 }
 

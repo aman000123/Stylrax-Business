@@ -13,6 +13,7 @@ import { navItems } from "../../../data/navdata/Data";
 import Session from "../../../service/session";
 import { singleSalon } from "../../../api/salon.api";
 import Notify from "../../../utils/notify.js";
+import MyQR from "../MyQR/MyQR.jsx";
 
 function SalonManagement() {
   const [activeButton, setActiveButton] = useState("Salon Details");
@@ -48,6 +49,7 @@ function SalonManagement() {
     "Services",
     "Salon timings",
     "Salon gallery",
+    "My QR"
   ];
   const currentComponent = {
     "Salon details": (
@@ -83,6 +85,11 @@ function SalonManagement() {
     "Salon gallery": (
       <Col md={10} className={styles.coltwo}>
         <SalonBanner salonDetails={salonDetails}/>
+      </Col>
+    ),
+    "My QR": (
+      <Col md={10} className={styles.coltwo}>
+        <MyQR />
       </Col>
     ),
   };

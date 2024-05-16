@@ -1,30 +1,25 @@
 import { useState } from "react";
 import { createSalon } from "../../../api/salon.api";
 import { getPresignedUrl } from "../../../api/file.api";
-import { Container} from "react-bootstrap";
 import Section from "../../../ux/Section";
 import FormContainer from "../../account/FormContainer";
 import { Form, Formik } from "formik";
 import { businessDetailsSchema } from "../../../utils/schema";
-import { Button, InputFile, InputSelect, InputText, Label, TextArea } from "../../../ux/controls";
+import {
+  Button,
+  InputFile,
+  InputSelect,
+  InputText,
+  Label,
+  TextArea,
+} from "../../../ux/controls";
 import { handleOnFileSelect } from "../../account/FileUploader";
 import Notify from "../../../utils/notify";
 import styles from "../../account/account.module.css";
+import { data } from "../../account/Data";
+console.log("data", data);
 
-const stateOptions = [
-  { value: "", text: "Select State" },
-  { value: "Uttar Pradesh", text: "Uttar Pradesh" },
-  { value: "Bihar", text: "Bihar" },
-  { value: "Haryana", text: "Haryana" },
-];
-
-const cityOptions = [
-  { value: "", text: "Select City" },
-  { value: "Kanpur", text: "Kanpur" },
-  { value: "Noida", text: "Noida" },
-  { value: "Lucknow", text: "Lucknow" },
-  { value: "Bhopal", text: "Bhopal" },
-];
+const states = Object.keys(data);
 
 const serviceOptions = [
   { value: "", text: "Select Service" },
@@ -48,10 +43,12 @@ const initialValues = {
   galleryImageUrl: [],
 };
 
-const NewSalon = ({onClose}) => {
+const NewSalon = ({ onClose }) => {
   const [bannerImages, setBannerImages] = useState([]);
   const [galleryImages, setGalleryImages] = useState([]);
-
+  const [cityOptions, setCityOptions] = useState([
+    { value: "", text: "Select City" },
+  ]);
   const handleOnSubmit = async (values) => {
     //onContinue(values);
     try {
@@ -74,7 +71,7 @@ const NewSalon = ({onClose}) => {
         gallaryImages: galleryImages,
       };
       const res = await createSalon(verifyForm);
-      Notify.success("New Salon Added")
+      Notify.success("New Salon Added");
       onClose();
       console.log("respn::>", res);
     } catch (error) {
@@ -108,8 +105,17 @@ const NewSalon = ({onClose}) => {
       // Set field value using Formik's setFieldValue
       setFieldValue(field, urls);
     } catch (error) {
-      console.error("Error uploading image:", error);
+      Notify.error(error.message);
     }
+  };
+
+  const handleStateChange = (selectedState) => {
+    const selectedCities = data[selectedState];
+    const cityOptions = selectedCities.map((city) => ({
+      value: city,
+      text: city,
+    }));
+    setCityOptions([{ value: "", text: "Select City" }, ...cityOptions]);
   };
   return (
     <>
@@ -153,15 +159,23 @@ const NewSalon = ({onClose}) => {
                   placeholder="Salon Address"
                   className={styles.address}
                 />
+
+                <InputSelect
+                  name="state"
+                  label="Salon State"
+                  options={states.map((state) => ({
+                    value: state,
+                    text: state,
+                  }))}
+                  onChange={(e) => {
+                    setFieldValue("state", e.target.value);
+                    handleStateChange(e.target.value);
+                  }}
+                />
                 <InputSelect
                   name="city"
                   label="Salon City"
                   options={cityOptions}
-                />
-                <InputSelect
-                  name="state"
-                  label="Salon State"
-                  options={stateOptions}
                 />
                 <InputText
                   type="text"

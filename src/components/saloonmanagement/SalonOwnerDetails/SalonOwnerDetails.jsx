@@ -21,9 +21,9 @@ function SalonOwnerDetails() {
       <div className={styles.imgDiv}>
         <div>
           <img
-                   src={details.profileImageUrl}
-                   className={styles.imgDiv}
-                   alt="Profile"
+            src={details.profileImageUrl}
+            className={styles.imgDiv}
+            alt="Profile"
           />
         </div>
       </div>
@@ -43,21 +43,21 @@ function SalonOwnerDetails() {
         <label className={styles.lab}>Middle Name</label>
         <br />
         <input
-            type="text"
-            placeholder={details.middleName}
-            name="middleName"
-            className={styles.inputs}
-            disabled
+          type="text"
+          placeholder={details.middleName}
+          name="middleName"
+          className={styles.inputs}
+          disabled
         />
       </div>
       <div>
         <label className={styles.lab}>Last Name</label>
         <br />
         <input
-         placeholder={details.lastName}
-         name="lastName"
-         className={styles.inputs}
-         disabled
+          placeholder={details.lastName}
+          name="lastName"
+          className={styles.inputs}
+          disabled
         />
       </div>
       <div>
@@ -74,61 +74,61 @@ function SalonOwnerDetails() {
         <label className={styles.lab}>Date of Birth</label>
         <br />
         <input
-           type="text"
-           placeholder={details.dataOfBirth}
-           name="dataOfBirth"
-           className={styles.inputs}
-           disabled
+          type="text"
+          placeholder={details.dataOfBirth}
+          name="dataOfBirth"
+          className={styles.inputs}
+          disabled
         />
       </div>
       <div>
         <label className={styles.lab}>Gender</label>
         <br />
         <input
-           type="text"
-           name="gender"
-           placeholder={details.gender}
-           className={styles.inputs}
-           disabled
+          type="text"
+          name="gender"
+          placeholder={details.gender}
+          className={styles.inputs}
+          disabled
         />
       </div>
       <label className={styles.lab}>Aadhar Card</label>
-          <br />
-          <div className="d-flex gap-4">
-            <div className={styles.aadhar}>
-              <label className={styles.front}>
-                <span>Aadhar Front</span>
-                <div>
-                  <img
-                    src={details.aadharFrontUrl}
-                    className={styles.documents}
-                    alt="Aadhar Front"
-                  />
-                </div>
-              </label>
+      <br />
+      <div className="d-flex gap-4">
+        <div className={styles.aadhar}>
+          <label className={styles.front}>
+            <span>Aadhar Front</span>
+            <div>
+              <img
+                src={details.aadharFrontUrl}
+                className={styles.documents}
+                alt="Aadhar Front"
+              />
             </div>
-            <div className={styles.aadhar}>
-              <label className={styles.front}>
-                <span>Aadhar Back</span>
-                <div>
-                  <img
-                    src={details.aadharBackUrl}
-                    className={styles.documents}
-                    alt="Aadhar Back"
-                  />
-                </div>
-              </label>
+          </label>
+        </div>
+        <div className={styles.aadhar}>
+          <label className={styles.front}>
+            <span>Aadhar Back</span>
+            <div>
+              <img
+                src={details.aadharBackUrl}
+                className={styles.documents}
+                alt="Aadhar Back"
+              />
             </div>
-          </div>
-          <label className={styles.lab}>Pan Card</label>
-          <div>
-            <img
-              src={details.panCardImageUrl}
-              className={styles.documents}
-              alt="Pan Card"
-            />
-          </div>
-          <br />
+          </label>
+        </div>
+      </div>
+      <label className={styles.lab}>Pan Card</label>
+      <div>
+        <img
+          src={details.panCardImageUrl}
+          className={styles.documents}
+          alt="Pan Card"
+        />
+      </div>
+      <br />
     </div>
   );
 }

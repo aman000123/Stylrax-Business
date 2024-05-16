@@ -1,13 +1,6 @@
-import {Row, Col } from "react-bootstrap";
-import { appointments} from "../../../data/appointment/Appointment";
+import { Row, Col } from "react-bootstrap";
 import { Link } from 'react-router-dom';
-import dayjs from 'dayjs';
-import { GrFormLocation } from "react-icons/gr";
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { DateCalendar } from '@mui/x-date-pickers/DateCalendar';
-import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-import main from "../pastappointment/PastAppointment.module.css";
+import styles from "../upcomingappointment/UpComing.module.css";
 import { useEffect, useState } from 'react';
 import { completedAppointments } from "../../../api/appointments.api";
 import Session from "../../../service/session";
@@ -15,114 +8,80 @@ import Notify from "../../../utils/notify";
 import Popup from "../Popup";
 
 const PastAppointment = () => {
-  const [selectedDate, setSelectedDate] = useState(dayjs());
   const [selectedAppointmentId, setSelectedAppointmentId] = useState(null);
-
   const [completed, setCompleted] = useState([]);
   const [showPopup, setShowPopup] = useState(false);
-  const salonId = Session.get('salonId')
-  const handleDateChange = (newDate) => {
-    setSelectedDate(newDate);
-  };
+  const salonId = Session.get('salonId');
 
-  useEffect(()=>{
-    const appointments = async()=>{
+ 
+  useEffect(() => {
+    const fetchAppointments = async () => {
       try {
         const response = await completedAppointments(salonId);
         const completed = response.data;
-        console.log("completed::>",completed)
+        console.log("completed::>", completed);
         setCompleted(completed);
       } catch (error) {
         Notify.error(error.message);
       }
     };
-    appointments();
-  }, [salonId])
+    fetchAppointments();
+  }, [salonId]);
 
   const handleViewDetails = (appointmentId) => {
     setSelectedAppointmentId(appointmentId);
-    console.log("ara id",appointmentId)
     setShowPopup(true);
   };
+
   return (
     <div>
-     
-      <Row className={main.mainDiv}>
-        <Col md={12} lg={4} >
-          <div className={main.DatePicker}>
-          <LocalizationProvider dateAdapter={AdapterDayjs}>
-              <DatePicker
-                value={selectedDate}
-                onChange={handleDateChange}
-                renderInput={(params) => <input {...params} />} 
-              />
-            </LocalizationProvider>
-          </div>
-        <div className={main.calendar}>
-      
-        <LocalizationProvider dateAdapter={AdapterDayjs}>
-        <p className={main.date}>{selectedDate.format(' D MMMM , YYYY')}</p>
-       
-      <DateCalendar
-      
-       value={selectedDate}
-       onChange={handleDateChange}
-       title={selectedDate.format('MMMM YYYY')}
-       className={main.customDateCalendar}
-      />
-     
-    </LocalizationProvider>
-    
-        </div>
-        </Col>
-        <Col  md={12} lg={8} sm={12}   className={main.userDiv}>
-        
-          <Row>
-            {completed.map((appointment, index) => (
-              <Col md={5} sm={5} xs={5}  key={index} className='me-4'>
-                <Row className="mb-2">
-                  <div className={main.userInfo}>
-                    <Col md={4}>
-                      <div>
-                        <img
-                           src={appointment.user.profileImageUrl}
-                          className={main.userImage}
-                          alt="User"
-                        />
-                      </div>
-                    </Col>
-                    <Col md={3}>
-                      <p className={main.user}>
-                        <span className={main.userName}>
-                          `{`${appointment.user.firstName}`}
-                        </span>
-                        <br />
-                        <span>{appointment.service}</span>
-                        <br />
-                        <span>{appointment.startTime}<span className={main.gender}>{appointment.serviceType}</span></span>                        <br />
-                        <span>{appointment.date}</span>&nbsp;
-                      </p>
-                    </Col>
-                    <Col md={2}>
-                   
-                    </Col>
-                    <Col md={3}>
-                    <div className={main.status}>
-                   {appointment.status}<br/>
-                  <Link onClick={() => handleViewDetails(appointment.id)}>View Details</Link>
-                   </div>
-                    </Col>
-                    
+      <Row>
+        {completed?.map((appointment, index) => (
+          <Col md={4} sm={6} xs={6} key={index}>
+            <Row className="mb-2">
+              <div className={styles.userInfo}>
+                <Col md={4}>
+                  <div>
+                    <img
+                      src={appointment.user.profileImageUrl}
+                      className={styles.userImage}
+                      alt="User"
+                    />
                   </div>
-                </Row>
-              </Col>
-              
-            ))}
+                </Col>
+                <Col md={4}>
+                  <p className={styles.user}>
+                    <span className={styles.userName}>
+                      {`${appointment.user.firstName} ${appointment.user.lastName}`}
+                    </span>
+                    <br />
+                    <span>{appointment.service}</span>
+                    <br />
+                    <span>{appointment.startTime} <span className={styles.gender}>{appointment.serviceType}</span></span>
+                    <br />
+                    <span>{appointment.location}</span>
+                    <span className={styles.locationDistance}>{appointment.date}</span>
+                  </p>
+                </Col>
+                <Col md={4}>
+                  <p className={styles.status}>
+                    {appointment.status}
+                    <br />
+                    <Link onClick={() => handleViewDetails(appointment.id)}>View Details</Link>
+                  </p>
+                </Col>
+              </div>
             </Row>
-         
-        </Col> 
-       </Row>
-     <Popup data= {selectedAppointmentId} show={showPopup} onHide = {()=>setShowPopup(false)} />
+          </Col>
+        ))}
+      </Row>
+      {showPopup && (
+        <Popup
+          data={selectedAppointmentId}
+          show={showPopup}
+          onHide={() => setShowPopup(false)}
+        />
+      )}
     </div>
   );
 }
