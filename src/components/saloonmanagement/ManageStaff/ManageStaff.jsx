@@ -3,15 +3,14 @@ import PropTypes from "prop-types";
 import styles from "../ManageStaff/ManageStaff.module.css";
 import { Paper } from "@mui/material";
 import { IoMdAddCircle } from "react-icons/io";
-
 import clsx from "clsx";
 import { styled, css } from "@mui/system";
 import { Modal as BaseModal } from "@mui/base/Modal";
 import AddStaff from "../AddStaff/AddStaff";
 import ViewAllAddService from "../viewalladdservice/ViewAllAddService";
-
 import { salonStaff } from "../../../api/salon.management";
 import Session from "../../../service/session";
+import Image from "../../../ux/Image";
 
 function ManageStaff() {
   // Popup one code
@@ -42,14 +41,14 @@ function ManageStaff() {
     setOpen(true);
   };
   //GET API
+  const getStaff = async () => {
+    const res = await salonStaff(salonId);
+    const staff = res.data;
+    setStaff(staff);
+    setAddStaffOpen(false);
+  };
 
   useEffect(() => {
-    const getStaff = async () => {
-      const res = await salonStaff(salonId);
-      const staff = res.data;
-      setStaff(staff);
-      setAddStaffOpen(false);
-    };
     getStaff();
   }, []);
 
@@ -59,12 +58,16 @@ function ManageStaff() {
         {staff?.map((value) => (
           <Paper key={value.id} className={styles.paper}>
             <div className={styles.imgDiv}>
-              <img
-                src={value.profileImageUrl}
-                alt=""
-                className={styles.profile}
-              />
-              {/* <img src={stylistimg1} alt='' /> */}
+              {value.profileImageUrl &&
+              value.profileImageUrl.startsWith("http") ? (
+                <img
+                  src={value.profileImageUrl}
+                  alt=""
+                  className={styles.profile}
+                />
+              ) : (
+                <Image alt="Default Profile" className={styles.profile} />
+              )}
             </div>
 
             <div className={styles.text}>
@@ -75,9 +78,7 @@ function ManageStaff() {
                 <br />
                 <span className={styles.spanOne}>{value.role}</span>
                 <br />
-                {/* <span className={styles.spanOne}>{value.textFour}</span><br /> */}
                 <span className={styles.spanThree}>
-                  {" "}
                   <button type="button" onClick={() => ishandleOpen(value.id)}>
                     view more
                   </button>
@@ -103,7 +104,10 @@ function ManageStaff() {
               slots={{ backdrop: StyledBackdrop }}
             >
               <ModalContent>
-                <AddStaff onClose={() => setAddStaffOpen(false)} />
+                <AddStaff
+                  onClose={() => setAddStaffOpen(false)}
+                  updatedData={getStaff}
+                />
               </ModalContent>
             </Modal>
           )}
@@ -122,6 +126,7 @@ function ManageStaff() {
                   id={selectedStaffId}
                   onViewMore={handleViewMore}
                   onClose={() => setOpen(false)}
+                  updatedData={getStaff}
                 />
               </ModalContent>
             </Modal>

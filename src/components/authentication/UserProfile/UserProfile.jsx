@@ -3,7 +3,7 @@ import { PiUserCircleLight } from "react-icons/pi";
 import { IoLogOutOutline } from "react-icons/io5";
 import { Paper } from '@mui/material';
 import { useDispatch } from 'react-redux';
-import { removeSalonID, removeSalons, removeToken, removeUserInfo } from '../../../store/auth.slice';
+import { removeSalonID, removeSalonImage, removeSalonName, removeSalons, removeToken, removeUserInfo } from '../../../store/auth.slice';
 import styles from "../UserProfile/UserProfile.module.css";
 import { useNavigate } from 'react-router-dom';
 import Session from '../../../service/session';
@@ -52,7 +52,8 @@ const UserProfile = () => {
     dispatch(removeUserInfo());
     dispatch(removeSalonID());
     dispatch(removeSalons());
-    
+    dispatch(removeSalonName());
+    dispatch(removeSalonImage());
     navigate("/home");
     console.log("Logout");
   };

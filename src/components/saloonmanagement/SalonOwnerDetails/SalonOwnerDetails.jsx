@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { getProfile } from "../../../api/user.api.js";
 import Notify from "../../../utils/notify.js";
 import styles from "../SalonOwnerDetails/SalonOwnerDetails.module.css";
+import Image from "../../../ux/Image.jsx";
 function SalonOwnerDetails() {
   const [details, setDetails] = useState({});
   useEffect(() => {
@@ -20,11 +21,15 @@ function SalonOwnerDetails() {
     <div className={styles.mainDiv}>
       <div className={styles.imgDiv}>
         <div>
-          <img
-            src={details.profileImageUrl}
-            className={styles.imgDiv}
-            alt="Profile"
-          />
+        {details.profileImageUrl && details.profileImageUrl.startsWith("http") ? (
+            <img
+              src={details.profileImageUrl}
+              className={styles.imgDiv}
+              alt="Profile"
+            />
+          ) : (
+            <Image alt="Default Profile" className={styles.imgDiv} />
+          )}
         </div>
       </div>
 
@@ -99,11 +104,16 @@ function SalonOwnerDetails() {
           <label className={styles.front}>
             <span>Aadhar Front</span>
             <div>
-              <img
-                src={details.aadharFrontUrl}
-                className={styles.documents}
-                alt="Aadhar Front"
-              />
+            {details.aadharFrontUrl &&
+              details.aadharFrontUrl.startsWith("http") ? (
+                <img
+                  src={details.aadharFrontUrl}
+                  className={styles.imgDiv}
+                  alt="Aadhar Front"
+                />
+              ) : (
+                <Image alt="Default Profile" className={styles.imgDiv} />
+              )}
             </div>
           </label>
         </div>
@@ -111,22 +121,32 @@ function SalonOwnerDetails() {
           <label className={styles.front}>
             <span>Aadhar Back</span>
             <div>
-              <img
-                src={details.aadharBackUrl}
-                className={styles.documents}
-                alt="Aadhar Back"
-              />
+            {details.aadharBackUrl &&
+              details.aadharBackUrl.startsWith("http") ? (
+                <img
+                  src={details.aadharBackUrl}
+                  className={styles.imgDiv}
+                  alt="Aadhar Back"
+                />
+              ) : (
+                <Image alt="Default Profile" className={styles.imgDiv} />
+              )}
             </div>
           </label>
         </div>
       </div>
       <label className={styles.lab}>Pan Card</label>
       <div>
-        <img
-          src={details.panCardImageUrl}
-          className={styles.documents}
-          alt="Pan Card"
-        />
+      {details.panCardImageUrl &&
+        details.panCardImageUrl.startsWith("http") ? (
+          <img
+            src={details.panCardImageUrl}
+            className={styles.imgDiv}
+            alt="Pan Card"
+          />
+        ) : (
+          <Image alt="Default Profile" className={styles.imgDiv} />
+        )}
       </div>
       <br />
     </div>

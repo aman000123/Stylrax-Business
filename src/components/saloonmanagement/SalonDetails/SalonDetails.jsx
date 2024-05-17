@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { singleSalon } from "../../../api/salon.api";
 import Notify from "../../../utils/notify.js";
 import styles from "../SalonOwnerDetails/SalonOwnerDetails.module.css";
+import Image from "../../../ux/Image.jsx";
 function SalonDetails() {
   const [salonDetails, setSalonDetails] = useState([]);
   const salonId = Session.get("salonId");
@@ -24,10 +25,15 @@ function SalonDetails() {
     <div className={styles.mainDiv}>
       <div className={styles.imgDiv}>
         <div>
+        {salonDetails.mainGateImageUrl ? (
           <img
-            src={salonDetails.mainGateImageUrl} alt="Main gate Image"
+            src={salonDetails.mainGateImageUrl}
+            alt="Main Gate Image"
             className={styles.imgDiv}
-          />{" "}
+          />
+        ) : (
+          <Image />
+        )}
         </div>
       </div>
 

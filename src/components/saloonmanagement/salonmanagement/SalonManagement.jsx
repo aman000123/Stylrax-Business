@@ -17,7 +17,7 @@ import MyQR from "../MyQR/MyQR.jsx";
 import { useSelector } from "react-redux";
 
 function SalonManagement() {
-  const [activeButton, setActiveButton] = useState("Salon Details");
+  const [activeButton, setActiveButton] = useState("Salon details");
   const { salonName, salonImage } = useSelector((state) => state.auth);
 
   const [salonDetails, setSalonDetails] = useState([]);

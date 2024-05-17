@@ -76,6 +76,14 @@ export const authSlice = createSlice({
     Session.remove("salonId");
     state.salonId = null;
   },
+  removeSalonName: (state) => {
+    Session.remove("salonName");
+    state.salonName = null;
+  },
+  removeSalonImage: (state) => {
+    Session.remove("salonImage");
+    state.salonImage = null;
+  },
    removeUserInfo: (state) => {
     Session.remove("UserInfo::>");
     Session.remove("userStatus::>");
@@ -96,6 +104,6 @@ export const authSlice = createSlice({
 })
 
 export const { storeToken,setSalonID,removeUserInfo,removeToken,removeSalonID, setUserInfo , storeSalons,removeSalons ,setSalonName,
-  setSalonImage,} = authSlice.actions
+  setSalonImage,removeSalonImage,removeSalonName} = authSlice.actions
 
 export default authSlice.reducer
