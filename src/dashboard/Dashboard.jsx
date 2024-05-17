@@ -11,7 +11,7 @@ import SwitchSalon from "../components/saloondashboard/switchsalon/SwitchSalon";
 import Notify from '../utils/notify'
 import { getSalon } from "../api/salon.api";
 import { useDispatch } from "react-redux";
-import { setSalonID, storeToken } from "../store/auth.slice";
+import { setSalonID, setSalonImage, setSalonName, storeToken } from "../store/auth.slice";
 
 const DashBoardLayout = () => {
   const [showContent, setShowContent] = useState(false);
@@ -34,10 +34,13 @@ const DashBoardLayout = () => {
         setSalons(salons);
         console.log("response::::>>", salons);
         if (salons.length > 0) {
-          setSelectedSalonName(salons[0].name);
-          setSelectedSalonImage(salons[0].mainGateImageUrl);
-          setSelectedSalonId(salons[0].id);
-          dispatch(setSalonID({ salonId: salons[0].id }));
+          const { name, mainGateImageUrl, id } = salons[0];
+          setSelectedSalonName(name);
+          setSelectedSalonImage(mainGateImageUrl);
+          setSelectedSalonId(id);
+          dispatch(setSalonID({ salonId: id }));
+          dispatch(setSalonName({ salonName: name }));
+          dispatch(setSalonImage({ salonImage: mainGateImageUrl }));
         }
       } catch (error) {
         Notify.error(error.message);
@@ -90,6 +93,8 @@ const DashBoardLayout = () => {
                     setSelectedSalonImage(salonImage);
                     setSelectedSalonId(id);
                     dispatch(setSalonID({ salonId: id }));
+                    dispatch(setSalonName({ salonName }));
+                    dispatch(setSalonImage({ salonImage }));
                   }}
                 />
               </div>

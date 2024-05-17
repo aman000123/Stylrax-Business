@@ -1,44 +1,46 @@
+import { useEffect } from "react";
+import Session from "../../../service/session";
+import Notify from "../../../utils/notify";
+import { useState } from "react";
 import {Row, Col } from "react-bootstrap";
 import styles from "../upcomingappointment/UpComing.module.css";
-import { useEffect, useState } from "react";
-import Session from "../../../service/session";
-import { cancelledAppointments} from "../../../api/appointments.api";
-import Notify from "../../../utils/notify";
-import { Link } from 'react-router-dom';
+import { ongoingAppointments } from "../../../api/appointments.api";
 import Popup from "../appointmentdetails/Popup";
-const Ongoing = () => {
-  const [showPopup, setShowPopup] = useState(false);
-  const [selectedAppointmentId, setSelectedAppointmentId] = useState(null);
- 
+import { Link } from "react-router-dom";
+const TodayAppointment = () => {
+    const currentDate = new Date();
 
+    // Format it as "yyyy-mm-dd"
+    const formattedDate = currentDate.toISOString().split('T')[0];
+    console.log("date::>",formattedDate)
+  
+    const [ongoing, setOngoing] = useState([]);
+    const [showPopup, setShowPopup] = useState(false);
+    const [selectedAppointmentId, setSelectedAppointmentId] = useState(null);
+    const salonId = Session.get('salonId')
+    useEffect(()=>{
+      const appointments = async()=>{
+        try {
+          const response = await ongoingAppointments(salonId,formattedDate);
+          const ongoing = response.data;
+          console.log(" ongoing completed::>",ongoing)
+          setOngoing(ongoing);
+        } catch (error) {
+          Notify.error(error.message);
+        }
+      };
+      appointments();
+    }, [salonId])
 
-  const [pending, setPending] = useState([]);
-  const salonId = Session.get('salonId')
-  useEffect(()=>{
-    const appointments = async()=>{
-      try {
-        const response = await cancelledAppointments(salonId);
-        const pending = response.data;
-        console.log("cancelled completed::>",pending)
-        setPending(pending);
-      } catch (error) {
-        Notify.error(error.message);
-      }
-    };
-    appointments();
-  }, [salonId])
-
-
-  const handleViewDetails = (appointmentId) => {
-    setSelectedAppointmentId(appointmentId);
-    console.log("ara id",appointmentId)
-    setShowPopup(true);
-  };
- 
-  return (   
+    const handleViewDetails = (appointmentId) => {
+        setSelectedAppointmentId(appointmentId);
+        console.log("ara id",appointmentId)
+        setShowPopup(true);
+      };
+  return (
     <>
     <Row>
-        {pending?.map((appointment, index) => (
+        {ongoing?.map((appointment, index) => (
                 <Col md={4} sm={6} xs={6} key={index}>
                   <Row className="mb-2">
                     <div className={styles.userInfo}>
@@ -93,4 +95,4 @@ const Ongoing = () => {
   );
 }
 
-export default Ongoing;
+export default TodayAppointment;

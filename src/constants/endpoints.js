@@ -52,8 +52,8 @@ export const __endpoint_staticPageUrl = endpoint + "b2b/file/doc/";
 export const __endpoint_cancelledAppointments = (id)=>{return ` ${endpoint}b2b/salons/${id}/appointments?status=cancelled`};
 export const __endpoint_detailsAppointments = (id)=>{return ` ${endpoint}b2b/appointments/${id}`};
 export const __endpoint_myQr = (id)=>{return ` ${endpoint}b2b/salons/${id}/qrcode`};
+export const __endpoint_acceptAppointment = (id)=>{return ` ${endpoint}b2b/appointments/${id}/accept`};
+export const __endpoint_rejectAppointment = (id)=>{return ` ${endpoint}b2b/appointments/${id}/reject`};
+export const __endpoint_startAppointment = (id)=>{return ` ${endpoint}b2b/appointments/${id}/start`};
+export const __endpoint_completeAppointment = (id)=>{return ` ${endpoint}b2b/appointments/${id}/complete`};
 
-// For city
-// export const __endpoint_getCity = (state) => {
-//   return `${endpoint}api/cities?state=${state}`;
-// };

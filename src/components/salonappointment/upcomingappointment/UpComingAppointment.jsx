@@ -7,7 +7,7 @@ import Notify from "../../../utils/notify";
 
 import { pendingAppointments } from "../../../api/appointments.api";
 import { Link } from "react-router-dom";
-import Popup from "../Popup";
+import Popup from "../appointmentdetails/Popup";
 const UpComingAppointment = () => {
   const [pending, setPending] = useState([]);
   const [selectedAppointmentId, setSelectedAppointmentId] = useState(null);

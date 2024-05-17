@@ -14,9 +14,11 @@ import Session from "../../../service/session";
 import { singleSalon } from "../../../api/salon.api";
 import Notify from "../../../utils/notify.js";
 import MyQR from "../MyQR/MyQR.jsx";
+import { useSelector } from "react-redux";
 
 function SalonManagement() {
   const [activeButton, setActiveButton] = useState("Salon Details");
+  const { salonName, salonImage } = useSelector((state) => state.auth);
 
   const [salonDetails, setSalonDetails] = useState([]);
   const salonId = Session.get("salonId");
@@ -101,10 +103,10 @@ function SalonManagement() {
       <div className={styles.mainDiv}>
         <div className={styles.main}>
           <div className={styles.salonImage}>
-          <img src={salonDetails.salon ? salonDetails.salon.mainGateImageUrl : ''} alt="" />          </div>
+          <img src={salonImage} alt="" />          </div>
 
           <div>
-            <p>{name}</p>
+            <p>{salonName}</p>
           </div>
         </div>
 

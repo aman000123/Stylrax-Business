@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 import { completedAppointments } from "../../../api/appointments.api";
 import Session from "../../../service/session";
 import Notify from "../../../utils/notify";
-import Popup from "../Popup";
+import Popup from "../appointmentdetails/Popup";
 
 const PastAppointment = () => {
   const [selectedAppointmentId, setSelectedAppointmentId] = useState(null);

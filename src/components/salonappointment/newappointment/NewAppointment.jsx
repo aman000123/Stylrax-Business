@@ -1,5 +1,4 @@
 import { useState } from "react";
-import hair from "../../../assets/image/hair.png";
 import { Container, } from "react-bootstrap";
 import styles from "./NewAppointment.module.css";
 import PastAppointment from "../pastappointment/PastAppointment";
@@ -7,25 +6,27 @@ import UpComingAppointment from "../upcomingappointment/UpComingAppointment";
 import Ongoing from "../ongoingappointment/Ongoing";
 import Navbar from "../../saloondashboard/navbar/Navbar";
 import { navItems } from "../../../data/navdata/Data";
+import TodayAppointment from "../todayappointment/TodayAppointment";
+import { useSelector } from "react-redux";
 const NewAppointment = () => {
-  const [activeButton, setActiveButton] = useState("button3");
+  const [activeButton, setActiveButton] = useState("button4");
+  const { salonName, salonImage } = useSelector((state) => state.auth);
   const handleButtonClick = (buttonName) => {
     setActiveButton(buttonName);
   };
 
-  
+ 
   return (
     <main>
         <Navbar data={navItems}/>
       <Container>
         <div className={styles.mainDiv}>
-          <img src={hair} className={styles.hair} alt="Hair" />
+          <img src={salonImage} alt="Salon Img"  />
           <p className={styles.hairClinic}>
-            HairClinic
-            <span className={styles.info}>
-              {" "}
+          {salonName}
+            {/* <span className={styles.info}>
               Convenient and personalized hair grooming and styling solutions, just for you.
-            </span>
+            </span> */}
           </p>
         </div>
         <div className={styles.btnDiv}>
@@ -34,24 +35,32 @@ const NewAppointment = () => {
             onClick={() => handleButtonClick("button1")}
             className={activeButton === "button1" ? styles.active : ""}
           >
-            Cancelled
+            Today
           </button>
           <button
             onClick={() => handleButtonClick("button2")}
             className={activeButton === "button2" ? styles.active : ""}
           >
-            Pending
+            Cancelled
           </button>
           <button
             onClick={() => handleButtonClick("button3")}
             className={activeButton === "button3" ? styles.active : ""}
           >
+            Pending
+          </button>
+          <button
+            onClick={() => handleButtonClick("button4")}
+            className={activeButton === "button4" ? styles.active : ""}
+          >
             Completed
           </button>
+         
         </div>
-        {activeButton === "button1" && <div><Ongoing/></div>}
-        {activeButton === "button2" && <div><UpComingAppointment/></div>}
-        {activeButton === "button3" && (
+        {activeButton === "button1" && <div><TodayAppointment/></div>}
+        {activeButton === "button2" && <div><Ongoing/></div>}
+        {activeButton === "button3" && <div><UpComingAppointment/></div>}
+        {activeButton === "button4" && (
          <PastAppointment/>
         )}
       </Container>
