@@ -11,7 +11,7 @@ import { RxCross2 } from "react-icons/rx";
 import Session from "../../../service/session";
 import Swal from "sweetalert2";
 
-function ViewAllAddService({ id, onClose }) {
+function ViewAllAddService({ id, onClose ,updatedData}) {
   const [staff, setStaff] = useState({});
   const [editable, setEditable] = useState(false);
   const [specialization, setSpecialization] = useState("");
@@ -40,13 +40,14 @@ function ViewAllAddService({ id, onClose }) {
 
   const onEdit = async () => {
     try {
-      const updatedData = {
+      const editedData = {
         specialization: specialization,
         role: role,
       };
-      await editStaff(salonId, staff.id, updatedData);
+      await editStaff(salonId, staff.id, editedData);
       Notify.success("Record updated");
       onClose();
+      updatedData();
     } catch (error) {
       Notify.error(error.message);
     }
@@ -65,6 +66,7 @@ function ViewAllAddService({ id, onClose }) {
       await removeStaff(salonId, staff.id);
       Notify.success("Staff deleted");
       onClose();
+      updatedData();
     } catch (error) {
       Notify.error(error.message);
     }

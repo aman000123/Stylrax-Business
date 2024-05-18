@@ -1,12 +1,6 @@
 .centered p{
     margin-bottom: 3px;
 }
-.centered {
-    /* display: flex;
-    align-items: center;
-
-    justify-content: center; */
-}
 .accept{
     color: black; 
     background-color: white; 
@@ -14,10 +8,21 @@
     border-radius: 25px;
     padding: 10px 30px;
 }
-.reject{
-    /* color: red; 
-    background-color: white; 
-    border: 2px solid black; 
-    border-radius: 25px;
-    padding: 10px 30px; */
+.status{
+    font-weight: 470;
 }
+ .status.pending {
+    color: grey;
+  }
+  
+  .status.accepted {
+    color: green;
+  }
+  
+  .status.rejected {
+    color: red;
+  }
+  
+  .status.completed {
+    color: blue;
+  }

@@ -1,10 +1,10 @@
 import styles from "../BankDetails/BankDetails.module.css";
 import { Field, Formik, Form } from "formik";
-
 import { useEffect, useState } from "react";
 import Notify from "../../../utils/notify.js";
 import Session from "../../../service/session.js";
 import { singleSalon } from "../../../api/salon.api.js";
+import Image from "../../../ux/Image.jsx";
 
 function BankDetails() {
   const salonId = Session.get("salonId");
@@ -79,10 +79,16 @@ function BankDetails() {
               Passbook/Cancelled Cheque
               <br />
               <div>
-                <img
-                  src={bankDetails.documentImageUrl}
-                  className={styles.documents}
-                />
+                {bankDetails.documentImageUrl &&
+                bankDetails.documentImageUrl.startsWith("http") ? (
+                  <img
+                    src={bankDetails.documentImageUrl}
+                    className={styles.documents}
+                    alt="Profile"
+                  />
+                ) : (
+                  <Image alt="Default Profile" className={styles.imgDiv} />
+                )}
               </div>
             </label>
             <br />

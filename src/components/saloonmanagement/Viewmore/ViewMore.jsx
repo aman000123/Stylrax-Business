@@ -14,10 +14,9 @@ import Session from "../../../service/session.js";
 import Swal from "sweetalert2";
 import { viewMoreSchema } from "../../../utils/schema.js";
 
-function ViewMore({ onClose, id }) {
+function ViewMore({ onClose, id,updatedData }) {
   const [service, setService] = useState({});
   const [editable, setEditable] = useState(false);
-  const [refreshKey, setRefreshKey] = useState(0);
 
   const salonId = Session.get("salonId");
   useEffect(() => {
@@ -63,7 +62,7 @@ function ViewMore({ onClose, id }) {
       await removeService(salonId, id);
       Notify.success("Record Deleted!");
       onClose();
-      setRefreshKey((prevKey) => prevKey + 1);
+      updatedData();
     } catch (error) {
       Notify.error(error.message);
     }
@@ -75,6 +74,7 @@ function ViewMore({ onClose, id }) {
       Notify.success("Service Updated Successfully");
       toggleEditMode();
       onClose();
+      updatedData();
     } catch (error) {
       Notify.error(error.message);
     }

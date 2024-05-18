@@ -13,6 +13,7 @@
     font-weight: bolder;
     font-size: 19px;
     padding-left: 6px;
+    padding-top: 10px;
 }
 .mainDiv img{
     height: 60px;
@@ -307,25 +308,8 @@
     gap: 90px;
     margin-top: 10px;
 }
-.assignBtn{
-    color: #53AD34;
-    font-weight: 500;
-    border: 1px solid #D3D3D3;
-    background-color: white;
-    padding: 0px 15px;
-    font-size: 12px;
-    font-weight: 500;
-    border-radius: 5px;
-}
-.cancelBtn{
-    color: #D82626;
-    border: 1px solid #D3D3D3;
-    background-color: white;
-    padding: 0px 15px;
-    font-size: 12px;
-    font-weight: 500;
-    border-radius: 5px;
-}
+
+
 .staffDiv{
     display: flex;
     justify-content: center;

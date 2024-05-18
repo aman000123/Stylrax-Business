@@ -15,26 +15,21 @@ function Services() {
     const [addServiceVisible, setAddServiceVisible] = useState(false);
     const [haircut, setHaircut] = useState(false);
     const [selectedStaffId, setSelectedStaffId] = useState(null);
-    const [refresh,setRefresh] = useState(false);
 
     const [services, setServices] = useState([]);
     const salonId = Session.get("salonId");
+    const fetchServices = async () => {
+        try {
+            const response = await salonService(salonId);
+            const servicesData = response.data;
+            console.log("salon services::>", servicesData);
+            setServices(servicesData);
+        } catch (error) {
+            Notify.error(error.message);
+        }
+    };
     useEffect(() => {
-        const fetchServices = async () => {
-            try {
-                const response = await salonService(salonId);
-                const servicesData = response.data;
-                console.log("salon services::>", servicesData);
-
-                setServices(servicesData);
-                setRefresh(!refresh);
-
-               // Notify.success(services.data.message);
-            } catch (error) {
-                Notify.error(error.message);
-            }
-        };
-        fetchServices();
+        fetchServices(); 
     }, [salonId]);
 
    
@@ -54,18 +49,15 @@ function Services() {
     const handleCloseAddService = () => {
         setAddServiceVisible(false);
     };
-    const handleRefresh = () => {
-        // Trigger the fetchServices function again to refresh the data
-        fetchServices();
-    };
+  
     return (
         <div>
             {haircut ? (
-                <ViewMore id={selectedStaffId} onViewMore={() => setHaircut(false)} onClose={handleCloseViewMore}/>
+                <ViewMore id={selectedStaffId} onViewMore={() => setHaircut(false)} onClose={handleCloseViewMore} updatedData={fetchServices}/>
             ) : (
                 <div className={styles.secDiv}>
                     {addServiceVisible ? (
-                        <AddService onClose={handleCloseAddService} />
+                        <AddService onClose={handleCloseAddService} updatedData={fetchServices}/>
                     ) : (
                         <div className={styles.addService}>
                             <div className={styles.services}>

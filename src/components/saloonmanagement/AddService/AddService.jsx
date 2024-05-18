@@ -6,7 +6,7 @@ import Notify from "../../../utils/notify";
 import Session from "../../../service/session";
 import styles from "../AddService/AddService.module.css";
 
-function AddService({ onClose }) {
+function AddService({ onClose,updatedData }) {
   const [categories, setCategories] = useState([]);
   const [selectedCategoryId, setSelectedCategoryId] = useState("");
   const [selectedCategoryName, setSelectedCategoryName] = useState(""); // State to store selected category name
@@ -42,7 +42,7 @@ function AddService({ onClose }) {
       const res = await addSalonService(salonId, data);
       Notify.success("Service added");
       onClose();
-      setRefresh(!refresh);
+      updatedData();
       } catch (error) {
       Notify.error(error.message);
     }

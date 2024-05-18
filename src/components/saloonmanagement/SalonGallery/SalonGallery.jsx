@@ -4,16 +4,17 @@ import Notify from "../../../utils/notify.js";
 import Session from "../../../service/session";
 import { salonGallery } from "../../../api/salon.management.js";
 import { Row, Col } from "react-bootstrap";
+import Image from "../../../ux/Image.jsx";
 
-const SalonGallery = ({salonDetails}) => {
-  const {bannerImages} = salonDetails
+const SalonGallery = ({ salonDetails }) => {
+  const { bannerImages } = salonDetails;
   const salonId = Session.get("salonId");
   const [gallery, setGallery] = useState([]);
   useEffect(() => {
     const getSalon = async () => {
       try {
         const response = await salonGallery(salonId);
-        const galleryImages = response.data; 
+        const galleryImages = response.data;
         console.log("gallery images::>", galleryImages);
         setGallery(galleryImages);
       } catch (error) {
@@ -26,47 +27,54 @@ const SalonGallery = ({salonDetails}) => {
 
   return (
     <>
-    <div>
-      <h6>Gallery Images</h6>
-      <Row >
-        {gallery &&
-          gallery.length > 0 &&
-          gallery.map((image, index) => (
-            <Col key={index} lg={2} md={3} sm={4} xs={4}>
-              <img
-                src={image.mediaUrl}
-                alt={`Gallery Image ${index}`}
-                className={styles.documents}
-              />
-            </Col>
-          ))}
-      </Row>
-    </div>
-    <div>
-    <h6 className="pt-4 ">Banner Images</h6>      
-    <div className="pt-1">
-      {/* <Row>
-      <Col  lg={2} md={3} sm={4} xs={4}>
-        {bannerImages.map((imageUrl, index) => (
-          <img key={index} src={imageUrl} alt={`Banner ${index + 1}`} className={styles.documents}/>
-        ))}
-        </Col>
-        </Row> */}
-         <Row >
-        {bannerImages &&
-         bannerImages.length > 0 &&
-          bannerImages.map((imageUrl, index) => (
-            <Col key={index} lg={2} md={3} sm={4} xs={4}>
-              <img
-                src={imageUrl}
-                alt={`Banner Image ${index}`}
-                className={styles.documents}
-              />
-            </Col>
-          ))}
-      </Row>
+      <div>
+        <h6>Gallery Images</h6>
+        <Row>
+          {gallery &&
+            gallery.length > 0 &&
+            gallery.map((image, index) => (
+              <Col key={index} lg={2} md={3} sm={4} xs={4}>
+                {image.mediaUrl && image.mediaUrl.startsWith("http") ? (
+                  <img
+                    src={image.mediaUrl}
+                    alt={`Gallery Image ${index}`}
+                    className={styles.documents}
+                  />
+                ) : (
+                  <Image
+                    alt={`Gallery Image ${index}`}
+                    className={styles.documents}
+                  />
+                )}
+              </Col>
+            ))}
+        </Row>
       </div>
-    </div>
+      <div>
+        <h6 className="pt-4 ">Banner Images</h6>
+        <div className="pt-1">
+          <Row>
+            {bannerImages &&
+              bannerImages.length > 0 &&
+              bannerImages.map((imageUrl, index) => (
+                <Col key={index} lg={2} md={3} sm={4} xs={4}>
+                  {imageUrl && imageUrl.startsWith("http") ? (
+                    <img
+                      src={imageUrl}
+                      alt={`Banner Image ${index}`}
+                      className={styles.documents}
+                    />
+                  ) : (
+                    <Image
+                      alt={`Banner Image ${index}`}
+                      className={styles.documents}
+                    />
+                  )}
+                </Col>
+              ))}
+          </Row>
+        </div>
+      </div>
     </>
   );
 };

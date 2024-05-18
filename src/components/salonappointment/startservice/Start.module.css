@@ -21,4 +21,12 @@
    }
    .submit_otp{
     background-color: black;
+    border: none;
+    color: white;
+    padding: 6.5px 10px;
+    border-radius: 5px;
+   }
+   .submit_otp:hover{
+    transform: none;
+    filter: none;
    }

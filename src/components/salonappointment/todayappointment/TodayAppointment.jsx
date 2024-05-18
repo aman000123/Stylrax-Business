@@ -5,8 +5,8 @@ import { useState } from "react";
 import {Row, Col } from "react-bootstrap";
 import styles from "../upcomingappointment/UpComing.module.css";
 import { ongoingAppointments } from "../../../api/appointments.api";
-import Popup from "../appointmentdetails/Popup";
 import { Link } from "react-router-dom";
+import Popup from "../appointmentdetails/Popup";
 const TodayAppointment = () => {
     const currentDate = new Date();
 
