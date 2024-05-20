@@ -1,144 +1,162 @@
-.main{
-    background-image: url("../../../assets/image/vectorbg.webp");
-    background-size: cover;
-    overflow: hidden;
-    padding-bottom: 75px;
+.main {
+  background-image: url("../../../assets/image/vectorbg.webp");
+  background-size: cover;
+  overflow: hidden;
+  padding-bottom: 75px;
 }
-.commentDiv{
-    padding: 30px 90px;
-    padding-left: 80px;
-    border-radius: 15px;
-    position: relative;
-    font-weight: 400;
-    padding-bottom: 70px;
-   }
-.praTwo{
-    padding: 30px 120px;
-    border-radius: 15px;
-    position: relative;
-    font-weight: 400; 
-    margin-top: -65px;
-    padding-left: 80px;
-    margin-left: -50px;
+.commentDiv {
+  padding: 30px 90px;
+  padding-left: 80px;
+  border-radius: 15px;
+  position: relative;
+  font-weight: 400;
+  padding-bottom: 70px;
 }
-.userThree{
-    position: absolute;
-    top: -10;
-    margin-top: -50px;
-    left: -37px;
-    width: 80px;
-    height: auto;
+.praTwo {
+  padding: 30px 120px;
+  border-radius: 15px;
+  position: relative;
+  font-weight: 400;
+  margin-top: -65px;
+  padding-left: 80px;
+  margin-left: -50px;
 }
-.userTwo{
-    position: absolute;
-    width: 60px;
-    margin-top: 33px;
+.userThree {
+  position: absolute;
+  top: -10;
+  margin-top: -50px;
+  left: -37px;
+  width: 80px;
+  height: auto;
 }
-.userOne{
-    position: absolute;
-    width: 80px;
-    left: 520px;
-    margin-top: -18px;
+.userTwo {
+  position: absolute;
+  width: 60px;
+  margin-top: 33px;
 }
-.comment{
-    font-size: 26px;
-    line-height: 30px;
-    color: #FFFFFF;
-    font-family: "Poppins";
-   }
-  .user{
-    background-color: white;
-    color: white;}
-.img{
-    position: absolute;
-    bottom: -50px;
-    left: 8px;
+.userOne {
+  position: absolute;
+  width: 80px;
+  left: 520px;
+  margin-top: -18px;
 }
-
-.logo{
-    width: 550px;
-    height: 52px;
-    margin-bottom: -20px;
+.comment {
+  font-size: 26px;
+  line-height: 30px;
+  color: #ffffff;
+  font-family: "Poppins";
+}
+.user {
+  background-color: white;
+  color: white;
+}
+.img {
+  position: absolute;
+  bottom: -50px;
+  left: 8px;
 }
 
- /* media query */
-
-   @media(max-width:1400px){
- .comment{
-        /* font-size: 22px; */
+.logo {
+  width: 550px;
+  height: 52px;
+  margin-bottom: -20px;
 }
-.commentDiv{
+
+/* media query */
+
+@media (max-width: 1400px) {
+  .comment {
+    /* font-size: 22px; */
+  }
+  .commentDiv {
     margin-right: 0px;
-}
-.userOne{
+  }
+  .userOne {
     left: 520px;
-}
-.praTwo{
+  }
+  .praTwo {
     padding: 30px 100px;
     margin-left: -20px;
-}}
-@media(max-width:1200px){
-    .praTwo{
-        padding: 30px 40px;
-        font-size: 24px;
-    } 
-    .logo{
-        width: 445px;
-    } 
-    .userOne{
-        left: 406px;
-    }
-    .userTwo{
-        margin-top: 0px;
-    }
-    .commentDiv{
-        padding: 30px 55px;
-        font-size: 20px;
-
-}}
-@media(max-width:992px){
-    .logo{
-    width: 325px;
-    }
-    .comment{
-        font-size: 14px;
-        line-height: 25px;
-     }
-     .userOne{
-        left: 308px;
-       }
-   }
-   @media(max-width:767.8px){
-    .praTwo{
-     margin-left: -25px;
-     margin-top: 35px;
-     padding: 30px 75px;
-    }
-    .userOne{
-        left: 275px;
-    }
-    .commentDiv{
-        margin-left: -25px;
-     }
-   }
-   @media(max-width:575px){
-    .praTwo{
-     padding: 30px 40px;
-     padding-left: 50px;
-     margin-left: 0px;
-    }
-    .commentDiv{
-        padding: 30px 40px;
-        padding-left: 50px;
-        margin-left: 0px;
-      }
-      .logo{
-        width: 260px;
-        }
-        .userTwo{
-            margin-top: 0;
-        }
-        .userOne{
-            left: 220px;
-        }}
-       
+  }
+}
+@media (max-width: 1200px) {
+  .praTwo {
+    padding: 30px 40px;
+    font-size: 24px;
+  }
+  .logo {
+    width: 445px;
+  }
+  .userOne {
+    left: 406px;
+  }
+  .userTwo {
+    margin-top: 0px;
+  }
+  .commentDiv {
+    padding: 30px 55px;
+    font-size: 20px;
+  }
+}
+@media (max-width: 992px) {
+  .logo {
+    width: 336px;
+    height: 26px;
+    margin-top: -40px;
+  }
+  .comment {
+    font-size: 16px;
+    line-height: 25px;
+  }
+  .commentDiv {
+    padding: 30px 60px;
+  }
+  .praTwo {
+    margin-bottom: -28px;
+    padding: 25px 60px;
+  }
+  .userOne {
+    left: 300px;
+  }
+}
+@media (max-width: 767.8px) {
+  .praTwo {
+    margin-top: -20px;
+    padding: 30px 54px;
+  }
+  .userOne {
+    left: 275px;
+  }
+  .commentDiv {
+    margin-left: -25px;
+    margin-bottom: 55px;
+  }
+  .logo {
+    width: 336px;
+    margin-top: -40px;
+  }
+}
+@media (max-width: 575px) {
+  .praTwo {
+    padding: 30px 40px;
+    padding-left: 50px;
+    margin-left: 0px;
+  }
+  .commentDiv {
+    padding: 30px 40px;
+    padding-left: 50px;
+    margin-left: 0px;
+  }
+  .logo {
+    width: 300px;
+  }
+  .userTwo {
+    margin-top: 0;
+  }
+  .main {
+    margin-top: -50px;
+  }
+  .userOne {
+    left: 265px;
+  }
+}

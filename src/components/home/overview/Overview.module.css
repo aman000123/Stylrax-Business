@@ -3,12 +3,11 @@
     background-size: cover;
     overflow: hidden;
     margin-top: 50px;
-    margin-bottom: -10px;
+    margin-bottom: -30px;
 }
 .mainDiv{
     background-image: url("../../../assets/image/overviewbg.png");
     background-size: 1100px !important;
-    /* height: 600px; */
     background-repeat: no-repeat;
     position: relative;
     margin-left: 110px;
@@ -39,30 +38,28 @@
     top: 155px;
    }
 .info{
-    font-weight: 950;
+    font-weight: 600;
     font-size: 28px;
     line-height: 30px;
     padding-top: 150px;
     padding-bottom: 150px;
     margin-left: -240px;
-    font-family: Axiforma;
-   
+    font-family: "Axiforma";
 }
 
 /* media query */
-@media (max-width:1399px) {
+@media (max-width:1400px) {
     .mainDiv{
-        /* margin-left: auto; */
+        margin-left: auto;
     }
     .info{
-        /* margin-left: 0px; */
-       
+        margin-left: 0px;
 }
     .clientFive{
        right: 190px;
 }
 .clientFour{
-    /* right: 100px; */
+    right: 100px;
 }}
     @media (max-width:1200px){
         .info{
