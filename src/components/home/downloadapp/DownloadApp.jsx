@@ -21,7 +21,7 @@ function DownloadApp() {
           </div>
         </div>
       </div>
-      <h3 className={styles.brands}>CHOICE OF 5,500+ BRANDS</h3>
+      {/* <h3 className={styles.brands}>CHOICE OF 5,500+ BRANDS</h3> */}
     </div>
   );
 }

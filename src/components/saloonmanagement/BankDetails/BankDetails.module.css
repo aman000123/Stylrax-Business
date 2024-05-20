@@ -9,6 +9,7 @@
 .text{
     color: #BEBEBE;
     font-size: 20px;
+    font-family: 'Axiforma';
 }
 
 .text .icon {
@@ -26,6 +27,8 @@
     border: 2px solid #BEBEBE;
     border-radius: 5px;
     outline: none;
+    /* font-family: 'Axiforma'; */
+
 }
 .documents{
     padding-top: 15px;

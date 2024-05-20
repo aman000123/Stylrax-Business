@@ -6,9 +6,18 @@
 .mainDiv{
     border: 5px solid black;
     border-radius: 15px;
-    width: 1000px !important;
+    width: 1200px !important;
     margin:  0 auto;
    
+}
+.praOne p{
+    font-family: "Poppins";
+    font-weight: 500px;
+    padding-left: 50px;
+}
+.mobile img{
+    align-items: end;
+   justify-content: end;
 }
 @media(max-width:1200px){
    .mainDiv{
@@ -38,8 +47,8 @@
 .praOne{
     font-weight: 500;
     color: black;
-    font-size: 20px;
-    line-height: 28px;
+    font-size: 25px;
+    line-height: 35px;
 }
 @media(max-width:768px){
     .praOne{

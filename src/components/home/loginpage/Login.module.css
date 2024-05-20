@@ -7,6 +7,10 @@
 .error{
   color: red;
 }
+.mainDiv{
+  font-family: Axiforma;
+
+}
 .input{
     height: 40px;
     width: 300px;
@@ -34,6 +38,7 @@
     width: 130px;
     border-radius: 10px;
     font-weight: 600;
+    font-family: "Poppins";
 }
 .formGroup {
     margin-bottom: 15px; 
@@ -62,6 +67,9 @@
     justify-content: center;
     align-items: center;
   }
+  .login{
+    font-family: "Poppins";
+}
 
   /* media query */
   @media (max-width:1200px) {
@@ -105,7 +113,7 @@
       height: 30px;
     }
     .pra{
-      font-size: 4px;
+      font-size: 8px;
       line-height: 12px;
     }
     .loginBorder{

@@ -2,7 +2,7 @@ import {Col} from "react-bootstrap";
 import styles from "../../home/loginpage/Login.module.css";
 const Login = () => {
   return (
-    <Col md={6} className="d-flex justify-content-center">
+    <Col md={6} className={`${styles.mainDiv} d-flex justify-content-center`}>
     <div className={`${styles.info} text-white`}>
       {/* <h3 className={styles.text}>Lorem lpsum</h3> */}
       <h4 className={styles.textOne}>

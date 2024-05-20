@@ -30,7 +30,7 @@ export default function AboutOne() {
             
            <h3 className="text-white">Why join Stylrax?</h3> 
           <p className="text-white mt-3">
-            <ul className="">
+            <ul className={styles.menuList}>
                 <li>- Customer pool near your location</li>
                 <li> - Dynamic and supportive community</li>
                 <li>- Seamless appointment management </li>

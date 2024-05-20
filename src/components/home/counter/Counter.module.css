@@ -1,46 +1,45 @@
-.banner3{
-   height: 140px;
-   background-color: #000;
-   }
-   
-   .textContent {
-   gap: 72px;
-   padding: 47px 0px;
-   line-height: 21px;
-   }
-   
-   .num {
-       font-size: 40px;
-       font-weight: 500;
-   }
-   
-   .txt{
-       font-size: 20px;
-   }
+.banner3 {
+  height: 140px;
+  background-color: #000;
+}
 
+.textContent {
+  gap: 126px;
+  font-weight: 600;
+  padding: 40px 0px;
+  line-height: 21px;
+}
 
-   @media(max-width:768px){
-    .num {
-        font-size: 33px;
-        font-weight: 500;
-    }
+.num {
+  font-size: 40px;
+  font-weight: 500;
+}
 
-    .txt{
-        font-size: 16px;
-    }
+.txt {
+  font-size: 22px;
+  font-family: "Poppins";
+}
 
-   }
-   
-   
-   
-   @media(max-width:576px){
-       .textContent{
-           flex-direction: column;
-           gap: 8px;
-           padding: 45px 0px;
-       }
-       
-       .banner3{
-           height: 300px;
-       }
-   }
+@media (max-width: 768px) {
+  .num {
+    font-size: 33px;
+    font-weight: 500;
+  }
+
+  .txt {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 576px) {
+  .textContent {
+    flex-direction: column;
+    gap: 0px;
+    line-height: 8px;
+    padding: 45px 30px;
+  }
+
+  .banner3 {
+    height: 230px;
+  }
+}

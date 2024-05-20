@@ -5,7 +5,6 @@ import styles from "../team/Team.module.css";
 const Team = () => {
   return (
    <main className={styles.main}>
-    <Container className={styles.container}>
     <Row className='d-flex align-items-center'>
       <Col md={8}className="d-flex justify-content-center">
       <div className={styles.query}>
@@ -14,7 +13,7 @@ const Team = () => {
          We &apos;re here to help you make the most of your <br/>experience with Stylrax.
         </p>
         <div className={styles.mainText}>
-          <PersonRoundedIcon className={`${styles.helperIcon} me-1`}/>
+          <PersonRoundedIcon className={`${styles.helperIcon} me-4`}/>
           <p className={styles.ask}>
           <span className={styles.span}> Need Help ?</span> <br/> Connect with our expert.
           </p>
@@ -27,7 +26,6 @@ const Team = () => {
         </div>
       </Col>
     </Row>
-    </Container>
    </main>
   );
 }

@@ -79,7 +79,7 @@ function BankDetails() {
               Passbook/Cancelled Cheque
               <br />
               <div>
-                {bankDetails.documentImageUrl &&
+                {/* {bankDetails.documentImageUrl &&
                 bankDetails.documentImageUrl.startsWith("http") ? (
                   <img
                     src={bankDetails.documentImageUrl}
@@ -88,7 +88,12 @@ function BankDetails() {
                   />
                 ) : (
                   <Image alt="Default Profile" className={styles.imgDiv} />
-                )}
+                )} */}
+                <Image
+                    alt="Default Profile"
+                    className={styles.documents}
+                    imageUrl={bankDetails.documentImageUrl}
+                  />
               </div>
             </label>
             <br />

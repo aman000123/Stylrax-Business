@@ -6,7 +6,7 @@ import WorkIcon from '@mui/icons-material/Work';
 function Support() {
     return (
         <div className={styles.mainDiv}>
-            <div className={styles.contact}>
+            {/* <div className={styles.contact}>
                 <div className={styles.dialIcon}>
                 <CallIcon />
                 </div>
@@ -14,7 +14,7 @@ function Support() {
                     <p>Customer Support</p>
                     <span>911-000000</span>
                 </div>
-            </div>
+            </div> */}
             <div className={styles.payment}>
                 <p>Payment Supports</p>
                 <div className={styles.paymentOption}>
@@ -22,14 +22,14 @@ function Support() {
                 </div>
 
             </div>
-            <div className={styles.partners}>
+            {/* <div className={styles.partners}>
                 <p>Partner with</p>
                 <div className={styles.partner}>
                     <WorkIcon className={styles.workIcon}/>
                     <span>Lorem Now</span>
                 </div>
 
-            </div>
+            </div> */}
 
         </div>
     )

@@ -26,7 +26,7 @@ const Main = () => {
     <Overview/>
     <AboutOne/>
     <AboutTwo/>
-    <Comment/>
+    <Comment/> 
     <Registration/>
     <Feedback/>
     <Explore/>
