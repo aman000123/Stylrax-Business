@@ -54,7 +54,7 @@ const LoginForm = ({  setActiveStep  }) => {
         <Container>
           <Row className="align-items-center d-flex">
             <Login />
-            <Col md={6} className="d-flex justify-content-center">
+            <Col md={6} className={`${styles.LoginForm} d-flex justify-content-center`}>
               <div className={`${styles.loginBorder} text-white d-flex`}>
                 {!showOTPSection ? (
                   <>

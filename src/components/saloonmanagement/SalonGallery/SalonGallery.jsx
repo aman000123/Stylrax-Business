@@ -70,6 +70,7 @@ const SalonGallery = ({ salonDetails }) => {
                       className={styles.documents}
                     />
                   )}
+
                 </Col>
               ))}
           </Row>

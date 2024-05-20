@@ -8,7 +8,12 @@ input.inputOtp{
     border: none;
     outline: none;
    }
-  
+  .login{
+    font-family: "Poppins";
+  } 
+  .formGroup label{
+    font-family: "Poppins";  
+  }
    .input{
     width: 300px;
     height: 40px;
@@ -27,6 +32,7 @@ input.inputOtp{
     width: 200px;
     border-radius: 10px;
     font-weight: 600;
+    font-family: "Poppins";  
 }
 @media(max-width:380px){
     .btn{
@@ -49,11 +55,13 @@ input.inputOtp{
 .resend{
     float: right;
     margin-top: -15px;
+    font-family: "Poppins";  
 }
 .clear{
     margin-top: -15px;
     margin-left: 5px;
     margin-right: -12px;
+    font-family: "Poppins";  
 }
 @media (max-width:1029.7px){
     .loginBorder{

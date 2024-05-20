@@ -5,6 +5,9 @@
     padding-top: 60px;
     padding-bottom: 50px;
     position: relative;
+    background-position: center;
+    padding: 70px 0;
+    margin-top: 20px;
 }
 .starImage{
     position: absolute;
@@ -24,13 +27,14 @@
      padding:  50px 150px;
     padding-left: 175px;
     padding-right: 175px;
-
+    border-radius: 5px;
 }
 .pra{
     color: black;
     font-weight: 500;
     line-height: 30px;
     font-size: 25px;
+    font-family: "Poppins";
 }
 @media (max-width:1400px) {
     .starImage{

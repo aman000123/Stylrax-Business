@@ -1,17 +1,26 @@
 .mainDiv {
     padding: 60px 0px;
     background-image: url('../../../assets/image/background.png');
+    
 }
 
 .sectionOne {
     width: 40%;
+    position: relative;
 }
-
+.section2{
+    margin-top: 100px;
+}
 .sectionOne img {
     height: auto;
     width: 304.5px;
 }
-
+.menuList{
+    font-family: "Poppins";
+}
+.text h3{
+    font-family: "Poppins";
+}
 .section2 {
     background-color: #000;
     width: 60%;

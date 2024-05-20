@@ -10,21 +10,26 @@
 }
 
 .mobileImage img {
-    width: 513px;
-    margin-left: -120px;
+    width: 520px;
+    /* margin-left: -120px; */
 }
 .downloadmainDiv{
     display: flex;
     flex-direction: column;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     gap: 10px;
 }
 .downloadmainDiv h3{
     font-size: 22px;
-    font-weight: bold;
+    font-weight: 600;
+    font-family: "Poppins";
 }
 .downloadmainDiv p{
     font-size: 15px;
-    font-weight: 200;
+    font-weight: 500;
+    font-family: "Poppins";
 }
 
 .downloadLink {
@@ -72,7 +77,10 @@
 @media screen and (max-width:767px) {
     .mainDiv{
         gap: 3px;
+        margin-top: 0px;
+        margin-bottom: -10px;
     }
+  
     .mobileImage img{
         width: 200px;
     }

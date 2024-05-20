@@ -1,7 +1,7 @@
-import salondetailimg from "../assets/image/salondetailimg.png";
-const Image = ({ alt, className }) => {
+import dummyImage from "../../src/assets/image/dummyImage.webp";
+const Image = ({ alt, className ,imageUrl}) => {
   return (
-    <img src={salondetailimg} alt={alt} className={className} />
+    <img src={imageUrl!== "" ? imageUrl:dummyImage} alt={alt} className={className} />
   );
 }
 

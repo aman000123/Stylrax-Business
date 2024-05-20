@@ -2,6 +2,7 @@
     background-image: url("../../../assets/image/vectorbg.webp");
     background-size: cover;
     overflow: hidden;
+    padding: 40px 0px;
 }
 .container{
     padding: 60px 60px;
@@ -11,17 +12,19 @@
     font-weight: 600;
     font-size: 24px;
     line-height: 35px;
-  
+    font-family: "Poppins";
+    margin-left: -60px;
 }
 .mainText{
   background-color: black;
   color: white;
   display: flex;
-  width: 220px !important;
-   padding: 10px 10px;
-   padding-left: 15px;
+  width: 250px !important;
+   padding: 15px 10px;
+   padding-left: 35px;
    padding-right: 20px;
    border-radius: 15px;
+   margin-left: -55px;
 }
 .query{
     margin-left: 120px;
@@ -34,25 +37,34 @@
     width: 500px;
 } 
 .ask{
-    font-size: 8px;
+    font-size: 10px;
     padding-top: 4px;
+    margin-left: -20px;
 }
 .span{
     font-weight: bolder;
-    font-size: 15px;
+    font-size: 18px;
 }
 .helperIcon{
     width: 55px !important;
-    height: 45px !important;
+    height: 50px !important;
 }
  @media(max-width:1400px) {
         .info{
           font-size: 20px;
           font-weight: 600;
+          margin-left: auto;
         }
         .query{
             margin-left: 0px;
         }  
+        .mainText{
+            margin-left: 0px;
+        }
+        .teamImg{
+            height: 317px;
+            width: 263px;
+        }
     }
     @media(max-width:1200px) {
         .info{
@@ -70,6 +82,7 @@
         .teamImg{
             height: 368px;
             width: 352px;
+            background-size: contain;
         }
     }
         @media(max-width:768px){
