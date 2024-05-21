@@ -97,7 +97,7 @@
         }
         @media(max-width:575px) {
             .info{
-              font-size: 11px;
+              font-size: 10px;
             }
             .query{
                 margin-left: 0px;
@@ -111,5 +111,10 @@
                   padding: 0px 0px;
                   padding-left: 0px;
                   padding-right: 0px;
+                  width: 210px !important;
+
               }
+              .span{
+                font-size: 14px;
+            }
         }

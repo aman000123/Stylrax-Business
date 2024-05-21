@@ -1,39 +1,17 @@
-import Session from "../../../service/session";
-import { useEffect, useState } from "react";
-import { singleSalon } from "../../../api/salon.api";
-import Notify from "../../../utils/notify.js";
-import styles from "../SalonOwnerDetails/SalonOwnerDetails.module.css";
+import styles from "./SalonDetails.module.css";
 import Image from "../../../ux/Image.jsx";
-function SalonDetails() {
-  const [salonDetails, setSalonDetails] = useState([]);
-  const salonId = Session.get("salonId");
-  useEffect(() => {
-    const getSalon = async () => {
-      try {
-        const response = await singleSalon(salonId);
-        const salonDetails = response.data.salon;
-        console.log("salon details::>", salonDetails);
-        setSalonDetails(salonDetails);
-      } catch (error) {
-        Notify.error(error.message);
-      }
-    };
 
-    getSalon();
-  }, [salonId]);
+function SalonDetails({ salonDetails }) {
+  const details = salonDetails.salon || {};
   return (
     <div className={styles.mainDiv}>
       <div className={styles.imgDiv}>
         <div>
-        {salonDetails.mainGateImageUrl ? (
-          <img
-            src={salonDetails.mainGateImageUrl}
-            alt="Main Gate Image"
+          <Image
+            alt="Salon Main Gate"
             className={styles.imgDiv}
+            imageUrl={details.mainGateImageUrl}
           />
-        ) : (
-          <Image />
-        )}
         </div>
       </div>
 
@@ -43,7 +21,7 @@ function SalonDetails() {
         <input
           type="text"
           className={styles.inputs}
-          value={salonDetails.name}
+          value={details.name}
           disabled
         />{" "}
       </div>
@@ -52,8 +30,8 @@ function SalonDetails() {
         <br />
         <input
           type="text"
-          className={styles.inputs}
-          value={salonDetails.email}
+          className={styles.email}
+          value={details.email}
           disabled
         />
       </div>
@@ -63,7 +41,7 @@ function SalonDetails() {
         <input
           type="text"
           className={styles.inputs}
-          value={salonDetails.gstNumber}
+          value={details.gstNumber}
           disabled
         />
       </div>
@@ -72,8 +50,8 @@ function SalonDetails() {
         <br />
         <input
           type="text"
-          className={styles.inputs}
-          value={salonDetails.address}
+          className={styles.email}
+          value={details.address}
           disabled
         />
       </div>
@@ -83,7 +61,7 @@ function SalonDetails() {
         <input
           type="text"
           className={styles.inputs}
-          value={salonDetails.state}
+          value={details.state}
           disabled
         />
       </div>
@@ -93,7 +71,7 @@ function SalonDetails() {
         <input
           type="text"
           className={styles.inputs}
-          value={salonDetails.companyName}
+          value={details.companyName}
           disabled
         />
       </div>
@@ -103,7 +81,7 @@ function SalonDetails() {
         <input
           type="text"
           className={styles.inputs}
-          value={salonDetails.city}
+          value={details.city}
           disabled
         />
       </div>
@@ -113,7 +91,7 @@ function SalonDetails() {
         <input
           type="text"
           className={styles.inputs}
-          value={salonDetails.pincode}
+          value={details.pincode}
           disabled
         />
       </div>

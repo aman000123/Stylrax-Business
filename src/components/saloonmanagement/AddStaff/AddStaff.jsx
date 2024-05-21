@@ -129,7 +129,7 @@ function AddStaff({ onClose, updatedData }) {
                 <option value="">Select Gender</option>
                 <option value="Male">Male</option>
                 <option value="Female">Female</option>
-                <option value="Other">Other</option>
+                <option value="Other">Both</option>
               </Field>
               <ErrorMessage
                 name="gender"
@@ -173,7 +173,7 @@ function AddStaff({ onClose, updatedData }) {
                   <ErrorMessage
                     name="aadharFrontUrl"
                     component="div"
-                    className={styles.formError}
+                    className={styles.adharError}
                   />
                 </label>
               </div>
@@ -189,7 +189,7 @@ function AddStaff({ onClose, updatedData }) {
                   <ErrorMessage
                     name="aadharBackUrl"
                     component="div"
-                    className={styles.formError}
+                    className={styles.adharError}
                   />
                 </label>
               </div>

@@ -100,8 +100,8 @@ function ViewAllAddService({ id, onClose ,updatedData}) {
               placeholder={!editable ? staff.specialization : "Specilization"}
               readOnly={!editable}
               style={{
-                color: editable ? "#000" : "#888",
-                borderColor: editable ? "#000" : "#ddd",
+                // color: editable ? "#000" : "#888",
+                 borderColor: editable ? "#000" : "#888",
               }}
               onChange={(e) => setSpecialization(e.target.value)}
             />
@@ -109,10 +109,11 @@ function ViewAllAddService({ id, onClose ,updatedData}) {
               type="text"
               disabled={!editable}
               placeholder={!editable ? staff.role : "Role"}
+            // value={editable ? role : staff.role || ""}
               readOnly={!editable}
               style={{
-                color: editable ? "#000" : "#888",
-                borderColor: editable ? "#000" : "#ddd",
+                color: editable ? "#000" : "#000",
+                borderColor: editable ? "#000" : "#888",
               }}
               onChange={(e) => setRole(e.target.value)}
             />

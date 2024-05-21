@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import  { useEffect, useState } from "react";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import { addSalonService, serviceCategory } from "../../../api/salon.management";
 import { addServiceSchema } from "../../../utils/schema";
@@ -10,7 +10,6 @@ function AddService({ onClose,updatedData }) {
   const [categories, setCategories] = useState([]);
   const [selectedCategoryId, setSelectedCategoryId] = useState("");
   const [selectedCategoryName, setSelectedCategoryName] = useState(""); // State to store selected category name
-  const [refresh,setRefresh] = useState(false);
   useEffect(() => {
     const fetchCategories = async () => {
       try {

@@ -112,7 +112,7 @@ function SalonTime() {
                           disabled={!add}
                           className={styles.spanOne}
                         />
-                        <span>Open Timing</span>
+                        <span>Open</span>
                       </div>
                     </div>
 
@@ -125,7 +125,7 @@ function SalonTime() {
                           disabled={!add}
                           className={styles.spanOne}
                         />
-                        <span>Close Timing</span>
+                        <span>Close</span>
                       </div>
                     </div>
 

@@ -169,7 +169,7 @@ function ViewMore({ onClose, id,updatedData }) {
                       <>
                         <option value="Male">Male</option>
                         <option value="Female">Female</option>
-                        <option value="Both">Other</option>
+                        <option value="Both">Both</option>
                       </>
                     )}
                   </select>
