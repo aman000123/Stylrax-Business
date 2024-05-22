@@ -56,7 +56,7 @@ function SalonManagement() {
   const currentComponent = {
     "Salon details": (
       <Col md={10} className={styles.coltwo}>
-        <SalonDetails />
+        <SalonDetails salonDetails={salonDetails}/>
       </Col>
     ),
     "Salon owner details": (
@@ -66,7 +66,7 @@ function SalonManagement() {
     ),
     "Bank details": (
       <Col md={10} className={styles.coltwo}>
-        <BankDetails />
+        <BankDetails salonDetails={salonDetails}/>
       </Col>
     ),
     "Manage staff": (

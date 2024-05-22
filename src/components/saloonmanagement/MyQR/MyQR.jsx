@@ -3,7 +3,7 @@ import Session from '../../../service/session';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import { myQr } from '../../../api/salon.management';
-
+import styles from "../BankDetails/BankDetails.module.css";
 const MyQR = () => {
     const salonId = Session.get("salonId");
     const [qr, setQr] = useState("");
@@ -23,7 +23,7 @@ const MyQR = () => {
     }, [salonId]);
   return (
     <div  className="d-flex justify-content-center align-items-center mt-5">
-  {qr && <img src={`data:image/png;base64,${qr}`} alt="QR Code" style={{ width: '350px', height: '350px' }}/>}   
+  {qr && <img src={`data:image/png;base64,${qr}`} alt="QR Code" className={styles.myQr}/>}   
    </div>
   );
 }

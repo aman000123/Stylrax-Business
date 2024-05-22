@@ -21,15 +21,11 @@ function SalonOwnerDetails() {
     <div className={styles.mainDiv}>
       <div className={styles.imgDiv}>
         <div>
-        {details.profileImageUrl && details.profileImageUrl.startsWith("http") ? (
-            <img
-              src={details.profileImageUrl}
-              className={styles.imgDiv}
-              alt="Profile"
-            />
-          ) : (
-            <Image alt="Default Profile" className={styles.imgDiv} />
-          )}
+           <Image
+                  alt="Default Profile"
+                  className={styles.imgDiv}
+                  imageUrl={details.profileImageUrl}
+                />
         </div>
       </div>
 
@@ -71,7 +67,7 @@ function SalonOwnerDetails() {
         <input
           placeholder={details.email}
           name="email"
-          className={styles.inputs}
+          className={styles.email}
           disabled
         />
       </div>
@@ -104,16 +100,11 @@ function SalonOwnerDetails() {
           <label className={styles.front}>
             <span>Aadhar Front</span>
             <div>
-            {details.aadharFrontUrl &&
-              details.aadharFrontUrl.startsWith("http") ? (
-                <img
-                  src={details.aadharFrontUrl}
-                  className={styles.imgDiv}
-                  alt="Aadhar Front"
+            <Image
+                  alt="Default Profile"
+                  className={styles.documents}
+                  imageUrl={details.aadharFrontUrl}
                 />
-              ) : (
-                <Image alt="Default Profile" className={styles.imgDiv} />
-              )}
             </div>
           </label>
         </div>
@@ -121,32 +112,22 @@ function SalonOwnerDetails() {
           <label className={styles.front}>
             <span>Aadhar Back</span>
             <div>
-            {details.aadharBackUrl &&
-              details.aadharBackUrl.startsWith("http") ? (
-                <img
-                  src={details.aadharBackUrl}
-                  className={styles.imgDiv}
-                  alt="Aadhar Back"
+            <Image
+                  alt="Default Profile"
+                  className={styles.documents}
+                  imageUrl={details.aadharBackUrl}
                 />
-              ) : (
-                <Image alt="Default Profile" className={styles.imgDiv} />
-              )}
             </div>
           </label>
         </div>
       </div>
       <label className={styles.lab}>Pan Card</label>
       <div>
-      {details.panCardImageUrl &&
-        details.panCardImageUrl.startsWith("http") ? (
-          <img
-            src={details.panCardImageUrl}
-            className={styles.imgDiv}
-            alt="Pan Card"
-          />
-        ) : (
-          <Image alt="Default Profile" className={styles.imgDiv} />
-        )}
+      <Image
+                  alt="Default Profile"
+                  className={styles.documents}
+                  imageUrl={details.panCardImageUrl}
+                />
       </div>
       <br />
     </div>

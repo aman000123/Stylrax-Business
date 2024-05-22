@@ -1,11 +1,3 @@
-.mainDiv {
-  justify-content: space-between;
-  background-color: #fff;
-  padding: 30px 60px;
-  border-radius: 8px;
-  font-family: Axiforma;
-}
-
 .imgDiv {
   display: flex;
   justify-content: space-between;
@@ -13,54 +5,44 @@
   width: 230px;
   border-radius: 15px;
 }
-
+.mainDiv {
+  justify-content: space-between;
+  background-color: #fff;
+  padding: 30px 60px;
+  border-radius: 8px;
+  font-family: Axiforma;
+}
 .lab {
   font-weight: 600;
   font-size: 15px;
   padding-top: 10px;
   font-family: Axiforma;
 }
-
 .inputs {
   border: 2px solid #a8a8a8;
   padding: 5px 70px 5px 15px;
   border-radius: 5px;
   font-size: 19px;
   font-family: Axiforma;
-}
-
-.aadhar {
-  display: flex;
-}
-
-.back {
-  margin-left: -42px;
-}
-
-.email {
-  padding: 5px 300px 5px 10px;
   color: #a8a8a8;
+}
+.email {
   border: 2px solid #a8a8a8;
+  padding: 5px 300px 5px 15px;
   border-radius: 5px;
   font-size: 19px;
+  color: #a8a8a8;
 }
-
-.dob {
-  padding: 5px 20px 5px 15px;
-  color: #bebebe;
-  border: 2px solid #bebebe;
+.gst {
+  border: 2px solid #a8a8a8;
+  padding: 5px 300px 5px 15px;
   border-radius: 5px;
+  font-size: 19px;
+  color: #a8a8a8;
 }
-
-.documents {
-  padding-top: 15px;
-  height: 130px;
-  width: 130px;
-}
-
 @media (max-width: 992px) {
   .email {
-    padding: 5px 200px 5px 10px;
+    padding: 5px 200px 5px 15px;
   }
   @media (max-width: 767px) {
     .mainDiv {
@@ -72,17 +54,17 @@
     .email {
       padding: 5px 70px 5px 10px;
     }
-    @media (max-width: 575px) {
-      .imgDiv {
-        height: 150px;
-        width: 150px;
-      }
-      .email {
-        padding: 5px 34px 5px 10px;
-      }
-      .inputs {
-        padding: 5px 34px 5px 10px;
-      }
+  }
+  @media (max-width: 575px) {
+    .imgDiv {
+      height: 150px;
+      width: 150px;
+    }
+    .email {
+      padding: 5px 34px 5px 10px;
+    }
+    .inputs {
+      padding: 5px 34px 5px 10px;
     }
   }
 }
