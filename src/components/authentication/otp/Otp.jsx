@@ -26,6 +26,10 @@ const Otp = ({ phoneNumber}) => {
       autoFocus={index === 0}
       className={styles.inputOtp}
       pattern="[0-9]*"
+      inputMode="numeric"
+      onInput={(e) => {
+        e.target.value = e.target.value.replace(/[^0-9]/g, '');
+      }}
       onKeyDown={(e) => {
         // Allow only numeric keys
         if (!/^\d$/.test(e.key)) {
@@ -70,7 +74,7 @@ const Otp = ({ phoneNumber}) => {
 
       dispatch(storeToken(authData));
       console.log(authData)
-      if (data.profileStatus === 3) {
+      if (data.profileStatus === 3 && data.verified) {
         navigate("/salon/dashboard");
       }
      // if (data.profileStatus === 2) {

@@ -1,8 +1,9 @@
 import  { useState } from "react";
 import MenuIcon from "@mui/icons-material/Menu";
 import styles from "../navbar/Navbar.module.css";
-import { NavLink } from "react-bootstrap";
+import { NavLink } from "react-router-dom";
 import Logo from "../../../ux/Logo";
+
 // import PropTypes from 'prop-types';
 const Navbar = (props) => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -14,7 +15,7 @@ const Navbar = (props) => {
     <nav className={styles.nav}>
       <div className="align-items-center">
         <div className={styles.logo}>
-         <Logo/>
+        <NavLink to={props.redirect}> <Logo/></NavLink>
         </div>
       </div>
       <div>
@@ -23,7 +24,7 @@ const Navbar = (props) => {
             <div key={index} className="d-flex">
               <div className={`${styles.icon} me-2`}>{item.icon}</div>
 
-              <NavLink href={`/${item.link}`}>
+              <NavLink to={`/${item.link}`}>
                 {item.text}
               </NavLink>
             </div>
@@ -38,7 +39,7 @@ const Navbar = (props) => {
             {props.data.map((item, index) => (
               <div key={index} className="d-flex gap-3 pb-2">
                  <span className={`${styles.icon}`}>{item.icon}</span>
-                 <NavLink href={`/${item.link}`}>
+                 <NavLink to={`/${item.link}`}>
                 {item.text}
               </NavLink>              
               </div>

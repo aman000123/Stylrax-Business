@@ -16,6 +16,10 @@
     justify-content: space-between;
    
 }
+.nav a{
+    text-decoration: none;
+    color: white;
+}
 @media (max-width:490px){
     .nav{
         /* width: 108%; */

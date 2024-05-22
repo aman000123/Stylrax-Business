@@ -11,6 +11,9 @@
 .status{
     font-weight: 470;
 }
+.serviceTime{
+  margin-left: 11px;
+}
  .status.pending {
     color: grey;
   }

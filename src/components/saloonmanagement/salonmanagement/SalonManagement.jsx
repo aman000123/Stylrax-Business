@@ -99,7 +99,7 @@ function SalonManagement() {
 
   return (
     <>
-      <Navbar data={navItems} />
+      <Navbar data={navItems} redirect="/salon/dashboard"/>
       <div className={styles.mainDiv}>
         <div className={styles.main}>
           <div className={styles.salonImage}>

@@ -9,7 +9,7 @@ const Service = ({ onContinue }) => {
       <Section className={`d-flex justify-content-center ${styles.registration__service_container}`}>
         <Section className="d-flex flex-column align-self-center">
           <Button onClick={()=>onContinue('Salon')} >Salon</Button>
-          <Button onClick={()=>onContinue('Freelancer')}>Freelancer</Button>
+          {/* <Button onClick={()=>onContinue('Freelancer')}>Freelancer</Button> */}
         </Section>
       </Section>
     </Container>

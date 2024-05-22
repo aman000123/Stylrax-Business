@@ -43,14 +43,15 @@ const initialValues = {
   galleryImageUrl: [],
 };
 
-const NewSalon = ({ onClose }) => {
+const NewSalon = ({ onClose,updatedData }) => {
   const [bannerImages, setBannerImages] = useState([]);
   const [galleryImages, setGalleryImages] = useState([]);
   const [cityOptions, setCityOptions] = useState([
     { value: "", text: "Select City" },
   ]);
-  const handleOnSubmit = async (values) => {
+  const handleOnSubmit = async (event,values) => {
     //onContinue(values);
+    event.stopPropagation();
     try {
       const verifyForm = {
         name: values.name,
@@ -72,6 +73,7 @@ const NewSalon = ({ onClose }) => {
       };
       const res = await createSalon(verifyForm);
       Notify.success("New Salon Added");
+      updatedData();
       onClose();
       console.log("respn::>", res);
     } catch (error) {
@@ -117,6 +119,10 @@ const NewSalon = ({ onClose }) => {
     }));
     setCityOptions([{ value: "", text: "Select City" }, ...cityOptions]);
   };
+
+  const handleClickInside = (event) => {
+    event.stopPropagation(); // Prevent event propagation
+  };
   return (
     <>
       <Section className="d-flex flex-column align-items-center">
@@ -124,10 +130,9 @@ const NewSalon = ({ onClose }) => {
           <Formik
             initialValues={initialValues}
             validationSchema={businessDetailsSchema}
-            onSubmit={handleOnSubmit}
-          >
+            onSubmit={(values, { event }) => handleOnSubmit(event, values)}          >
             {({ setFieldValue }) => (
-              <Form className="d-flex flex-column">
+              <Form className="d-flex flex-column" onClick={handleClickInside}>
                 <InputText
                   type="text"
                   name="name"

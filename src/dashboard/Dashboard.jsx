@@ -2,7 +2,6 @@ import { useEffect, useState, useRef } from "react";
 import SalonClinic from "../components/saloondashboard/salonclinic/SalonClinic";
 import UpcomingAppointment from "../components/saloondashboard/upcoming/UpcomingAppointment";
 import { Row, Col } from "react-bootstrap";
-import orangeSpecs from "../assets/image/orangeSpecs.png";
 import styles from "./DashboardLayout.module.css";
 import { LuSwitchCamera } from "react-icons/lu";
 import Navbar from "../components/saloondashboard/navbar/Navbar";
@@ -21,46 +20,50 @@ const DashBoardLayout = () => {
   const [selectedSalonId, setSelectedSalonId] = useState("");
   const dispatch = useDispatch();
   const switchSalonRef = useRef(null); // Create a ref for SwitchSalon component
-
   const toggleContent = () => {
     setShowContent(!showContent);
   };
 
-  useEffect(() => {
-    const fetchSalons = async () => {
-      try {
-        const response = await getSalon();
-        const salons = response?.data;
-        setSalons(salons);
-        console.log("response::::>>", salons);
-        if (salons.length > 0) {
-          const { name, mainGateImageUrl, id } = salons[0];
-          setSelectedSalonName(name);
-          setSelectedSalonImage(mainGateImageUrl);
-          setSelectedSalonId(id);
-          dispatch(setSalonID({ salonId: id }));
-          dispatch(setSalonName({ salonName: name }));
-          dispatch(setSalonImage({ salonImage: mainGateImageUrl }));
-        }
-      } catch (error) {
-        Notify.error(error.message);
+  const fetchSalons = async () => {
+    try {
+      const response = await getSalon();
+      const salons = response?.data;
+      setSalons(salons);
+      console.log("response::::>>", salons);
+      if (salons.length > 0) {
+        const { name, mainGateImageUrl, id } = salons[0];
+        setSelectedSalonName(name);
+        setSelectedSalonImage(mainGateImageUrl);
+        setSelectedSalonId(id);
+        dispatch(setSalonID({ salonId: id }));
+        dispatch(setSalonName({ salonName: name }));
+        dispatch(setSalonImage({ salonImage: mainGateImageUrl }));
       }
-    };
+    } catch (error) {
+      Notify.error(error.message);
+    }
+  };
+  useEffect(() => {
     fetchSalons();
   }, []);
 
+
   // useEffect(() => {
   //   const handleClickOutside = (event) => {
-  //     if (switchSalonRef.current && !switchSalonRef.current.contains(event.target) && !event.target.classList.contains('popup')) {
-  //       setShowContent(false); // Close the SwitchSalon component if clicked outside
+  //     if (
+  //       switchSalonRef.current &&
+  //       !switchSalonRef.current.contains(event.target)
+  //     ) {
+  //       setShowContent(false);
+  //       event.stopPropagation();
   //     }
   //   };
-  
-  //   document.addEventListener('mousedown', handleClickOutside);
+
+  //   document.addEventListener("mousedown", handleClickOutside);
   //   return () => {
-  //     document.removeEventListener('mousedown', handleClickOutside);
+  //     document.removeEventListener("mousedown", handleClickOutside);
   //   };
-  // }, [switchSalonRef]);
+  // }, []);
 
   return (
     <>
@@ -88,6 +91,7 @@ const DashBoardLayout = () => {
                 <SwitchSalon
                   salons={salons}
                   show={showContent}
+                  updatedData={fetchSalons}
                   onSelectSalon={(salonName, salonImage, id) => {
                     setSelectedSalonName(salonName);
                     setSelectedSalonImage(salonImage);

@@ -34,18 +34,11 @@ const SalonGallery = ({ salonDetails }) => {
             gallery.length > 0 &&
             gallery.map((image, index) => (
               <Col key={index} lg={2} md={3} sm={4} xs={4}>
-                {image.mediaUrl && image.mediaUrl.startsWith("http") ? (
-                  <img
-                    src={image.mediaUrl}
-                    alt={`Gallery Image ${index}`}
-                    className={styles.documents}
-                  />
-                ) : (
-                  <Image
-                    alt={`Gallery Image ${index}`}
-                    className={styles.documents}
-                  />
-                )}
+                <Image
+                  alt={`Gallery Image ${index}`}
+                  className={styles.documents}
+                  imageUrl={image.imageUrl}
+                />
               </Col>
             ))}
         </Row>
@@ -56,21 +49,13 @@ const SalonGallery = ({ salonDetails }) => {
           <Row>
             {bannerImages &&
               bannerImages.length > 0 &&
-              bannerImages.map((imageUrl, index) => (
+              bannerImages.map((image, index) => (
                 <Col key={index} lg={2} md={3} sm={4} xs={4}>
-                  {imageUrl && imageUrl.startsWith("http") ? (
-                    <img
-                      src={imageUrl}
-                      alt={`Banner Image ${index}`}
-                      className={styles.documents}
-                    />
-                  ) : (
-                    <Image
-                      alt={`Banner Image ${index}`}
-                      className={styles.documents}
-                    />
-                  )}
-
+                  <Image
+                    alt={`Banner Image ${index}`}
+                    className={styles.documents}
+                    imageUrl={image}
+                  />
                 </Col>
               ))}
           </Row>
