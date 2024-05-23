@@ -37,7 +37,7 @@ const SalonGallery = ({ salonDetails }) => {
                 <Image
                   alt={`Gallery Image ${index}`}
                   className={styles.documents}
-                  imageUrl={image.imageUrl}
+                  imageUrl={image.mediaUrl}
                 />
               </Col>
             ))}

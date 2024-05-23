@@ -99,6 +99,8 @@ const CreateAccount = () => {
         <BankDetails salonId={salonId} onContinue={handleBankDetails}  />
       )}
       {activeStep === 4 && <Finish />}
+
+    
       <Footer />
     </Section>
   );
