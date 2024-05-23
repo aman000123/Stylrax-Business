@@ -9,10 +9,9 @@ import { Paper } from '@mui/material';
 import styles from './SwitchSalon.module.css';
 import NewSalon from '../addNewSalon/NewSalon';
 
-const SwitchSalon = ({ salons, onSelectSalon }) => {
+const SwitchSalon = ({ salons, onSelectSalon , selectedSalonId }) => {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
-  const extraComponentRef = useRef(null);
-  const togglePopup = (event) => {
+  const togglePopup = () => {
     //event.stopPropagation();
     setIsPopupOpen(!isPopupOpen);
   };
@@ -20,7 +19,14 @@ const SwitchSalon = ({ salons, onSelectSalon }) => {
   const handleSalonClick = (salonName, salonImage, id) => {
     onSelectSalon(salonName, salonImage, id);
   };
-
+  useEffect(() => {
+    const selectedSalon = document.querySelector(`.selectSalon[data-id='${selectedSalonId}']`);
+    if (selectedSalon) {
+      const allSalons = document.querySelectorAll('.selectSalon');
+      allSalons.forEach((salon) => salon.classList.remove('selected'));
+      selectedSalon.classList.add('selected');
+    }
+  }, [selectedSalonId]);
   return (
     <>
       <Paper className={`${styles.switchPaper}`} elevation={15} style={{ borderRadius: '15px' ,border:'none'}}>
@@ -38,11 +44,11 @@ const SwitchSalon = ({ salons, onSelectSalon }) => {
           </div>
           <p className={styles.select}>Select Your Salon</p>
           {salons.map((salon) => (
-            <div
-              key={salon.id}
-              className={styles.selectSalon}
-              onClick={() => handleSalonClick(salon.name, salon.mainGateImageUrl, salon.id)}
-            >
+             <div
+             key={salon.id}
+             className={clsx(styles.selectSalon, { [styles.selected]: salon.id === selectedSalonId })}
+             onClick={() => handleSalonClick(salon.name, salon.mainGateImageUrl, salon.id)}
+           >
               <img src={salon.mainGateImageUrl} alt={salon.name} className={styles.userImage} />
               <p>{salon.name}</p>
             </div>
@@ -77,8 +83,11 @@ export default SwitchSalon;
 // Styles for Modal
 const Backdrop = React.forwardRef((props, ref) => {
   const { open, className, ...other } = props;
+  const handleClick = (event) => {
+    event.stopPropagation();
+  };
   return (
-    <div className={clsx({ 'base-Backdrop-open': open}, className)} ref={ref} {...other} />
+    <div className={clsx({ 'base-Backdrop-open': open}, className)} ref={ref} {...other}  onClick={handleClick} />
   );
 });
 Backdrop.propTypes = {

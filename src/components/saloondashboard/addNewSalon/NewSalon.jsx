@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { createSalon } from "../../../api/salon.api";
 import { getPresignedUrl } from "../../../api/file.api";
 import Section from "../../../ux/Section";
@@ -17,6 +17,8 @@ import { handleOnFileSelect } from "../../account/FileUploader";
 import Notify from "../../../utils/notify";
 import styles from "../../account/account.module.css";
 import { data } from "../../account/Data";
+import SalonBank from "./SalonBank";
+
 console.log("data", data);
 
 const states = Object.keys(data);
@@ -43,15 +45,18 @@ const initialValues = {
   galleryImageUrl: [],
 };
 
-const NewSalon = ({ onClose,updatedData }) => {
+const NewSalon = ({ onClose, updatedData }) => {
   const [bannerImages, setBannerImages] = useState([]);
   const [galleryImages, setGalleryImages] = useState([]);
+  const containerRef = useRef(null);
   const [cityOptions, setCityOptions] = useState([
     { value: "", text: "Select City" },
   ]);
-  const handleOnSubmit = async (event,values) => {
-    //onContinue(values);
-    event.stopPropagation();
+  const [salonId, setSalonId] = useState(null); // New state for salon ID
+  const [showSalonDetails, setShowSalonDetails] = useState(false); // New state to toggle component
+
+  const handleOnSubmit = async (event, values) => {
+    //event.stopPropagation();
     try {
       const verifyForm = {
         name: values.name,
@@ -66,20 +71,21 @@ const NewSalon = ({ onClose,updatedData }) => {
         pincode: values.pinCode,
         serviceType: values.serviceType,
         homeService: false,
-
         mainGateImageUrl: values.mainGateUrl,
         bannerImages: bannerImages,
         gallaryImages: galleryImages,
       };
       const res = await createSalon(verifyForm);
       Notify.success("New Salon Added");
-      updatedData();
-      onClose();
-      console.log("respn::>", res);
+      const newSalonId = res.data.id;
+      setSalonId(newSalonId); // Save the salon ID
+     // updatedData();
+      setShowSalonDetails(true); // Show the new component
     } catch (error) {
       Notify.error(error.message);
     }
   };
+
   const handleOnFile = async (files, field, setFieldValue) => {
     try {
       files = Array.isArray(files) ? files : [files];
@@ -97,14 +103,12 @@ const NewSalon = ({ onClose,updatedData }) => {
       });
       const urls = await Promise.all(uploadPromises);
 
-      // Check if field is for bannerImages or galleryImageUrl
       if (field === "bannerImages") {
         setBannerImages([...bannerImages, ...urls]);
       } else if (field === "galleryImageUrl") {
         setGalleryImages([...galleryImages, ...urls]);
       }
 
-      // Set field value using Formik's setFieldValue
       setFieldValue(field, urls);
     } catch (error) {
       Notify.error(error.message);
@@ -121,116 +125,131 @@ const NewSalon = ({ onClose,updatedData }) => {
   };
 
   const handleClickInside = (event) => {
-    event.stopPropagation(); // Prevent event propagation
+    event.stopPropagation();
   };
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {};
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
   return (
     <>
-      <Section className="d-flex flex-column align-items-center">
-        <FormContainer>
-          <Formik
-            initialValues={initialValues}
-            validationSchema={businessDetailsSchema}
-            onSubmit={(values, { event }) => handleOnSubmit(event, values)}          >
-            {({ setFieldValue }) => (
-              <Form className="d-flex flex-column" onClick={handleClickInside}>
-                <InputText
-                  type="text"
-                  name="name"
-                  label="Salon Name"
-                  placeholder="Salon Name"
-                />
-                <InputText
-                  type="text"
-                  name="gst"
-                  label="GST Number"
-                  placeholder="GST Number"
-                />
-                <InputText
-                  type="text"
-                  name="companyName"
-                  label="Company Name"
-                  placeholder="Company Name"
-                />
-                <InputText
-                  type="text"
-                  name="panNumber"
-                  label="Pan Number"
-                  placeholder="Pan Number"
-                />
-                <TextArea
-                  rows="5"
-                  name="address"
-                  label="Salon Address"
-                  placeholder="Salon Address"
-                  className={styles.address}
-                />
-
-                <InputSelect
-                  name="state"
-                  label="Salon State"
-                  options={states.map((state) => ({
-                    value: state,
-                    text: state,
-                  }))}
-                  onChange={(e) => {
-                    setFieldValue("state", e.target.value);
-                    handleStateChange(e.target.value);
-                  }}
-                />
-                <InputSelect
-                  name="city"
-                  label="Salon City"
-                  options={cityOptions}
-                />
-                <InputText
-                  type="text"
-                  name="pinCode"
-                  label="Pin Code"
-                  placeholder="Pin Code"
-                />
-                <InputSelect
-                  name="serviceType"
-                  label="Service For"
-                  options={serviceOptions}
-                />
-                <Section className="d-flex flex-column align-items-start"></Section>
-                <Section className="d-flex flex-column align-items-start mb-4">
-                  <Label text="Salon Images" />
-                  <InputFile
-                    name="mainGateUrl"
-                    helperText="Main Gate"
-                    onFileSelect={(e) =>
-                      handleOnFileSelect(e, "mainGateUrl", setFieldValue)
-                    }
-                  />
-                  <InputFile
-                    name="galleryImageUrl"
-                    helperText="Gallery"
-                    onFileSelect={(e) =>
-                      handleOnFile(e, "galleryImageUrl", setFieldValue)
-                    }
-                  />
-                  <InputFile
-                    name="bannerImages"
-                    helperText="Banner Images"
-                    onFileSelect={(e) =>
-                      handleOnFile(e, "bannerImages", setFieldValue)
-                    }
-                  />
-                </Section>
-                <Section className="d-flex flex-column align-items-center">
-                  <Button
-                    type="submit"
-                    className={styles.registration__submit_button}
-                  >
-                    Continue
-                  </Button>
-                </Section>
-              </Form>
-            )}
-          </Formik>
-        </FormContainer>
-      </Section>
+      {!showSalonDetails ? (
+        <div ref={containerRef} className="new-salon-container" onClick={handleClickInside}>
+          <Section className="d-flex flex-column align-items-center">
+            <FormContainer>
+              <Formik
+                initialValues={initialValues}
+                validationSchema={businessDetailsSchema}
+                onSubmit={(values, { event }) => handleOnSubmit(event, values)}
+              >
+                {({ setFieldValue }) => (
+                  <Form className="d-flex flex-column" onClick={handleClickInside}>
+                    <InputText
+                      type="text"
+                      name="name"
+                      label="Salon Name"
+                      placeholder="Salon Name"
+                    />
+                    <InputText
+                      type="text"
+                      name="gst"
+                      label="GST Number"
+                      placeholder="GST Number"
+                    />
+                    <InputText
+                      type="text"
+                      name="companyName"
+                      label="Company Name"
+                      placeholder="Company Name"
+                    />
+                    <InputText
+                      type="text"
+                      name="panNumber"
+                      label="Pan Number"
+                      placeholder="Pan Number"
+                    />
+                    <TextArea
+                      rows="5"
+                      name="address"
+                      label="Salon Address"
+                      placeholder="Salon Address"
+                      className={styles.address}
+                    />
+                    <InputSelect
+                      name="state"
+                      label="Salon State"
+                      options={states.map((state) => ({
+                        value: state,
+                        text: state,
+                      }))}
+                      onChange={(e) => {
+                        setFieldValue("state", e.target.value);
+                        handleStateChange(e.target.value);
+                      }}
+                    />
+                    <InputSelect
+                      name="city"
+                      label="Salon City"
+                      options={cityOptions}
+                    />
+                    <InputText
+                      type="text"
+                      name="pinCode"
+                      label="Pin Code"
+                      placeholder="Pin Code"
+                    />
+                    <InputSelect
+                      name="serviceType"
+                      label="Service For"
+                      options={serviceOptions}
+                    />
+                    <Section className="d-flex flex-column align-items-start"></Section>
+                    <Section className="d-flex flex-column align-items-start mb-4">
+                      <Label text="Salon Images" />
+                      <InputFile
+                        name="mainGateUrl"
+                        helperText="Main Gate"
+                        onFileSelect={(e) =>
+                          handleOnFileSelect(e, "mainGateUrl", setFieldValue)
+                        }
+                      />
+                      <InputFile
+                        name="galleryImageUrl"
+                        helperText="Gallery"
+                        onFileSelect={(e) =>
+                          handleOnFile(e, "galleryImageUrl", setFieldValue)
+                        }
+                      />
+                      <InputFile
+                        name="bannerImages"
+                        helperText="Banner Images"
+                        onFileSelect={(e) =>
+                          handleOnFile(e, "bannerImages", setFieldValue)
+                        }
+                      />
+                    </Section>
+                    <Section className="d-flex flex-column align-items-center">
+                      <Button
+                        type="submit"
+                        className={styles.registration__submit_button}
+                      >
+                        Continue
+                      </Button>
+                    </Section>
+                  </Form>
+                )}
+              </Formik>
+            </FormContainer>
+          </Section>
+        </div>
+      ) : (
+        <SalonBank salonId={salonId} onClose={onClose}/>
+      )}
     </>
   );
 };

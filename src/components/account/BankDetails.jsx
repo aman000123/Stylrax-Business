@@ -6,12 +6,9 @@ import {bankDetailsSchema} from "../../utils/schema";
 import Section from "../../ux/Section";
 import FormContainer from "./FormContainer";
 import Notify from "../../utils/notify";
-
 import { handleOnFileSelect } from "./FileUploader";
 import { bankDetails } from "../../api/account.api";
-import Session from "../../service/session";
 import { useSelector } from "react-redux";
-import { useState } from "react";
 
 const initialValues = {
   accountNumber:"",

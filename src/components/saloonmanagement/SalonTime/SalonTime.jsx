@@ -1,12 +1,11 @@
 import styles from "../SalonTime/SalonTime.module.css";
 import { IoTimeSharp, IoAlertCircleOutline } from "react-icons/io5";
 import { useEffect, useState } from "react";
-import Switch from "@mui/material/Switch";
+import { FaCircle } from "react-icons/fa";
 import { Formik, Form, Field } from "formik";
 import Session from "../../../service/session";
 import Notify from "../../../utils/notify";
 import { salonBusinessTime, salonTime } from "../../../api/salon.management";
-
 const salonId = Session.get("salonId");
 
 const openTimeData = [
@@ -70,12 +69,12 @@ function SalonTime() {
   return (
     <div className={styles.mainDiv}>
       <div className={styles.actionButton}>
-        <button className={styles.salon}>Salon</button>
+        {/* <button className={styles.salon}>Salon</button> */}
         {!add && (
           <button
             type="button"
             className={styles.addTime}
-            onClick={handleAdd} 
+            onClick={handleAdd}
           >
             Add
           </button>
@@ -99,6 +98,16 @@ function SalonTime() {
               {timing.map((dayTiming, index) => {
                 const { day } = dayTiming;
 
+                const handleToggle = () => {
+                  const isOpen = !values[`isOpen${index}`];
+                  setFieldValue(`isOpen${index}`, isOpen);
+
+                  if (!isOpen) {
+                    setFieldValue(`openTime${index}`, "");
+                    setFieldValue(`closeTime${index}`, "");
+                  }
+                };
+
                 return (
                   <div key={index} className={styles.secDiv}>
                     <div className={styles.day}>{day}</div>
@@ -112,50 +121,43 @@ function SalonTime() {
                           disabled={!add}
                           className={styles.spanOne}
                         />
-                        <span>Open</span>
+                        <span>Open Timing</span>
                       </div>
+                      {/* <IoTimeSharp/> */}
                     </div>
 
-                    <div className={styles.timeDiv}>
+                    <div className={styles.timeDi}>
                       <div className={styles.height}>
                         <Field
                           type="text"
                           name={`closeTime${index}`}
                           value={values[`closeTime${index}`]}
                           disabled={!add}
-                          className={styles.spanOne}
+                          className={styles.spanTwo}
                         />
-                        <span>Close</span>
+                        <span>Close Timing</span>
                       </div>
                     </div>
 
-                    <div className="d-flex align-items-center justify-content-center">
-                      <Switch
-                        checked={values[`isOpen${index}`]}
-                        disabled={!add}
-                        onChange={(e) => {
-                          const isOpen = e.target.checked;
-                          
-                          setFieldValue(`isOpen${index}`, isOpen);
-
-                          if (!isOpen) {
-                            setFieldValue(`openTime${index}`, "");
-                            setFieldValue(`closeTime${index}`, "");
-                          }
-                        }}
+                    <div className={`${styles.circleDiv}`}>
+                      <FaCircle
+                        onClick={add ? handleToggle : null}
+                        className={`${styles.blackCircle} ${values[`isOpen${index}`] ? styles.iconOpen : styles.iconClose}`}
                       />
-                      {values[`isOpen${index}`] ?<p>Open</p>:<p>Close</p>}
+                      {/* {values[`isOpen${index}`] ? <p>Open</p> : <p>Close</p>} */}
                     </div>
                   </div>
                 );
               })}
-              {add && <button
-                className={styles.addTime}
-                type="submit"
-                disabled={isSubmitting}
-              >
-                Save
-              </button>}
+              {add && (
+                <button
+                  className={styles.addTime}
+                  type="submit"
+                  disabled={isSubmitting}
+                >
+                  Save
+                </button>
+              )}
             </Form>
           )}
         </Formik>

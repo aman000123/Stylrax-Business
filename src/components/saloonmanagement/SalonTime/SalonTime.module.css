@@ -23,12 +23,13 @@
 
 .secDiv{
     display: flex;
-    gap: 100px;
+    gap: 40px;
     background-color: #fff;
     border: 2px solid #909090;
     border-radius: 20px;
     margin-top: 10px;
     padding: 12px 20px;
+    width: fit-content;
 }
 
 .secDiv .day{
@@ -43,6 +44,7 @@
 
 .height span{
     color: #909090;
+    font-size: 15px;
 }
 
 .height .spanOne{
@@ -57,11 +59,24 @@
     display: flex;
     align-items: self-start;
     justify-content: flex-start;
-    gap: 80px;
-    border: 2px solid #909090;
+    /* gap: 80px; */
+    border: 2px solid #C4C4C4;
     border-radius: 17.111px;
-    padding: 8px 40px;
-    margin-left: auto;
+    padding: 5px 20px;
+    margin-left: 140px;
+    /* margin-left: auto; */
+    /* margin-right: 100px; */
+}
+.secDiv .timeDi{
+    display: flex;
+    align-items: self-start;
+    justify-content: flex-start;
+    /* gap: 80px; */
+    border: 2px solid #C4C4C4;
+    border-radius: 17.111px;
+    padding: 5px 20px;
+    /* margin-left: auto; */
+    /* margin-right: 100px; */
 }
 @media(max-width:575px){
     .secDiv .timeDiv{
@@ -74,6 +89,9 @@
     border: none;
    width: fit-content;
    padding-bottom: 4px;
+   font-size: 14px;
+   color: 
+   #808080;
 }
 @media (max-width:575) {
     .timeDiv div .spanOne input{
@@ -83,7 +101,16 @@
 .timeDiv .timeIcon{
     font-size: 25px;
 }
-
+.timeDi div .spanTwo{
+    display: block;
+    outline: none;
+    border: none;
+   width: fit-content;
+   padding-bottom: 4px;
+   font-size: 14px;
+color: 
+#808080;
+}
 .circleDiv{
     border: 2px solid #BEBEBE;
     border-radius: 19px;
@@ -301,3 +328,49 @@
     align-items: center;
     justify-content: center;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Salon time */
+
+/* .icon {
+    cursor: pointer;
+    transition: color 0.3s ease;
+    height: 40px;
+    width: 50px;
+  } */
+  .circleDiv{
+    border: 2px solid #BEBEBE;
+    border-radius: 50px;
+    text-align: start;
+    height: auto;
+    cursor: pointer;
+    width: 80px;
+}
+
+.circleDiv .blackCircle{
+    font-size: 28px;
+    padding-left: 2px;
+    padding-right: 2px;
+    height: 37px;
+    width: 37px;
+    margin-top: 5px;
+    
+}
+  .iconOpen {
+    color: black;
+  }
+  
+  .iconClose {
+    color: grey;
+  }
