@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { styled, css } from '@mui/system';
 import { Modal as BaseModal } from '@mui/base/Modal';
 import PropTypes from 'prop-types';
@@ -11,8 +11,9 @@ import NewSalon from '../addNewSalon/NewSalon';
 
 const SwitchSalon = ({ salons, onSelectSalon }) => {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
-
-  const togglePopup = () => {
+  const extraComponentRef = useRef(null);
+  const togglePopup = (event) => {
+    //event.stopPropagation();
     setIsPopupOpen(!isPopupOpen);
   };
 
@@ -58,7 +59,7 @@ const SwitchSalon = ({ salons, onSelectSalon }) => {
           
         >
           <ModalContent className='border-none'>
-            <NewSalon onClose={togglePopup} />
+            <NewSalon onClose={togglePopup}/>
           </ModalContent>
         </Modal>
       )}

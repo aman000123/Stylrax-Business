@@ -47,7 +47,11 @@
   height: 40px;
   width: 40px;
   border-radius: 50px;
+  border: 2px solid white;
 }
+
+
+
 .profile {
     white-space: nowrap;
 }

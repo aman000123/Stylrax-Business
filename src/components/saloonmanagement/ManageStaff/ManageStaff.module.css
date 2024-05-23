@@ -322,13 +322,13 @@
     .paper{
         width: 134px;
     }
-    .formError{
-        /* margin-left: -37px; */
+    .popupForm input{
+        padding-right: 0px;
     }
     .colDiv{
         padding-top: 15px;
-     display: flex;
-     justify-content: center;
+        display: flex;
+        justify-content: center;
     }
 }
 @media(max-width:408px){

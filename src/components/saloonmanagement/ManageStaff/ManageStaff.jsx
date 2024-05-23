@@ -58,16 +58,11 @@ function ManageStaff() {
         {staff?.map((value) => (
           <Paper key={value.id} className={styles.paper}>
             <div className={styles.imgDiv}>
-              {value.profileImageUrl &&
-              value.profileImageUrl.startsWith("http") ? (
-                <img
-                  src={value.profileImageUrl}
-                  alt=""
-                  className={styles.profile}
-                />
-              ) : (
-                <Image alt="Default Profile" className={styles.profile} />
-              )}
+              <Image
+                alt="Default Profile"
+                className={styles.profile}
+                imageUrl={value.profileImageUrl}
+              />
             </div>
 
             <div className={styles.text}>

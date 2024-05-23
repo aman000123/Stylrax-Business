@@ -10,7 +10,6 @@ import StepperMenu from "../components/account/StepperMenu";
 import Profile from "../components/account/Profile";
 import Section from "../ux/Section";
 import { useSelector } from "react-redux";
-import Session from "../service/session";
 
 const accountSteps = {
   Salon: [
@@ -38,7 +37,7 @@ const CreateAccount = () => {
   const [activeStep, setActiveStep] = useState(status);
   //const salonId = useSelector(state => state.auth.salonId);
 
-  console.log("aradhya id",salonId)
+  console.log("id",salonId)
   const location = useLocation();
   const { token = "" } = location.state || {};
 

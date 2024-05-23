@@ -86,7 +86,7 @@ function SalonDetails({ salonDetails }) {
         />
       </div>
       <div>
-        <label className={styles.lab}>PinCode</label>
+        <label className={styles.lab}>Pin Code</label>
         <br />
         <input
           type="text"

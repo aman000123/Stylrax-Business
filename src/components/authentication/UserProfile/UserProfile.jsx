@@ -12,12 +12,16 @@ import { Modal as BaseModal } from '@mui/base/Modal';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import EditProfile from '../../editprofile/EditProfile';
+import Notify from '../../../utils/notify';
+import { getProfile } from '../../../api/user.api';
+import Image from '../../../ux/Image';
 const UserProfile = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [profile, setProfile] = useState({});
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const menuRef = useRef(null);
-  const profile = Session.get("profileImageUrl")
+ // const profile = Session.get("profileImageUrl")
   const firstName = Session.get("firstName")
 
   const [isPopupOpen, setIsPopupOpen] = useState(false);
@@ -26,6 +30,20 @@ const UserProfile = () => {
     console.log("Toggle popup called");
     setIsPopupOpen(!isPopupOpen);
   };
+  const userProfile = async () => {
+    try {
+      const response = await getProfile();
+      const data = response.data.profileImageUrl;
+      console.log("data123::>", data);
+      setProfile(data);
+    } catch (error) {
+      Notify.error(error.message);
+    }
+  };
+  useEffect(() => {
+   
+    userProfile();
+  }, []);
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (menuRef.current && !menuRef.current.contains(event.target)) {
@@ -62,6 +80,12 @@ const UserProfile = () => {
     <div ref={menuRef}>
       <div onClick={toggleMenu} className={styles.avtar}>
         <img src={profile} className={styles.avtar_img} tabIndex={-1} />
+        {/* <Image
+            alt="Salon Main Gate"
+            className={styles.avtar_img}
+            imageUrl={profile}
+            tabIndex={-1}
+          /> */}
       </div>
       {menuOpen && (
         <Paper  className= {styles.paper} elevation={10} >

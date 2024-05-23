@@ -1,4 +1,4 @@
-import { lazy } from "react";
+import { lazy,Suspense} from "react";
 import { Navigate, useRoutes } from "react-router-dom";
 import Home from "./pages/Home";
 import NotFound from "./pages/404";
@@ -10,20 +10,16 @@ import CodeOfConduct from "./components/privacypolicy/codeOfConduct/CodeOfConduc
 import ContactUs from "./components/privacypolicy/contactUs/ContactUs";
 
 const SalonManagement = lazy(() =>
-  import("./components/saloonmanagement/salonmanagement/SalonManagement")
+  import('./components/saloonmanagement/salonmanagement/SalonManagement')
 );
-
-
-const DashBoard = lazy(() => import("./dashboard/Dashboard"));
+const DashBoard = lazy(() => import('./dashboard/Dashboard'));
 const SalonAppointment = lazy(() =>
-  import("./components/salonappointment/newappointment/NewAppointment")
+  import('./components/salonappointment/newappointment/NewAppointment')
 );
-
-const CreateAccount = lazy(() => import("./pages/CreateAccount"));
-
+const CreateAccount = lazy(() => import('./pages/CreateAccount'));
 
 const AppRoute = ({ authToken }) => {
- // const isAuthTokenValid = authToken && authToken !== 'expired';
+  // const isAuthTokenValid = authToken && authToken !== 'expired';
   const _routes = [
     {
       children: [
@@ -43,12 +39,33 @@ const AppRoute = ({ authToken }) => {
         {
           path: "salon", element: <MainApp authToken={authToken} />,
           children: [
-            { path: "dashboard", element: <DashBoard /> },
-            { path: "appointment", element: <SalonAppointment /> },
-            { path: "management", element: <SalonManagement /> },
+            {
+              path: 'dashboard',
+              element: (
+                <Suspense fallback={<div>Loading...</div>}>
+                  <DashBoard />
+                </Suspense>
+              ),
+            },
+            {
+              path: 'appointment',
+              element: (
+                <Suspense fallback={<div>Loading...</div>}>
+                  <SalonAppointment />
+                </Suspense>
+              ),
+            },
+            {
+              path: 'management',
+              element: (
+                <Suspense fallback={<div>Loading...</div>}>
+                  <SalonManagement />
+                </Suspense>
+              ),
+            },
           ],
         },
-        { path: "*", element: <NotFound /> }
+        { path: '*', element: <NotFound /> },
       ],
     },
   ];
@@ -57,4 +74,4 @@ const AppRoute = ({ authToken }) => {
   return routes;
 };
 
-export default AppRoute;
+export default AppRoute;

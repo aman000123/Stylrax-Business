@@ -18,7 +18,7 @@ const NewAppointment = () => {
  
   return (
     <main>
-        <Navbar data={navItems}/>
+        <Navbar data={navItems} redirect='/salon/dashboard'/>
       <Container>
         <div className={styles.mainDiv}>
           <img src={salonImage} alt="Salon Img"  />
