@@ -24,7 +24,7 @@ console.log("data", data);
 const states = Object.keys(data);
 
 const serviceOptions = [
-  { value: "", text: "Select Service" },
+  { value: "", text: "Select salon service" },
   { value: "Male", text: "Male" },
   { value: "Female", text: "Female" },
   { value: "Both", text: "Both" },
@@ -33,6 +33,7 @@ const serviceOptions = [
 const initialValues = {
   name: "",
   gst: "",
+  email:"",
   companyName: "",
   pinCode: "",
   serviceType: "",
@@ -50,7 +51,7 @@ const NewSalon = ({ onClose, updatedData }) => {
   const [galleryImages, setGalleryImages] = useState([]);
   const containerRef = useRef(null);
   const [cityOptions, setCityOptions] = useState([
-    { value: "", text: "Select City" },
+    { value: "", text: "Select salon city" },
   ]);
   const [salonId, setSalonId] = useState(null); // New state for salon ID
   const [showSalonDetails, setShowSalonDetails] = useState(false); // New state to toggle component
@@ -153,31 +154,37 @@ const NewSalon = ({ onClose, updatedData }) => {
                       type="text"
                       name="name"
                       label="Salon Name"
-                      placeholder="Salon Name"
+                      placeholder="Enter salon name"
                     />
                     <InputText
                       type="text"
                       name="gst"
-                      label="GST Number"
-                      placeholder="GST Number"
+                      label="GST Number (optional)"
+                      placeholder="Enter GST number"
                     />
                     <InputText
                       type="text"
                       name="companyName"
                       label="Company Name"
-                      placeholder="Company Name"
+                      placeholder="Enter company name"
                     />
                     <InputText
                       type="text"
                       name="panNumber"
                       label="Pan Number"
-                      placeholder="Pan Number"
+                      placeholder="Enter pan number"
+                    />
+                    <InputText
+                      type="text"
+                      name="email"
+                      label="Salon Email (optional)"
+                      placeholder="Enter salon email ID"
                     />
                     <TextArea
                       rows="5"
                       name="address"
                       label="Salon Address"
-                      placeholder="Salon Address"
+                      placeholder="Enter salon address"
                       className={styles.address}
                     />
                     <InputSelect
@@ -200,12 +207,12 @@ const NewSalon = ({ onClose, updatedData }) => {
                     <InputText
                       type="text"
                       name="pinCode"
-                      label="Pin Code"
-                      placeholder="Pin Code"
+                      label="Salon Pin Code"
+                      placeholder="Enter salon pin code"
                     />
                     <InputSelect
                       name="serviceType"
-                      label="Service For"
+                      label="Service Type"
                       options={serviceOptions}
                     />
                     <Section className="d-flex flex-column align-items-start"></Section>

@@ -1,0 +1,28 @@
+.myQr{
+    height: 350px;
+    width: 350px;
+  }
+  .buttonContainer{
+    padding-top: 20px;
+    display: flex;
+    gap: 20px;
+  }
+  .buttonContainer button{
+  text-decoration: none;
+  list-style: none;
+  padding: 10px 52px;
+  border-radius: 30px;
+  color: black;
+  font-weight: 500;
+  border-radius: 2px solid black;
+  }
+  @media (max-width: 575px) {
+    .myQr{
+        height: 250px;
+        width: 250px;
+      }
+      .buttonContainer button{
+        font-size: 12px;
+        padding: 10px 35px;
+      }
+  }

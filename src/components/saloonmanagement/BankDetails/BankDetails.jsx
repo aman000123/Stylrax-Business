@@ -1,7 +1,8 @@
 import styles from "../BankDetails/BankDetails.module.css";
 import { Field, Formik, Form } from "formik";
 import Image from "../../../ux/Image.jsx";
-
+import Zoom from 'react-medium-image-zoom';
+import 'react-medium-image-zoom/dist/styles.css';
 function BankDetails({ salonDetails }) {
   const details = salonDetails.bankDetail || {};
 
@@ -58,11 +59,13 @@ function BankDetails({ salonDetails }) {
               Passbook/Cancelled Cheque
               <br />
               <div>
+                <Zoom>
                 <Image
                   alt="Default Profile"
                   className={styles.documents}
                   imageUrl={details.documentImageUrl}
                 />
+                </Zoom>
               </div>
             </label>
             <br />

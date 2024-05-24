@@ -46,10 +46,6 @@
   outline: none;
   color: #a8a8a8;
 }
-.myQr{
-  height: 350px;
-  width: 350px;
-}
 @media (max-width: 992px) {
   .ifscCode {
     padding: 5px 200px 5px 8px;
@@ -63,10 +59,6 @@
     }
     .mainDiv {
       justify-content: center;
-    }
-    .myQr{
-      height: 250px;
-      width: 250px;
     }
   }
 }

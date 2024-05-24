@@ -11,6 +11,7 @@ import { getSalon } from "../api/salon.api";
 import { setSalonID, setSalonImage, setSalonName } from "../store/auth.slice";
 import Notify from "../utils/notify";
 import styles from "./DashboardLayout.module.css";
+import Footer from "../components/home/footer/Footer";
 
 const DashboardLayout = () => {
   const [showContent, setShowContent] = useState(false);
@@ -112,6 +113,7 @@ const DashboardLayout = () => {
           </Col>
         </Row>
       </div>
+      <Footer/>
     </>
   );
 };

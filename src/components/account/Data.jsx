@@ -1,5 +1,5 @@
  export   const data ={
-    "Select State": [
+    "Select salon state": [
         ""
       ],
     "Andaman and Nicobar Islands": [

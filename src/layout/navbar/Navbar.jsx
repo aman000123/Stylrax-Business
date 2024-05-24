@@ -3,6 +3,7 @@ import logo from "../../assets/image/stylrax_logo.png";
 import MenuIcon from "@mui/icons-material/Menu";
 import styles from "../navbar/Navbar.module.css";
 import { NavLink } from "react-bootstrap";
+import Logo from "../../ux/Logo";
 const Navbar = (props) => {
   const [menuOpen, setMenuOpen] = useState(false);
   const toggleMenu = () => {
@@ -12,7 +13,7 @@ const Navbar = (props) => {
     <nav className={`${styles.nav} bg-black d-flex`}>
       <div className="align-items-center">
         <div className={styles.logo}>
-          <img src={logo} alt="logo" />
+        <NavLink to={props.redirect}><Logo/></NavLink>
         </div>
       </div>
       <div>
@@ -22,9 +23,9 @@ const Navbar = (props) => {
             <div key={index} className="d-flex">
               <div className={`${styles.icon} me-2`}>{item.icon}</div>
 
-              <NavLink href={`/${item.link}`}>
+              <li>
                 {item.text}
-              </NavLink>
+              </li>
             </div>
           ))}
         </ul>

@@ -30,6 +30,7 @@ const serviceOptions = [
 const initialValues = {
   name: "",
   gst: "",
+  email: "",
   companyName: "",
   pinCode: "",
   serviceType: "",
@@ -46,7 +47,7 @@ const BusinessDetails = ({ onContinue, token }) => {
   const [bannerImages, setBannerImages] = useState([]);
   const [galleryImages, setGalleryImages] = useState([]);
   const [cityOptions, setCityOptions] = useState([
-    { value: "", text: "Select City" },
+    { value: "", text: "Select salon city" },
   ]);
   const states = Object.keys(data);
 
@@ -117,7 +118,7 @@ const BusinessDetails = ({ onContinue, token }) => {
       value: city,
       text: city,
     }));
-    setCityOptions([{ value: "", text: "Select City" }, ...cityOptions]);
+    setCityOptions([{ value: "", text: "Select salon city" }, ...cityOptions]);
   };
   return (
     <Container>
@@ -134,34 +135,39 @@ const BusinessDetails = ({ onContinue, token }) => {
                   type="text"
                   name="name"
                   label="Salon Name"
-                  placeholder="Salon Name"
+                  placeholder="Enter salon name"
                 />
                 <InputText
                   type="text"
                   name="gst"
                   label="GST Number"
-                  placeholder="GST Number"
+                  placeholder="Enter GST number"
                 />
                 <InputText
                   type="text"
                   name="companyName"
                   label="Company Name"
-                  placeholder="Company Name"
+                  placeholder="Enter company name"
                 />
                 <InputText
                   type="text"
                   name="panNumber"
                   label="Pan Number"
-                  placeholder="Pan Number"
+                  placeholder="Enter pan number"
                 />
                 <TextArea
                   rows="5"
                   name="address"
                   label="Salon Address"
-                  placeholder="Salon Address"
+                  placeholder="Enter salon address"
                   className={styles.address}
                 />
-               
+                 <InputText
+                      type="text"
+                      name="email"
+                      label="Salon Email (optional)"
+                      placeholder="Enter salon email ID"
+                    />
                 <InputSelect
                   name="state"
                   label="Salon State"
@@ -181,12 +187,12 @@ const BusinessDetails = ({ onContinue, token }) => {
                 <InputText
                   type="text"
                   name="pinCode"
-                  label="Pin Code"
-                  placeholder="Pin Code"
+                  label="Salon Pin Code"
+                  placeholder="Enter salon pin code"
                 />
                 <InputSelect
                   name="serviceType"
-                  label="Service For"
+                  label="Service Type"
                   options={serviceOptions}
                 />
                 <Section className="d-flex flex-column align-items-start"></Section>

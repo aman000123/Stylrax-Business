@@ -1,17 +1,20 @@
 import styles from "./SalonDetails.module.css";
 import Image from "../../../ux/Image.jsx";
-
+import Zoom from 'react-medium-image-zoom';
+import 'react-medium-image-zoom/dist/styles.css';
 function SalonDetails({ salonDetails }) {
   const details = salonDetails.salon || {};
   return (
     <div className={styles.mainDiv}>
       <div className={styles.imgDiv}>
         <div>
+          <Zoom>
           <Image
             alt="Salon Main Gate"
             className={styles.imgDiv}
             imageUrl={details.mainGateImageUrl}
           />
+          </Zoom>
         </div>
       </div>
 

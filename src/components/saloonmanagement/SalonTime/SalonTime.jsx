@@ -121,7 +121,7 @@ function SalonTime() {
                           disabled={!add}
                           className={styles.spanOne}
                         />
-                        <span>Open Timing</span>
+                        <span>Open Time</span>
                       </div>
                       {/* <IoTimeSharp/> */}
                     </div>
@@ -135,7 +135,7 @@ function SalonTime() {
                           disabled={!add}
                           className={styles.spanTwo}
                         />
-                        <span>Close Timing</span>
+                        <span>Close Time</span>
                       </div>
                     </div>
 

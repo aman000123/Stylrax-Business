@@ -30,17 +30,18 @@ export const bankDetailsSchema = Yup.object({
 export const businessDetailsSchema = Yup.object({
   name: Yup.string()
   .matches(/^[a-zA-Z\s]+$/, 'Salon name must contain only alphabets')
-  .required("Please enter your name"),
+  .required("Please enter salon name"),
+ // email: Yup.string().email().required("Please enter your email"),
   companyName: Yup.string()
   .matches(/^[a-zA-Z\s]+$/, 'Company name must contain only alphabets')
   .required("Please enter company name"),
   pinCode: Yup.string()
   .matches(/^[0-9]+$/, "PIN code must contain only numbers")
-    .required("Please enter pin code"),
-  city:Yup.string().required("Please select your city"),
-  state:Yup.string().required("Please select your state"),
-  serviceType:Yup.string().required("Please select your service"),
-  address: Yup.string().required("Please enter your address"),
+    .required("Please enter salon pin code"),
+  city:Yup.string().required("Please select salon city"),
+  state:Yup.string().required("Please select salon state"),
+  serviceType:Yup.string().required("Please select salon service"),
+  address: Yup.string().required("Please enter salon address"),
   panNumber: Yup.string()
   .matches(/[A-Z]{5}[0-9]{4}[A-Z]{1}$/, 'Invalid pan number')
   .required("Please enter your pan number"),
@@ -109,9 +110,12 @@ export const bankSchema = Yup.object({
 // Add staff schema
 const imageFileTypes = ['image/jpeg','image/jpg', 'image/png'];
 export const addStaffSchema = Yup.object({
-  name: Yup.string()
+  firstName: Yup.string()
   .matches(/^[a-zA-Z\s]+$/, 'Name must contain only alphabets')
-  .required("Please enter your Name"),
+  .required("Please enter your first name"),
+  lastName: Yup.string()
+  .matches(/^[a-zA-Z\s]+$/, 'Name must contain only alphabets')
+  .required("Please enter your last Name"),
   mobileNumber: Yup.string()
   .matches(/^\d{10}$/, 'Mobile number must be exactly 10 digits')
   .required("Please enter a valid phone number"),

@@ -15,6 +15,7 @@ import { singleSalon } from "../../../api/salon.api";
 import Notify from "../../../utils/notify.js";
 import MyQR from "../MyQR/MyQR.jsx";
 import { useSelector } from "react-redux";
+import Footer from "../../home/footer/Footer.jsx";
 
 function SalonManagement() {
   const [activeButton, setActiveButton] = useState("Salon details");
@@ -134,6 +135,7 @@ function SalonManagement() {
           </Row>
         </div>
       </div>
+      <Footer  redirect="/salon/dashboard"/>
     </>
   );
 }

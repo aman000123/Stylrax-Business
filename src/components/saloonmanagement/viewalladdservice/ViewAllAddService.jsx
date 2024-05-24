@@ -10,7 +10,8 @@ import Notify from "../../../utils/notify";
 import { RxCross2 } from "react-icons/rx";
 import Session from "../../../service/session";
 import Swal from "sweetalert2";
-
+import Zoom from 'react-medium-image-zoom';
+import 'react-medium-image-zoom/dist/styles.css';
 function ViewAllAddService({ id, onClose ,updatedData}) {
   const [staff, setStaff] = useState({});
   const [editable, setEditable] = useState(false);
@@ -82,15 +83,18 @@ function ViewAllAddService({ id, onClose ,updatedData}) {
             <div className={styles.crossIcon} onClick={handleClose}>
               <RxCross2 />
             </div>
+            <Zoom>
             <img
               src={staff.profileImageUrl}
               alt=""
               className={styles.profile}
             />
+            </Zoom>
           </div>
 
           <form className={styles.popupForm}>
             <input type="text" placeholder={`${staff.firstName}`} readOnly />
+            <input type="text" placeholder={`${staff.lastName}`} readOnly />
             <input type="text" placeholder={staff.phoneNumber} readOnly />
             <input type="text" placeholder={staff.dataOfBirth} readOnly />
             <input type="text" placeholder={staff.email} readOnly />
@@ -120,16 +124,18 @@ function ViewAllAddService({ id, onClose ,updatedData}) {
             <div className={`${styles.adhar_images} row`}>
               <div className="col">
                 <div>Adhar Front</div>
+                <Zoom>
                 <img
                   src={staff.aadharFrontUrl}
                   alt="adhar front"
                   className="mb-3"
                 />
+                </Zoom>
               </div>
               <div className="col">
                 <div>Adhar Back</div>
 
-                <img src={staff.aadharBackUrl} alt="adhar back"/>
+<Zoom><img src={staff.aadharBackUrl} alt="adhar back"/></Zoom>
               </div>
             </div>
           </form>
