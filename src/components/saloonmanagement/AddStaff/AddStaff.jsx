@@ -9,8 +9,10 @@ import Session from "../../../service/session.js";
 import InputFile from "../../../ux/controls/Input.jsx";
 import styles from "../ManageStaff/ManageStaff.module.css";
 import { useState } from "react";
+import PhoneInputComponent from "../../authentication/login/PhoneInputComponent.jsx";
 const initialValues = {
-  name: "",
+  firstName: "",
+  lastName: "",
   mobileNumber: "",
   dob: "",
   email: "",
@@ -33,7 +35,7 @@ function AddStaff({ onClose, updatedData }) {
     try {
       const data = {
         firstName: values.name,
-        lastName: "Prasad",
+        lastName: values.last,
         email: values.email,
         dataOfBirth: values.dob,
         gender: values.gender,
@@ -55,6 +57,13 @@ function AddStaff({ onClose, updatedData }) {
       Notify.error(error.message);
     }
   };
+  const handleKeyPress = (event) => {
+    const charCode = event.charCode;
+    // Allow only letters (a-z, A-Z)
+    if (!/^[a-zA-Z]+$/.test(String.fromCharCode(charCode))) {
+      event.preventDefault();
+    }
+  };
 
   return (
     <Col md={4}>
@@ -73,14 +82,19 @@ function AddStaff({ onClose, updatedData }) {
         >
           {({ setFieldValue }) => (
             <Form className={styles.popupForm}>
-              <Field type="text" placeholder="Name" name="name" />
+              <Field type="text" placeholder="Enter staff's first name" name="firstName" inputMode="text"   onKeyPress={handleKeyPress}/>
               <ErrorMessage
-                name="name"
+                name="firstName"
                 component="div"
                 className={styles.formError}
               />
-
-              <Field
+             <Field type="text" placeholder="Enter staff's last name" name="lastName"   onKeyPress={handleKeyPress}/>
+              <ErrorMessage
+                name="lastName"
+                component="div"
+                className={styles.formError}
+              />
+              {/* <Field
                 type="text"
                 placeholder="Mobile Number"
                 name="mobileNumber"
@@ -103,11 +117,13 @@ function AddStaff({ onClose, updatedData }) {
                 name="mobileNumber"
                 component="div"
                 className={styles.formError}
-              />
-
+              /> */}
+               <div className={`${styles.phoneBox} ${styles.customPhoneInput}`}>
+                <PhoneInputComponent width="200px"/>
+              </div>
               <Field
                 type="date"
-                placeholder="Date of Birth"
+                placeholder="Enter staff's date of birth"
                 name="dob"
                 max={new Date().toISOString().split("T")[0]}
                 className={styles.dob}
@@ -118,7 +134,7 @@ function AddStaff({ onClose, updatedData }) {
                 className={styles.formError}
               />
 
-              <Field type="text" placeholder="Email Id" name="email" />
+              <Field type="text" placeholder="Enter staff's email Id" name="email" />
               <ErrorMessage
                 name="email"
                 component="div"
@@ -126,10 +142,9 @@ function AddStaff({ onClose, updatedData }) {
               />
 
               <Field as="select" name="gender" className={styles.gender}>
-                <option value="">Select Gender</option>
+                <option value="">Select staff&apos; gender</option>
                 <option value="Male">Male</option>
                 <option value="Female">Female</option>
-                <option value="Other">Both</option>
               </Field>
               <ErrorMessage
                 name="gender"
@@ -139,8 +154,9 @@ function AddStaff({ onClose, updatedData }) {
 
               <Field
                 type="text"
-                placeholder="Specialization"
+                placeholder="Enter specialization"
                 name="specialization"
+                onKeyPress={handleKeyPress}
               />
               <ErrorMessage
                 name="specialization"

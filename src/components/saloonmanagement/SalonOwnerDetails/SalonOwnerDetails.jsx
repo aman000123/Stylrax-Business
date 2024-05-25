@@ -3,6 +3,9 @@ import { getProfile } from "../../../api/user.api.js";
 import Notify from "../../../utils/notify.js";
 import styles from "../SalonOwnerDetails/SalonOwnerDetails.module.css";
 import Image from "../../../ux/Image.jsx";
+import Zoom from 'react-medium-image-zoom';
+import 'react-medium-image-zoom/dist/styles.css';
+
 function SalonOwnerDetails() {
   const [details, setDetails] = useState({});
   useEffect(() => {
@@ -17,15 +20,18 @@ function SalonOwnerDetails() {
     };
     fetchUserDetail();
   }, []);
+
   return (
     <div className={styles.mainDiv}>
       <div className={styles.imgDiv}>
         <div>
-           <Image
-                  alt="Default Profile"
-                  className={styles.imgDiv}
-                  imageUrl={details.profileImageUrl}
-                />
+          <Zoom>
+          <Image
+            alt="Default Profile"
+            className={styles.imgDiv}
+            imageUrl={details.profileImageUrl}
+          />
+          </Zoom>
         </div>
       </div>
 
@@ -100,11 +106,13 @@ function SalonOwnerDetails() {
           <label className={styles.front}>
             <span>Aadhar Front</span>
             <div>
-            <Image
-                  alt="Default Profile"
+              <Zoom>
+                <Image
+                  alt="Aadhar Front"
                   className={styles.documents}
                   imageUrl={details.aadharFrontUrl}
                 />
+              </Zoom>
             </div>
           </label>
         </div>
@@ -112,22 +120,26 @@ function SalonOwnerDetails() {
           <label className={styles.front}>
             <span>Aadhar Back</span>
             <div>
-            <Image
-                  alt="Default Profile"
+              <Zoom>
+                <Image
+                  alt="Aadhar Back"
                   className={styles.documents}
                   imageUrl={details.aadharBackUrl}
                 />
+              </Zoom>
             </div>
           </label>
         </div>
       </div>
       <label className={styles.lab}>Pan Card</label>
       <div>
-      <Image
-                  alt="Default Profile"
-                  className={styles.documents}
-                  imageUrl={details.panCardImageUrl}
-                />
+        <Zoom>
+          <Image
+            alt="Pan Card"
+            className={styles.documents}
+            imageUrl={details.panCardImageUrl}
+          />
+        </Zoom>
       </div>
       <br />
     </div>

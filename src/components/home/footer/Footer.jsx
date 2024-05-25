@@ -1,13 +1,13 @@
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import styles from "../footer/Footer.module.css";
 import logo from "../../../assets/image/stylrax_logo.png";
 
-function Footer() {
+function Footer(props) {
   return (
     <div className={styles.mainDiv}>
       <div className={styles.links}>
         <div className={styles.footerItem}>
-        <img src={logo} alt="logo" />
+    <NavLink to={props.redirect}>    <img src={logo} alt="logo" /></NavLink>
           <i className={styles.designs}></i>
         </div>
         <div className={styles.footerLinks}>

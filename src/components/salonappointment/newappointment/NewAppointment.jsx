@@ -8,6 +8,7 @@ import Navbar from "../../saloondashboard/navbar/Navbar";
 import { navItems } from "../../../data/navdata/Data";
 import TodayAppointment from "../todayappointment/TodayAppointment";
 import { useSelector } from "react-redux";
+import Footer from "../../home/footer/Footer";
 const NewAppointment = () => {
   const [activeButton, setActiveButton] = useState("button4");
   const { salonName, salonImage } = useSelector((state) => state.auth);
@@ -17,6 +18,7 @@ const NewAppointment = () => {
 
  
   return (
+    <>
     <main>
         <Navbar data={navItems} redirect='/salon/dashboard'/>
       <Container>
@@ -65,6 +67,9 @@ const NewAppointment = () => {
         )}
       </Container>
     </main>
+          {/* <Footer redirect="/salon/dashboard"/> */}
+          </>
+
   );
 };
 

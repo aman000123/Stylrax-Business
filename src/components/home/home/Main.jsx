@@ -19,7 +19,7 @@ import LoginForm from '../../authentication/login/LoginForm';
 const Main = () => {
   return (
     <>
-    <Navbar data={menuItems}/>
+    <Navbar data={menuItems} redirect="/"/>
     <LoginForm/> 
     <About/> 
     <Counter/>
@@ -35,7 +35,7 @@ const Main = () => {
     <Partners/>
     <Team/>
     <Support/>
-    <Footer/>
+    <Footer redirect="/"/>
     </>
   );
 }

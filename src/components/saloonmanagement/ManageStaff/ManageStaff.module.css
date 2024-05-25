@@ -305,6 +305,11 @@
 .time .tspan{
     font-size: 11px;
 }
+.phoneBox{
+ margin-top: -40px;
+margin-left: 35px;
+width: 150px !important;
+}
 
 @media(max-width:769px){
     .mainDiv{
