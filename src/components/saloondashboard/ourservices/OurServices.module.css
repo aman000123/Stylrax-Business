@@ -12,8 +12,8 @@
 
 .mainDiv{
     background-color: #fff;
-    padding: 13px 25px;
-    border-radius: 5px;
+    padding: 17px 25px;
+    border-radius: 8px;
 }
 
 .hairStyle{
@@ -45,7 +45,7 @@
     }
 }
 
-@media(max-width:1200px){
+@media(max-width:1199px){
     .hairStylist{
         width: 77px;
     }

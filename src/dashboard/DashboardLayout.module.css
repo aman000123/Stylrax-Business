@@ -1,83 +1,92 @@
-.mainDiv{
-    display: flex;
-    font-style: poppins;
-    cursor: pointer;
+.mainDiv {
+  display: flex;
+  font-style:poppins;
+  cursor: pointer;
+  padding-left: 5px;
 }
 
-.secDiv ul li{
-    list-style: none;
-    cursor: pointer;
+.secDiv ul li {
+  list-style: none;
+  cursor: pointer;
 }
 
-.container{
-    background-color: #bebebe;
-    padding: 15px 60px;
+.container {
+  background-color: #e9e9e9;
+  padding: 15px 60px;
 }
 
-.secDiv{
-    margin-left: -25px;
+.secDiv {
+  margin-left: -25px;
+  margin-top: 16px;
 }
 
-.span{
-    font-size: 24px;
-    font-weight: 600;
+.span {
+  font-size: 24px;
+  font-weight: 700;
+  text-transform: uppercase;
 }
 
-.listOne{
-    margin-top: 5px;
+.listOne {
+  margin-top: 5px;
 }
 
-.spanOne{
-    font-size: 10px;
+.spanOne {
+  font-size: 14px;
+  color: #818181;
+  font-weight: 500;
+  margin-left: 5px;
 }
-.salonImage{
-    width: 44px;
-    height: 44px;
-    border-radius: 5px;
+.salonImage {
+  width: 65px;
+  height: 61px;
+  border-radius: 5px;
+}
+.salonImage img {
+  border: 2px soild #ffffff !important;
 }
 
-@media(max-width:632px){
-    .span{
-        font-size: 19px;
-    }
+@media (max-width: 632px) {
+  .span {
+    font-size: 19px;
+  }
 }
 
-@media(max-width:608px){
-    .secDiv ul li{
+@media (max-width: 608px) {
+  /* .secDiv ul li{
         line-height: 25px;
-    }
+    } */
 }
-@media(max-width:519px) {
-    .span{
-        font-size: 18px;
-    }
+@media (max-width: 519px) {
+  .span {
+    font-size: 18px;
+  }
 
-    .listOne{
+  /* .listOne{
         margin-top: 11px;
-    }
+    } */
 }
 
-@media(max-width:491px) {
-    .mainDiv div img {
+@media (max-width: 491px) {
+  /* .mainDiv div img {
     height: auto;
     width: 55px;
-    }
+    } */
 
-    .secDiv ul li img{
+  /* .secDiv ul li img{
         width: 14px;
-    }
+    } */
 
-    .span{
+  /* .span{
         font-size: 14px;
-    }
+    } */
 
-    .spanOne{
-        font-size: 9px;
-    }
+  /* .spanOne{
+        font-size: 14px;
+    } */
 }
 
-@media(max-width:389px){
-    .container{
-        padding: 15px 20px;
-    }
+@media (max-width: 389px) {
+  .container {
+    padding: 15px 20px;
+  }
 }

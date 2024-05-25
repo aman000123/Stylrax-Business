@@ -1,17 +1,17 @@
 .mainDiv{
     background-color: #fff;
     padding: 20px;
-    border-radius: 5px;
+    border-radius: 8px;
     display: flex;
     flex-direction: column;
     gap:4px;
-    margin-bottom: 15px;
+    /* margin-bottom: 15px; */
 }
 
 .content{
     display: flex;
     flex-direction: column;
-    gap: 4px;
+    gap: 6px;
 }
 
 .paper {
@@ -41,14 +41,14 @@
 }
 
 .aboutStylist p .spanOne{
-    font-size: 9px;
+    font-size: 10px;
     font-weight: bold;
-    color: #909090;
+    color: #6E6E6E;
 }
 
 .aboutStylist p .spanTwo{
-    font-size: 9px;
-    color: #909090;
+    font-size: 10px;
+    color: #6E6E6E;
 }
 
 .dots{
@@ -57,7 +57,16 @@
     margin-left: 20px;
     margin-top: 7px;
 }
-
+@media (max-width:1313px){
+    .content{
+        gap: 7px;
+    }
+}
+@media (max-width:1262px){
+    .content{
+        gap: 2px;
+    }
+}
 @media (max-width:1360px){
     .stylist div img{
         height: auto;
@@ -77,7 +86,7 @@
 }
 }
 
-@media(max-width:1200px){
+@media(max-width:1199px){
     .content{
         display: flex;
         flex-direction: row;

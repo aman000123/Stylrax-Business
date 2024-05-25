@@ -69,30 +69,30 @@ let data = [
     price: "1900Rs"
   },
 
-  {
-    imgsrc: stylistimg1,
-    textOne: "Raj Shakya",
-    textTwo: "Hair Styling",
-    textThree: "10:30 - 11:30",
-    price: "1900Rs"
-  },
+  // {
+  //   imgsrc: stylistimg1,
+  //   textOne: "Raj Shakya",
+  //   textTwo: "Hair Styling",
+  //   textThree: "10:30 - 11:30",
+  //   price: "1900Rs"
+  // },
 
-  {
-    imgsrc: stylistimg1,
-    textOne: "Raj Shakya",
-    textTwo: "Hair Styling",
-    textThree: "10:30 - 11:30",
-    price: "1900Rs"
-  },
+  // {
+  //   imgsrc: stylistimg1,
+  //   textOne: "Raj Shakya",
+  //   textTwo: "Hair Styling",
+  //   textThree: "10:30 - 11:30",
+  //   price: "1900Rs"
+  // },
 
   
-  {
-    imgsrc: stylistimg1,
-    textOne: "Raj Shakya",
-    textTwo: "Hair Styling",
-    textThree: "10:30 - 11:30",
-    price: "1900Rs"
-  },
+  // {
+  //   imgsrc: stylistimg1,
+  //   textOne: "Raj Shakya",
+  //   textTwo: "Hair Styling",
+  //   textThree: "10:30 - 11:30",
+  //   price: "1900Rs"
+  // },
 
 ]
 
@@ -234,7 +234,16 @@ function UpcomingAppointment() {
       {
         breakpoint: 1200,
         settings: {
-          slidesToShow: 10,
+          slidesToShow: 4,
+          slidesToScroll: 4,
+          infinite: true,
+          dots: false
+        }
+      },
+      {
+        breakpoint: 1199,
+        settings: {
+          slidesToShow:10,
           slidesToScroll: 10,
           infinite: true,
           dots: false
@@ -369,7 +378,7 @@ function UpcomingAppointment() {
         <div className={styles.appointmentDiv}>
           {
             data.map((value) => (
-                <Paper className={styles.paper}>
+                <Paper className={styles.paper} elevation={0}>
                   <div className={styles.appointmentdetails}>
                     <div className={styles.content}>
                       <div className={styles.imgDiv}>
@@ -397,9 +406,10 @@ function UpcomingAppointment() {
             ))
           }
         </div>
+        <h6 className={styles.view}>View All</h6>
       </div>
 
-      <h6 className={styles.view}>View All</h6>
+    
     </div>
   )
 }

@@ -48,7 +48,7 @@ function Stylist() {
     return (
         <div className={styles.mainDiv}>
             <div className={styles.secDiv}>
-                <h4>Stylist</h4>
+                <h4 style={{color:"#000000"}}>Stylist</h4>
             </div>
 
             <div className={styles.content}>
