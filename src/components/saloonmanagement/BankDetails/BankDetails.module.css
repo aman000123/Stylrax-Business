@@ -52,13 +52,19 @@
   }
   @media (max-width: 575px) {
     .inputs {
-      padding: 5px 34px 5px 8px;
+      padding: 5px 10px 5px 8px;
     }
     .ifscCode {
-      padding: 5px 16px 5px 8px;
+      padding: 5px 10px 5px 8px;
     }
     .mainDiv {
       justify-content: center;
+    }
+    .documents{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-left: 30px;
     }
   }
 }

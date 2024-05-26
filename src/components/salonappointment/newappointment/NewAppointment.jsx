@@ -67,7 +67,7 @@ const NewAppointment = () => {
         )}
       </Container>
     </main>
-          {/* <Footer redirect="/salon/dashboard"/> */}
+          <Footer redirect="/salon/dashboard"/>
           </>
 
   );

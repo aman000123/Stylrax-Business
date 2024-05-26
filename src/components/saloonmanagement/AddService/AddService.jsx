@@ -1,38 +1,31 @@
-import  { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Formik, Field, Form, ErrorMessage } from "formik";
-import { addSalonService, serviceCategory } from "../../../api/salon.management";
+import { addSalonService } from "../../../api/salon.management";
 import { addServiceSchema } from "../../../utils/schema";
 import Notify from "../../../utils/notify";
 import Session from "../../../service/session";
 import styles from "../AddService/AddService.module.css";
 
-function AddService({ onClose,updatedData }) {
-  const [categories, setCategories] = useState([]);
-  const [selectedCategoryId, setSelectedCategoryId] = useState("");
-  const [selectedCategoryName, setSelectedCategoryName] = useState(""); // State to store selected category name
-  useEffect(() => {
-    const fetchCategories = async () => {
-      try {
-        const res = await serviceCategory();
-        setCategories(res.data);
-        Notify.success(res.data.message);
-      } catch (error) {
-        Notify.error(error.message);
-      }
-    };
-
-    fetchCategories();
-  }, []);
+function AddService({ onClose, updatedData, id }) {
+  const [selectedCategoryId, setSelectedCategoryId] = useState(id ? String(id) : "");
+  const [servicePrice, setServicePrice] = useState("");
+  const handleServicePriceChange = (event) => {
+    const value = event.target.value.replace(/[^0-9.]/g, ''); 
+    setServicePrice(value ? ` ₹ ${value}` : '');
+    
+  };
+ 
 
   const handleOnSubmit = async (values) => {
     const salonId = Session.get("salonId");
 
     try {
-      const { serviceName, servicePrice, serviceDuration, type } = values;
+      const { serviceName, serviceDuration, type,servicePrice } = values;
+      const price = servicePrice.replace(/[^\d.]/g, '');
       const data = {
         categoryId: parseInt(selectedCategoryId),
         serviceName,
-        servicePrice: parseFloat(servicePrice),
+        servicePrice: parseFloat(price),
         serviceDuration: parseInt(serviceDuration),
         type,
       };
@@ -42,26 +35,23 @@ function AddService({ onClose,updatedData }) {
       Notify.success("Service added");
       onClose();
       updatedData();
-      } catch (error) {
+    } catch (error) {
       Notify.error(error.message);
     }
   };
 
   const handleCategoryChange = (event) => {
     const selectedCategoryId = event.target.value;
-    const selectedCategoryName = event.target.options[event.target.selectedIndex].text; // Get selected category name
-    console.log("Selected Category ID:", selectedCategoryId);
-    console.log("Selected Category Name:", selectedCategoryName);
     setSelectedCategoryId(selectedCategoryId);
-    setSelectedCategoryName(selectedCategoryName); // Update selected category name
+    console.log("Selected Category ID:", selectedCategoryId);
   };
-
+ 
   return (
     <div className={styles.mainDiv}>
       <div className={styles.secDiv}>
         <Formik
           initialValues={{
-            categoryId: "",
+            categoryId: selectedCategoryId,
             serviceName: "",
             servicePrice: "",
             serviceDuration: "",
@@ -74,44 +64,52 @@ function AddService({ onClose,updatedData }) {
             <span>Add Services</span>
             <br />
             <Field
-              as="select"
+              type="text"
+              placeholder="Enter service category"
               name="categoryId"
-              className={styles.categoryField}
+              className={styles.input5}
+              value={selectedCategoryId}
               onChange={handleCategoryChange}
-              value={selectedCategoryId} 
-            >
-              <option value="">Select Service</option>
-              {categories.map((category) => (
-                <option key={category.id} value={category.id}>
-                  {category.name}
-                </option>
-              ))}
-            </Field>
-            <br/>
+            />
+            <br />
             <ErrorMessage name="categoryId" component="div" className={styles.error} />
             <Field
               type="text"
-              placeholder="Service Name"
+              placeholder="Enter service name"
               name="serviceName"
               className={styles.input5}
             />
-            <br/>
+            <br />
             <ErrorMessage name="serviceName" component="div" className={styles.error} />
-          
             <Field
               type="text"
-              placeholder="Service Mrp"
+              placeholder="Enter service price"
               name="servicePrice"
               className={styles.input5}
+              value={servicePrice}
+              onChange={handleServicePriceChange}
             />
             <br />
             <ErrorMessage name="servicePrice" component="div" className={styles.error} />
-            <Field
+            {/* <Field
               type="text"
               placeholder="Service Duration (mins)"
               name="serviceDuration"
               className={styles.input6}
-            />
+            /> */}
+             <Field as="select" name="serviceDuration" className={styles.input6}>
+              <option value="">Select Service Duration</option>
+              {[...Array(12).keys()].map((i) => (
+                <option key={i} value={(i + 1) * 5}>
+                  {(i + 1) * 5} mins
+                </option>
+              ))}
+              {[...Array(5).keys()].map((i) => (
+                <option key={i} value={(i + 1) * 15 + 60}>
+                  {Math.floor(((i + 1) * 15 + 60) / 60)} hr {((i + 1) * 15 + 60) % 60} mins
+                </option>
+              ))}
+            </Field>
             <br />
             <ErrorMessage name="serviceDuration" component="div" className={styles.error} />
             <Field as="select" name="type" className={styles.gender}>

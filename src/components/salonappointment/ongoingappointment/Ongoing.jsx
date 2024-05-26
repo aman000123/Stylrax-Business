@@ -31,7 +31,11 @@ const Ongoing = () => {
     console.log("ara id", appointmentId);
     setShowPopup(true);
   };
-
+  if(!pending || pending.length===0){
+    return <div className={styles.noContent}>
+      No pending appointments
+    </div>
+   }
   return (
     <>
       <Row>

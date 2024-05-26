@@ -116,7 +116,7 @@ export const addStaffSchema = Yup.object({
   lastName: Yup.string()
   .matches(/^[a-zA-Z\s]+$/, 'Name must contain only alphabets')
   .required("Please enter your last Name"),
-  mobileNumber: Yup.string()
+  phoneNumber: Yup.string()
   .matches(/^\d{10}$/, 'Mobile number must be exactly 10 digits')
   .required("Please enter a valid phone number"),
   dob: Yup.date()
@@ -156,12 +156,14 @@ export const addStaffSchema = Yup.object({
 //add service
 
 export const addServiceSchema = Yup.object().shape({
-  serviceName: Yup.string().matches(/^[a-zA-Z\s]*$/, 'Service name must contain only letters').required('Service name is required'),
-  serviceDuration: Yup.string().matches(/^\d+$/, 'Service duration must contain only numbers').required('Service duration is required'),
-  servicePrice: Yup.number()
-    .max(99999, 'Service price cannot exceed 99999')
-    .required('Service price is required'),
-  type: Yup.string().matches(/^[a-zA-Z\s]*$/, 'Service type must contain only letters').required("Please select your service"),
+  serviceName: Yup.string().matches(/^[a-zA-Z\s]*$/, 'Service name must contain only letters').required('Please enter service name'),
+  serviceDuration: Yup.string().matches(/^\d+$/, 'Service duration must contain only numbers').required('Please select service duration'),
+  // servicePrice: Yup.number()
+  //  .max(99999, 'Service price cannot exceed 99999')
+  //  .required('Please enter service price'),
+    categoryId: Yup.number().required('Category Id must be a number'),
+  
+  type: Yup.string().matches(/^[a-zA-Z\s]*$/, 'Service type must contain only letters').required("Please select your gender"),
 
 });
 

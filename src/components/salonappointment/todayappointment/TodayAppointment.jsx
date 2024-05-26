@@ -37,9 +37,14 @@ const TodayAppointment = () => {
         console.log("ara id",appointmentId)
         setShowPopup(true);
       };
+      if(!ongoing || ongoing.length===0){
+        return <div className={styles.noContent}>
+          No pending appointments
+        </div>
+       }
   return (
     <>
-    <Row>
+    <Row className={styles.today}>
         {ongoing?.map((appointment, index) => (
                 <Col md={4} sm={6} xs={6} key={index}>
                   <Row className="mb-2">

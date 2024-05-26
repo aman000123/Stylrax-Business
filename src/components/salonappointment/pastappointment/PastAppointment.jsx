@@ -35,7 +35,7 @@ const PastAppointment = () => {
 
   return (
     <div>
-      <Row>
+      <Row className={styles.today}>
         {completed?.map((appointment, index) => (
           <Col md={4} sm={6} xs={6} key={index}>
             <Row className="mb-2">
