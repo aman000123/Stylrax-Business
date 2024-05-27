@@ -1,59 +1,58 @@
-import { Paper } from "@mui/material";
+// import { Paper } from "@mui/material";
 import { Row, Col } from "react-bootstrap";
-import styles from "./SalonClinic.module.css";
-import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
-import Stylist from '../stylist/Stylist';
-import OurServices from '../ourservices/OurServices';
-import ClientIcon from "../../../assets/image/ClientIcon.png"
-import appointment from "../../../assets/image/appointment.png"
-import services1 from "../../../assets/image/services1.png"
-import cancelledAppointment from "../../../assets/image/cancelledAppointment.png"
-import triangleSquare from "../../../assets/image/triangleSquare.png"
+// import styles from "./SalonClinic.module.css";
+// import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
+import Stylist from "../stylist/Stylist";
+import OurServices from "../ourservices/OurServices";
+// import ClientIcon from "../../../assets/image/ClientIcon.png"
+// import appointment from "../../../assets/image/appointment.png"
+// import services1 from "../../../assets/image/services1.png"
+// import cancelledAppointment from "../../../assets/image/cancelledAppointment.png"
+// import triangleSquare from "../../../assets/image/triangleSquare.png"
 //import greenline from "../../../assets/image/greenline.png"
 //import redline from "../../../assets/image/redline.png"
-import RunningBanner from '../runningbanner/RunningBanner';
+import RunningBanner from "../runningbanner/RunningBanner";
 
+// let clientData = [
+//     {
+//         imgsrc: ClientIcon,
+//         clients: "Clients",
+//         num: "Total number of clients",
+//         digit: 900,
+//     },
+// ]
 
-let clientData = [
-    {
-        imgsrc: ClientIcon,
-        clients: "Clients",
-        num: "Total number of clients",
-        digit: 900,
-    },
-]
+// let appointmentData = [
+//     {
+//         imgsrc: appointment,
+//         clients: "Appointments",
+//         num: "Total upcoming appointments",
+//         digit: 900,
+//     }
+// ]
 
-let appointmentData = [
-    {
-        imgsrc: appointment,
-        clients: "Appointments",
-        num: "Total upcoming appointments",
-        digit: 900,
-    }
-]
+// let servicesData = [
+//     {
+//         imgsrc: services1,
+//         clients: "Services",
+//         num: "Total number of services",
+//         digit: "06",
+//     }
+// ]
 
-let servicesData = [
-    {
-        imgsrc: services1,
-        clients: "Services",
-        num: "Total number of services",
-        digit: "06",
-    }
-]
-
-let cancelledAppointmentsData = [
-    {
-        imgsrc: cancelledAppointment,
-        clients: "Cancelled Appointments",
-        num: "Total cancelled appointments",
-        digit: "06",
-    }
-]
+// let cancelledAppointmentsData = [
+//     {
+//         imgsrc: cancelledAppointment,
+//         clients: "Cancelled Appointments",
+//         num: "Total cancelled appointments",
+//         digit: "06",
+//     }
+// ]
 
 function SalonClinic() {
-    return (
-        <>
-            <Row>
+  return (
+    <>
+      {/* <Row>
                 <Col md={7}>
                     <Row>
                         <Col md={6}>
@@ -183,10 +182,10 @@ function SalonClinic() {
                                 </div>
                             </div>
 
-                            <div className={styles.lines}>
-                                {/* <img className={styles.redLine} src={redline} alt='' />
+                            <div className={styles.lines}> */}
+      {/* <img className={styles.redLine} src={redline} alt='' />
                                 <img className={styles.greenLine} src={greenline} alt='' /> */}
-                            </div>
+      {/* </div>
 
                         </div>
 
@@ -196,23 +195,23 @@ function SalonClinic() {
 
                     </Paper>
                 </Col>
-            </Row>
+            </Row> */}
 
-            {/* Running Banner */}
+      {/* Running Banner */}
 
-            <RunningBanner />
+      <RunningBanner />
 
-            <Row>
-                <Col xl={6}>
-                    <Stylist />
-                </Col>
+      <Row>
+        <Col xl={6} className="mt-4">
+          <Stylist />
+        </Col>
 
-                <Col xl={6}>
-                    <OurServices />
-                </Col>
-            </Row>
-        </>
-    )
+        <Col xl={6} className="mt-4">
+          <OurServices />
+        </Col>
+      </Row>
+    </>
+  );
 }
 
-export default SalonClinic
+export default SalonClinic;

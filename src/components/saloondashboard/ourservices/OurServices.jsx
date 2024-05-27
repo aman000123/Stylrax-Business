@@ -81,7 +81,7 @@ let ourServicesData = [
 function OurServices() {
     return (
         <div className={styles.mainDiv}>
-            <div>
+            <div style={{color:"#000000"}}>
                 Our Services
             </div>
 
@@ -89,28 +89,28 @@ function OurServices() {
                 ourServicesData.map((data) => (
                     <Row key={data.id} className='mt-2'>
                         <Col className={styles.border}>
-                            <Paper className={styles.paper}>
+                            <Paper className={styles.paper} elevation={0}>
                                 <img className={styles.hairStylist} src={data.imgsrc1} alt='' />
                                 <p className={styles.hairStyle}>{data.text1}</p>
                             </Paper>
                         </Col>
 
                         <Col>
-                            <Paper className={styles.paper}>
+                            <Paper className={styles.paper} elevation={0}>
                                 <img className={styles.hairStylist} src={data.imgsrc2} alt='' />
                                 <p className={styles.hairStyle}>{data.text2}</p>
                             </Paper>
                         </Col>
 
                         <Col>
-                            <Paper className={styles.paper}>
+                            <Paper className={styles.paper} elevation={0}>
                                 <img className={styles.hairStylist} src={data.imgsrc3} alt='' />
                                 <p className={styles.hairStyle}>{data.text3}</p>
                             </Paper>
                         </Col>
 
                         <Col>
-                            <Paper className={styles.paper}>
+                            <Paper className={styles.paper} elevation={0}>
                                 <img className={styles.hairStylist} src={data.imgsrc4} alt='' />
                                 <p className={styles.hairStyle}>{data.text4}</p>
                             </Paper>
