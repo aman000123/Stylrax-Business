@@ -33,6 +33,7 @@ export const __endpoint_salonService = (salonId)=>{return ` ${endpoint}b2b/salon
 export const __endpoint_salonBusinessTime = (salonId)=>{return ` ${endpoint}b2b/salons/${salonId}/businessHours`};
 export const __endpoint_addSalonService = (salonId)=>{return ` ${endpoint}b2b/salons/${salonId}/services`};
 export const __endpoint_serviceCategory = endpoint + "b2b/services/categories";
+export const __endpoint_salonAddress =(id)=>{return ` ${endpoint}b2b/salons/${id}`};
 
 //File Management APIs
 export const __endpoint_files = endpoint + "b2b/file/presignedUrl";

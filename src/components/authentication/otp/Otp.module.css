@@ -99,6 +99,10 @@ input.inputOtp{
     .timerDiv{
         font-size: 14px;
     }
+    .loginBorder{
+      padding-top: 30px;
+      padding-bottom: 30px;
+    }
 }
 /* @media (max-width:380px){
     .input{

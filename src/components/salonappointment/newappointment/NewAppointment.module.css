@@ -40,7 +40,18 @@
 @media(max-width:767.7px){
     .info{
        font-size: 7px;
-    }}
+    }
+    .btnDiv{
+        flex-direction: column;
+        margin-top: 10px;
+    }
+    .btnDiv button{
+        width: 250px;
+    }
+    .btnDiv p{
+        margin-bottom: 1px;
+    }
+}
     @media(max-width:575.7px){
         .info{
            display: none;
@@ -89,13 +100,7 @@
         padding: 5px 8px;   
     }
    }
-   @media (max-width:485.9px){
-    .btnDiv button{
-        padding: 5px 2px;
-        font-size: 14px;
-        margin-top: -10px;
-    }
-   }
+ 
 .active{
     background-color: black !important;
     color: white;

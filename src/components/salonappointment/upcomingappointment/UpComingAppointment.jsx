@@ -39,6 +39,28 @@ const UpComingAppointment = () => {
       No pending appointments
     </div>
    }
+   const getStatusClass = (status) => {
+    switch (status) {
+      case "PENDING":
+        return styles.pending;
+      case "ACCEPTED":
+        return styles.accepted;
+      case "REJECTED":
+        return styles.rejected;
+      case "COMPLETED":
+        return styles.completed;
+      case "CONFIRMED":
+        return styles.confirmed;
+      case "IN_SERVICE":
+        return styles.inService;
+      case "IN_PROGRESS":
+        return styles.inProgress;
+        case "CANCELLED":
+          return styles.cancelled;
+      default:
+        return "";
+    }
+  };
   return (
     <>
     <Row>
@@ -64,7 +86,7 @@ const UpComingAppointment = () => {
                           <br />
                           <span>{appointment.serviceType}</span>
                           <br />
-                          <span>{appointment.startTime} <span className={styles.gender}></span></span>
+                          <span className={styles.appointTime}>{appointment.startTime}&nbsp <span className={styles.gender}></span></span>
 
                           <br />
                           <span>{appointment.location}</span>
@@ -75,10 +97,10 @@ const UpComingAppointment = () => {
                       </Col>
                       <Col md={4}>
                        
-                          <div className={styles.status}>{appointment.status}
+                      <p className={`${styles.status} ${getStatusClass(appointment?.status)}`}>                    {appointment.status}
                           <br />
                           <Link onClick={() => handleViewDetails(appointment.id)}>View Details</Link>
-                         </div>
+                         </p>
                        
                         {/* <button className={styles.decline}>Decline</button> */}
                       </Col>
