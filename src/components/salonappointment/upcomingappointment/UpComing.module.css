@@ -13,7 +13,16 @@
     font-weight: bolder;
     font-size: 22px;
 }
-
+.noContent{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 39vh;
+    font-size: 20px;
+}
+/* .today{
+    height: 100vh;
+} */
 @media (max-width:767.7px){
     .hairClinic{
        font-size: 18px;

@@ -15,14 +15,15 @@ const initialValues = {
   phoneNumber: "",
 };
 
-
-const LoginForm = ({  setActiveStep  }) => {
+const LoginForm = ({ setActiveStep }) => {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [showOTPSection, setShowOTPSection] = useState(false);
+  const [timer, setTimer] = useState(0);
+  const [isTimerActive, setIsTimerActive] = useState(false);
 
-  const onSubmit = async (values, { setSubmitting }) => {
+  const onSubmit = async (values, { setSubmitting, setFieldError }) => {
     try {
-      setSubmitting(true); 
+      setSubmitting(true);
       console.log("Submitting form with values:", values);
       const { phoneNumber } = values;
       console.log("Values ::", values);
@@ -36,9 +37,15 @@ const LoginForm = ({  setActiveStep  }) => {
       console.log("Response:", res.data);
       setPhoneNumber(phoneNumber);
       setShowOTPSection(true);
+      setTimer(30); 
+      setIsTimerActive(true);
     } catch (error) {
       console.error("Error:", error);
-      if (error.response && error.response.data && error.response.data.message) {
+      if (
+        error.response &&
+        error.response.data &&
+        error.response.data.message
+      ) {
         setFieldError("phoneNumber", error.response.data.message);
       } else {
         Notify.error(error.message);
@@ -46,7 +53,7 @@ const LoginForm = ({  setActiveStep  }) => {
     }
   };
 
-  const [submittingText, setSubmittingText] = useState("Submit"); 
+  const [submittingText, setSubmittingText] = useState("Submit");
 
   return (
     <main className={styles.main}>
@@ -54,7 +61,10 @@ const LoginForm = ({  setActiveStep  }) => {
         <Container>
           <Row className="align-items-center d-flex">
             <Login />
-            <Col md={6} className={`${styles.LoginForm} d-flex justify-content-center`}>
+            <Col
+              md={6}
+              className={`${styles.LoginForm} d-flex justify-content-center`}
+            >
               <div className={`${styles.loginBorder} text-white d-flex`}>
                 {!showOTPSection ? (
                   <>
@@ -64,16 +74,22 @@ const LoginForm = ({  setActiveStep  }) => {
                     <Formik
                       initialValues={initialValues}
                       validationSchema={LoginSchema}
-                      onSubmit={(values, { setSubmitting }) => {
-                        setSubmitting(true); 
-                        setSubmittingText("Submitting..."); 
-                        onSubmit(values, { setSubmitting }); 
+                      onSubmit={(values, { setSubmitting, setFieldError }) => {
+                        setSubmitting(true);
+                        setSubmittingText("Submitting...");
+                        onSubmit(values, { setSubmitting, setFieldError });
                       }}
                     >
                       {({ handleSubmit }) => (
                         <Form className={styles.form} onSubmit={handleSubmit}>
                           <div className={styles.formGroup}>
-                            <PhoneInputComponent />
+                            <PhoneInputComponent
+                              style={{
+                                borderRadius: "20px",
+                                boxShadow: "none",
+                                outlineColor: "none",
+                              }}
+                            />
                             <ErrorMessage
                               component="div"
                               name="phoneNumber"
@@ -96,6 +112,10 @@ const LoginForm = ({  setActiveStep  }) => {
                   <Otp
                     phoneNumber={phoneNumber}
                     setActiveStep={setActiveStep}
+                    timer={timer}
+                    setTimer={setTimer}
+                    isTimerActive={isTimerActive}
+                    setIsTimerActive={setIsTimerActive}
                   />
                 )}
               </div>
@@ -106,6 +126,5 @@ const LoginForm = ({  setActiveStep  }) => {
     </main>
   );
 };
-
 
 export default LoginForm;

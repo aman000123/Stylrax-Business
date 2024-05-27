@@ -13,7 +13,7 @@ import PhoneInputComponent from "../../authentication/login/PhoneInputComponent.
 const initialValues = {
   firstName: "",
   lastName: "",
-  mobileNumber: "",
+  phoneNumber: "",
   dob: "",
   email: "",
   gender: "",
@@ -32,16 +32,17 @@ function AddStaff({ onClose, updatedData }) {
   };
 
   const handleSubmit = async (values) => {
+    console.log(values);
     try {
       const data = {
-        firstName: values.name,
-        lastName: values.last,
+        firstName: values.firstName,
+        lastName: values.lastName,
         email: values.email,
         dataOfBirth: values.dob,
         gender: values.gender,
         profileImageUrl: values.profileImageUrl,
         specialization: values.specialization,
-        phoneNumber: values.mobileNumber,
+        phoneNumber: values.phoneNumber,
         aadharFrontUrl: values.aadharFrontUrl,
         aadharBackUrl: values.aadharBackUrl,
       };
@@ -80,47 +81,52 @@ function AddStaff({ onClose, updatedData }) {
           validationSchema={addStaffSchema}
           onSubmit={handleSubmit}
         >
-          {({ setFieldValue }) => (
+          {({ setFieldValue, values }) => (
             <Form className={styles.popupForm}>
-              <Field type="text" placeholder="Enter staff's first name" name="firstName" inputMode="text"   onKeyPress={handleKeyPress}/>
+              <Field
+                type="text"
+                placeholder="Enter staff's first name"
+                name="firstName"
+                inputMode="text"
+                onKeyPress={handleKeyPress}
+              />
               <ErrorMessage
                 name="firstName"
                 component="div"
                 className={styles.formError}
               />
-             <Field type="text" placeholder="Enter staff's last name" name="lastName"   onKeyPress={handleKeyPress}/>
+              <Field
+                type="text"
+                placeholder="Enter staff's last name"
+                name="lastName"
+                onKeyPress={handleKeyPress}
+              />
               <ErrorMessage
                 name="lastName"
                 component="div"
                 className={styles.formError}
               />
-              {/* <Field
-                type="text"
-                placeholder="Mobile Number"
-                name="mobileNumber"
-                pattern="[0-9]*"
-                onKeyDown={(e) => {
-                  // Allow only numeric keys
-                  if (!/^\d$/.test(e.key) && e.key !== "Backspace") {
-                    e.preventDefault();
-                  }
-                  const maxLength = 10;
-                  if (
-                    e.target.value.length >= maxLength &&
-                    e.key !== "Backspace"
-                  ) {
-                    e.preventDefault();
-                  }
+              < div className={styles.phoneBox}>
+              <Field
+                component={PhoneInputComponent}
+                style={{
+                  borderRadius: "20px",
+                  boxShadow: "none",
+                  outlineColor: "none",
+                  border:"none",
                 }}
+                type="text"
+                value={values.phoneNumber}
+                placeholder="Phone Number"
+                name="phoneNumber"
               />
+              </div>
               <ErrorMessage
-                name="mobileNumber"
+                name="phoneNumber"
                 component="div"
                 className={styles.formError}
-              /> */}
-               <div className={`${styles.phoneBox} ${styles.customPhoneInput}`}>
-                <PhoneInputComponent width="200px"/>
-              </div>
+              />
+
               <Field
                 type="date"
                 placeholder="Enter staff's date of birth"
@@ -134,7 +140,11 @@ function AddStaff({ onClose, updatedData }) {
                 className={styles.formError}
               />
 
-              <Field type="text" placeholder="Enter staff's email Id" name="email" />
+              <Field
+                type="text"
+                placeholder="Enter staff's email Id"
+                name="email"
+              />
               <ErrorMessage
                 name="email"
                 component="div"

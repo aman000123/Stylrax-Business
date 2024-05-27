@@ -53,6 +53,7 @@
     text-align: center;
     font-weight: 600;
     line-height: 18px;
+    font-size: 14px;
 }
 
 .text p .spanOne{
@@ -91,6 +92,15 @@
 
 .iconDiv p{
     font-weight: bold;
+}
+.genderFilter{
+    background-color: white;
+    border: 2px solid  #BEBEBE;
+    padding: 10px 40px;
+    margin-left: 15px;
+    cursor: pointer;
+    border-radius: 10px;
+    outline: none;
 }
 
 @media(max-width:768px){

@@ -12,7 +12,7 @@ import Session from "../../../service/session";
 import Swal from "sweetalert2";
 import Zoom from 'react-medium-image-zoom';
 import 'react-medium-image-zoom/dist/styles.css';
-function ViewAllAddService({ id, onClose ,updatedData}) {
+function ViewAllAddService({ id, onClose,updatedData }) {
   const [staff, setStaff] = useState({});
   const [editable, setEditable] = useState(false);
   const [specialization, setSpecialization] = useState("");
@@ -95,7 +95,18 @@ function ViewAllAddService({ id, onClose ,updatedData}) {
           <form className={styles.popupForm}>
             <input type="text" placeholder={`${staff.firstName}`} readOnly />
             <input type="text" placeholder={`${staff.lastName}`} readOnly />
-            <input type="text" placeholder={staff.phoneNumber} readOnly />
+            {/* <input type="text" placeholder={staff.phoneNumber} readOnly /> */}
+            {/* <Field
+                  name="phoneNumber"
+                  component={PhoneInputComponent}
+                  style={{
+                    borderRadius: "20px",
+                    boxShadow: "none",
+                    outlineColor: "none",
+                    border: "none",
+                  }}
+                 // value={values.phoneNumber}
+                /> */}
             <input type="text" placeholder={staff.dataOfBirth} readOnly />
             <input type="text" placeholder={staff.email} readOnly />
             <input type="text" placeholder={staff.gender} readOnly />

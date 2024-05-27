@@ -188,7 +188,7 @@
     border-left: none;
     padding-bottom: 3px;
     margin-top: 20px;
-    padding-right: 130px;
+    padding-right: 90px;
     padding-left: 10px;
     outline: none;
     background-color: transparent;
@@ -202,8 +202,9 @@
     border-left: none;
     padding-bottom: 3px;
     margin-top: 20px;
-    padding-right: 180px;
+    padding-right: 192px;
     padding-left: 10px;
+    background-color: transparent;
     color:grey;
     text-decoration-color: #BEBEBE;
     outline: none;}
@@ -306,42 +307,11 @@
     font-size: 11px;
 }
 .phoneBox{
- margin-top: -40px;
-margin-left: 35px;
-width: 150px !important;
-}
+margin-left: 55px;
+padding-top: 10px;
+border-bottom: 2px solid #BEBEBE;
+width: 250px;}
 
-@media(max-width:769px){
-    .mainDiv{
-        padding: 20px 0px;
-        align-items: center;
-        justify-content: center;
-    }
-}
-
-@media(max-width:575px){
-    .text p{
-        line-height: 13px;
-    }
-
-    .paper{
-        width: 134px;
-    }
-    .popupForm input{
-        padding-right: 0px;
-    }
-    .colDiv{
-        padding-top: 15px;
-        display: flex;
-        justify-content: center;
-    }
-}
-@media(max-width:408px){
-    .popupFormDiv{
-    width: 269px;
-    height: auto;
-    }
-}
 .sweet-alert-container {
     z-index: 9999; /* Adjust the z-index value as necessary */
   }
@@ -378,3 +348,57 @@ width: 150px !important;
     height: 80px;
     width: 80px;
 }
+@media(max-width:769px){
+    .mainDiv{
+        padding: 20px 0px;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+@media(max-width:575px){
+    .text p{
+        line-height: 13px;
+    }
+    .type_gender{
+        padding-right: 125px;
+    }
+    .paper{
+        width: 134px;
+    }
+    .phoneBox{
+        margin-left: 80px;
+        padding-top: 10px;
+        border-bottom: 2px solid #BEBEBE;
+        width: 200px;  
+        box-shadow: none;
+        overflow: hidden;
+    }
+    .formError{
+        padding-left: 70px;
+    }
+    .staffImage{
+        margin-right: -40px;
+    }
+    .popupForm .dob{
+        padding-right: 64px;
+
+    }
+    .popupForm input{
+        padding-right: 0px;
+    }
+    .colDiv{
+        padding-top: 15px;
+        display: flex;
+        justify-content: center;
+    }
+    .gender{
+        padding-right: 32px;
+    }
+}
+/* @media(max-width:408px){
+    .popupFormDiv{
+    width: 269px;
+    height: auto;
+    }
+} */

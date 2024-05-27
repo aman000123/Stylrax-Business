@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "../otp/Otp.module.css";
 import OTPInput from "react-otp-input";
 import Notify from "../../../utils/notify";
@@ -7,7 +7,7 @@ import { resendOtp, verifyOtp } from "../../../api/account.api";
 import { useDispatch, useSelector } from "react-redux";
 import { storeSalons, storeToken } from "../../../store/auth.slice";
 import PropTypes from "prop-types";
-import { Field, Formik, Form,ErrorMessage } from "formik";
+import { Field, Formik, Form, ErrorMessage } from "formik";
 import { OTPSchema } from "../../../utils/schema";
 import PhoneInputComponent from "../login/PhoneInputComponent";
 
@@ -15,10 +15,11 @@ const initialValues = {
   otp: "",
 };
 
-const Otp = ({ phoneNumber}) => {
+const Otp = ({ phoneNumber, timer, setTimer, isTimerActive, setIsTimerActive }) => {
   const navigate = useNavigate();
+  const [submitting, setSubmitting] = useState(false);
   const dispatch = useDispatch();
-  
+
   const renderInput = (props, index) => (
     <input
       {...props}
@@ -31,16 +32,28 @@ const Otp = ({ phoneNumber}) => {
         e.target.value = e.target.value.replace(/[^0-9]/g, '');
       }}
       onKeyDown={(e) => {
-        // Allow only numeric keys
         if (!/^\d$/.test(e.key)) {
           e.preventDefault();
         }
       }}
     />
   );
+
   const clearOtp = (formikProps) => {
     formikProps.setFieldValue("otp", "");
   };
+
+  useEffect(() => {
+    let interval;
+    if (isTimerActive && timer > 0) {
+      interval = setInterval(() => {
+        setTimer((prevTimer) => prevTimer - 1);
+      }, 1000);
+    } else if (timer === 0) {
+      setIsTimerActive(false);
+    }
+    return () => clearInterval(interval);
+  }, [isTimerActive, timer, setTimer, setIsTimerActive]);
 
   const onSubmit = async (values, { setSubmitting }) => {
     try {
@@ -97,11 +110,14 @@ const Otp = ({ phoneNumber}) => {
         phoneNumber: phoneNumber,
       };
       const res = await resendOtp(resendData);
-      console.log("Resend OTP response:", res.data);
+      Notify.success(res.message)
+      setTimer(30); // Reset the timer
+      setIsTimerActive(true); // Start the timer
     } catch (error) {
-      Notify.error("Failed to resend OTP. Please try again later.");
+      Notify.error(error.message);
     }
   };
+
   return (
     <div className={styles.loginBorder}>
       <>
@@ -117,7 +133,11 @@ const Otp = ({ phoneNumber}) => {
                 <label className="mb-1">Mobile Number</label>
                 <br />
                 <PhoneInputComponent value={phoneNumber}
-                  readOnly />
+                  readOnly  style={{
+                    borderRadius: "20px",
+                    boxShadow: "none",
+                    outlineColor: "none",
+                  }}/>
               </div>
               <div className="otp-box d-flex justify-content-center my-3">
                 <OTPInput
@@ -132,9 +152,20 @@ const Otp = ({ phoneNumber}) => {
                   renderInput={renderInput}
                 />
               </div>
-              <p type="button" onClick={handleResend} className={styles.resend}>
-                Resend
-              </p>
+              {submitting && timer < 30 && (
+              <div>Resend OTP in {30 - timer} seconds</div>
+            )}
+              {isTimerActive ? (
+                <div className={styles.timerDiv}>{`Resend OTP in ${timer} seconds`}</div>
+              ) : (
+                <p
+                  type="button"
+                  onClick={handleResend}
+                  className={`${styles.resend}`}
+                >
+                  Resend
+                </p>
+              )}
               <p
                 type="button"
                 className={styles.clear}
@@ -151,7 +182,7 @@ const Otp = ({ phoneNumber}) => {
               <button
                   type="submit"
                   className={styles.btn}
-                  disabled={props.isSubmitting} // Disable button while submitting
+                  disabled={props.isSubmitting}
                 >
                   {props.isSubmitting ? "Submitting..." : "Submit"}
                 </button>
@@ -166,6 +197,10 @@ const Otp = ({ phoneNumber}) => {
 
 Otp.propTypes = {
   phoneNumber: PropTypes.string.isRequired,
+  timer: PropTypes.number.isRequired,
+  setTimer: PropTypes.func.isRequired,
+  isTimerActive: PropTypes.bool.isRequired,
+  setIsTimerActive: PropTypes.func.isRequired,
 };
 
 export default Otp;

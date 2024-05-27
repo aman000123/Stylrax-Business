@@ -5,7 +5,6 @@ import SalonDetails from "../SalonDetails/SalonDetails";
 import SalonOwnerDetails from "../SalonOwnerDetails/SalonOwnerDetails";
 import BankDetails from "../BankDetails/BankDetails";
 import ManageStaff from "../ManageStaff/ManageStaff";
-import Services from "../Services/Services";
 import SalonTime from "../SalonTime/SalonTime";
 import SalonBanner from "../SalonGallery/SalonGallery";
 import Navbar from "../../saloondashboard/navbar/Navbar";
@@ -16,6 +15,7 @@ import Notify from "../../../utils/notify.js";
 import MyQR from "../MyQR/MyQR.jsx";
 import { useSelector } from "react-redux";
 import Footer from "../../home/footer/Footer.jsx";
+import ProvideServices from "../Services/ProvideServices.jsx";
 
 function SalonManagement() {
   const [activeButton, setActiveButton] = useState("Salon details");
@@ -77,7 +77,7 @@ function SalonManagement() {
     ),
     "Services": (
       <Col md={10} className={styles.coltwo}>
-        <Services />
+        <ProvideServices />
       </Col>
     ),
     "Salon timings": (
