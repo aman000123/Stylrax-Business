@@ -8,6 +8,8 @@ import About from "./pages/About";
 import TermsAndCondition from "./pages/TermsAndCondition";
 import CodeOfConduct from "./components/privacypolicy/codeOfConduct/CodeOfConduct";
 import ContactUs from "./components/privacypolicy/contactUs/ContactUs";
+import NewSalon from "./components/saloondashboard/addNewSalon/NewSalon";
+import BusinessDetails from "./components/account/Salon";
 
 const SalonManagement = lazy(() =>
   import('./components/saloonmanagement/salonmanagement/SalonManagement')
@@ -44,6 +46,15 @@ const AppRoute = ({ authToken }) => {
               element: (
                 <Suspense fallback={<div>Loading...</div>}>
                   <DashBoard />
+                </Suspense>
+              ),
+
+            },
+            {
+              path: 'dashboard/newsalon',
+              element: (
+                <Suspense fallback={<div>Loading...</div>}>
+                  <NewSalon />
                 </Suspense>
               ),
             },

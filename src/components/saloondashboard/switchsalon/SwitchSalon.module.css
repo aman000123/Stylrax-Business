@@ -43,6 +43,11 @@
 .main{
     padding-top: 20px;
     padding-bottom: 70px;
+    height: 60vh;
+    overflow-y: scroll;
+}
+.main::-webkit-scrollbar{
+    display: none;
 }
 .switchPaper{
     border-radius: 15px;

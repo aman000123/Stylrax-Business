@@ -73,7 +73,7 @@ const NewSalon = ({ onClose, updatedData }) => {
         state: values.state,
         pincode: values.pinCode,
         serviceType: values.serviceType,
-        homeService: values.provideHomeServices, // Include home service value
+        homeService: values.provideHomeServices, 
         mainGateImageUrl: values.mainGateUrl,
         bannerImages: bannerImages,
         gallaryImages: galleryImages,
@@ -81,9 +81,9 @@ const NewSalon = ({ onClose, updatedData }) => {
       const res = await createSalon(verifyForm);
       Notify.success("New Salon Added");
       const newSalonId = res.data.id;
-      setSalonId(newSalonId); // Save the salon ID
+      setSalonId(newSalonId); 
       // updatedData();
-      setShowSalonDetails(true); // Show the new component
+      setShowSalonDetails(true); 
 
       if (values.provideHomeServices) {
         await salonAddress(newSalonId, { field: "range", value: "1.5" });

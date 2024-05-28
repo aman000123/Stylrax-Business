@@ -7,12 +7,17 @@
     padding: 20px 20px;
     border-radius: 8px;
     margin-top: -9px;
+    height: 98vh;
+    overflow-y: scroll;
 }
-
+.mainDiv::-webkit-scrollbar{
+    display: none;
+}
 .text p {
     font-size: 25px;
     font-weight: 700;
     padding-left: 5px;
+    font-family: Axiforma;
 }
 
 .calendar {
@@ -119,6 +124,8 @@ button{
     border-radius: 6px;
     padding: 6.5px 6px;
     margin-top: 12px;
+    font-family: Axiforma;
+
 }
 
 .details p {
@@ -127,17 +134,23 @@ button{
     line-height: 17px;
     padding-top: 7px;
     color: #000000;
+    font-family: Axiforma;
+
 }
 
 .details p .spanOne {
     font-size: 12px;
     font-weight: 600;
     color: #747474;
+    font-family: Axiforma;
+
 }
 
 .details p .spanTwo {
     font-size: 10px;
     color: #747474;
+    font-family: Axiforma;
+
 
 }
 
@@ -147,6 +160,8 @@ button{
 
 .horizonIcon p {
     font-size: 9px;
+    font-family: Axiforma;
+
 }
 
 .view {
@@ -154,8 +169,13 @@ button{
     margin-top: 5px;
     color: #909090;
     font-size: 12px;
-}
+    font-family: Axiforma;
 
+}
+.todayDate{
+    margin-left: -130px;
+    font-family: Axiforma;
+}
 @media(max-width:1199px){
     .paper{
         width: 42%;
@@ -187,7 +207,14 @@ button{
         width: 82%;
     }
 }
-
+@media (max-width:575px) {
+    .todayDate{
+        margin-left: -20px;
+    }
+    .text p{
+        font-size: 21px;
+    }
+}
 @media(max-width:424px){
     .imgDiv img{
         width: 51px;

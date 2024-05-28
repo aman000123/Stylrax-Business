@@ -9,6 +9,7 @@ import { bankDetailsSchema } from "../../../utils/schema";
 import FormContainer from "../../account/FormContainer";
 import { handleOnFileSelect } from "../../account/FileUploader";
 import { bankDetails } from "../../../api/account.api";
+import { useNavigate } from "react-router-dom";
 
 const initialValues = {
   accountNumber: "",
@@ -18,8 +19,9 @@ const initialValues = {
   bankDocumentUrl: "",
 };
 
-const SalonBank = ({ salonId, onClose }) => {
+const SalonBank = ({ salonId}) => {
   console.log("bank id:::>", salonId);
+  const navigate = useNavigate();
   const salons = useSelector((state) => state.auth.salons);
   const salonIdd = salons[0]?.id ?? null;
   const handleOnSubmit = async (values) => {
@@ -34,7 +36,7 @@ const SalonBank = ({ salonId, onClose }) => {
 
       const response = await bankDetails(salonId ? salonId : salonIdd, data);
       Notify.success(response.data.message);
-      onClose();
+      navigate('/salon/dashboard')
     } catch (error) {
       Notify.error(error.message);
       console.log("error:::>", error);
@@ -92,7 +94,7 @@ const SalonBank = ({ salonId, onClose }) => {
                     type="submit"
                     className={styles.registration__submit_button}
                   >
-                    Finish
+                    Continue
                   </Button>
                 </Section>
               </Form>

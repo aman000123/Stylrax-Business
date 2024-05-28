@@ -14,11 +14,18 @@
     background-color: #fff;
     padding: 17px 25px;
     border-radius: 8px;
+    height: 60vh;
+    overflow-y: scroll;
+    font-family: Axiforma;
+}
+.mainDiv::-webkit-scrollbar{
+    display: none;
 }
 
 .hairStyle{
     font-size: 10px;
     font-weight: bold;
+    font-family: Axiforma;
 }
 
 .hairStylist{
