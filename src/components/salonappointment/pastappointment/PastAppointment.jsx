@@ -32,13 +32,40 @@ const PastAppointment = () => {
     setSelectedAppointmentId(appointmentId);
     setShowPopup(true);
   };
-
+  if(!completed || setCompleted.length===0){
+    return <div className={styles.noContent}>
+      No cancelled appointments
+    </div>
+   }
+   const getStatusClass = (status) => {
+    switch (status) {
+      case "PENDING":
+        return styles.pending;
+      case "ACCEPTED":
+        return styles.accepted;
+      case "REJECTED":
+        return styles.rejected;
+      case "COMPLETED":
+        return styles.completed;
+      case "CANCELLED":
+        return styles.cancelled;
+        case "CONFIRMED":
+        return styles.confirmed;
+      case "IN_SERVICE":
+        return styles.inService;
+      case "IN_PROGRESS":
+        return styles.inProgress;
+      default:
+        return "";
+    }
+  };
+  
   return (
     <div>
       <Row className={styles.today}>
         {completed?.map((appointment, index) => (
-          <Col md={4} sm={6} xs={6} key={index}>
-            <Row className="mb-2">
+          <Col md={6} sm={6} lg={4} xs={12} key={index}>
+            <Row className={`${styles.mainDiv} mb-2`}>
               <div className={styles.userInfo}>
                 <Col md={4}>
                   <div>
@@ -55,17 +82,15 @@ const PastAppointment = () => {
                       {`${appointment.user.firstName} ${appointment.user.lastName}`}
                     </span>
                     <br />
-                    <span>{appointment.service}</span>
+                    <span >{appointment.service}</span>
                     <br />
-                    <span>{appointment.startTime} <span className={styles.gender}>{appointment.serviceType}</span></span>
+                    <span className={styles.appointTime}>{appointment.startTime} &nbsp;<span className={styles.gender}>{appointment.serviceType}</span></span>
                     <br />
-                    <span>{appointment.location}</span>
                     <span className={styles.locationDistance}>{appointment.date}</span>
                   </p>
                 </Col>
                 <Col md={4}>
-                  <p className={styles.status}>
-                    {appointment.status}
+                <p className={`${styles.status} ${getStatusClass(appointment?.status)}`}>                    {appointment.status}
                     <br />
                     <Link onClick={() => handleViewDetails(appointment.id)}>View Details</Link>
                   </p>

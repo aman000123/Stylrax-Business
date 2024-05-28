@@ -20,7 +20,7 @@ function AddService({ onClose, updatedData, id }) {
     const salonId = Session.get("salonId");
 
     try {
-      const { serviceName, serviceDuration, type,servicePrice } = values;
+      const { serviceName, serviceDuration, type } = values;
       const price = servicePrice.replace(/[^\d.]/g, '');
       const data = {
         categoryId: parseInt(selectedCategoryId),

@@ -1,6 +1,7 @@
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { createSalon } from "../../../api/salon.api";
 import { getPresignedUrl } from "../../../api/file.api";
+import { salonAddress } from "../../../api/salon.api";
 import Section from "../../../ux/Section";
 import FormContainer from "../../account/FormContainer";
 import { Form, Formik } from "formik";
@@ -33,7 +34,7 @@ const serviceOptions = [
 const initialValues = {
   name: "",
   gst: "",
-  email:"",
+  email: "",
   companyName: "",
   pinCode: "",
   serviceType: "",
@@ -44,6 +45,7 @@ const initialValues = {
   mainGateUrl: "",
   bannerImages: [],
   galleryImageUrl: [],
+  provideHomeServices: false, // Add initial value for checkbox
 };
 
 const NewSalon = ({ onClose, updatedData }) => {
@@ -53,8 +55,8 @@ const NewSalon = ({ onClose, updatedData }) => {
   const [cityOptions, setCityOptions] = useState([
     { value: "", text: "Select salon city" },
   ]);
-  const [salonId, setSalonId] = useState(null); // New state for salon ID
-  const [showSalonDetails, setShowSalonDetails] = useState(false); // New state to toggle component
+  const [salonId, setSalonId] = useState(null);
+  const [showSalonDetails, setShowSalonDetails] = useState(false); 
 
   const handleOnSubmit = async (event, values) => {
     //event.stopPropagation();
@@ -71,7 +73,7 @@ const NewSalon = ({ onClose, updatedData }) => {
         state: values.state,
         pincode: values.pinCode,
         serviceType: values.serviceType,
-        homeService: false,
+        homeService: values.provideHomeServices, // Include home service value
         mainGateImageUrl: values.mainGateUrl,
         bannerImages: bannerImages,
         gallaryImages: galleryImages,
@@ -80,8 +82,12 @@ const NewSalon = ({ onClose, updatedData }) => {
       Notify.success("New Salon Added");
       const newSalonId = res.data.id;
       setSalonId(newSalonId); // Save the salon ID
-     // updatedData();
+      // updatedData();
       setShowSalonDetails(true); // Show the new component
+
+      if (values.provideHomeServices) {
+        await salonAddress(newSalonId, { field: "range", value: "1.5" });
+      }
     } catch (error) {
       Notify.error(error.message);
     }
@@ -140,7 +146,11 @@ const NewSalon = ({ onClose, updatedData }) => {
   return (
     <>
       {!showSalonDetails ? (
-        <div ref={containerRef} className="new-salon-container" onClick={handleClickInside}>
+        <div
+          ref={containerRef}
+          className="new-salon-container"
+          onClick={handleClickInside}
+        >
           <Section className="d-flex flex-column align-items-center">
             <FormContainer>
               <Formik
@@ -149,7 +159,10 @@ const NewSalon = ({ onClose, updatedData }) => {
                 onSubmit={(values, { event }) => handleOnSubmit(event, values)}
               >
                 {({ setFieldValue }) => (
-                  <Form className="d-flex flex-column" onClick={handleClickInside}>
+                  <Form
+                    className="d-flex flex-column"
+                    onClick={handleClickInside}
+                  >
                     <InputText
                       type="text"
                       name="name"
@@ -215,6 +228,14 @@ const NewSalon = ({ onClose, updatedData }) => {
                       label="Service Type"
                       options={serviceOptions}
                     />
+                    <label>
+                      <input
+                        type="checkbox"
+                        name="provideHomeServices"
+                        onChange={(e) => setFieldValue("provideHomeServices", e.target.checked)}
+                      />
+                      &nbsp; Provide Home Services
+                    </label>
                     <Section className="d-flex flex-column align-items-start"></Section>
                     <Section className="d-flex flex-column align-items-start mb-4">
                       <Label text="Salon Images" />
@@ -255,7 +276,7 @@ const NewSalon = ({ onClose, updatedData }) => {
           </Section>
         </div>
       ) : (
-        <SalonBank salonId={salonId} onClose={onClose}/>
+        <SalonBank salonId={salonId} onClose={onClose} />
       )}
     </>
   );

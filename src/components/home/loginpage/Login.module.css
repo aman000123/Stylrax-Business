@@ -41,6 +41,16 @@
   border-radius: 10px;
   font-weight: 600;
   font-family: "Poppins";
+ 
+}
+.btnDiv{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.agreementText{
+  font-size: 10px;
+  margin-bottom: 10px;
 }
 .formGroup {
   margin-bottom: 15px;
@@ -117,6 +127,12 @@
   .btn {
     width: 150px;
     height: 30px;
+   
+  }
+  .agreementText{
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
   .pra {
     font-size: 8px;

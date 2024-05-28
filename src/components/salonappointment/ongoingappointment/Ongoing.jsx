@@ -33,9 +33,31 @@ const Ongoing = () => {
   };
   if(!pending || pending.length===0){
     return <div className={styles.noContent}>
-      No pending appointments
+      No cancelled appointments
     </div>
    }
+   const getStatusClass = (status) => {
+    switch (status) {
+      case "PENDING":
+        return styles.pending;
+      case "ACCEPTED":
+        return styles.accepted;
+      case "REJECTED":
+        return styles.rejected;
+      case "COMPLETED":
+        return styles.completed;
+      case "CONFIRMED":
+        return styles.confirmed;
+      case "IN_SERVICE":
+        return styles.inService;
+      case "IN_PROGRESS":
+        return styles.inProgress;
+        case "CANCELLED":
+          return styles.cancelled;
+      default:
+        return "";
+    }
+  };
   return (
     <>
       <Row>
@@ -60,8 +82,8 @@ const Ongoing = () => {
                     <br />
                     <span>{appointment.service}</span>
                     <br />
-                    <span>
-                      {appointment.startTime}{" "}
+                    <span className={styles.appointTime}>
+                      {appointment.startTime}{" "}&nbsp;
                       <span className={styles.gender}>
                         {appointment.serviceType}
                       </span>
@@ -76,8 +98,7 @@ const Ongoing = () => {
                   {/* <button className={styles.accept}>Accept</button> */}
                 </Col>
                 <Col md={4}>
-                  <p className={styles.status}>
-                    {appointment.status}
+                <p className={`${styles.status} ${getStatusClass(appointment?.status)}`}>                    {appointment.status}
                     <br />
                     <Link onClick={() => handleViewDetails(appointment.id)}>
                       View Details

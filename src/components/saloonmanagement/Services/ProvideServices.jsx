@@ -17,7 +17,6 @@ function ProvideServices() {
       try {
         const res = await serviceCategory();
         setCategories(res.data);
-        Notify.success(res.message);
       } catch (error) {
         Notify.error(error.message);
       }

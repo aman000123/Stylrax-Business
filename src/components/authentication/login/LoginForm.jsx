@@ -10,6 +10,7 @@ import Notify from "../../../utils/notify";
 import { Field, Formik, ErrorMessage, Form } from "formik";
 import { LoginSchema } from "../../../utils/schema";
 import PhoneInputComponent from "./PhoneInputComponent";
+import { Link } from "react-router-dom";
 
 const initialValues = {
   phoneNumber: "",
@@ -37,7 +38,7 @@ const LoginForm = ({ setActiveStep }) => {
       console.log("Response:", res.data);
       setPhoneNumber(phoneNumber);
       setShowOTPSection(true);
-      setTimer(30); 
+      setTimer(30);
       setIsTimerActive(true);
     } catch (error) {
       console.error("Error:", error);
@@ -96,13 +97,25 @@ const LoginForm = ({ setActiveStep }) => {
                               className={styles.error}
                             />
                           </div>
-                          <div className="d-flex justify-content-center">
+                          <div className="justify-content-center">
+                            <div
+                              className={`${styles.agreementText} text-center mt-2`}
+                            >
+                              By continuing, you agree to Stylrax's{" "}
+                              <Link to="/home/terms-condition">
+                                Terms of use&nbsp;
+                              </Link>
+                              and <Link to="/home/privacy">Privacy Policy</Link>
+                              .
+                            </div>
+                            <div className={styles.btnDiv}>
                             <button
                               type="submit"
                               className={`${styles.btn} text-black bg-white`}
                             >
-                              Submit
+                              Continue
                             </button>
+                            </div>
                           </div>
                         </Form>
                       )}
