@@ -32,9 +32,9 @@ const PastAppointment = () => {
     setSelectedAppointmentId(appointmentId);
     setShowPopup(true);
   };
-  if(!completed || setCompleted.length===0){
+  if(!completed || completed.length===0){
     return <div className={styles.noContent}>
-      No cancelled appointments
+      No completed appointments
     </div>
    }
    const getStatusClass = (status) => {

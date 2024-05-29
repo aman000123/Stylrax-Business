@@ -94,7 +94,7 @@ function SalonTime() {
           onSubmit={handleSubmit}
         >
           {({ values, setFieldValue, isSubmitting }) => (
-            <Form>
+            <Form className={styles.form}>
               {timing.map((dayTiming, index) => {
                 const { day } = dayTiming;
 
@@ -150,13 +150,15 @@ function SalonTime() {
                 );
               })}
               {add && (
+                <div className={styles.btn}>
                 <button
-                  className={styles.addTime}
+                  className={styles.saveTime}
                   type="submit"
                   disabled={isSubmitting}
                 >
                   Save
                 </button>
+                </div>
               )}
             </Form>
           )}

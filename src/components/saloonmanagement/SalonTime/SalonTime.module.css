@@ -5,21 +5,13 @@
 .actionButton{
     display: flex;
     gap: 10px;
+    /* float:right; */
+    /* margin-right: 345px; */
 }
 
-.actionButton .salon{
-    padding: 10px 40px;
-    border-radius: 10px;
-    font-weight: 600;
-    color: #000;
-}
 
-.actionButton .doorBuddy{
-    padding: 10px 20px;
-    border-radius: 10px;
-    font-weight: 600;
-    color: #000;
-}
+
+
 
 .secDiv{
     display: flex;
@@ -49,6 +41,7 @@
 
 .height .spanOne{
     font-size: 12px;
+    overflow: hidden;
 }
 
 .height .spanTwo{
@@ -78,11 +71,7 @@
     /* margin-left: auto; */
     /* margin-right: 100px; */
 }
-@media(max-width:575px){
-    .secDiv .timeDiv{
-        padding: 0;
-    }
-}
+
 .timeDiv div .spanOne{
     display: block;
     outline: none;
@@ -92,12 +81,10 @@
    font-size: 14px;
    color: 
    #808080;
+   background-color: transparent;
+
 }
-@media (max-width:575) {
-    .timeDiv div .spanOne input{
-        width: 50px !important;
-    }
-}
+
 .timeDiv .timeIcon{
     font-size: 25px;
 }
@@ -108,8 +95,8 @@
    width: fit-content;
    padding-bottom: 4px;
    font-size: 14px;
-color: 
-#808080;
+color: #808080;
+background-color: transparent;
 }
 .circleDiv{
     border: 2px solid #BEBEBE;
@@ -128,228 +115,21 @@ color:
 .addTime{
     background-color: #000;
     color: white;
-    padding: 5px 10px;
-    border-radius: 5px;
+    padding: 10px 30px;
+    border-radius: 10px;
     float: right;
 }
-
-@media(max-width:1448px){
-    .secDiv{
-    }
-}
-
-@media(max-width:1200px){
-  .secDiv .timeDiv{
-       padding: 8px 20px;
-    }
-    @media(max-width:991px){
-        .secDiv .timeDiv{
-         width: 100px; } 
-    }  
-    @media(max-width:767px){
-        .secDiv .timeDiv{
-         width: 80px;
-         margin-left: 40px;
-         } 
-    }  
-    @media(max-width:575px){
-        .secDiv .timeDiv{
-            font-size: 10px;
-            margin-left: 2px;
-            width: 62px;
-         } 
-    } 
-}
-
-@media(max-width:1180px){
-    .secDiv{
-        gap: 81px;
-    }
-}
-
-@media(max-width:1030px){
-    .secDiv{
-        gap: 54px;
-    }
-
-    .timeDiv{
-        gap: 31px;
-    }
-}
-
-@media(max-width:911px){
-    .secDiv .day{
-        font-size: 17px;
-    }
-    
-    .secDiv{
-        gap: 31px;
-    }
-
-    .timeDiv{
-        gap: 15px;
-    }
-}
-
-@media(max-width:766px){
-    .actionButton{
-       justify-content: center;
-       margin-top: 10px;
-    }
-}
-
-@media(max-width:667px){
-    .secDiv .day{
-        font-size: 14px;
-        margin-left: 10px;
-    }
-
-    .timeDiv{
-        padding: 3px 5px;
-        border-radius: 12.111px;
-    }
-
-    .timeDiv .spanOne{
-        font-size: 11px;
-        margin-left: -14px;
-    }
-
-    .timeDiv .spanTwo{
-        font-size: 9px;
-    }
-
-    .timeDiv .timeIcon{
-        font-size: 19px;
-    } 
-}
-
-@media(max-width:604px){
-    .timeDiv{
-        gap: 8px;
-    }
-
-    .secDiv{
-        gap: 15px;
-        padding: 5px 0px;
-    }
-
-    .height{
-        line-height: 8px;
-    }
-
-    .circleDiv{
-        height: auto;
-        width: 50px;
-    }
-}
-
-@media(max-width:536px){
-    .secDiv .day{
-        font-size: 11px;
-        margin-top: 13px;
-    }
-
-    .secDiv{
-        gap: 7px;
-    }
-
-    .timeDiv{gap: 3px;}
-}
-
-@media(max-width:510px){
-    .mainDiv{
-        margin: 0px 0px;
-    }
-
-    .secDiv{
-        gap: 31px;
-    }
-
-    .timeDiv{
-        gap: 7px;
-    }
-}
-
-@media(max-width:486px){
-        .secDiv{
-            gap: 19px;
-        }
-    
-        .timeDiv{
-            gap: 7px;
-        }
-    
-}
-
-@media(max-width:455px){
-    .secDiv{
-        gap: 10px;
-    }
-
-}
-
-@media(max-width:419px){
-    .secDiv{
-        gap: 5px;
-    }
-
-    .timeDiv{
-        gap: 4px;
-    }
-}
-
-@media(max-width:419px){
-    .secDiv{
-        gap: 18px;
-    }
-
-    .timeDiv{
-        gap: 5px;
-    }
-}
-
-@media(max-width:361px){
-    .secDiv{
-        gap: 10px;
-    }
-
-    .timeDiv{
-        gap: 4px;
-    }
-
-}
-
-.addTime{
+.saveTime{
+    background-color: #000;
+    color: white;
+    padding: 10px 30px;
+    border-radius: 10px;
     float: right;
+    margin-bottom: 10px;
+    margin-right: 330px;
     margin-top: 10px;
 }
-.form{
-    display: column;
-    align-items: center;
-    justify-content: center;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* Salon time */
-
-/* .icon {
-    cursor: pointer;
-    transition: color 0.3s ease;
-    height: 40px;
-    width: 50px;
-  } */
-  .circleDiv{
+.circleDiv{
     border: 2px solid #BEBEBE;
     border-radius: 50px;
     text-align: start;
@@ -373,4 +153,98 @@ color:
   
   .iconClose {
     color: grey;
-  }
+  } 
+@media (max-width:1200px) {
+    .secDiv{
+        gap: 10px;
+    }
+    .secDiv .timeDiv{
+        margin-left: 110px;
+    }
+    .blackCircle{
+        width: 30px;
+    }
+    .height{
+        width: 88px;
+    }
+    @media (max-width:767px) {
+       .secDiv .timeDiv{
+        margin-left: 60px;
+       }
+       .actionButton{
+        /* margin-right: 277px; */
+        margin-top: 15px;
+       }
+       .form{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+       }
+       .actionButton{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;      
+       }
+       .btn{
+      margin-left: 310px; 
+       }
+    }
+    @media (max-width:675px) {
+        .circleDiv .blackCircle{
+            height: 27px;
+            width: 27px;
+            margin-top: -2px;
+                   }  
+                   .secDiv{
+                    padding: 45px 20px;
+                   }
+                   .day{
+                    margin-top: -25px;
+                    margin-right: -113px;
+                   }
+                   .circleDiv{
+                    width: 50px;
+                    height: 30px;
+                    margin-left: -70px;
+                    margin-top: -22px;
+                    margin-bottom: 50px;
+                   }
+                   
+                   .secDiv .timeDi{
+                    margin-top: 20px;
+                   }
+                   .secDiv .timeDiv{
+                    margin-top: 20px;
+
+                   }
+                  .form{
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                   }
+                
+                   .mainDiv{
+                    padding-top: 50px;
+                   }
+                   .addTime{
+                    margin-right: -30px;
+                    margin-top: -60px;
+
+                   }
+
+    }
+  
+}
+
+
+
+
+
+
+
+
+
+
+

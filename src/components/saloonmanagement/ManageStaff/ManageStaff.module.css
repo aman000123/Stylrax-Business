@@ -259,8 +259,12 @@
 
 .popup{
     display: flex;
+    height: 100vh;
+    overflow-y: scroll;
 }
-
+.popup::-webkit-scrollbar{
+    display: none;
+}
 
 .paperTwo{
     display: flex;
@@ -327,6 +331,7 @@ width: 250px;}
     color:grey;
     text-decoration-color: #BEBEBE;
     outline: none;   
+    background-color: transparent;
 }  
 .popupFormImgDiv .staffImg  {
     height: 100px;
@@ -366,13 +371,23 @@ width: 250px;}
     .paper{
         width: 134px;
     }
+    .popupForm input{
+        background-color: transparent;
+    }
     .phoneBox{
-        margin-left: 80px;
+        margin-left: 70px;
         padding-top: 10px;
         border-bottom: 2px solid #BEBEBE;
-        width: 200px;  
+        width: 60%;  
         box-shadow: none;
         overflow: hidden;
+    }
+    .popupFormDiv{
+        height: 60vh;
+        overflow-y: scroll;
+    }
+    .popupFormDiv::-webkit-scrollbar{
+        display: none;
     }
     .formError{
         padding-left: 70px;
@@ -381,11 +396,14 @@ width: 250px;}
         margin-right: -40px;
     }
     .popupForm .dob{
-        padding-right: 64px;
+        padding-right: 0;
+        width: 62%;
+        background-color: transparent;
 
     }
     .popupForm input{
         padding-right: 0px;
+        width: 60%;
     }
     .colDiv{
         padding-top: 15px;
@@ -393,7 +411,8 @@ width: 250px;}
         justify-content: center;
     }
     .gender{
-        padding-right: 32px;
+        padding-right: 0px;
+        width: 60%;
     }
 }
 /* @media(max-width:408px){

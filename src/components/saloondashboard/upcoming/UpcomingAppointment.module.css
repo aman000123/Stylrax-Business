@@ -13,6 +13,14 @@
 .mainDiv::-webkit-scrollbar{
     display: none;
 }
+.noAppointment{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: black;
+    font-weight: 700;
+    font-size: 18px;
+}
 .text p {
     font-size: 25px;
     font-weight: 700;

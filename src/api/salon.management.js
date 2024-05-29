@@ -11,7 +11,7 @@ export const editStaff = (salonId,id,payload) => HTTP.Request(methods.PUT,  __en
 export const salonStaff = (id,payload) => HTTP.Request(methods.GET, __endpoint_addStaff(id) , payload);
 
 //salon service
-//export const salonService = (salonId,payload) => HTTP.Request(methods.GET, __endpoint_salonService(salonId) , payload);
+export const salonServices = (salonId,payload) => HTTP.Request(methods.GET, __endpoint_salonService(salonId) , payload);
 export const salonService = (salonId,categoryId,payload) => {
     const endpoint = __endpoint_salonService(salonId);
     const url = `${endpoint}?categoryId=${categoryId}`;

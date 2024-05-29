@@ -65,4 +65,8 @@
   .selectSalon:hover {
     background-color: #f0f0f0;
   }
-  
+  @media (max-width:575px) {
+    .main{
+        width: 270px;
+    }
+  }

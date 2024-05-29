@@ -31,7 +31,7 @@ const UpComingAppointment = () => {
   
   const handleViewDetails = (appointmentId) => {
     setSelectedAppointmentId(appointmentId);
-    console.log("ara id",appointmentId)
+    console.log("id",appointmentId)
     setShowPopup(true);
   };
   if(!pending || pending.length===0){
