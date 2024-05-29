@@ -1,83 +1,58 @@
+import { useEffect, useState } from "react";
 import styles from "./Stylist.module.css";
-import stylistimg1 from "../../../assets/image/stylistimg1.png";
-import stylistimg2 from "../../../assets/image/stylistimg2.png";
-import stylistimg3 from "../../../assets/image/stylistimg3.png";
-import stylistimg4 from "../../../assets/image/stylistimg4.png";
-import stylistimg5 from "../../../assets/image/stylistimg5.png";
-import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
+import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
+import { salonStaff } from "../../../api/salon.management";
+import Session from "../../../service/session";
+import Notify from "../../../utils/notify";
 
-
-let data = [
-    {
-        imgsrc: stylistimg1,
-        aboutstylistOne: "Debhasis",
-        aboutstylistTwo: "HairStylist and Stylist Artist",
-        aboutstylistThree: "* 4.2(1.2k)Rating",
-    },
-
-    {
-        imgsrc: stylistimg2,
-        aboutstylistOne: "Debhasis",
-        aboutstylistTwo: "HairStylist and Stylist Artist",
-        aboutstylistThree: "* 4.2(1.2k)Rating",
-    },
-
-    {
-        imgsrc: stylistimg3,
-        aboutstylistOne: "Debhasis",
-        aboutstylistTwo: "HairStylist and Stylist Artist",
-        aboutstylistThree: "* 4.2(1.2k)Rating",
-    },
-
-    {
-        imgsrc: stylistimg4,
-        aboutstylistOne: "Debhasis",
-        aboutstylistTwo: "HairStylist and Stylist Artist",
-        aboutstylistThree: "* 4.2(1.2k)Rating",
-    },
-
-    {
-        imgsrc: stylistimg5,
-        aboutstylistOne: "Debhasis",
-        aboutstylistTwo: "HairStylist and Stylist Artist",
-        aboutstylistThree: "* 4.2(1.2k)Rating",
-    },
-
-]
 function Stylist() {
-    return (
-        <div className={styles.mainDiv}>
-            <div className={styles.secDiv}>
-                <h4 style={{color:"#000000"}}>Stylist</h4>
+  const [staff, setStaff] = useState([]);
+  const salonId = Session.get("salonId");
+
+  useEffect(() => {
+    const getStaff = async () => {
+      try {
+        const response = await salonStaff(salonId);
+        const staff = response.data;
+        console.log("completed::>", staff);
+        setStaff(staff);
+      } catch (error) {
+        Notify.error(error.message);
+      }
+    };
+    getStaff();
+  }, [salonId]);
+
+  return (
+    <div className={styles.mainDiv}>
+      <div className={styles.secDiv}>
+        <h4 style={{ color: "#000000" }}>Stylist</h4>
+      </div>
+      <div className={styles.content}>
+        {staff.map((value, index) => (
+          <div key={index} className={styles.paper}>
+            <div className={styles.stylist}>
+              <div>
+                <img src={value.profileImageUrl} alt="" />
+              </div>
+              <div className={styles.aboutStylist}>
+                <p>
+                  {value.firstName} {value.lastName}
+                  <br />
+                  <span className={styles.spanOne}>{value.specialization}</span>
+                  <br />
+                  <span className={styles.spanTwo}>{value.role}</span>
+                </p>
+              </div>
             </div>
-
-            <div className={styles.content}>
-                {
-                    data.map((value, index) => (
-                        <paper key={index} className={styles.paper}>
-                            <div className={styles.stylist}>
-                                <div>
-                                    <img src={value.imgsrc} alt='' />
-                                </div>
-
-                                <div className={styles.aboutStylist}>
-                                    <p>{value.aboutstylistOne}<br />
-                                        <span className={styles.spanOne}>{value.aboutstylistTwo}</span><br />
-                                        <span className={styles.spanTwo}>{value.aboutstylistThree}</span>
-                                    </p>
-                                </div>
-                            </div>
-
-                            <div>
-                                <MoreHorizIcon className={styles.dots} />
-                            </div>
-                        </paper>
-                    ))
-                }
+            <div>
+              <MoreHorizIcon className={styles.dots} />
             </div>
-
-        </div>
-    )
+          </div>
+        ))}
+      </div>
+    </div>
+  );
 }
 
-export default Stylist
+export default Stylist;

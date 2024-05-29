@@ -63,10 +63,10 @@ const UpComingAppointment = () => {
   };
   return (
     <>
-    <Row>
+    <Row className={styles.today}>
          {pending.map((appointment, index) => (
-                <Col md={4} sm={6} xs={6} key={index}>
-                  <Row className="mb-2">
+                <Col md={4} sm={6} xs={12} key={index}>
+                  <Row className={`${styles.mainDiv} mb-2`}>
                     <div className={styles.userInfo}>
                       <Col md={4}>
                         <div>

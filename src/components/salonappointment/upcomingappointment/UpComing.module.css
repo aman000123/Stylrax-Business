@@ -109,8 +109,13 @@
   color: #7a7a7a;
   text-align: center;
 }
-
-
+.today{
+  height: 70vh;
+  overflow-y: scroll;
+}
+.today::-webkit-scrollbar{
+  display: none;
+}
 .clientDiv {
   border: 2px solid #d3d3d3;
   border-radius: 8px;

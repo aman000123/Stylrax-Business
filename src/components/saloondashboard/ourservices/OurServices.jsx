@@ -1,128 +1,61 @@
+import osImg16 from "../../../assets/image/osImg16.png";
+import { useEffect, useState } from "react";
 import { Paper } from "@mui/material";
 import { Row, Col } from "react-bootstrap";
 import styles from "../ourservices/OurServices.module.css";
-import osImg1 from "../../../assets/image/osImg1.png";
-import osImg2 from "../../../assets/image/osImg2.png";
-import osImg3 from "../../../assets/image/osImg3.png";
-import osImg4 from "../../../assets/image/osImg4.png";
-import osImg5 from "../../../assets/image/osImg5.png";
-import osImg6 from "../../../assets/image/osImg6.png";
-import osImg7 from "../../../assets/image/osImg7.png";
-import osImg8 from "../../../assets/image/osImg8.png";
-import osImg9 from "../../../assets/image/osImg9.png";
-import osImg10 from "../../../assets/image/osImg10.png";
-import osImg11 from "../../../assets/image/osImg11.png";
-import osImg12 from "../../../assets/image/osImg12.png";
-import osImg13 from "../../../assets/image/osImg13.png";
-import osImg14 from "../../../assets/image/osImg14.png";
-import osImg15 from "../../../assets/image/osImg15.png";
-import osImg16 from "../../../assets/image/osImg16.png";
-import osImg17 from "../../../assets/image/osImg17.png";
-
-let ourServicesData = [
-
-    {
-        imgsrc1: osImg1,
-        text1: "HairStyles",
-        imgsrc2: osImg2,
-        text2: "HairStyles",
-        imgsrc3: osImg3,
-        text3: "HairStyles",
-        imgsrc4: osImg4,
-        text4: "HairStyles"
-    },
-
-    {
-        imgsrc1: osImg5,
-        text1: "HairStyles",
-        imgsrc2: osImg6,
-        text2: "HairStyles",
-        imgsrc3: osImg7,
-        text3: "HairStyles",
-        imgsrc4: osImg8,
-        text4: "HairStyles"
-    },
-
-    {
-        imgsrc1: osImg9,
-        text1: "HairStyles",
-        imgsrc2: osImg10,
-        text2: "HairStyles",
-        imgsrc3: osImg11,
-        text3: "HairStyles",
-        imgsrc4: osImg12,
-        text4: "HairStyles"
-    },
-
-    {
-        imgsrc1: osImg13,
-        text1: "HairStyles",
-        imgsrc2: osImg14,
-        text2: "HairStyles",
-        imgsrc3: osImg15,
-        text3: "HairStyles",
-        imgsrc4: osImg16,
-        text4: "HairStyles"
-    },
-
-    {
-        imgsrc1: osImg17,
-        text1: "HairStyles",
-        imgsrc2: osImg11,
-        text2: "HairStyles",
-        imgsrc3: osImg12,
-        text3: "HairStyles",
-        imgsrc4: osImg13,
-        text4: "HairStyles"
-    }
-]
-
+import { salonService } from "../../../api/salon.management";
+import Session from "../../../service/session";
+import Notify from "../../../utils/notify";
 
 function OurServices() {
-    return (
-        <div className={styles.mainDiv}>
-            <div style={{color:"#000000"}}>
-                Our Services
-            </div>
+  const [services, setServices] = useState([]);
+  const salonId = Session.get("salonId");
 
-            {
-                ourServicesData.map((data) => (
-                    <Row key={data.id} className='mt-2'>
-                        <Col className={styles.border}>
-                            <Paper className={styles.paper} elevation={0}>
-                                <img className={styles.hairStylist} src={data.imgsrc1} alt='' />
-                                <p className={styles.hairStyle}>{data.text1}</p>
-                            </Paper>
-                        </Col>
+  useEffect(() => {
+    const fetchServices = async () => {
+      try {
+        const response = await salonService(salonId);
+        const services = response.data;
+        console.log("services::>", services);
+        setServices(services);
+      } catch (error) {
+        Notify.error(error.message);
+      }
+    };
+    fetchServices();
+  }, [salonId]);
 
-                        <Col>
-                            <Paper className={styles.paper} elevation={0}>
-                                <img className={styles.hairStylist} src={data.imgsrc2} alt='' />
-                                <p className={styles.hairStyle}>{data.text2}</p>
-                            </Paper>
-                        </Col>
+  // Divide services into groups of 4 for rendering
+  const serviceGroups = [];
+  for (let i = 0; i < services.length; i += 4) {
+    serviceGroups.push(services.slice(i, i + 4));
+  }
 
-                        <Col>
-                            <Paper className={styles.paper} elevation={0}>
-                                <img className={styles.hairStylist} src={data.imgsrc3} alt='' />
-                                <p className={styles.hairStyle}>{data.text3}</p>
-                            </Paper>
-                        </Col>
+  return (
+    <div className={styles.mainDiv}>
+      <div style={{ color: "#000000" }}>Our Services</div>
 
-                        <Col>
-                            <Paper className={styles.paper} elevation={0}>
-                                <img className={styles.hairStylist} src={data.imgsrc4} alt='' />
-                                <p className={styles.hairStyle}>{data.text4}</p>
-                            </Paper>
-                        </Col>
-
-                    </Row>
-
-                ))
-            }
-
-        </div>
-    )
+      {serviceGroups.map((group, groupIndex) => (
+        <Row key={groupIndex} className="mt-2">
+          {group.map((service, serviceIndex) => (
+            <Col key={service.id} className={styles.border}>
+              <Paper className={styles.paper} elevation={0}>
+                <img
+                  className={styles.hairStylist}
+                  src={osImg16}
+                  alt={service.serviceName}
+                />
+                <p className={styles.hairStyle}>
+                  {service.serviceName}
+                  <br />
+                </p>
+              </Paper>
+            </Col>
+          ))}
+        </Row>
+      ))}
+    </div>
+  );
 }
 
-export default OurServices
+export default OurServices;

@@ -1,342 +1,153 @@
 import styles from "./UpcomingAppointment.module.css";
-import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
-import stylistimg1 from "../../../assets/image/stylistimg1.png";
-import { Paper } from '@mui/material';
+import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
+import { Paper } from "@mui/material";
 import { FaCalendarDays } from "react-icons/fa6";
-import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
-import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
-import { useState } from 'react';
+import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
+import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
+import { useState, useEffect } from "react";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
+import Session from "../../../service/session";
+import { ongoingAppointments } from "../../../api/appointments.api";
+import Notify from "../../../utils/notify";
 
-
-
-let data = [
-  {
-    imgsrc: stylistimg1,
-    textOne: "Raj Shakya",
-    textTwo: "Hair Styling",
-    textThree: "10:30 - 11:30",
-    price: "1900Rs"
-  },
-
-  {
-    imgsrc: stylistimg1,
-    textOne: "Raj Shakya",
-    textTwo: "Hair Styling",
-    textThree: "10:30 - 11:30",
-    price: "1900Rs"
-  },
-
-  {
-    imgsrc: stylistimg1,
-    textOne: "Raj Shakya",
-    textTwo: "Hair Styling",
-    textThree: "10:30 - 11:30",
-    price: "1900Rs"
-  },
-
-  {
-    imgsrc: stylistimg1,
-    textOne: "Raj Shakya",
-    textTwo: "Hair Styling",
-    textThree: "10:30 - 11:30",
-    price: "1900Rs"
-  },
-
-  {
-    imgsrc: stylistimg1,
-    textOne: "Raj Shakya",
-    textTwo: "Hair Styling",
-    textThree: "10:30 - 11:30",
-    price: "1900Rs"
-  },
-
-  {
-    imgsrc: stylistimg1,
-    textOne: "Raj Shakya",
-    textTwo: "Hair Styling",
-    textThree: "10:30 - 11:30",
-    price: "1900Rs"
-  },
-
-  {
-    imgsrc: stylistimg1,
-    textOne: "Raj Shakya",
-    textTwo: "Hair Styling",
-    textThree: "10:30 - 11:30",
-    price: "1900Rs"
-  },
-
-  // {
-  //   imgsrc: stylistimg1,
-  //   textOne: "Raj Shakya",
-  //   textTwo: "Hair Styling",
-  //   textThree: "10:30 - 11:30",
-  //   price: "1900Rs"
-  // },
-
-  // {
-  //   imgsrc: stylistimg1,
-  //   textOne: "Raj Shakya",
-  //   textTwo: "Hair Styling",
-  //   textThree: "10:30 - 11:30",
-  //   price: "1900Rs"
-  // },
-
-  
-  // {
-  //   imgsrc: stylistimg1,
-  //   textOne: "Raj Shakya",
-  //   textTwo: "Hair Styling",
-  //   textThree: "10:30 - 11:30",
-  //   price: "1900Rs"
-  // },
-
-]
-
-const item = [
-  {
-    day: "Sun",
-    date: 1
-  },
-
-  {
-    day: "Mon",
-    date: 2
-  },
-
-  {
-    day: "Tue",
-    date: 3
-  },
-
-  {
-    day: "Wed",
-    date: 4
-  },
-
-  {
-    day: "Thu",
-    date: 5
-  },
-
-  {
-    day: "Fri",
-    date: 6
-  },
-
-  {
-    day: "Sat",
-    date: 7
-  },
-  {
-    day: "Sun",
-    date: 8
-  },
-
-  {
-    day: "Mon",
-    date: 9
-  },
-
-  {
-    day: "Tue",
-    date: 10
-  },
-
-  {
-    day: "Wed",
-    date: 11
-  },
-
-  {
-    day: "Wed",
-    date: 12
-  },
-
-  {
-    day: "Wed",
-    date: 13
-  },
-
-  {
-    day: "Wed",
-    date: 14
-  },
-
-  {
-    day: "Wed",
-    date: 15
-  },
-
-  {
-    day: "Wed",
-    date: 16
-  },
-
-  {
-    day: "Wed",
-    date: 17
-  },
-
-  {
-    day: "Wed",
-    date: 18
-  },
-  {
-    day: "Wed",
-    date: 19
-  },
-
-  {
-    day: "Wed",
-    date: 20
-  },
-
-  {
-    day: "Wed",
-    date: 21
-  },
-
-  {
-    day: "Wed",
-    date: 22
-  },
-]
-
-
+const generateUpcomingWeek = () => {
+  const today = new Date();
+  const upcomingWeek = [];
+  for (let i = 0; i < 7; i++) {
+    const date = new Date(today);
+    date.setDate(today.getDate() + i);
+    upcomingWeek.push({
+      day: date.toLocaleDateString("en-US", { weekday: "short" }),
+      date: date.getDate(),
+      fullDate: date.toISOString().split("T")[0],
+    });
+  }
+  return upcomingWeek;
+};
 
 function UpcomingAppointment() {
+  const currentDate = new Date();
+  const formattedDate = currentDate.toISOString().split("T")[0];
+  const currentDay = currentDate.getDate();
+  const currentDayOfWeek = currentDate.toLocaleDateString("en-US", {
+    weekday: "long",
+  });
+  const formattedCurrentDate = `${currentDayOfWeek} ${currentDay} ${currentDate.toLocaleString(
+    "default",
+    { month: "long" }
+  )} ${currentDate.getFullYear()}`;
+
+  const [ongoing, setOngoing] = useState([]);
+  const [selectedDate, setSelectedDate] = useState(null);
+  const [showNoAppointments, setShowNoAppointments] = useState(false);
+
+  const salonId = Session.get("salonId");
+
+  const fetchAppointments = async (date) => {
+    try {
+      const response = await ongoingAppointments(salonId, date);
+      return response.data;
+    } catch (error) {
+      Notify.error(error.message);
+      return [];
+    }
+  };
+
+  useEffect(() => {
+    const initFetch = async () => {
+      const initialAppointments = await fetchAppointments(formattedDate);
+      if (initialAppointments.length > 0) {
+        setSelectedDate(formattedDate);
+        setOngoing(initialAppointments);
+      } else {
+        setShowNoAppointments(true);
+      }
+    };
+    initFetch();
+  }, [salonId, formattedDate]);
+
+  const handleButtonClick = async (value) => {
+    const currentDate = new Date();
+    const currentFormattedDate = currentDate.toISOString().split("T")[0];
+
+    if (value.fullDate === currentFormattedDate) {
+      const appointments = await fetchAppointments(value.fullDate);
+      if (appointments.length > 0) {
+        setSelectedDate(value.fullDate);
+        setOngoing(appointments);
+        setShowNoAppointments(false);
+      } else {
+        setShowNoAppointments(true);
+      }
+    } else {
+      setSelectedDate(null);
+      setOngoing([]);
+      setShowNoAppointments(false);
+    }
+  };
 
   const settings = {
     dots: false,
-    infinite: true,
+    infinite: false,
     speed: 500,
     slidesToShow: 5,
     slidesToScroll: 5,
     initialSlide: 0,
     arrows: false,
-    // slick-next: null, // Removes the previous arrow
-    // slick-prev: null, // Removes the next arrow
     responsive: [
       {
         breakpoint: 1252,
         settings: {
           slidesToShow: 4,
           slidesToScroll: 4,
-          infinite: true,
-          dots: false
-        }
+          infinite: false,
+          dots: false,
+        },
       },
-
       {
         breakpoint: 1200,
         settings: {
-          slidesToShow: 4,
-          slidesToScroll: 4,
-          infinite: true,
-          dots: false
-        }
+          slidesToShow: 8,
+          slidesToScroll: 1,
+          infinite: false,
+          dots: false,
+        },
       },
       {
-        breakpoint: 1199,
-        settings: {
-          slidesToShow:10,
-          slidesToScroll: 10,
-          infinite: true,
-          dots: false
-        }
-      },
-
-      {
-        breakpoint: 835,
+        breakpoint: 992,
         settings: {
           slidesToShow: 8,
-          slidesToScroll: 8,
-          infinite: true,
-          dots: false
-        }
+          slidesToScroll: 1,
+          infinite: false,
+          dots: false,
+        },
       },
-
       {
-        breakpoint: 692,
+        breakpoint: 768,
         settings: {
-          slidesToShow: 6,
-          slidesToScroll: 6,
-          initialSlide: 2,
-          dots: false
-        }
+          slidesToShow: 8,
+          slidesToScroll: 1,
+          infinite: false,
+          dots: false,
+        },
       },
-
       {
-        breakpoint: 562,
+        breakpoint: 576,
         settings: {
           slidesToShow: 4,
-          slidesToScroll: 4,
-          initialSlide: 2,
-          dots: false
-        }
+          slidesToScroll: 1,
+          infinite: false,
+          dots: false,
+        },
       },
-
-      {
-        breakpoint:432,
-        settings: {
-          slidesToShow: 4,
-          slidesToScroll: 4,
-          initialSlide: 2,
-          dots: false
-        }
-      },
-
-      {
-        breakpoint:354,
-        settings: {
-          slidesToShow: 3,
-          slidesToScroll: 3,
-          initialSlide: 2,
-          dots: false
-        }
-      },
-
-    ]
+    ],
   };
 
-  const [currentMonth, setCurrentMonth] = useState('January');
-  const [currentYear, setCurrentYear] = useState(2018);
-
-  const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-
-  const goToPreviousMonth = () => {
-    const currentMonthIndex = months.indexOf(currentMonth);
-    if (currentMonthIndex === 0) {
-      setCurrentMonth('December');
-      setCurrentYear(currentYear - 1);
-    } else {
-      setCurrentMonth(months[currentMonthIndex - 1]);
-    }
-  };
-
-  const goToNextMonth = () => {
-    const currentMonthIndex = months.indexOf(currentMonth);
-    if (currentMonthIndex === 11) {
-      setCurrentMonth('January');
-      setCurrentYear(currentYear + 1);
-    } else {
-      setCurrentMonth(months[currentMonthIndex + 1]);
-    }
-  };
-
-  // Using useState to change the color of button
-  const [selectedDate, setSelectedDate] = useState(null);
-
-  const handleButtonClick = (value) => {
-    setSelectedDate(value.date);
-  }
   return (
     <div className={styles.primaryDiv}>
-      <div className={styles.mainDiv} >
+      <div className={styles.mainDiv}>
         <div className={styles.text}>
           <p>Upcoming Appointments</p>
         </div>
@@ -344,74 +155,89 @@ function UpcomingAppointment() {
         <div className={styles.calendar}>
           <div className={styles.monthYear}>
             <FaCalendarDays className={styles.calIcon} />
-            <span>{currentMonth}</span>
-            <span>{currentYear}</span>
           </div>
-
+          <div className={styles.todayDate}>
+            <span className="fw-bold">{formattedCurrentDate}</span>
+          </div>
           <div className={styles.nav}>
-            <KeyboardArrowLeftIcon onClick={goToPreviousMonth} />
-            <KeyboardArrowRightIcon onClick={goToNextMonth} />
+            <KeyboardArrowLeftIcon
+              onClick={() => console.log("Previous month")}
+            />
+            <KeyboardArrowRightIcon onClick={() => console.log("Next month")} />
           </div>
         </div>
 
-        {/* Slider */}
-
         <Slider {...settings}>
-          {item.map((value) => (
+          {generateUpcomingWeek().map((value) => (
             <div className={styles.reactslider} key={value.date}>
-              <button onClick={() => handleButtonClick(value)} className={selectedDate === value.date ? styles.buttonClicked : ''}>
-                <div className={`${styles.paperone} ${selectedDate === value.date ? styles.paperClicked : ''}`}>
+              <button
+                onClick={() => handleButtonClick(value)}
+                className={
+                  selectedDate === value.fullDate ? styles.buttonClicked : ""
+                }
+              >
+                <div
+                  className={`${styles.paperone} ${
+                    selectedDate === value.fullDate ? styles.paperClicked : ""
+                  }`}
+                >
                   <p>
-                    <span className={styles.days}>
-                      {value.day}
-                    </span><br />
-                    <span className={styles.date}>
-                      {value.date}
-                    </span>
+                    <span className={styles.days}>{value.day}</span>
+                    <br />
+                    <span className={styles.date}>{value.date}</span>
                   </p>
                 </div>
               </button>
+              {showNoAppointments && value.fullDate !== formattedDate && (
+                <div className={styles.noAppointment}>
+                  <p>Oops, there are no appointments</p>
+                </div>
+              )}
             </div>
           ))}
         </Slider>
 
         <div className={styles.appointmentDiv}>
-          {
-            data.map((value) => (
-                <Paper className={styles.paper} elevation={0}>
-                  <div className={styles.appointmentdetails}>
-                    <div className={styles.content}>
-                      <div className={styles.imgDiv}>
-                        <img src={value.imgsrc} alt=''/>
-                      </div>
-
-                      <div className={styles.details}>
-                        <p>{value.textOne}<br />
-                          <span className={styles.spanOne}>{value.textTwo}</span><br />
-                          <span className={styles.spanTwo}>{value.textThree}</span>
-                        </p>
-                      </div>
+          {!showNoAppointments &&
+            ongoing.map((appointment) => (
+              <Paper
+                className={styles.paper}
+                elevation={0}
+                key={appointment.id}
+              >
+                <div className={styles.appointmentdetails}>
+                  <div className={styles.content}>
+                    <div className={styles.imgDiv}>
+                      <img
+                        src={appointment.user.profileImageUrl}
+                        alt={appointment.user.firstName}
+                      />
                     </div>
-
-
-                    {/* <div>At Home</div> */}
-
-                    <div className={styles.horizonIcon}>
-                      <MoreHorizIcon className={styles.dots} />
-                      <p>{value.price}</p>
+                    <div className={styles.details}>
+                      <p>
+                        {appointment.user.firstName}
+                        <br />
+                        <span className={styles.spanOne}>
+                          {appointment.serviceType}
+                        </span>
+                        <br />
+                        <span className={styles.spanTwo}>
+                          {appointment.startTime}
+                        </span>
+                      </p>
                     </div>
-
                   </div>
-                </Paper>
-            ))
-          }
+                  <div className={styles.horizonIcon}>
+                    <MoreHorizIcon className={styles.dots} />
+                    <p>{appointment.price}</p>
+                  </div>
+                </div>
+              </Paper>
+            ))}
         </div>
-        <h6 className={styles.view}>View All</h6>
       </div>
-
-    
     </div>
-  )
+  );
 }
 
 export default UpcomingAppointment;
