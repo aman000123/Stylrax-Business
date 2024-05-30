@@ -1,0 +1,72 @@
+.radiusContainer {
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column; 
+  }
+  
+  .radiusContainer span {
+    margin-top: 10px; 
+  }
+  .mainDiv{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-weight: bold;
+    font-size: 16px;
+    margin-bottom: -38px;
+  }
+  .radiusContainer button {
+    background-color: black;
+    color: white;
+    border: none;
+    font-size: 17px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    margin-top: 20px; 
+  }
+  
+  @media (max-width: 768px) {
+    .radiusContainer {
+      padding: 10px;
+    }
+  
+    .radiusContainer button {
+      font-size: 14px;
+      padding: 8px 16px;
+    }
+  
+    input[type="range"] {
+      width: 100%; 
+    }
+  
+    span {
+      font-size: 14px; 
+    }
+  }
+  
+  .mapContainer {
+    height: 500px;
+    width: 100%;
+    margin-bottom: -15px;
+  }
+  
+  @media (max-width: 480px) {
+    .mapContainer {
+      height: 300px; 
+    }
+    .mainDiv{
+        padding-top: 20px;
+    }
+    .radiusContainer span {
+      font-size: 12px;
+    }
+  
+    .radiusContainer button {
+      font-size: 12px;
+      padding: 6px 12px;
+    }
+  }
+  

@@ -106,7 +106,8 @@ export const bankSchema = Yup.object({
 });
 
 
-
+const onlyAlphabets = (value) =>
+  /^[a-zA-Z]+$/.test(value) || 'Only alphabetic characters are allowed';
 // Add staff schema
 const imageFileTypes = ['image/jpeg','image/jpg', 'image/png'];
 export const addStaffSchema = Yup.object({
@@ -156,7 +157,10 @@ export const addStaffSchema = Yup.object({
 //add service
 
 export const addServiceSchema = Yup.object().shape({
-  serviceName: Yup.string().matches(/^[a-zA-Z\s]*$/, 'Service name must contain only letters').required('Please enter service name'),
+ // serviceName: Yup.string().matches(/^[a-zA-Z\s]*$/, 'Service name must contain only letters').required('Please enter service name'),
+ serviceName: Yup.string()
+ .required('First name is required')
+ .test('onlyAlphabets', onlyAlphabets),
   serviceDuration: Yup.string().matches(/^\d+$/, 'Service duration must contain only numbers').required('Please select service duration'),
   // servicePrice: Yup.number()
   //  .max(99999, 'Service price cannot exceed 99999')

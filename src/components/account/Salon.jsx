@@ -39,6 +39,7 @@ const initialValues = {
   address: "",
   panNumber: "",
   mainGateUrl: "",
+  homeService: "",
   bannerImages: [],
   galleryImageUrl: [],
 };
@@ -66,7 +67,7 @@ const BusinessDetails = ({ onContinue, token }) => {
         state: values.state,
         pincode: values.pinCode,
         serviceType: values.serviceType,
-        homeService: false,
+        homeService: values.homeServices,
 
         mainGateImageUrl: values.mainGateUrl,
         bannerImages: bannerImages,
@@ -195,6 +196,14 @@ const BusinessDetails = ({ onContinue, token }) => {
                   label="Service Type"
                   options={serviceOptions}
                 />
+                  <label>
+                      <input
+                        type="checkbox"
+                        name="homeService"
+                        onChange={(e) => setFieldValue("homeService", e.target.checked)}
+                      />
+                      &nbsp; Provide Home Services
+                    </label>
                 <Section className="d-flex flex-column align-items-start"></Section>
                 <Section className="d-flex flex-column align-items-start mb-4">
                   <Label text="Salon Images" />

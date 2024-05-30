@@ -8,7 +8,7 @@ import Navbar from "../components/saloondashboard/navbar/Navbar";
 import SwitchSalon from "../components/saloondashboard/switchsalon/SwitchSalon";
 import { navItems } from "../data/navdata/Data";
 import { getSalon } from "../api/salon.api";
-import { setSalonID, setSalonImage, setSalonName } from "../store/auth.slice";
+import { setSalonID, setSalonImage, setSalonName ,setHomeService} from "../store/auth.slice";
 import Notify from "../utils/notify";
 import styles from "./DashboardLayout.module.css";
 import Footer from "../components/home/footer/Footer";
@@ -20,6 +20,7 @@ const DashboardLayout = () => {
     name: "",
     mainGateImageUrl: "",
     id: "",
+    homeService: "",
   });
   const dispatch = useDispatch();
   const switchSalonRef = useRef(null);
@@ -39,14 +40,18 @@ const DashboardLayout = () => {
         dispatch(setSalonID({ salonId: storedSalon.id }));
         dispatch(setSalonName({ salonName: storedSalon.name }));
         dispatch(setSalonImage({ salonImage: storedSalon.mainGateImageUrl }));
+        dispatch(setHomeService({ homeService: storedSalon.homeService }));
       } else if (salons.length > 0) {
-        const { name, mainGateImageUrl, id } = salons[0];
-        const initialSalon = { name, mainGateImageUrl, id };
+        const { name, mainGateImageUrl, id,homeService } = salons[0];
+        const initialSalon = { name, mainGateImageUrl, id ,homeService};
         setSelectedSalon(initialSalon);
+        console.log("Initial salon:", initialSalon);
         localStorage.setItem("selectedSalon", JSON.stringify(initialSalon));
         dispatch(setSalonID({ salonId: id }));
         dispatch(setSalonName({ salonName: name }));
         dispatch(setSalonImage({ salonImage: mainGateImageUrl }));
+        dispatch(setHomeService({homeService }));
+
       }
     } catch (error) {
       Notify.error(error.message);
@@ -57,13 +62,15 @@ const DashboardLayout = () => {
     fetchSalons();
   }, []);
 
-  const handleSelectSalon = (name, image, id) => {
-    const newSelectedSalon = { name, mainGateImageUrl: image, id };
+  const handleSelectSalon = (name, image, id,homeService) => {
+    const newSelectedSalon = { name, mainGateImageUrl: image, id,homeService };
     setSelectedSalon(newSelectedSalon);
     localStorage.setItem("selectedSalon", JSON.stringify(newSelectedSalon));
     dispatch(setSalonID({ salonId: id }));
     dispatch(setSalonName({ salonName: name }));
     dispatch(setSalonImage({ salonImage: image }));
+    dispatch(setHomeService({homeService }));
+
     setShowContent(false);
   };
 

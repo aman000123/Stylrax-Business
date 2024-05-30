@@ -11,8 +11,8 @@ const SwitchSalon = ({ salons, onSelectSalon , selectedSalonId }) => {
   const navigate = useNavigate();
  
 
-  const handleSalonClick = (salonName, salonImage, id) => {
-    onSelectSalon(salonName, salonImage, id);
+  const handleSalonClick = (salonName, salonImage, id,homeService) => {
+    onSelectSalon(salonName, salonImage, id,homeService);
   };
   useEffect(() => {
     const selectedSalon = document.querySelector(`.selectSalon[data-id='${selectedSalonId}']`);
@@ -42,7 +42,7 @@ const SwitchSalon = ({ salons, onSelectSalon , selectedSalonId }) => {
              <div
              key={salon.id}
              className={clsx(styles.selectSalon, { [styles.selected]: salon.id === selectedSalonId })}
-             onClick={() => handleSalonClick(salon.name, salon.mainGateImageUrl, salon.id)}
+             onClick={() => handleSalonClick(salon.name, salon.mainGateImageUrl, salon.id,salon.homeService)}
            >
               <img src={salon.mainGateImageUrl} alt={salon.name} className={styles.userImage} />
               <p>{salon.name}</p>
