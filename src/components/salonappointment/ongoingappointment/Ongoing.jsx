@@ -28,7 +28,7 @@ const Ongoing = () => {
 
   const handleViewDetails = (appointmentId) => {
     setSelectedAppointmentId(appointmentId);
-    console.log("ara id", appointmentId);
+    console.log("id", appointmentId);
     setShowPopup(true);
   };
   if(!pending || pending.length===0){
@@ -60,7 +60,7 @@ const Ongoing = () => {
   };
   return (
     <>
-      <Row>
+      <Row className={styles.today}>
         {pending?.map((appointment, index) => (
           <Col md={4} sm={6} xs={12} key={index}>
             <Row className={`${styles.mainDiv} mb-2`}>

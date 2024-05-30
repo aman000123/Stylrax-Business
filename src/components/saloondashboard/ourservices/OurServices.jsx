@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { Paper } from "@mui/material";
 import { Row, Col } from "react-bootstrap";
 import styles from "../ourservices/OurServices.module.css";
-import { salonService } from "../../../api/salon.management";
+import { salonServices } from "../../../api/salon.management";
 import Session from "../../../service/session";
 import Notify from "../../../utils/notify";
 
@@ -13,15 +13,25 @@ function OurServices() {
 
   useEffect(() => {
     const fetchServices = async () => {
+      if (!salonId) {
+        Notify.error("Invalid salon ID");
+        return;
+      }
+
       try {
-        const response = await salonService(salonId);
-        const services = response.data;
-        console.log("services::>", services);
-        setServices(services);
+        const response = await salonServices(salonId);
+        if (response && response.data) {
+          const services = response.data;
+          console.log("services::>", services);
+          setServices(services);
+        } else {
+          Notify.error("Failed to fetch services. Please try again.");
+        }
       } catch (error) {
-        Notify.error(error.message);
+        Notify.error(error.message || "An unexpected error occurred.");
       }
     };
+
     fetchServices();
   }, [salonId]);
 
@@ -43,10 +53,10 @@ function OurServices() {
                 <img
                   className={styles.hairStylist}
                   src={osImg16}
-                  alt={service.serviceName}
+                  alt={service.serviceName || "Service"}
                 />
                 <p className={styles.hairStyle}>
-                  {service.serviceName}
+                  {service.serviceName || "?"}
                   <br />
                 </p>
               </Paper>

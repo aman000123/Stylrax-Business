@@ -39,7 +39,7 @@ const TodayAppointment = () => {
       };
       if(!ongoing || ongoing.length===0){
         return <div className={styles.noContent}>
-          No todays&apos; appointments
+          No today&apos;s appointments
         </div>
        }
        const getStatusClass = (status) => {

@@ -150,7 +150,6 @@ function AddStaff({ onClose, updatedData }) {
                 component="div"
                 className={styles.formError}
               />
-
               <Field as="select" name="gender" className={styles.gender}>
                 <option value="">Select staff&apos; gender</option>
                 <option value="Male">Male</option>
@@ -161,7 +160,6 @@ function AddStaff({ onClose, updatedData }) {
                 component="div"
                 className={styles.formError}
               />
-
               <Field
                 type="text"
                 placeholder="Enter specialization"

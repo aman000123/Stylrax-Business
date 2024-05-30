@@ -40,7 +40,7 @@ function UpcomingAppointment() {
   )} ${currentDate.getFullYear()}`;
 
   const [ongoing, setOngoing] = useState([]);
-  const [selectedDate, setSelectedDate] = useState(null);
+  const [selectedDate, setSelectedDate] = useState(formattedDate);
   const [showNoAppointments, setShowNoAppointments] = useState(false);
 
   const salonId = Session.get("salonId");
@@ -57,34 +57,29 @@ function UpcomingAppointment() {
 
   useEffect(() => {
     const initFetch = async () => {
-      const initialAppointments = await fetchAppointments(formattedDate);
-      if (initialAppointments.length > 0) {
-        setSelectedDate(formattedDate);
+      if (salonId) {
+        const initialAppointments = await fetchAppointments(formattedDate);
         setOngoing(initialAppointments);
+        setShowNoAppointments(initialAppointments.length === 0);
       } else {
-        setShowNoAppointments(true);
+        Notify.error("Invalid salon ID");
       }
     };
     initFetch();
   }, [salonId, formattedDate]);
 
   const handleButtonClick = async (value) => {
-    const currentDate = new Date();
-    const currentFormattedDate = currentDate.toISOString().split("T")[0];
-
-    if (value.fullDate === currentFormattedDate) {
+    if (salonId) {
       const appointments = await fetchAppointments(value.fullDate);
-      if (appointments.length > 0) {
-        setSelectedDate(value.fullDate);
-        setOngoing(appointments);
-        setShowNoAppointments(false);
+      setSelectedDate(value.fullDate);
+      setOngoing(appointments);
+      if (value.fullDate === formattedDate) {
+        setShowNoAppointments(appointments.length === 0);
       } else {
-        setShowNoAppointments(true);
+        setShowNoAppointments(false);
       }
     } else {
-      setSelectedDate(null);
-      setOngoing([]);
-      setShowNoAppointments(false);
+      Notify.error("Invalid salon ID");
     }
   };
 
@@ -188,17 +183,12 @@ function UpcomingAppointment() {
                   </p>
                 </div>
               </button>
-              {showNoAppointments && value.fullDate !== formattedDate && (
-                <div className={styles.noAppointment}>
-                  <p>Oops, there are no appointments</p>
-                </div>
-              )}
             </div>
           ))}
         </Slider>
 
         <div className={styles.appointmentDiv}>
-          {!showNoAppointments &&
+          {ongoing.length > 0 && !showNoAppointments ? (
             ongoing.map((appointment) => (
               <Paper
                 className={styles.paper}
@@ -233,7 +223,12 @@ function UpcomingAppointment() {
                   </div>
                 </div>
               </Paper>
-            ))}
+            ))
+          ) : showNoAppointments && selectedDate === formattedDate ? (
+            <div className={styles.noAppointment}>
+              <p>Oops, there are no appointments</p>
+            </div>
+          ) : null}
         </div>
       </div>
     </div>

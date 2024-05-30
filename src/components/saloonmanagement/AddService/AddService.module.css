@@ -136,17 +136,14 @@
       margin-left: 13px;
     }
     .form .input5 {
-      padding: 5px 70px 5px 15px;
-      margin-left: 10px;
+     width: 100%;
     }
     .form .input6 {
-      padding: 5px 75px 5px 15px;
-      margin-left: 10px;
       color: #909090;
+      width: 100%;
     }
     .gender {
-      padding: 5px 138px 5px 15px;
-      margin-left: 10px;
+    width: 100%;
       color: #909090;
     }
     .mainDiv .secDiv {
