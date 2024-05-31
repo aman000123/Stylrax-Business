@@ -34,7 +34,7 @@ function UpcomingAppointment() {
   const currentDayOfWeek = currentDate.toLocaleDateString("en-US", {
     weekday: "long",
   });
-  const formattedCurrentDate = `${currentDayOfWeek} ${currentDay} ${currentDate.toLocaleString(
+  const formattedCurrentDate = ` ${currentDate.toLocaleString(
     "default",
     { month: "long" }
   )} ${currentDate.getFullYear()}`;
@@ -68,6 +68,8 @@ function UpcomingAppointment() {
     initFetch();
   }, [salonId, formattedDate]);
 
+
+
   const handleButtonClick = async (value) => {
     if (salonId) {
       const appointments = await fetchAppointments(value.fullDate);
@@ -87,8 +89,8 @@ function UpcomingAppointment() {
     dots: false,
     infinite: false,
     speed: 500,
-    slidesToShow: 5,
-    slidesToScroll: 5,
+    slidesToShow: 7,
+    slidesToScroll: 7,
     initialSlide: 0,
     arrows: false,
     responsive: [

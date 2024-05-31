@@ -51,6 +51,7 @@ const initialValues = {
 const NewSalon = ({ onClose, updatedData }) => {
   const [bannerImages, setBannerImages] = useState([]);
   const [galleryImages, setGalleryImages] = useState([]);
+  const [verified, setVerified] = useState(false);
   const containerRef = useRef(null);
   const [cityOptions, setCityOptions] = useState([
     { value: "", text: "Select salon city" },
@@ -79,15 +80,14 @@ const NewSalon = ({ onClose, updatedData }) => {
         gallaryImages: galleryImages,
       };
       const res = await createSalon(verifyForm);
+      const verified = res.data.verified;
+      console.log('verified',verified)
       Notify.success("New Salon Added");
       const newSalonId = res.data.id;
       setSalonId(newSalonId); 
       // updatedData();
+      setVerified(verified);
       setShowSalonDetails(true); 
-
-      if (values.provideHomeServices) {
-        await salonAddress(newSalonId, { field: "range", value: "1.5" });
-      }
     } catch (error) {
       Notify.error(error.message);
     }
@@ -276,7 +276,7 @@ const NewSalon = ({ onClose, updatedData }) => {
           </Section>
         </div>
       ) : (
-        <SalonBank salonId={salonId} onClose={onClose} />
+        <SalonBank salonId={salonId} onClose={onClose} verified={verified}/>
       )}
     </>
   );
