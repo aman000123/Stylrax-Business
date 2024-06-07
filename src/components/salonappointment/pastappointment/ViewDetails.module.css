@@ -1,0 +1,27 @@
+.details{
+    padding-inline-start: 50px;
+}
+.appointmentDetails .data{
+}
+.mainDiv{
+    padding-inline-start: 50px;
+}
+.invoice{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 20px;
+}
+.invoice button{
+   
+    outline: none;
+    background-color: black;
+    color: white;
+    padding: 10px 50px;
+    border-radius: 5px;
+}
+@media (max-width:575px){
+    .hh{
+        width: 300px;
+    }
+}

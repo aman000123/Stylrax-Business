@@ -176,7 +176,31 @@
 .status.inProgress {
   color: blue;
 }
-
+.invoiceDiv{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 13px 20px;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  text-decoration: none;
+  color: #7C7C7C;
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  transition: background-color 0.3s, box-shadow 0.3s;
+}
+.loadIcon{
+  margin-left: 50px;
+}
+.viewDetailsLink{
+cursor: pointer;
+}
+.invoiceDiv p{
+  text-decoration: underline;
+}
+.iconDiv p{
+  text-decoration: none;
+}
 @media (max-width: 1400px) {
   .userInfo {
     width: 360px !important;
@@ -186,10 +210,27 @@
   .userInfo {
     width: 300px !important;
   }
+  .loadIcon{
+    margin-left: 40px;
+
+  }
+  .invoiceDiv p{
+    font-size: 14px;
+    padding: 2.5px 0px;
+  }
 }
 @media (max-width: 991px) {
   .userInfo {
     width: 335px !important;
+  }
+  .invoiceDiv{
+    padding: 10px 3px;
+    width: 99%;
+    margin-left: -12px;
+
+  }
+  .invoice{
+    padding-top: 30px;
   }
 }
 @media (max-width: 767px) {
@@ -223,7 +264,17 @@
   @media (max-width: 575px) {
     .mainDiv {
       align-items: center;
+      flex-direction: column;
       justify-content: center;
+    }
+    .invoice{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 280px;
+    }
+    .invoiceDiv{
+      margin-left: 0;
     }
     .userInfo {
       margin-top: 0px;
