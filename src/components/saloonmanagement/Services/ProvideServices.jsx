@@ -30,8 +30,8 @@ function ProvideServices() {
   };
 
   const handleViewMore = (id) => {
-    setSelectedCategoryId(id);
-    setHaircut(true);
+    setSelectedCategoryId(id.toString());
+        setHaircut(true);
   };
 
   const handleCloseAddService = () => {

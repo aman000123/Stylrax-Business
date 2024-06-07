@@ -4,12 +4,12 @@ import Salon from "../components/account/Salon";
 import BankDetails from "../components/account/BankDetails";
 import Finish from "../components/account/Finish";
 import Service from "../components/account/Service";
-import Footer from "../layout/Footer";
 import Header from "../layout/Header";
 import StepperMenu from "../components/account/StepperMenu";
 import Profile from "../components/account/Profile";
 import Section from "../ux/Section";
 import { useSelector } from "react-redux";
+import Footer from "../components/home/footer/Footer";
 
 const accountSteps = {
   Salon: [

@@ -160,12 +160,17 @@ function AddStaff({ onClose, updatedData }) {
                 component="div"
                 className={styles.formError}
               />
-              <Field
+              {/* <Field
                 type="text"
                 placeholder="Enter specialization"
                 name="specialization"
                 onKeyPress={handleKeyPress}
-              />
+              /> */}
+                <Field as="select" name="specialization" className={styles.gender}>
+                <option value="">Select specialization</option>
+                <option value="Staff">Staff</option>
+                <option value="Manager">Manager</option>
+              </Field>
               <ErrorMessage
                 name="specialization"
                 component="div"
