@@ -68,7 +68,7 @@ const Profile = ({ onContinue, token }) => {
       <Section className="d-flex flex-column align-items-center">
         <FormContainer>
           <Section className="d-flex flex-column align-items-center mb-1">
-            <img src={client3} className={styles.client} alt="client" />
+            {/* <img src={client3} className={styles.client} alt="client" /> */}
           </Section>
           <Formik
             initialValues={initialValues}

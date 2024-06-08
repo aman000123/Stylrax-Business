@@ -11,18 +11,21 @@ function Footer(props) {
           <i className={styles.designs}></i>
         </div>
         <div className={styles.footerLinks}>
-        <NavLink to={props.redirect}>    <img src={logo} alt="logo" className={styles.footerItem}/></NavLink>
+          <NavLink to={props.redirect}>
+            {" "}
+            <img src={logo} alt="logo" className={styles.footerItem} />
+          </NavLink>
 
           <Link to="/home/aboutus">About US</Link>
           <Link to="/home/contactus">Contact US</Link>
           <Link to="/home/codeofconduct">Code Of Conduct</Link>
           <Link to="/home/privacy">Privacy Policy</Link>
           <Link to="/home/terms-condition">Terms of use</Link>
+          <div className={styles.iconDiv}>
+          <img src={playstore} alt="playstore" className={styles.gplay} />
+          <img src={appstore} alt="playstore" className={styles.appstore} />
         </div>
-        <div className={styles.iconDiv}>
-            <img src={playstore} alt="playstore" className={styles.gplay} />
-            <img src={appstore} alt="playstore" className={styles.appstore} />
-          </div>
+        </div>
       </div>
     </div>
   );

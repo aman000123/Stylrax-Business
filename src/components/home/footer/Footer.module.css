@@ -1,61 +1,77 @@
-.mainDiv{
+.mainDiv {
   background-color: black;
   padding: 20px 0px;
-  }
-  
-  .mainDiv .footerItem{
+}
+
+.mainDiv .footerItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* padding: 20px; */
+}
+.mainDiv .footerItem {
+  width: 250px;
+}
+.mainDiv .footerLinks {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  justify-content: space-evenly;
+  padding: 20px;
+}
+.iconDiv {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* padding-top: 30px;
+    margin-top: -40px; */
+  /* gap: 40px; */
+}
+.footerLinks a {
+  text-decoration: none;
+  color: white;
+  font-size: 18px;
+  list-style: none;
+  font-family: "Poppins";
+  font-weight: 600px;
+}
+@media (max-width: 1275px) {
+  .mainDiv .footerLinks {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 20px;
   }
-  .mainDiv .footerItem{
-    width: 400px;
-  }
- .mainDiv .footerLinks {
+  .mainDiv .iconDiv{
     display: flex;
-    align-items: center;
-    justify-content: center;
-    justify-content: space-evenly;
-    padding: 20px;
-    
+    flex-direction: column;
+   gap: 10px;
   }
-  .iconDiv{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding-top: 30px;
-    margin-top: -40px;
-    gap: 40px;
+  .mainDiv .footerLinks{
+    margin-bottom: 5px;
+  }
+  .mainDiv .footerItem {
+    margin-bottom: 5px;
+  }
 }
-  .footerLinks a {
-    text-decoration: none;
-    color: white;
-    font-size: 18px;
-    list-style: none;
-    font-family: "Poppins";
-   font-weight: 600px;
+@media (max-width: 767px) {
+  .footerItem {
+    flex-direction: column;
+    align-items: center;
   }
-
-  @media (max-width: 767px) {
-    .footerItem {
-        flex-direction: column;
-        align-items: center;
-    }}
-  @media (max-width: 570px) {
-    .footerLinks {
-      flex-direction: column;
-      align-items: center;
-    }
-    .mainDiv .footerItem img{
-        width: 300px;
-    }
-    .link {
-      margin-bottom: 10px;
-    }
-    .iconDiv{
-      flex-direction: column;
-      gap: 20px;
+}
+@media (max-width: 570px) {
+  .footerLinks {
+    flex-direction: column;
+    align-items: center;
   }
+  .mainDiv .footerItem img {
+    width: 300px;
   }
-  
+  .link {
+    margin-bottom: 10px;
+  }
+  .iconDiv {
+    flex-direction: column;
+    gap: 20px;
+  }
+}
