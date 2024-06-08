@@ -40,11 +40,6 @@ function AddService({ onClose, updatedData, id }) {
     }
   };
 
-  const handleCategoryChange = (event) => {
-    const selectedCategoryId = event.target.value;
-    setSelectedCategoryId(selectedCategoryId);
-    console.log("Selected Category ID:", selectedCategoryId);
-  };
 
   return (
     <div className={styles.mainDiv}>
@@ -69,7 +64,7 @@ function AddService({ onClose, updatedData, id }) {
               name="categoryId"
               className={styles.input5}
               value={selectedCategoryId}
-              onChange={handleCategoryChange}
+             // onChange={handleCategoryChange}
             />
             <br />
             <ErrorMessage

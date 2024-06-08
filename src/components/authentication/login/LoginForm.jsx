@@ -19,12 +19,16 @@ const initialValues = {
 const LoginForm = ({ setActiveStep }) => {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [showOTPSection, setShowOTPSection] = useState(false);
+  const [submitting, setSubmitting] = useState("Submit");
+
   const [timer, setTimer] = useState(0);
   const [isTimerActive, setIsTimerActive] = useState(false);
+  const [submittingText, setSubmittingText] = useState("Submit");
 
-  const onSubmit = async (values, { setSubmitting, setFieldError }) => {
+  const onSubmit = async (values, { setFieldError }) => {
     try {
       setSubmitting(true);
+      setSubmittingText("Submitting...");
       console.log("Submitting form with values:", values);
       const { phoneNumber } = values;
       console.log("Values ::", values);
@@ -51,10 +55,11 @@ const LoginForm = ({ setActiveStep }) => {
       } else {
         Notify.error(error.message);
       }
+    } finally {
+      setSubmitting(false);
+      setSubmittingText("Submit");
     }
   };
-
-  const [submittingText, setSubmittingText] = useState("Submit");
 
   return (
     <main className={styles.main}>
@@ -109,12 +114,13 @@ const LoginForm = ({ setActiveStep }) => {
                               .
                             </div>
                             <div className={styles.btnDiv}>
-                            <button
-                              type="submit"
-                              className={`${styles.btn} text-black bg-white`}
-                            >
-                              Continue
-                            </button>
+                              <button
+                                type="submit"
+                                className={`${styles.btn} text-black bg-white`}
+                               // disabled={submitting}
+                              >
+                                {submitting ? submittingText : "Continue"}
+                              </button>
                             </div>
                           </div>
                         </Form>

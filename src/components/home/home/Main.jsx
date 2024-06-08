@@ -31,7 +31,7 @@ const Main = () => {
     <Feedback/>
     <Explore/>
     <Review/>
-    <DownloadApp/>
+    {/* <DownloadApp/> */}
     <Partners/>
     <Team/>
     <Support/>
