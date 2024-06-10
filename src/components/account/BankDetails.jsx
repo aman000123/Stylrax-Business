@@ -64,11 +64,11 @@ return (
                 >
                     {({ setFieldValue }) => (
                         <Form className="d-flex flex-column">
-                        <InputText type="text" name="accountNumber" label="Account Number" placeholder="Account Number" />
-                        <InputText type="text" name="accountHolderName" label="Account Holder's Name" placeholder="Account Holder's Name" />
-                        <InputText type="text" name="bankName" label="Bank Name" placeholder="Bank Name" />
+                        <InputText type="text" name="accountNumber" label="Account Number" placeholder="Enter account number" />
+                        <InputText type="text" name="accountHolderName" label="Account Holder's Name" placeholder="Enter account holder's name" />
+                        <InputText type="text" name="bankName" label="Bank Name" placeholder="Enter bank name" />
 
-                        <InputText type="text" name="ifscCode" label="IFSC Code" placeholder="IFSC Code" />
+                        <InputText type="text" name="ifscCode" label="IFSC Code" placeholder="Enter IFSC code" />
                       
                         <Section className="d-flex flex-column align-items-start mb-4">
                             <Label text="Passbook/Cancelled Cheque" />
