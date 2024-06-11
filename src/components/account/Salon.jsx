@@ -141,13 +141,13 @@ const BusinessDetails = ({ onContinue, token }) => {
                 <InputText
                   type="text"
                   name="gst"
-                  label="GST Number"
+                  label="GST Number (optional)"
                   placeholder="Enter GST number"
                 />
                 <InputText
                   type="text"
                   name="companyName"
-                  label="Company Name"
+                  label="Company Name (optional) "
                   placeholder="Enter company name"
                 />
                 <InputText
@@ -171,7 +171,7 @@ const BusinessDetails = ({ onContinue, token }) => {
                     />
                 <InputSelect
                   name="state"
-                  label="Salon State"
+                  label="Enter salon state"
                   options={states.map((state) => ({
                     value: state,
                     text: state,
@@ -183,7 +183,7 @@ const BusinessDetails = ({ onContinue, token }) => {
                 />
                  <InputSelect
                   name="city"
-                  label="Salon City"
+                  label="Enter salon city"
                   options={cityOptions}                />
                 <InputText
                   type="text"
