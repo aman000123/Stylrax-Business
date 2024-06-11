@@ -5,9 +5,9 @@ import { salonStaff } from "../../../api/salon.management";
 import Session from "../../../service/session";
 import Notify from "../../../utils/notify";
 
-function Stylist() {
+function Stylist({selectedSalon}) {
   const [staff, setStaff] = useState([]);
-  const salonId = Session.get("salonId");
+  const salonId = selectedSalon.id;
 
   useEffect(() => {
     const getStaff = async () => {

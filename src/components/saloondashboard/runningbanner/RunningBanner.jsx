@@ -7,12 +7,12 @@ import Session from "../../../service/session";
 import Notify from "../../../utils/notify";
 import styles from "./RunningBanner.module.css";
 
-function RunningBanner() {
+function RunningBanner({selectedSalon}) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [bannerImages, setBannerImages] = useState([]);
   const { salonName } = useSelector((state) => state.auth);
 
-  const salonId = Session.get("salonId");
+  const salonId = selectedSalon.id;
 
   const changeBanner = (direction) => {
     setCurrentIndex((prevIndex) =>
@@ -34,6 +34,7 @@ function RunningBanner() {
         const images = salonDetails.bannerImages || [];
         setBannerImages(images);
       } catch (error) {
+        //console.log(error)
         Notify.error(error.message);
       }
     };
@@ -41,7 +42,7 @@ function RunningBanner() {
     if (salonId) {
       getSalon();
     } else {
-      Notify.error("Invalid salon ID");
+      console.log('')
     }
   }, [salonId]);
 

@@ -8,20 +8,21 @@ import styles from './SwitchSalon.module.css';
 import { useNavigate } from 'react-router-dom';
 
 const SwitchSalon = ({ salons, onSelectSalon , selectedSalonId }) => {
+  console.log("ss id",selectedSalonId)
   const navigate = useNavigate();
  
 
   const handleSalonClick = (salonName, salonImage, id,homeService) => {
     onSelectSalon(salonName, salonImage, id,homeService);
   };
-  useEffect(() => {
-    const selectedSalon = document.querySelector(`.selectSalon[data-id='${selectedSalonId}']`);
-    if (selectedSalon) {
-      const allSalons = document.querySelectorAll('.selectSalon');
-      allSalons.forEach((salon) => salon.classList.remove('selected'));
-      selectedSalon.classList.add('selected');
-    }
-  }, [selectedSalonId]);
+  // useEffect(() => {
+  //   const selectedSalon = document.querySelector(`.selectSalon[data-id='${selectedSalonId}']`);
+  //   if (selectedSalon) {
+  //     const allSalons = document.querySelectorAll('.selectSalon');
+  //     allSalons.forEach((salon) => salon.classList.remove('selected'));
+  //     selectedSalon.classList.add('selected');
+  //   }
+  // }, [selectedSalonId]);
   return (
     <>
       <Paper className={`${styles.switchPaper}`} elevation={15} style={{ borderRadius: '15px' ,border:'none'}}>

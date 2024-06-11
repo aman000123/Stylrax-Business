@@ -104,6 +104,7 @@ const DashboardLayout = () => {
                   salons={salons}
                   show={showContent}
                   updatedData={fetchSalons}
+                  selectedSalonId={selectedSalon.id}
                   onSelectSalon={handleSelectSalon}
                 />
               </div>
@@ -113,10 +114,10 @@ const DashboardLayout = () => {
 
         <Row className="mt-2">
           <Col xl={8}>
-            <SalonClinic />
+            <SalonClinic selectedSalon={selectedSalon}/>
           </Col>
           <Col xl={4}>
-            <UpcomingAppointment />
+            <UpcomingAppointment selectedSalon={selectedSalon}/>
           </Col>
         </Row>
       </div>
