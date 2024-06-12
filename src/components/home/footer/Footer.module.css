@@ -29,7 +29,7 @@
 }
 .footerLinks a {
   text-decoration: none;
-  color: white;
+  color: white !important;
   font-size: 18px;
   list-style: none;
   font-family: "Poppins";

@@ -37,6 +37,9 @@
     justify-content: center;
     align-items: center;
 } 
+.menuLi{
+    color: white;
+}
 .MenuIcon{
     margin-bottom: -234px;
     margin-left: -210px;

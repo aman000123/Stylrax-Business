@@ -23,7 +23,7 @@ const Navbar = (props) => {
             <div key={index} className="d-flex">
               <div className={`${styles.icon} me-2`}>{item.icon}</div>
 
-              <li>
+              <li className={styles.menuLi}>
                 {item.text}
               </li>
             </div>
