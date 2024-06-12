@@ -10,7 +10,9 @@ function ProvideServices() {
   const [addServiceVisible, setAddServiceVisible] = useState(false);
   const [haircut, setHaircut] = useState(false);
   const [selectedCategoryId, setSelectedCategoryId] = useState(null);
+  const [selectedCategoryName, setSelectedCategoryName] = useState(""); // New state variable
   const [categories, setCategories] = useState([]);
+  console.log("Provide Categories", categories);
 
   useEffect(() => {
     const fetchCategories = async () => {
@@ -29,9 +31,10 @@ function ProvideServices() {
     setHaircut(false);
   };
 
-  const handleViewMore = (id) => {
+  const handleViewMore = (id, name) => {
     setSelectedCategoryId(id.toString());
-        setHaircut(true);
+    setSelectedCategoryName(name); // Set the selected category name
+    setHaircut(true);
   };
 
   const handleCloseAddService = () => {
@@ -43,6 +46,7 @@ function ProvideServices() {
       {haircut ? (
         <GetServices
           id={selectedCategoryId}
+          categoryName={selectedCategoryName} // Pass the category name to GetServices
           onViewMore={() => setHaircut(false)}
           onClose={handleCloseViewMore}
         />
@@ -63,7 +67,7 @@ function ProvideServices() {
                         {category.name}
                         <br />
                         <span className={styles.spanTwo}>
-                          <button onClick={() => handleViewMore(category.id)}>
+                          <button onClick={() => handleViewMore(category.id, category.name)}>
                             View All
                           </button>
                         </span>

@@ -32,7 +32,6 @@ const Profile = ({ onContinue, token }) => {
     { value: "", text: "Select" },
     { value: "male", text: "Male" },
     { value: "female", text: "Female" },
-    { value: "both", text: "Both" },
   ];
 
   const handleOnSubmit = async (values) => {
@@ -60,9 +59,12 @@ const Profile = ({ onContinue, token }) => {
       Notify.error(error.message);
     }
   };
-  
-      
-    
+
+  const getMinDOBDate = () => {
+    const currentDate = new Date();
+    return new Date(currentDate.getFullYear() - 18, currentDate.getMonth(), currentDate.getDate()).toISOString().split("T")[0];
+  };
+
   return (
     <Container>
       <Section className="d-flex flex-column align-items-center">
@@ -108,7 +110,7 @@ const Profile = ({ onContinue, token }) => {
                   onBlur={() => setType("text")}
                   label="Date of Birth"
                   placeholder="Select your date of birth"
-                  max={new Date().toISOString().split("T")[0]}
+                  max={getMinDOBDate()}
                 />
                 <InputSelect
                   name="gender"

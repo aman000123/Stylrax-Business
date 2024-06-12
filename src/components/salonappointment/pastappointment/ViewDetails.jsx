@@ -65,7 +65,7 @@ const ViewDetails = ({ isOpen, onClose, appointmentId }) => {
           <Row>
             <h5 className="pb-3">{completed?.salon?.name}</h5><br/>
           </Row>
-          <div className="d-flex">
+          {/* <div className="d-flex">
             <Row>
               <Col md={6}>
                 <h6>Phone</h6>
@@ -80,7 +80,7 @@ const ViewDetails = ({ isOpen, onClose, appointmentId }) => {
                 </Col>
               </Col>
             </Row>
-          </div>
+          </div> */}
           <Row>
             <h6>Appointment Details</h6>
             <Col>
@@ -104,6 +104,15 @@ const ViewDetails = ({ isOpen, onClose, appointmentId }) => {
             </Col>
             <Col>
               <p>{completed?.appointmentId}</p>
+            </Col>
+          </Row>
+          <Row>
+            <Col>
+              <p>Home Service:</p>
+            </Col>
+            <Col>
+              <p>{completed?.homeService === true  ? "Yes" : "No"}</p>
+
             </Col>
           </Row>
           <Row>

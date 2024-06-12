@@ -9,7 +9,7 @@ const Team = () => {
       <Col md={8}className="d-flex justify-content-center">
       <div className={styles.query}>
         <p className={styles.info}>
-        Have questions or need assistance? Contact our support team at <br/>+91- 9876543210. 
+        Have questions or need assistance? Contact our support team at <br/>+91- 8700882039. 
          We &apos;re here to help you make the most of your <br/>experience with Stylrax.
         </p>
         <div className={styles.mainText}>

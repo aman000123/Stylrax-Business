@@ -6,10 +6,7 @@ import Notify from "../../../utils/notify";
 import Session from "../../../service/session";
 import styles from "../AddService/AddService.module.css";
 
-function AddService({ onClose, updatedData, id }) {
-  const [selectedCategoryId, setSelectedCategoryId] = useState(
-    id ? String(id) : ""
-  );
+function AddService({ onClose, updatedData, id, categoryName }) {
   const [servicePrice, setServicePrice] = useState("");
   const handleServicePriceChange = (event) => {
     const value = event.target.value.replace(/[^0-9.]/g, "");
@@ -23,14 +20,14 @@ function AddService({ onClose, updatedData, id }) {
       const { serviceName, serviceDuration, type } = values;
       const price = servicePrice.replace(/[^\d.]/g, "");
       const data = {
-        categoryId: parseInt(selectedCategoryId),
+        categoryId: parseInt(id),
         serviceName,
         servicePrice: parseFloat(price),
         serviceDuration: parseInt(serviceDuration),
         type,
       };
 
-      console.log("Selected Category ID:", selectedCategoryId);
+      console.log("Selected Category ID:", id);
       const res = await addSalonService(salonId, data);
       Notify.success("Service added");
       onClose();
@@ -40,13 +37,12 @@ function AddService({ onClose, updatedData, id }) {
     }
   };
 
-
   return (
     <div className={styles.mainDiv}>
       <div className={styles.secDiv}>
         <Formik
           initialValues={{
-            categoryId: selectedCategoryId,
+            categoryId: id,
             serviceName: "",
             servicePrice: "",
             serviceDuration: "",
@@ -61,10 +57,11 @@ function AddService({ onClose, updatedData, id }) {
             <Field
               type="text"
               placeholder="Enter service category"
-              name="categoryId"
+              name="categoryName"
               className={styles.input5}
-              value={selectedCategoryId}
-             // onChange={handleCategoryChange}
+              value={categoryName}
+              disabled
+              style={{ cursor: 'not-allowed' }}
             />
             <br />
             <ErrorMessage
@@ -107,25 +104,20 @@ function AddService({ onClose, updatedData, id }) {
               component="div"
               className={styles.error}
             />
-            {/* <Field
-              type="text"
-              placeholder="Service Duration (mins)"
-              name="serviceDuration"
-              className={styles.input6}
-            /> */}
+
             <Field as="select" name="serviceDuration" className={styles.input6}>
               <option value="">Select Service Duration</option>
-              {[...Array(12).keys()].map((i) => (
-                <option key={i} value={(i + 1) * 5}>
-                  {(i + 1) * 5} mins
-                </option>
-              ))}
-              {[...Array(5).keys()].map((i) => (
-                <option key={i} value={(i + 1) * 15 + 60}>
-                  {Math.floor(((i + 1) * 15 + 60) / 60)} hr{" "}
-                  {((i + 1) * 15 + 60) % 60} mins
-                </option>
-              ))}
+              {[...Array(12).keys()].map((i) => {
+                const minutes = (i + 1) * 5;
+                if (minutes <= 60) {
+                  return (
+                    <option key={i} value={minutes}>
+                      {minutes} mins
+                    </option>
+                  );
+                }
+                return null;
+              })}
             </Field>
             <br />
             <ErrorMessage
