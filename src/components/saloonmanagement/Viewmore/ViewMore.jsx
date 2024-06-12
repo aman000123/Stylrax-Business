@@ -14,7 +14,7 @@ import Session from "../../../service/session.js";
 import Swal from "sweetalert2";
 import { viewMoreSchema } from "../../../utils/schema.js";
 
-function ViewMore({ onClose, id,updatedData }) {
+function ViewMore({ onClose, id,updatedData, categoryName }) {
   const [service, setService] = useState({});
   const [editable, setEditable] = useState(false);
 
@@ -109,9 +109,10 @@ function ViewMore({ onClose, id,updatedData }) {
             <Form className={styles.popupForm}>
               <Field
                 type="number"
-                placeholder={!editable ? service.categoryId : "Category ID"}
+                placeholder={ categoryName }
                 name="categoryId"
-                disabled={!editable}
+                disabled
+                value={categoryName}
                 style={{
                   color: editable ? "#000" : "#888",
                   borderColor: editable ? "#000" : "#ddd",

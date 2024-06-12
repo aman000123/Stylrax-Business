@@ -26,7 +26,7 @@ function BankDetails({ salonDetails }) {
             <br />
             <Field
               type="text"
-              placeholder="Jhon"
+              placeholder="Aman"
               name="accName"
               value={details.accountHolderName}
               className={styles.inputs}
@@ -37,7 +37,7 @@ function BankDetails({ salonDetails }) {
             <br />
             <Field
               type="text"
-              placeholder="Jhon"
+              placeholder="BOI"
               name="bankName"
               value={details.bankName}
               className={styles.inputs}
@@ -48,7 +48,7 @@ function BankDetails({ salonDetails }) {
             <br />
             <Field
               type="text"
-              placeholder="Jhon"
+              placeholder="HDFC0001234"
               name="ifscCode"
               value={details.ifscCode}
               className={styles.ifscCode}

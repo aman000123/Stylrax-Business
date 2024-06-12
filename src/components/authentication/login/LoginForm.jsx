@@ -9,8 +9,8 @@ import { doLogin } from "../../../api/account.api";
 import Notify from "../../../utils/notify";
 import { Field, Formik, ErrorMessage, Form } from "formik";
 import { LoginSchema } from "../../../utils/schema";
-import PhoneInputComponent from "./PhoneInputComponent";
 import { Link } from "react-router-dom";
+import PhoneInputComponent from "./PhoneInputComponent";
 
 const initialValues = {
   phoneNumber: "",

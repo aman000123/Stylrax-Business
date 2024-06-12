@@ -66,6 +66,11 @@ function AddStaff({ onClose, updatedData }) {
     }
   };
 
+  const getMinDOBDate = () => {
+    const currentDate = new Date();
+    return new Date(currentDate.getFullYear() - 18, currentDate.getMonth(), currentDate.getDate()).toISOString().split("T")[0];
+  };
+
   return (
     <Col md={4}>
       <div className={styles.popupFormDiv}>
@@ -131,7 +136,7 @@ function AddStaff({ onClose, updatedData }) {
                 type="date"
                 placeholder="Enter staff's date of birth"
                 name="dob"
-                max={new Date().toISOString().split("T")[0]}
+                max={getMinDOBDate()}
                 className={styles.dob}
               />
               <ErrorMessage
