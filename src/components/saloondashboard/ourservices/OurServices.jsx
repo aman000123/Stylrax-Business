@@ -7,14 +7,15 @@ import { salonServices } from "../../../api/salon.management";
 import Session from "../../../service/session";
 import Notify from "../../../utils/notify";
 
-function OurServices() {
+function OurServices({selectedSalon}) {
   const [services, setServices] = useState([]);
-  const salonId = Session.get("salonId");
+  const salonId = selectedSalon.id;
 
   useEffect(() => {
     const fetchServices = async () => {
       if (!salonId) {
-        Notify.error("Invalid salon ID");
+        //Notify.error("Invalid salon ID");
+
         return;
       }
 

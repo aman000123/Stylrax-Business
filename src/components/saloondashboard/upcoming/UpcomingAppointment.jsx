@@ -27,7 +27,7 @@ const generateUpcomingWeek = () => {
   return upcomingWeek;
 };
 
-function UpcomingAppointment() {
+function UpcomingAppointment({selectedSalon}) {
   const currentDate = new Date();
   const formattedDate = currentDate.toISOString().split("T")[0];
   const currentDay = currentDate.getDate();
@@ -43,7 +43,7 @@ function UpcomingAppointment() {
   const [selectedDate, setSelectedDate] = useState(formattedDate);
   const [showNoAppointments, setShowNoAppointments] = useState(false);
 
-  const salonId = Session.get("salonId");
+  const salonId = selectedSalon.id;
 
   const fetchAppointments = async (date) => {
     try {
@@ -61,9 +61,7 @@ function UpcomingAppointment() {
         const initialAppointments = await fetchAppointments(formattedDate);
         setOngoing(initialAppointments);
         setShowNoAppointments(initialAppointments.length === 0);
-      } else {
-        Notify.error("Invalid salon ID");
-      }
+      } 
     };
     initFetch();
   }, [salonId, formattedDate]);
