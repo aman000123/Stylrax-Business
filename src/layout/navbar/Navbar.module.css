@@ -2,7 +2,8 @@
     display: none;
 }
 .nav{
-    height: 104px;
+    /* height: 104px; */
+    padding: 35px;
     border-bottom: 1px solid #767676;
     display: flex; 
     align-items: center; 

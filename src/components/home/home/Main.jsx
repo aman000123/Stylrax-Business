@@ -18,7 +18,7 @@ import menuItems from '../../../data/navdata/Data';
 import LoginForm from '../../authentication/login/LoginForm';
 const Main = () => {
   return (
-    <>
+    <div className='mainbusiness'>
     <Navbar data={menuItems} redirect="/"/>
     <LoginForm/> 
     <About/> 
@@ -36,7 +36,7 @@ const Main = () => {
     <Team/>
     <Support/>
     <Footer redirect="/"/>
-    </>
+    </div>
   );
 }
 
