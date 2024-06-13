@@ -5,11 +5,11 @@ import Footer from "../../home/footer/Footer";
 
 export default function Policy() {
   return (
-    <>
+    <div className='pageContent'>
       <Navbar data={menuItems} redirect="/" />
 
       <StaticPage endpoint={"privacyPolicy"} />
       <Footer redirect="/" />
-    </>
+    </div>
   );
 }

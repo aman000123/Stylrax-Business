@@ -24,7 +24,7 @@ const StaticPage = ({endpoint}) => {
   };
 
   return (
-      <div
+      <div className='mt-3 mb-3'
         dangerouslySetInnerHTML={{ __html: pageContent }}
       />
   );

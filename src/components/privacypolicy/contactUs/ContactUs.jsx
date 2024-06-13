@@ -5,16 +5,10 @@ import Footer from "../../home/footer/Footer";
 
 export default function ContactUs() {
   return (
-    <>
+    <div className="pageContent">
       <Navbar data={menuItems} />
-      <div className="container my-2">
-        <div className="row">
-          <div className="col">
-            <StaticPage endpoint={"contactUs"} />
-          </div>
-        </div>
-      </div>
-      <Footer/>
-    </>
+      <StaticPage endpoint={"contactUs"} />
+      <Footer  />
+    </div>
   );
 }
