@@ -86,7 +86,7 @@ const UpComingAppointment = () => {
                           <br />
                           <span>{appointment.serviceType}</span>
                           <br />
-                          <span className={styles.appointTime}>{appointment.startTime}&nbsp <span className={styles.gender}></span></span>
+                          <span className={styles.appointTime}>{appointment.startTime}&nbsp; <span className={styles.gender}></span></span>
 
                           <br />
                           <span>{appointment.location}</span>

@@ -5,6 +5,7 @@ import styles from "../navbar/Navbar.module.css";
 import { NavLink } from "react-bootstrap";
 import Logo from "../../ux/Logo";
 const Navbar = (props) => {
+  console.log(" Nav Bar ::>", props);
   const [menuOpen, setMenuOpen] = useState(false);
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
@@ -13,7 +14,9 @@ const Navbar = (props) => {
     <nav className={`${styles.nav} bg-black d-flex`}>
       <div className="align-items-center">
         <div className={styles.logo}>
-        <NavLink to={props.redirect}><Logo/></NavLink>
+        {/* <NavLink to={props.redirect}> */}
+          <Logo/>
+          {/* </NavLink> */}
         </div>
       </div>
       <div>
