@@ -6,9 +6,9 @@ import Footer from "../../home/footer/Footer";
 export default function ContactUs() {
   return (
     <div className="pageContent">
-      <Navbar data={menuItems} />
+      <Navbar data={menuItems} redirect="/"/>
       <StaticPage endpoint={"contactUs"} />
-      <Footer  />
+      <Footer redirect="/" />
     </div>
   );
 }
