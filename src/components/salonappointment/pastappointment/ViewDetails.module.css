@@ -5,6 +5,7 @@
 }
 .mainDiv{
     padding-inline-start: 50px;
+    padding-bottom: 10px;
 }
 .invoice{
     display: flex;
@@ -12,6 +13,10 @@
     justify-content: center;
     padding-bottom: 20px;
 }
+.css-10jsu3h-MuiPaper-root-MuiDrawer-paper {
+    overflow-x: hidden;
+    
+  }
 .invoice button{
    
     outline: none;
@@ -20,8 +25,33 @@
     padding: 10px 50px;
     border-radius: 5px;
 }
+.mainDiv p{
+    margin-top: -12px;
+}
+.mainDiv h5{
+    font-size: 17px;
+    font-weight: 500;
+    margin-bottom: 20px;
+}
+.mainDiv .service::before{
+    content: '•'; 
+    color: black; 
+    font-size: 20px; 
+    display: inline-block;
+    width: 1em; 
+    margin-left: 5px 
+}
+.mainDiv .tax{
+    margin-top: -22px;
+}
+ .mainDiv .service{
+    margin-top: -20px;
+}
+.drawer::-webkit-scrollbar{
+    display: none;
+}
 @media (max-width:575px){
-    .hh{
+    .drawer{
         width: 300px;
     }
 }
