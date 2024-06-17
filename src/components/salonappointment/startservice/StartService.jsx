@@ -20,6 +20,10 @@ function Start(props) {
       autoFocus={index === 0}
       className={styles.inputOtp}
       pattern="[0-9]*"
+      inputMode="numeric"
+      onInput={(e) => {
+        e.target.value = e.target.value.replace(/[^0-9]/g, "");
+      }}
       onKeyDown={(e) => {
         // Allow backspace, tab, enter, and numbers
         if (

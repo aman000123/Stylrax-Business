@@ -84,9 +84,11 @@ const UpComingAppointment = () => {
                             {`${appointment.user.firstName} ${appointment.user.lastName}`}
                           </span>
                           <br />
-                          <span>{appointment.serviceType}</span>
+                          <span>{appointment.service}</span>
                           <br />
-                          <span className={styles.appointTime}>{appointment.startTime}&nbsp; <span className={styles.gender}></span></span>
+                          <span className={styles.appointTime}>{appointment.startTime}
+                          &nbsp;
+                          <span className={styles.gender}>{appointment.serviceType}</span></span>
 
                           <br />
                           <span>{appointment.location}</span>
