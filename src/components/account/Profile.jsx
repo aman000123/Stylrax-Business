@@ -10,10 +10,11 @@ import { handleOnFileSelect } from "./FileUploader";
 import client3 from "../../assets/image/client3.svg";
 import styles from "./account.module.css";
 import { useState } from "react";
+import OTPInput from "react-otp-input";
 
 const Profile = ({ onContinue, token }) => {
-  console.log("temp::>", token);
   const [type, setType] = useState("text");
+  const [showOTP, setShowOTP] = useState(false);
 
   const initialValues = {
     firstName: "",
@@ -33,9 +34,26 @@ const Profile = ({ onContinue, token }) => {
     { value: "male", text: "Male" },
     { value: "female", text: "Female" },
   ];
+  const renderInput = (props, index) => (
+    <input
+      {...props}
+      key={index}
+      autoFocus={index === 0}
+      className={styles.inputOtp}
+      pattern="[0-9]*"
+      inputMode="numeric"
+      onInput={(e) => {
+        e.target.value = e.target.value.replace(/[^0-9]/g, "");
+      }}
+      onKeyDown={(e) => {
+        if (!/^\d$/.test(e.key)) {
+          e.preventDefault();
+        }
+      }}
+    />
+  );
 
   const handleOnSubmit = async (values) => {
-    // onContinue(values);
     try {
       const dataForm = {
         profileType: "Salon",
@@ -62,7 +80,18 @@ const Profile = ({ onContinue, token }) => {
 
   const getMinDOBDate = () => {
     const currentDate = new Date();
-    return new Date(currentDate.getFullYear() - 18, currentDate.getMonth(), currentDate.getDate()).toISOString().split("T")[0];
+    return new Date(
+      currentDate.getFullYear() - 18,
+      currentDate.getMonth(),
+      currentDate.getDate()
+    )
+      .toISOString()
+      .split("T")[0];
+  };
+
+  const handleVerifyEmailClick = () => {
+    setShowOTP(true);
+    // Add your email verification logic here
   };
 
   return (
@@ -77,7 +106,7 @@ const Profile = ({ onContinue, token }) => {
             validationSchema={salonProfileSchema}
             onSubmit={handleOnSubmit}
           >
-            {({ setFieldValue }) => (
+            {({ values, setFieldValue }) => (
               <Form className="d-flex flex-column">
                 <InputText
                   type="text"
@@ -103,6 +132,36 @@ const Profile = ({ onContinue, token }) => {
                   label="Email ID"
                   placeholder="Enter your email ID"
                 />
+                {values.email && !showOTP && (
+                  <Section className="">
+                    <button
+                      type="button"
+                      className={styles.verify__email_button}
+                      onClick={handleVerifyEmailClick}
+                    >
+                      Verify Email
+                    </button>
+                  </Section>
+                )}
+                {showOTP && (
+                  <>
+                  <label htmlFor="otp" className="fw-bold">OTP</label>
+                    <div className="otp-box d-flex justify-content-center">
+                      <OTPInput
+                       type="text"
+                       name="otp"
+                       label="OTP"
+                        value={values.otp}
+                        onChange={(otp) => setFieldValue("otp", otp)}
+                        numInputs={4}
+                        renderSeparator={<span></span>}
+                        className={styles.inputOtp}
+                        renderInput={renderInput}
+                      />
+                    </div>
+                  </>
+                )}
+
                 <InputText
                   type={type}
                   name="dataOfBirth"
