@@ -44,8 +44,44 @@
     font-weight: 400;  
 }
 
+
+/* controls.module.css */
+
+.control__container {
+    position: relative;
+  }
+  
+  .control__input_container {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+  
+  .control__icon {
+    position: absolute;
+    right: 10px; /* Adjust based on your needs */
+    pointer-events: none;
+  }
+  
+  .control__input {
+    padding-left: 30px; /* Adjust based on the icon's width + some padding */
+    width: 100%;
+  }
+  
+  .control__input_with_icon {
+    padding-left: 30px; /* Adjust based on the icon's width + some padding */
+  }
+  
+  .control__input_error {
+    color: red;
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+  }
+  
 @media (max-width:576px){
     .control__input{
         width: 265px; 
     }
 }
+
+

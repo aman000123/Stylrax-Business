@@ -7,11 +7,11 @@ import { salonProfileSchema } from "../../utils/schema";
 import FormContainer from "./FormContainer";
 import { createProfile } from "../../api/user.api";
 import { handleOnFileSelect } from "./FileUploader";
-import client3 from "../../assets/image/client3.svg";
 import styles from "./account.module.css";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import OTPInput from "react-otp-input";
 import { verifyEmail, verifyEmailOtp } from "../../api/account.api";
+import { FaCheckCircle } from 'react-icons/fa'; 
 
 const Profile = ({ onContinue, token }) => {
   const [type, setType] = useState("text");
@@ -25,7 +25,7 @@ const Profile = ({ onContinue, token }) => {
     middleName: "",
     lastName: "",
     email: "",
-    dateOfBirth: "",
+    dataOfBirth: "",
     gender: "",
     panCardImageUrl: "",
     aadharFrontUrl: "",
@@ -58,7 +58,7 @@ const Profile = ({ onContinue, token }) => {
     />
   );
 
-  const handleOnSubmit = async (values, { setSubmitting }) => {
+  const handleOnSubmit = async (values) => {
     try {
       const dataForm = {
         profileType: "Salon",
@@ -66,7 +66,7 @@ const Profile = ({ onContinue, token }) => {
         middleName: values.middleName,
         lastName: values.lastName,
         email: values.email,
-        dateOfBirth: values.dateOfBirth,
+        dataOfBirth: values.dataOfBirth,
         gender: values.gender,
         panCardImageUrl: values.panCardImageUrl,
         aadharFrontUrl: values.aadharFrontUrl,
@@ -74,15 +74,12 @@ const Profile = ({ onContinue, token }) => {
         profileImageUrl: values.profileImageUrl,
         serviceType: "Male",
       };
-
       const res = await createProfile(dataForm, token);
       console.log("response:::>", res.data);
-
-      onContinue(values);
+  
+      onContinue(values); 
     } catch (error) {
       Notify.error(error.message);
-    } finally {
-      setSubmitting(false);
     }
   };
 
@@ -102,12 +99,10 @@ const Profile = ({ onContinue, token }) => {
       const verifyEmailData = {
         email: values.email,
       };
-      console.log("verifyEmailData ::>", verifyEmailData);
+      // console.log("verifyEmailData ::>", verifyEmailData);
       const res = await verifyEmail(verifyEmailData);
-      console.log("Email verification ::>", res);
+      // console.log("Email verification ::>", res);
       setShowOTP(true);
-      setIsEmailVerified(true);
-      // setIsOTPVerified(true);
       Notify.success(res.message);
     } catch (error) {
       Notify.error(error.message);
@@ -115,16 +110,15 @@ const Profile = ({ onContinue, token }) => {
   };
 
   const handleOTPVerification = async (otp, values) => {
-    console.log("handleOTPVerification ::>", values);
     try {
       const verifyOtpData = {
         email: values.email,
         otp: otp,
       };
       const otpRes = await verifyEmailOtp(verifyOtpData);
-      console.log("OTP Res ::>", otpRes);
       Notify.success(otpRes.message);
       setShowOTP(false);
+      setIsEmailVerified(true);
       setIsOTPVerified(true);
       setOtp("");
     } catch (error) {
@@ -142,15 +136,9 @@ const Profile = ({ onContinue, token }) => {
           <Formik
             initialValues={initialValues}
             validationSchema={salonProfileSchema}
-            onSubmit={async (values, { setSubmitting }) => {
-              if (showOTP) {
-                handleOTPVerification(otp, values, setSubmitting);
-              } else {
-                handleOnSubmit(values, { setSubmitting });
-              }
-            }}
+            onSubmit={handleOnSubmit}
           >
-            {({ values, setFieldValue, isSubmitting }) => (
+            {({ values, setFieldValue }) => (
               <Form id="profile-form" className="d-flex flex-column">
                 <InputText
                   type="text"
@@ -175,9 +163,12 @@ const Profile = ({ onContinue, token }) => {
                   name="email"
                   label="Email ID"
                   placeholder="Enter your email ID"
+                  icon={isOTPVerified && <FaCheckCircle />} 
+                  iconClass="text-success"
+                  disable={isOTPVerified}
                 />
                 
-                {values.email && !showOTP && (
+                {(values.email && !showOTP && !isEmailVerified)  && (
                   <Section className="">
                     <button
                       type="button"
@@ -187,11 +178,6 @@ const Profile = ({ onContinue, token }) => {
                       Verify Email
                     </button>
                   </Section>
-                )}
-                {isOTPVerified &&  (
-                  <div>
-                    <span>✅</span>
-                  </div>
                 )}
                 {showOTP && (
                   <>
@@ -217,7 +203,7 @@ const Profile = ({ onContinue, token }) => {
 
                 <InputText
                   type={type}
-                  name="dateOfBirth"
+                  name="dataOfBirth"
                   onFocus={() => setType("date")}
                   onBlur={() => setType("text")}
                   label="Date of Birth"
@@ -268,7 +254,6 @@ const Profile = ({ onContinue, token }) => {
                   <button
                     type="submit"
                     className={styles.registration__submit_button}
-                    disabled={isSubmitting}
                   >
                     Continue
                   </button>

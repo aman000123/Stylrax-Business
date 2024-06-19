@@ -2,9 +2,9 @@ import axios from 'axios';
 import session from "./session";
 import {PUBLIC_URLS} from '../constants/public-endpoint';
 import Notify from '../utils/notify';
-import { removeToken } from '../store/auth.slice';
+import { logOut, removeToken } from '../store/auth.slice';
 import store from "../store/store";
-/*Setting up interceptors with axios*/
+/Setting up interceptors with axios/
 axios.interceptors.request.use(function (config) {
    
     config.headers = {
@@ -35,6 +35,9 @@ axios.interceptors.response.use(function (response) {
     return response.data;
 
 }, function (error) {
+    if (error.statusCode === 401) {
+        store.dispatch(logOut());
+    }
     if (!error.response && error.message === 'Network Error') {
         return Promise.reject("Couldn't connect to server. Please try again later.");
      } else if (error.response && error.response.data.status === 401) { // Assuming 401 is the unauthorized status

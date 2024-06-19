@@ -19,6 +19,8 @@ import { data } from "./Data";
 import { useState } from "react";
 import { getPresignedUrl } from "../../api/file.api";
 import OTPInput from "react-otp-input";
+import { verifyEmail, verifyEmailOtp } from "../../api/account.api";
+import { FaCheckCircle } from 'react-icons/fa';
 
 const serviceOptions = [
   { value: "", text: "Select Service" },
@@ -51,6 +53,9 @@ const BusinessDetails = ({ onContinue, token }) => {
     { value: "", text: "Select salon city" },
   ]);
   const [showOTP, setShowOTP] = useState(false);
+  const [otp, setOtp] = useState("");
+  const [isOTPVerified, setIsOTPVerified] = useState(false);
+  const [isEmailVerified, setIsEmailVerified] = useState(false);
   const states = Object.keys(data);
 
   const handleOnSubmit = async (values) => {
@@ -101,6 +106,38 @@ const BusinessDetails = ({ onContinue, token }) => {
     />
   );
 
+  const handleVerifyEmailClick = async (values) => {
+    try {
+      const verifyEmailData = {
+        email: values.email,
+      };
+      console.log("verifyEmailData ::>", verifyEmailData);
+      const res = await verifyEmail(verifyEmailData);
+      console.log("Email verification ::>", res);
+      setShowOTP(true);
+      Notify.success(res.message);
+    } catch (error) {
+      Notify.error(error.message);
+    }
+  };
+
+  const handleOTPVerification = async (otp, values) => {
+    try {
+      const verifyOtpData = {
+        email: values.email,
+        otp: otp,
+      };
+      const otpRes = await verifyEmailOtp(verifyOtpData);
+      Notify.success(otpRes.message);
+      setShowOTP(false);
+      setIsEmailVerified(true);
+      setIsOTPVerified(true);
+      setOtp("");
+    } catch (error) {
+      Notify.error(error.message);
+    }
+  };
+
   const handleOnFile = async (files, field, setFieldValue) => {
     try {
       files = Array.isArray(files) ? files : [files];
@@ -141,10 +178,6 @@ const BusinessDetails = ({ onContinue, token }) => {
     setCityOptions([{ value: "", text: "Select salon city" }, ...cityOptions]);
   };
 
-  const handleVerifyEmailClick = () => {
-    setShowOTP(true);
-    // Add your email verification logic here
-  };
 
   return (
     <Container>
@@ -191,15 +224,19 @@ const BusinessDetails = ({ onContinue, token }) => {
                 <InputText
                   type="email"
                   name="email"
-                  label="Salon Email (optional)"
-                  placeholder="Enter salon email ID"
+                  label="Email ID"
+                  placeholder="Enter your email ID"
+                  icon={isOTPVerified && <FaCheckCircle />} 
+                  iconClass="text-success"
+                  disable={isOTPVerified}
                 />
-                {values.email && !showOTP && (
+                
+                {(values.email && !showOTP && !isEmailVerified)  && (
                   <Section className="">
                     <button
                       type="button"
                       className={styles.verify__email_button}
-                      onClick={handleVerifyEmailClick}
+                      onClick={() => handleVerifyEmailClick(values)}
                     >
                       Verify Email
                     </button>
@@ -207,14 +244,20 @@ const BusinessDetails = ({ onContinue, token }) => {
                 )}
                 {showOTP && (
                   <>
-                  <label htmlFor="otp" className="fw-bold">OTP</label>
+                    <label htmlFor="otp" className="fw-bold">
+                      OTP
+                    </label>
                     <div className="otp-box d-flex justify-content-center">
                       <OTPInput
-                        value={values.otp}
-                        onChange={(otp) => setFieldValue("otp", otp)}
+                        value={otp}
+                        onChange={(otpValue) => {
+                          setOtp(otpValue);
+                          if (otpValue.length === 4) {
+                            handleOTPVerification(otpValue, values, {});
+                          }
+                        }}
                         numInputs={4}
                         renderSeparator={<span></span>}
-                        className={styles.inputOtp}
                         renderInput={renderInput}
                       />
                     </div>
