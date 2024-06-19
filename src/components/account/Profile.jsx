@@ -9,19 +9,23 @@ import { createProfile } from "../../api/user.api";
 import { handleOnFileSelect } from "./FileUploader";
 import client3 from "../../assets/image/client3.svg";
 import styles from "./account.module.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import OTPInput from "react-otp-input";
+import { verifyEmail, verifyEmailOtp } from "../../api/account.api";
 
 const Profile = ({ onContinue, token }) => {
   const [type, setType] = useState("text");
   const [showOTP, setShowOTP] = useState(false);
+  const [otp, setOtp] = useState("");
+  const [isOTPVerified, setIsOTPVerified] = useState(false);
+  const [isEmailVerified, setIsEmailVerified] = useState(false);
 
   const initialValues = {
     firstName: "",
     middleName: "",
     lastName: "",
     email: "",
-    dataOfBirth: "",
+    dateOfBirth: "",
     gender: "",
     panCardImageUrl: "",
     aadharFrontUrl: "",
@@ -34,6 +38,7 @@ const Profile = ({ onContinue, token }) => {
     { value: "male", text: "Male" },
     { value: "female", text: "Female" },
   ];
+
   const renderInput = (props, index) => (
     <input
       {...props}
@@ -53,7 +58,7 @@ const Profile = ({ onContinue, token }) => {
     />
   );
 
-  const handleOnSubmit = async (values) => {
+  const handleOnSubmit = async (values, { setSubmitting }) => {
     try {
       const dataForm = {
         profileType: "Salon",
@@ -61,7 +66,7 @@ const Profile = ({ onContinue, token }) => {
         middleName: values.middleName,
         lastName: values.lastName,
         email: values.email,
-        dataOfBirth: values.dataOfBirth,
+        dateOfBirth: values.dateOfBirth,
         gender: values.gender,
         panCardImageUrl: values.panCardImageUrl,
         aadharFrontUrl: values.aadharFrontUrl,
@@ -69,12 +74,15 @@ const Profile = ({ onContinue, token }) => {
         profileImageUrl: values.profileImageUrl,
         serviceType: "Male",
       };
+
       const res = await createProfile(dataForm, token);
       console.log("response:::>", res.data);
 
       onContinue(values);
     } catch (error) {
       Notify.error(error.message);
+    } finally {
+      setSubmitting(false);
     }
   };
 
@@ -89,9 +97,39 @@ const Profile = ({ onContinue, token }) => {
       .split("T")[0];
   };
 
-  const handleVerifyEmailClick = () => {
-    setShowOTP(true);
-    // Add your email verification logic here
+  const handleVerifyEmailClick = async (values) => {
+    try {
+      const verifyEmailData = {
+        email: values.email,
+      };
+      console.log("verifyEmailData ::>", verifyEmailData);
+      const res = await verifyEmail(verifyEmailData);
+      console.log("Email verification ::>", res);
+      setShowOTP(true);
+      setIsEmailVerified(true);
+      // setIsOTPVerified(true);
+      Notify.success(res.message);
+    } catch (error) {
+      Notify.error(error.message);
+    }
+  };
+
+  const handleOTPVerification = async (otp, values) => {
+    console.log("handleOTPVerification ::>", values);
+    try {
+      const verifyOtpData = {
+        email: values.email,
+        otp: otp,
+      };
+      const otpRes = await verifyEmailOtp(verifyOtpData);
+      console.log("OTP Res ::>", otpRes);
+      Notify.success(otpRes.message);
+      setShowOTP(false);
+      setIsOTPVerified(true);
+      setOtp("");
+    } catch (error) {
+      Notify.error(error.message);
+    }
   };
 
   return (
@@ -104,10 +142,16 @@ const Profile = ({ onContinue, token }) => {
           <Formik
             initialValues={initialValues}
             validationSchema={salonProfileSchema}
-            onSubmit={handleOnSubmit}
+            onSubmit={async (values, { setSubmitting }) => {
+              if (showOTP) {
+                handleOTPVerification(otp, values, setSubmitting);
+              } else {
+                handleOnSubmit(values, { setSubmitting });
+              }
+            }}
           >
-            {({ values, setFieldValue }) => (
-              <Form className="d-flex flex-column">
+            {({ values, setFieldValue, isSubmitting }) => (
+              <Form id="profile-form" className="d-flex flex-column">
                 <InputText
                   type="text"
                   name="firstName"
@@ -132,30 +176,39 @@ const Profile = ({ onContinue, token }) => {
                   label="Email ID"
                   placeholder="Enter your email ID"
                 />
+                
                 {values.email && !showOTP && (
                   <Section className="">
                     <button
                       type="button"
                       className={styles.verify__email_button}
-                      onClick={handleVerifyEmailClick}
+                      onClick={() => handleVerifyEmailClick(values)}
                     >
                       Verify Email
                     </button>
                   </Section>
                 )}
+                {isOTPVerified &&  (
+                  <div>
+                    <span>✅</span>
+                  </div>
+                )}
                 {showOTP && (
                   <>
-                  <label htmlFor="otp" className="fw-bold">OTP</label>
+                    <label htmlFor="otp" className="fw-bold">
+                      OTP
+                    </label>
                     <div className="otp-box d-flex justify-content-center">
                       <OTPInput
-                       type="text"
-                       name="otp"
-                       label="OTP"
-                        value={values.otp}
-                        onChange={(otp) => setFieldValue("otp", otp)}
+                        value={otp}
+                        onChange={(otpValue) => {
+                          setOtp(otpValue);
+                          if (otpValue.length === 4) {
+                            handleOTPVerification(otpValue, values, {});
+                          }
+                        }}
                         numInputs={4}
                         renderSeparator={<span></span>}
-                        className={styles.inputOtp}
                         renderInput={renderInput}
                       />
                     </div>
@@ -164,7 +217,7 @@ const Profile = ({ onContinue, token }) => {
 
                 <InputText
                   type={type}
-                  name="dataOfBirth"
+                  name="dateOfBirth"
                   onFocus={() => setType("date")}
                   onBlur={() => setType("text")}
                   label="Date of Birth"
@@ -215,6 +268,7 @@ const Profile = ({ onContinue, token }) => {
                   <button
                     type="submit"
                     className={styles.registration__submit_button}
+                    disabled={isSubmitting}
                   >
                     Continue
                   </button>
