@@ -18,7 +18,7 @@ import FormContainer from "./FormContainer";
 import { data } from "./Data";
 import { useState } from "react";
 import { getPresignedUrl } from "../../api/file.api";
-
+import OTPInput from "react-otp-input";
 
 const serviceOptions = [
   { value: "", text: "Select Service" },
@@ -50,10 +50,10 @@ const BusinessDetails = ({ onContinue, token }) => {
   const [cityOptions, setCityOptions] = useState([
     { value: "", text: "Select salon city" },
   ]);
+  const [showOTP, setShowOTP] = useState(false);
   const states = Object.keys(data);
 
   const handleOnSubmit = async (values) => {
-    //onContinue(values);
     try {
       const verifyForm = {
         name: values.name,
@@ -67,11 +67,10 @@ const BusinessDetails = ({ onContinue, token }) => {
         state: values.state,
         pincode: values.pinCode,
         serviceType: values.serviceType,
-        homeService: values.homeServices,
-
+        homeService: values.homeService,
         mainGateImageUrl: values.mainGateUrl,
         bannerImages: bannerImages,
-        gallaryImages: galleryImages,
+        galleryImages: galleryImages,
       };
       const res = await createSalon(verifyForm);
       console.log("respn::>", res);
@@ -82,6 +81,26 @@ const BusinessDetails = ({ onContinue, token }) => {
       Notify.error(error.message);
     }
   };
+
+  const renderInput = (props, index) => (
+    <input
+      {...props}
+      key={index}
+      autoFocus={index === 0}
+      className={styles.inputOtp}
+      pattern="[0-9]*"
+      inputMode="numeric"
+      onInput={(e) => {
+        e.target.value = e.target.value.replace(/[^0-9]/g, "");
+      }}
+      onKeyDown={(e) => {
+        if (!/^\d$/.test(e.key)) {
+          e.preventDefault();
+        }
+      }}
+    />
+  );
+
   const handleOnFile = async (files, field, setFieldValue) => {
     try {
       files = Array.isArray(files) ? files : [files];
@@ -121,6 +140,12 @@ const BusinessDetails = ({ onContinue, token }) => {
     }));
     setCityOptions([{ value: "", text: "Select salon city" }, ...cityOptions]);
   };
+
+  const handleVerifyEmailClick = () => {
+    setShowOTP(true);
+    // Add your email verification logic here
+  };
+
   return (
     <Container>
       <Section className="d-flex flex-column align-items-center">
@@ -130,7 +155,7 @@ const BusinessDetails = ({ onContinue, token }) => {
             validationSchema={businessDetailsSchema}
             onSubmit={handleOnSubmit}
           >
-            {({ setFieldValue }) => (
+            {({ values, setFieldValue }) => (
               <Form className="d-flex flex-column">
                 <InputText
                   type="text"
@@ -147,7 +172,7 @@ const BusinessDetails = ({ onContinue, token }) => {
                 <InputText
                   type="text"
                   name="companyName"
-                  label="Company Name (optional) "
+                  label="Company Name (optional)"
                   placeholder="Enter company name"
                 />
                 <InputText
@@ -163,12 +188,39 @@ const BusinessDetails = ({ onContinue, token }) => {
                   placeholder="Enter salon address"
                   className={styles.address}
                 />
-                 <InputText
-                      type="text"
-                      name="email"
-                      label="Salon Email (optional)"
-                      placeholder="Enter salon email ID"
-                    />
+                <InputText
+                  type="email"
+                  name="email"
+                  label="Salon Email (optional)"
+                  placeholder="Enter salon email ID"
+                />
+                {values.email && !showOTP && (
+                  <Section className="">
+                    <button
+                      type="button"
+                      className={styles.verify__email_button}
+                      onClick={handleVerifyEmailClick}
+                    >
+                      Verify Email
+                    </button>
+                  </Section>
+                )}
+                {showOTP && (
+                  <>
+                  <label htmlFor="otp" className="fw-bold">OTP</label>
+                    <div className="otp-box d-flex justify-content-center">
+                      <OTPInput
+                        value={values.otp}
+                        onChange={(otp) => setFieldValue("otp", otp)}
+                        numInputs={4}
+                        renderSeparator={<span></span>}
+                        className={styles.inputOtp}
+                        renderInput={renderInput}
+                      />
+                    </div>
+                  </>
+                )}
+
                 <InputSelect
                   name="state"
                   label="Enter salon state"
@@ -181,10 +233,11 @@ const BusinessDetails = ({ onContinue, token }) => {
                     handleStateChange(e.target.value);
                   }}
                 />
-                 <InputSelect
+                <InputSelect
                   name="city"
                   label="Enter salon city"
-                  options={cityOptions}                />
+                  options={cityOptions}
+                />
                 <InputText
                   type="text"
                   name="pinCode"
@@ -196,14 +249,16 @@ const BusinessDetails = ({ onContinue, token }) => {
                   label="Service Type"
                   options={serviceOptions}
                 />
-                  <label>
-                      <input
-                        type="checkbox"
-                        name="homeService"
-                        onChange={(e) => setFieldValue("homeService", e.target.checked)}
-                      />
-                      &nbsp; Provide Home Services
-                    </label>
+                <label>
+                  <input
+                    type="checkbox"
+                    name="homeService"
+                    onChange={(e) =>
+                      setFieldValue("homeService", e.target.checked)
+                    }
+                  />
+                  &nbsp; Provide Home Services
+                </label>
                 <Section className="d-flex flex-column align-items-start"></Section>
                 <Section className="d-flex flex-column align-items-start mb-4">
                   <Label text="Salon Images" />

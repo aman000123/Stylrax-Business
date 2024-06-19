@@ -52,7 +52,7 @@ export const businessDetailsSchema = Yup.object({
   mainGateUrl: Yup.string().required("Please upload main gate image"),
   bannerImages: Yup.array().min(1, "Please upload at least one banner image"),
   galleryImageUrl: Yup.array().min(1, "Please upload at least one gallery image"),
-
+  email: Yup.string().email().required("Please enter your email"),
 })
 
 
