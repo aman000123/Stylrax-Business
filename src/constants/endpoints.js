@@ -5,7 +5,8 @@ export const __endpoint_doLogin = endpoint + "b2b/account/otp/login";
 export const __endpoint_verifyOtp = endpoint + "b2b/account/otp/verify";
 export const __endpoint_resendOtp = endpoint + "b2b/account/otp/resend";
 export const __endpoint_profile = endpoint + "b2b/account/profile";
-
+export const __endpoint_verifyEmail = endpoint + "b2b/account/email/otp/send";
+export const __endpoint_verifyEmailOtp = endpoint + "b2b/account/email/otp/verify";
 
 //User Management APIs
 
