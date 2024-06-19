@@ -38,6 +38,21 @@ export const authSlice = createSlice({
       Session.set("firstName", firstName); 
 
     },
+    logOut: (state) => {
+      state.token = "",
+      state.userInfo = { profileStatus : 0,
+        email: "",
+        phoneNumber: "",
+        role: "",
+        userType:"",
+        profileImageUrl: "",
+        firstName: "",};
+      Session.remove("token")
+      Session.remove("userStatus::>")
+      Session.remove("userType::>")
+      Session.remove("profileImageUrl")
+      Session.remove("firstName")
+    },
     setSalonName: (state, action) => {
       state.salonName = action.payload.salonName;
       Session.set("salonName", action.payload.salonName);
@@ -109,6 +124,6 @@ export const authSlice = createSlice({
 })
 
 export const { storeToken,setSalonID,removeUserInfo,removeToken,removeSalonID, setUserInfo , storeSalons,removeSalons ,setSalonName,
-  setSalonImage,setHomeService,removeSalonImage,removeSalonName} = authSlice.actions
+  setSalonImage,setHomeService,removeSalonImage,removeSalonName, logOut} = authSlice.actions
 
-export default authSlice.reducer
+export default authSlice.reducer;
