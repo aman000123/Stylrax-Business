@@ -71,9 +71,9 @@ export const salonProfileSchema = Yup.object().shape({
   firstName: Yup.string()
     .matches(/^[a-zA-Z\s]+$/, 'first name must contain only alphabets')
     .required("Please enter first your name"),
-  lastName: Yup.string()
-    .matches(/^[a-zA-Z\s]+$/, 'last name must contain only alphabets')
-    .required("Please enter your last name"),
+  // lastName: Yup.string()
+  //   .matches(/^[a-zA-Z\s]+$/, 'last name must contain only alphabets')
+  //   .required("Please enter your last name"),
   email: Yup.string().email().required("Please enter your email"),
   dataOfBirth: Yup.date()
     .required("Date of birth is required"),

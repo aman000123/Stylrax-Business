@@ -11,19 +11,25 @@ import Section from "../ux/Section";
 import { useSelector } from "react-redux";
 import Footer from "../components/home/footer/Footer";
 
-const accountSteps = {
-  Salon: [
-    { step: 1, text: "Account Creation", active: false },
-    { step: 2, text: "Business Details", active: false },
-    { step: 3, text: "Bank Details", active: false },
-    { step: 4, text: "Finish", active: false },
-  ],
-  Freelancer: [
-    { step: 1, text: "Account Creation", active: false },
+// const accountSteps = {
+//   Salon: [
+//     { step: 1, text: "Account Creation", active: false },
+//     { step: 2, text: "Business Details", active: false },
+//     { step: 3, text: "Bank Details", active: false },
+//     { step: 4, text: "Finish", active: false },
+//   ],
+//   Freelancer: [
+//     { step: 1, text: "Account Creation", active: false },
+//     { step: 2, text: "Bank Details", active: false },
+//     { step: 3, text: "Finish", active: false },
+//   ],
+// };
+const accountSteps = [
+    { step: 0, text: "Account Creation", active: false },
+    { step: 1, text: "Business Details", active: false },
     { step: 2, text: "Bank Details", active: false },
     { step: 3, text: "Finish", active: false },
-  ],
-};
+  ];
 
 const CreateAccount = () => {
   const [steps, setSteps] = useState([]);
@@ -33,16 +39,16 @@ const CreateAccount = () => {
   const status = userInfo?.profileStatus;
   console.log("statusInfo::>", status);
   const userType = userInfo?.userType;
-  console.log("userType::>", userType);
+  // console.log("userType::>", userType);
   const [activeStep, setActiveStep] = useState(status);
   //const salonId = useSelector(state => state.auth.salonId);
 
-  console.log("id",salonId)
+  // console.log("id",salonId)
   const location = useLocation();
   const { token = "" } = location.state || {};
 
-  console.log("Location::>", location);
-  console.log("Token::>", token);
+  // console.log("Location::>", location);
+  // console.log("Token::>", token);
   // useEffect(() => {
   //   const storedSalonId = Session.get("salonId");
   //   if (storedSalonId) {
@@ -56,23 +62,23 @@ const CreateAccount = () => {
   }
 // const salon = Session.get("salonId");
  //console.log("salonID:::>", salon);
-    {status!=0 && useEffect(() => {
-      onServiceSelect(userType);
-  }, [])}
+  //   {status!=0 && useEffect(() => {
+  //     onServiceSelect(userType);
+  // }, [])}
 
-  const onServiceSelect = (userType) => {
-    console.log("user::>",userType);
-    setSteps(accountSteps[userType]);
-    setActiveStep(activeStep + 1);
+//   const onServiceSelect = (userType) => {
+//     console.log("user::>",userType);
+//     setSteps(accountSteps[0]);
+//     setActiveStep(activeStep + 1);
 
-}
+// }
   const handleProfileCreate = (data) => {
     setActiveStep(activeStep + 1);
   };
 
   const handleBusinessDetails = (data,salonId) => {
     setSalonId(salonId);
-    console.log("salon id", salonId);
+    // console.log("salon id", salonId);
     setActiveStep(activeStep + 1);
     // setSteps(accountSteps[userType]);
     // onServiceSelect(userType);
@@ -81,7 +87,7 @@ const CreateAccount = () => {
   };
 
   const handleBankDetails = (data) => {
-    console.log("salonId in CreateAccount:", salonId);
+    // console.log("salonId in CreateAccount:", salonId);
     setActiveStep(activeStep + 1);
     //onServiceSelect(userType);
   };
@@ -89,16 +95,17 @@ const CreateAccount = () => {
   return (
     <Section>
       <Header>
-        <StepperMenu steps={steps} activeStep={activeStep}/>
+        <StepperMenu steps={accountSteps} activeStep={activeStep}/>
       </Header>
 
-      {activeStep === 0 && <Service onContinue={onServiceSelect} />}
-      {activeStep === 1 && <Profile onContinue={handleProfileCreate} />}
-      {activeStep === 2 && <Salon onContinue={handleBusinessDetails} />}
-      {activeStep === 3 &&(
+      {/* {activeStep === 0 && <Service onContinue={onServiceSelect} />} */}
+      {activeStep === 0 && <Profile onContinue={handleProfileCreate} />}
+      {/* {activeStep === 1 && <Profile onContinue={handleProfileCreate} />} */}
+      {activeStep === 1 && <Salon onContinue={handleBusinessDetails} />}
+      {activeStep === 2 &&(
         <BankDetails salonId={salonId} onContinue={handleBankDetails}  />
       )}
-      {activeStep === 4 && <Finish />}
+      {activeStep === 3 && <Finish />}
 
     
       <Footer />
