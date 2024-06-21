@@ -20,7 +20,7 @@ import { useState } from "react";
 import { getPresignedUrl } from "../../api/file.api";
 import OTPInput from "react-otp-input";
 import { verifyEmail, verifyEmailOtp } from "../../api/account.api";
-import { FaCheckCircle } from 'react-icons/fa';
+import { FaCheckCircle } from "react-icons/fa";
 
 const serviceOptions = [
   { value: "", text: "Select Service" },
@@ -41,16 +41,16 @@ const initialValues = {
   address: "",
   panNumber: "",
   mainGateUrl: "",
-  homeService: "",
+  homeService: false,
   bannerImages: [],
-  galleryImageUrl: [],
+  gallaryImages: [],
 };
 
 const BusinessDetails = ({ onContinue, token }) => {
   const [bannerImages, setBannerImages] = useState([]);
   const [galleryImages, setGalleryImages] = useState([]);
   const [cityOptions, setCityOptions] = useState([
-    { value: "", text: "Select salon city" },
+    { value: "", text: "Enter salon city" },
   ]);
   const [showOTP, setShowOTP] = useState(false);
   const [otp, setOtp] = useState("");
@@ -59,6 +59,7 @@ const BusinessDetails = ({ onContinue, token }) => {
   const states = Object.keys(data);
 
   const handleOnSubmit = async (values) => {
+    console.log(" Handle Submit Salon Details ::", values);
     try {
       const verifyForm = {
         name: values.name,
@@ -75,7 +76,7 @@ const BusinessDetails = ({ onContinue, token }) => {
         homeService: values.homeService,
         mainGateImageUrl: values.mainGateUrl,
         bannerImages: bannerImages,
-        galleryImages: galleryImages,
+        gallaryImages: galleryImages,
       };
       const res = await createSalon(verifyForm);
       console.log("respn::>", res);
@@ -175,9 +176,8 @@ const BusinessDetails = ({ onContinue, token }) => {
       value: city,
       text: city,
     }));
-    setCityOptions([{ value: "", text: "Select salon city" }, ...cityOptions]);
+    setCityOptions([{ value: "", text: "Enter salon city" }, ...cityOptions]);
   };
-
 
   return (
     <Container>
@@ -226,12 +226,12 @@ const BusinessDetails = ({ onContinue, token }) => {
                   name="email"
                   label="Email ID"
                   placeholder="Enter your email ID"
-                  icon={isOTPVerified && <FaCheckCircle />} 
+                  icon={isOTPVerified && <FaCheckCircle />}
                   iconClass="text-success"
                   disable={isOTPVerified}
                 />
-                
-                {(values.email && !showOTP && !isEmailVerified)  && (
+
+                {values.email && !showOTP && !isEmailVerified && (
                   <Section className="">
                     <button
                       type="button"
@@ -266,7 +266,7 @@ const BusinessDetails = ({ onContinue, token }) => {
 
                 <InputSelect
                   name="state"
-                  label="Enter salon state"
+                  label="State"
                   options={states.map((state) => ({
                     value: state,
                     text: state,
@@ -276,11 +276,7 @@ const BusinessDetails = ({ onContinue, token }) => {
                     handleStateChange(e.target.value);
                   }}
                 />
-                <InputSelect
-                  name="city"
-                  label="Enter salon city"
-                  options={cityOptions}
-                />
+                <InputSelect name="city" label="City" options={cityOptions} />
                 <InputText
                   type="text"
                   name="pinCode"
