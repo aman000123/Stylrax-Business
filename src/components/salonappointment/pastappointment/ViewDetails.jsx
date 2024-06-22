@@ -31,6 +31,7 @@ const ViewDetails = ({ isOpen, onClose, appointmentId }) => {
       try {
         const response = await detailsAppointments(appointmentId);
         const completedData = response.data;
+        console.log("Complete Data ::", completedData);
         setCompleted(completedData);
       } catch (error) {
         Notify.error(error.message);
@@ -53,14 +54,14 @@ const ViewDetails = ({ isOpen, onClose, appointmentId }) => {
       onClose={onClose}
       className={styles.drawer}
       PaperProps={{
-        sx: { marginTop: '100px' ,height: `calc(100% - 100px)`},
- overflowX: "hidden"
+        sx: { marginTop: "100px", height: `calc(100% - 100px)` },
+        overflowX: "hidden",
       }}
     >
       <Box
         // sx={{ width: 450 }}
         sx={{
-          width: { xs: "300px", lg: "450px" ,md: "450px"},
+          width: { xs: "300px", lg: "450px", md: "450px" },
         }}
         role="presentation"
         onClick={onClose}
@@ -72,16 +73,24 @@ const ViewDetails = ({ isOpen, onClose, appointmentId }) => {
         </List>
         <hr style={{ borderTop: "2px solid black" }} />
         <Col md={12} className={styles.mainDiv}>
-            
-            <Row>
-              <h5>Salon Details</h5>
-              <Col>
-                <p>Salon Name</p>
-              </Col>
-              <Col>
-                <p className="pb-3">{completed?.salon?.name}</p>
-              </Col>
-            </Row>
+          <Row>
+            <h5>Salon Details</h5>
+            <Col>
+              <p>Salon Name</p>
+            </Col>
+            <Col>
+              <p className="pb-3">{completed?.salon?.name}</p>
+            </Col>
+          </Row>
+          <Row>
+            <h5>User Details</h5>
+            <Col>
+              <p>User</p>
+            </Col>
+            <Col>
+              <p>{completed?.userName}</p>
+            </Col>
+          </Row>
           {/* <div className="d-flex">
             <Row>
               <Col md={6}>
