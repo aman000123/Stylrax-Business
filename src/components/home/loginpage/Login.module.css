@@ -73,7 +73,7 @@
 .loginBorder {
   border: 2px solid #545454;
   border-radius: 16px;
-  padding: 60px;
+  padding: 46px;
   background-color: #00000066;
   flex-direction: column;
   justify-content: center;
@@ -135,7 +135,7 @@
     align-items: center;
   }
   .pra {
-    font-size: 8px;
+    font-size: 10px;
     line-height: 12px;
   }
   .loginBorder {
