@@ -104,7 +104,7 @@ export const bankSchema = Yup.object({
 const onlyAlphabets = (value) =>
   /^[a-zA-Z]+$/.test(value) || 'Only alphabetic characters are allowed';
 // Add staff schema
-const imageFileTypes = ['image/jpeg', 'image/jpg', 'image/png'];
+const imageFileTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/pdf'];
 export const addStaffSchema = Yup.object({
   firstName: Yup.string()
     .matches(/^[a-zA-Z\s]+$/, 'Name must contain only alphabets')
@@ -124,8 +124,10 @@ export const addStaffSchema = Yup.object({
     .required("Please enter your specilization"),
   profileImageUrl: Yup.string()
     .test('fileType', 'Only image files are allowed', (value) => {
+      console.log(" Image value ::>", value);
       if (value) {
         const extension = value.split('.').pop();
+        console.log(" Extension ::>", extension);
         return imageFileTypes.includes(`image/${extension}`);
       }
       return false; // Force to upload a file, so if no file is uploaded, validation should fail
