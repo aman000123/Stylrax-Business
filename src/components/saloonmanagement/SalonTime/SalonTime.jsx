@@ -41,8 +41,8 @@ function SalonTime() {
           return {
             day: dayData.day,
             isOpen: dayTiming ? dayTiming.isOpen : false,
-            openTime: dayTiming ? dayjs(dayTiming.openTime) : "",
-            closeTime: dayTiming ? dayjs(dayTiming.closeTime) : "",
+            openTime: dayTiming ? dayjs(dayTiming.openTime) : null,
+            closeTime: dayTiming ? dayjs(dayTiming.closeTime) : null,
           };
         });
         console.log("Day Timining ::::", defaultTiming);
@@ -66,10 +66,14 @@ function SalonTime() {
       const updatedTiming = timing.map((dayTiming, index) => ({
         day: dayTiming.day,
         isOpen: values[`isOpen${index}`],
-        openTime: values[`openTime${index}`],
-        closeTime: values[`closeTime${index}`],
+        openTime: values[`openTime${index}`]
+          ? dayjs(values[`openTime${index}`]).format("hh:mm A")
+          : "",
+        closeTime: values[`closeTime${index}`]
+          ? dayjs(values[`closeTime${index}`]).format("hh:mm A")
+          : "",
       }));
-console.log(" Salon Updated Time :::", updatedTiming);
+      console.log(" Salon Updated Time :::", updatedTiming);
       await salonTime(salonId, updatedTiming);
       console.log(" Salon Time :::>", salonTime);
       Notify.success("Salon timings updated successfully.");
@@ -116,8 +120,8 @@ console.log(" Salon Updated Time :::", updatedTiming);
                     setFieldValue(`isOpen${index}`, isOpen);
 
                     if (!isOpen) {
-                      setFieldValue(`openTime${index}`, "");
-                      setFieldValue(`closeTime${index}`, "");
+                      setFieldValue(`openTime${index}`, null);
+                      setFieldValue(`closeTime${index}`, null);
                     }
                   };
 
@@ -131,7 +135,7 @@ console.log(" Salon Updated Time :::", updatedTiming);
                             {({ field }) => (
                               <TimePicker
                                 {...field}
-                                value={dayjs(field.value) || null}
+                                value={field.value || null}
                                 onChange={(value) => {
                                   console.log("TimePicker :: ", value);
                                   setFieldValue(`openTime${index}`, value);
@@ -143,6 +147,7 @@ console.log(" Salon Updated Time :::", updatedTiming);
                                     className={styles.spanOne}
                                   />
                                 )}
+                                ampm={true} 
                               />
                             )}
                           </Field>
@@ -155,7 +160,7 @@ console.log(" Salon Updated Time :::", updatedTiming);
                             {({ field }) => (
                               <TimePicker
                                 {...field}
-                                value={dayjs(field.value) || null}
+                                value={field.value || null}
                                 onChange={(value) =>
                                   setFieldValue(`closeTime${index}`, value)
                                 }
@@ -166,6 +171,7 @@ console.log(" Salon Updated Time :::", updatedTiming);
                                     className={styles.spanTwo}
                                   />
                                 )}
+                                ampm={true} 
                               />
                             )}
                           </Field>
