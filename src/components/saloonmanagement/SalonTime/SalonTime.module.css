@@ -1,250 +1,232 @@
-.mainDiv{
-    /* margin: 5px 40px; */
+.mainDiv {
+  /* margin: 5px 40px; */
 }
 
-.actionButton{
-    display: flex;
-    gap: 10px;
-    /* float:right; */
-    /* margin-right: 345px; */
+.actionButton {
+  display: flex;
+  gap: 10px;
+  /* float:right; */
+  /* margin-right: 345px; */
 }
 
-
-
-
-
-.secDiv{
-    display: flex;
-    gap: 40px;
-    background-color: #fff;
-    border: 2px solid #909090;
-    border-radius: 20px;
-    margin-top: 10px;
-    padding: 12px 20px;
-    width: fit-content;
+.secDiv {
+  display: flex;
+  gap: 40px;
+  background-color: #fff;
+  border: 2px solid #909090;
+  border-radius: 20px;
+  margin-top: 10px;
+  padding: 12px ;
+  width: fit-content;
 }
 
-.secDiv .day{
-    font-size: 20px;
-    font-weight: bold;
-    width: 40px;
+.secDiv .day {
+  font-size: 20px;
+  font-weight: bold;
+  width: 40px;
 }
 
 .height {
-    line-height: 13px;
+  line-height: 13px;
 }
 
-.height span{
-    color: #909090;
-    font-size: 15px;
+.height span {
+  color: #909090;
+  font-size: 15px;
 }
 
-.height .spanOne{
-    font-size: 12px;
-    overflow: hidden;
+.height .spanOne {
+  font-size: 12px;
+  overflow: hidden;
 }
 
-.height .spanTwo{
-    font-size: 11px;
+.height .spanTwo {
+  font-size: 11px;
 }
 
-.secDiv .timeDiv{
-    display: flex;
-    align-items: self-start;
-    justify-content: flex-start;
-    /* gap: 80px; */
-    border: 2px solid #C4C4C4;
-    border-radius: 17.111px;
-    padding: 5px 20px;
-    margin-left: 140px;
-    /* margin-left: auto; */
-    /* margin-right: 100px; */
+.secDiv .timeDiv {
+  display: flex;
+  align-items: self-start;
+  justify-content: flex-start;
+  /* gap: 80px; */
+  /* border: 2px solid #c4c4c4; */
+  border-radius: 17.111px;
+  /* padding: 5px 20px; */
+  margin-left: 100px;
+  /* margin-left: auto; */
+  /* margin-right: 100px; */
 }
-.secDiv .timeDi{
-    display: flex;
-    align-items: self-start;
-    justify-content: flex-start;
-    /* gap: 80px; */
-    border: 2px solid #C4C4C4;
-    border-radius: 17.111px;
-    padding: 5px 20px;
-    /* margin-left: auto; */
-    /* margin-right: 100px; */
-}
-
-.timeDiv div .spanOne{
-    display: block;
-    outline: none;
-    border: none;
-   width: fit-content;
-   padding-bottom: 4px;
-   font-size: 14px;
-   color: 
-   #808080;
-   background-color: transparent;
-
+.secDiv .timeDi {
+  display: flex;
+  align-items: self-start;
+  justify-content: flex-start;
+  /* gap: 80px; */
+  /* border: 2px solid #c4c4c4; */
+  border-radius: 17.111px;
+  /* padding: 5px 20px; */
+  /* margin-left: auto; */
+  /* margin-right: 100px; */
 }
 
-.timeDiv .timeIcon{
-    font-size: 25px;
-}
-.timeDi div .spanTwo{
-    display: block;
-    outline: none;
-    border: none;
-   width: fit-content;
-   padding-bottom: 4px;
-   font-size: 14px;
-color: #808080;
-background-color: transparent;
-}
-.circleDiv{
-    border: 2px solid #BEBEBE;
-    border-radius: 19px;
-    text-align: start;
-    height: auto;
-    width: 60px;
+.timeDiv div .spanOne {
+  display: block;
+  outline: none;
+  border: none;
+  width: fit-content;
+  padding-bottom: 4px;
+  font-size: 14px;
+  color: #808080;
+  background-color: transparent;
 }
 
-.circleDiv .blackCircle{
-    font-size: 28px;
-    padding-left: 2px;
-    padding-right: 2px;
-    
+.timeDiv .timeIcon {
+  font-size: 25px;
 }
-.addTime{
-    background-color: #000;
-    color: white;
-    padding: 10px 30px;
-    border-radius: 10px;
-    float: right;
+.timeDi div .spanTwo {
+  display: block;
+  outline: none;
+  border: none;
+  width: fit-content;
+  padding-bottom: 4px;
+  font-size: 14px;
+  color: #808080;
+  background-color: transparent;
 }
-.saveTime{
-    background-color: #000;
-    color: white;
-    padding: 10px 30px;
-    border-radius: 10px;
-    float: right;
-    margin-bottom: 10px;
-    margin-right: 330px;
-    margin-top: 10px;
+/* .circleDiv {
+  border: 2px solid #bebebe;
+  border-radius: 19px;
+  text-align: start;
+  height: auto;
+  width: 60px;
+} */
+
+.circleDiv .blackCircle {
+  font-size: 28px;
+  padding-left: 2px;
+  padding-right: 2px;
 }
-.circleDiv{
-    border: 2px solid #BEBEBE;
-    border-radius: 50px;
-    text-align: start;
-    height: auto;
-    cursor: pointer;
-    width: 80px;
+.addTime {
+  background-color: #000;
+  color: white;
+  padding: 10px 30px;
+  border-radius: 10px;
+  float: right;
+}
+.saveTime {
+  background-color: #000;
+  color: white;
+  padding: 10px 30px;
+  border-radius: 10px;
+  float: right;
+  margin-bottom: 10px;
+  margin-right: 330px;
+  margin-top: 10px;
+}
+.circleDiv {
+  border: 2px solid #bebebe;
+  /* border-radius: 50px; */
+  text-align: start;
+  height: auto;
+  cursor: pointer;
+  width: 80px;
+  height: 50%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin: auto;
 }
 
-.circleDiv .blackCircle{
-    font-size: 28px;
-    padding-left: 2px;
-    padding-right: 2px;
-    height: 37px;
-    width: 37px;
-    margin-top: 5px;
-    
+.circleDiv .blackCircle {
+  font-size: 28px;
+  padding-left: 2px;
+  padding-right: 2px;
+  height: 37px;
+  width: 37px;
+  /* margin-top: 5px; */
 }
-  .iconOpen {
-    color: black;
+.iconOpen {
+  color: black;
+}
+
+.iconClose {
+  color: grey;
+}
+@media (max-width: 1200px) {
+  .secDiv {
+    gap: 10px;
   }
-  
-  .iconClose {
-    color: grey;
-  } 
-@media (max-width:1200px) {
-    .secDiv{
-        gap: 10px;
+  .secDiv .timeDiv {
+    margin-left: 110px;
+  }
+  .blackCircle {
+    width: 30px;
+  }
+  /* .height {
+    width: 88px;
+  } */
+  @media (max-width: 767px) {
+    .secDiv .timeDiv {
+      margin-left: 43px;
     }
-    .secDiv .timeDiv{
-        margin-left: 110px;
+    .actionButton {
+      /* margin-right: 277px; */
+      margin-top: 15px;
     }
-    .blackCircle{
-        width: 30px;
+    .form {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
     }
-    .height{
-        width: 88px;
+    .actionButton {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
     }
-    @media (max-width:767px) {
-       .secDiv .timeDiv{
-        margin-left: 60px;
-       }
-       .actionButton{
-        /* margin-right: 277px; */
-        margin-top: 15px;
-       }
-       .form{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-       }
-       .actionButton{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;      
-       }
-       .btn{
-      margin-left: 310px; 
-       }
+    .btn {
+      margin-left: 310px;
     }
-    @media (max-width:675px) {
-        .circleDiv .blackCircle{
-            height: 27px;
-            width: 27px;
-            margin-top: -2px;
-                   }  
-                   .secDiv{
-                    padding: 45px 20px;
-                   }
-                   .day{
-                    margin-top: -25px;
-                    margin-right: -113px;
-                   }
-                   .circleDiv{
-                    width: 50px;
-                    height: 30px;
-                    margin-left: -70px;
-                    margin-top: -22px;
-                    margin-bottom: 50px;
-                   }
-                   
-                   .secDiv .timeDi{
-                    margin-top: 20px;
-                   }
-                   .secDiv .timeDiv{
-                    margin-top: 20px;
+  }
+  @media (max-width: 675px) {
+    .circleDiv .blackCircle {
+      height: 27px;
+      width: 27px;
+      margin-top: -2px;
+    }
+    .secDiv {
+      padding: 45px 20px;
+    }
+    .day {
+      margin-top: -25px;
+      margin-right: -113px;
+    }
+    .circleDiv {
+      width: 50px;
+      height: 30px;
+      margin-left: -70px;
+      margin-top: -22px;
+      margin-bottom: 50px;
+    }
 
-                   }
-                  .form{
-                    display: flex;
-                    flex-direction: column;
-                    justify-content: center;
-                   }
-                
-                   .mainDiv{
-                    padding-top: 50px;
-                   }
-                   .addTime{
-                    margin-right: -30px;
-                    margin-top: -60px;
-
-                   }
-
+    .secDiv .timeDi {
+      margin-top: 20px;
     }
-  
+    .secDiv .timeDiv {
+      margin-top: 20px;
+    }
+    .form {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .mainDiv {
+      padding-top: 50px;
+    }
+    .addTime {
+      margin-right: -30px;
+      margin-top: -60px;
+    }
+  }
 }
-
-
-
-
-
-
-
-
-
-
-
