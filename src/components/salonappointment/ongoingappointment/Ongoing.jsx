@@ -6,6 +6,9 @@ import { cancelledAppointments } from "../../../api/appointments.api";
 import Notify from "../../../utils/notify";
 import { Link } from "react-router-dom";
 import Popup from "../appointmentdetails/Popup";
+import maleImage from '../../../assets/image/male-placeholder.svg';
+import femaleImage from '../../../assets/image/female-placeholder.svg';
+
 const Ongoing = () => {
   const [showPopup, setShowPopup] = useState(false);
   const [selectedAppointmentId, setSelectedAppointmentId] = useState(null);
@@ -68,7 +71,8 @@ const Ongoing = () => {
                 <Col md={4}>
                   <div>
                     <img
-                      src={appointment.user.profileImageUrl}
+                     src={appointment.serviceType.toLowerCase() === 'male' ? maleImage : femaleImage }
+                      // src={appointment.user.profileImageUrl}
                       className={styles.userImage}
                       alt="User"
                     />

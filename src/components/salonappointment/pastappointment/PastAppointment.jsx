@@ -6,6 +6,9 @@ import Session from "../../../service/session";
 import Notify from "../../../utils/notify";
 import styles from "../upcomingappointment/UpComing.module.css";
 import ViewDetails from "./ViewDetails";
+import maleImage from '../../../assets/image/male-placeholder.svg';
+import femaleImage from '../../../assets/image/female-placeholder.svg';
+import { toLower } from "lodash";
 
 const PastAppointment = () => {
   const [selectedAppointmentId, setSelectedAppointmentId] = useState(null);
@@ -74,7 +77,8 @@ const PastAppointment = () => {
                 <Col md={4}>
                   <div>
                     <img
-                      src={appointment.user.profileImageUrl}
+                      src={appointment.serviceType.toLowerCase() === 'male' ? maleImage : femaleImage }
+                      // src={appointment.user.profileImageUrl}
                       className={styles.userImage}
                       alt="User"
                     />
