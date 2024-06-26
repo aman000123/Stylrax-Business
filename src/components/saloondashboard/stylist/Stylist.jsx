@@ -2,12 +2,15 @@ import { useEffect, useState } from "react";
 import styles from "./Stylist.module.css";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import { salonStaff } from "../../../api/salon.management";
-import Session from "../../../service/session";
 import Notify from "../../../utils/notify";
 
-function Stylist({selectedSalon}) {
+function Stylist({ selectedSalon }) {
   const [staff, setStaff] = useState([]);
   const salonId = selectedSalon.id;
+
+  const capitalizeFirstLetter = (string) => {
+    return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
+  };
 
   useEffect(() => {
     const getStaff = async () => {
@@ -37,7 +40,7 @@ function Stylist({selectedSalon}) {
               </div>
               <div className={styles.aboutStylist}>
                 <p>
-                  {value.firstName} {value.lastName}
+                  {capitalizeFirstLetter(value.firstName)} {capitalizeFirstLetter(value.lastName)}
                   <br />
                   <span className={styles.spanOne}>{value.specialization}</span>
                   <br />
