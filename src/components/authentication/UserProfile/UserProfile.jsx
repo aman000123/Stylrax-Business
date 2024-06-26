@@ -15,35 +15,39 @@ import EditProfile from '../../editprofile/EditProfile';
 import Notify from '../../../utils/notify';
 import { getProfile } from '../../../api/user.api';
 import Image from '../../../ux/Image';
+
 const UserProfile = () => {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [profile, setProfile] = useState({});
+  const [profile, setProfile] = useState(Session.get("profileImageUrl") || "default-profile-image-url"); 
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const menuRef = useRef(null);
- // const profile = Session.get("profileImageUrl")
-  const firstName = Session.get("firstName")
+  const firstName = Session.get("firstName");
 
   const [isPopupOpen, setIsPopupOpen] = useState(false);
 
   const togglePopup = () => {
-    console.log("Toggle popup called");
     setIsPopupOpen(!isPopupOpen);
   };
+
   const userProfile = async () => {
     try {
       const response = await getProfile();
+      console.log(" User Profile ::>", response);
       const data = response.data.profileImageUrl;
-      console.log("data123::>", data);
+      console.log(" User Profile Data ::>", data);
       setProfile(data);
+      Session.set("profileImageUrl", data);
+      console.log(" User Profile Session Set ::>", "profileImageUrl", data); 
     } catch (error) {
       Notify.error(error.message);
     }
   };
+
   useEffect(() => {
-   
     userProfile();
   }, []);
+
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (menuRef.current && !menuRef.current.contains(event.target)) {
@@ -63,8 +67,6 @@ const UserProfile = () => {
     setMenuOpen(!menuOpen);
   };
 
-
-
   const handleLogout = () => {
     dispatch(removeToken());
     dispatch(removeUserInfo());
@@ -72,15 +74,15 @@ const UserProfile = () => {
     dispatch(removeSalons());
     dispatch(removeSalonName());
     dispatch(removeSalonImage());
+    Session.clear(); 
     navigate("/home");
-    console.log("Logout");
   };
 
   return (
     <div ref={menuRef}>
       <div onClick={toggleMenu} className={styles.avtar}>
-        <img src={profile} className={styles.avtar_img} tabIndex={-1} />
-        {/* <Image
+        <img src={profile} className={styles.avtar_img} alt="Profile" tabIndex={-1} />
+         {/* <Image
             alt="Salon Main Gate"
             className={styles.avtar_img}
             imageUrl={profile}
@@ -88,28 +90,27 @@ const UserProfile = () => {
           /> */}
       </div>
       {menuOpen && (
-        <Paper  className= {styles.paper} elevation={10} >
-            <Paper className={styles.main} elevation={10}>
-          <ul className={`${styles.profile_menu}  text-white bg-black`}>
-            <div className='d-flex'>
-            <img src={profile} className={styles.avtar_img} />
-            <li className='mx-4 pb-2'>{firstName}</li>
-            </div>
-            <div className='d-flex'onClick={togglePopup}>
-            <PiUserCircleLight className={styles.icon}/>
-            <li className={styles.profile}>View profile</li>
-            {/* <li >View profile</li> */}
-
-            </div>
-            <div className='d-flex'onClick={handleLogout}>
-                <IoLogOutOutline className={`${styles.icon}`}/>
-            <li className={styles.logout}>Logout</li>
-            </div>
-          </ul>
+        <Paper className={styles.paper} elevation={10}>
+          <Paper className={styles.main} elevation={10}>
+            <ul className={`${styles.profile_menu}  text-white bg-black`}>
+              <div className='d-flex'>
+                <img src={profile} className={styles.avtar_img} alt="Profile" />
+                <li className='mx-4 pb-2'>{firstName}</li>
+              </div>
+              <div className='d-flex' onClick={togglePopup}>
+                <PiUserCircleLight className={styles.icon} />
+                <li className={styles.profile}>View profile</li>
+                 {/* <li >View profile</li> */}
+              </div>
+              <div className='d-flex' onClick={handleLogout}>
+                <IoLogOutOutline className={styles.icon} />
+                <li className={styles.logout}>Logout</li>
+              </div>
+            </ul>
           </Paper>
         </Paper>
       )}
- {isPopupOpen && (
+      {isPopupOpen && (
         <Modal
           aria-labelledby="unstyled-modal-title"
           aria-describedby="unstyled-modal-description"
@@ -121,17 +122,20 @@ const UserProfile = () => {
             <EditProfile onClose={togglePopup} />
           </ModalContent>
         </Modal>
-      )}    </div>
+      )}
+    </div>
   );
 }
 
 export default UserProfile;
+
 const Backdrop = React.forwardRef((props, ref) => {
   const { open, className, ...other } = props;
   return (
-    <div className={clsx({ 'base-Backdrop-open': open}, className)} ref={ref} {...other} />
+    <div className={clsx({ 'base-Backdrop-open': open }, className)} ref={ref} {...other} />
   );
 });
+
 Backdrop.propTypes = {
   open: PropTypes.bool.isRequired,
   className: PropTypes.string,
@@ -147,14 +151,14 @@ const Modal = styled(BaseModal)`
   align-items: center;
   justify-content: center;
   background-color: rgba(255, 255, 255, 0.8);
-  border:none !important;
+  border: none !important;
   box-shadow: none !important;
   -webkit-scrollbar-width: none;
-  .MuiPaper-root { /* Target the Paper component inside the modal */
-  border: none !important; /* Hide the border */
-  box-shadow: none !important; /* Hide any box shadow */
-}
 
+  .MuiPaper-root { 
+    border: none !important;
+    box-shadow: none !important;
+  }
 `;
 
 const StyledBackdrop = styled(Backdrop)`
@@ -162,8 +166,8 @@ const StyledBackdrop = styled(Backdrop)`
   position: fixed;
   inset: 0;
   background-color: grey;
-  border:none;
-  `;
+  border: none;
+`;
 
 const ModalContent = styled('div')(
   () => css`
@@ -172,12 +176,13 @@ const ModalContent = styled('div')(
     gap: 5px;
     overflow: auto;
     height: 100vh;
-    border:none;
-    margin-top:60px;
-    padding-bottom:60px;
+    border: none;
+    margin-top: 60px;
+    padding-bottom: 60px;
 
     ::-webkit-scrollbar {
-      display: none !important; /* Hide scrollbar for webkit browsers (Chrome, Safari, etc.) */
-      border:none !important
+      display: none !important;
+      border: none !important;
     }
-  `);
+  `
+);

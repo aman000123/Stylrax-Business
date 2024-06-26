@@ -11,6 +11,13 @@ function OurServices({selectedSalon}) {
   const [services, setServices] = useState([]);
   const salonId = selectedSalon.id;
 
+  const capitalizeFirstLetter = (string) => {
+    return string
+      .split(" ")
+      .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+      .join(" ");
+  };
+
   useEffect(() => {
     const fetchServices = async () => {
       if (!salonId) {
@@ -21,6 +28,7 @@ function OurServices({selectedSalon}) {
 
       try {
         const response = await salonServices(salonId);
+        console.log("Salon Dashboard ::>", response);
         if (response && response.data) {
           const services = response.data;
           console.log("services::>", services);
@@ -57,7 +65,7 @@ function OurServices({selectedSalon}) {
                   alt={service.serviceName || "Service"}
                 />
                 <p className={styles.hairStyle}>
-                  {service.serviceName || "?"}
+                {capitalizeFirstLetter(service.serviceName) || "?"}
                   <br />
                 </p>
               </Paper>
