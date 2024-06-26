@@ -19,7 +19,7 @@ export const handleOnFileSelect = async (file, type, setFieldValue) => {
         };
         await fetch(fileUrl.data.url, requestOptions);
        } catch (error) {
-        // Notify.error(error.message);
+        Notify.error(error.message);
        }
     }
 };
