@@ -45,7 +45,7 @@ const DashboardLayout = () => {
         const { name, mainGateImageUrl, id,homeService } = salons[0];
         const initialSalon = { name, mainGateImageUrl, id ,homeService};
         setSelectedSalon(initialSalon);
-        console.log("Initial salon:", initialSalon);
+        // console.log("Initial salon:", initialSalon);
         localStorage.setItem("selectedSalon", JSON.stringify(initialSalon));
         dispatch(setSalonID({ salonId: id }));
         dispatch(setSalonName({ salonName: name }));

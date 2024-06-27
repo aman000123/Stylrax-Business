@@ -31,7 +31,7 @@ const ViewDetails = ({ isOpen, onClose, appointmentId }) => {
       try {
         const response = await detailsAppointments(appointmentId);
         const completedData = response.data;
-        console.log("Complete Data ::", completedData);
+        // console.log("Complete Data ::", completedData);
         setCompleted(completedData);
       } catch (error) {
         Notify.error(error.message);

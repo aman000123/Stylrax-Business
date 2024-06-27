@@ -22,7 +22,7 @@ const initialValues = {
 
 const SalonBank = ({ salonId}) => {
 
-  console.log("bank id:::>", salonId);
+  // console.log("bank id:::>", salonId);
   const navigate = useNavigate();
   const salons = useSelector((state) => state.auth.salons);
   const salonIdd = salons[0]?.id ?? null;
@@ -41,7 +41,7 @@ const SalonBank = ({ salonId}) => {
       navigate('/salon/dashboard')
     } catch (error) {
       Notify.error(error.message);
-      console.log("error:::>", error);
+      // console.log("error:::>", error);
     }
   };
 

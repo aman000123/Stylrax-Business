@@ -6,7 +6,7 @@ import OurServices from "../ourservices/OurServices";
 import RunningBanner from "../runningbanner/RunningBanner";
 
 function SalonClinic({ selectedSalon }) {
-  console.log("selected", selectedSalon);
+  // console.log("selected", selectedSalon);
   return (
     <>
       <RunningBanner selectedSalon={selectedSalon} />

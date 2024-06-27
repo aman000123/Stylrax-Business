@@ -66,10 +66,10 @@ const Otp = ({ phoneNumber, timer, setTimer, isTimerActive, setIsTimerActive }) 
 
       const { data} = await verifyOtp(verifyData);
       const salons = data.salons;
-      console.log("salons::>",salons)
+      // console.log("salons::>",salons)
 
       const ProfileStatus = data.profileStatus;
-      console.log("status::>", ProfileStatus)
+      // console.log("status::>", ProfileStatus)
       const authData = {
         token: data.authToken,
         email: data.email,
@@ -86,7 +86,7 @@ const Otp = ({ phoneNumber, timer, setTimer, isTimerActive, setIsTimerActive }) 
       }
 
       dispatch(storeToken(authData));
-      console.log(authData)
+      // console.log(authData)
       if (data.profileStatus === 3 && data.verified) {
         navigate("/salon/dashboard");
       }

@@ -75,7 +75,7 @@ const Profile = ({ onContinue, token }) => {
         serviceType: "Male",
       };
       const res = await createProfile(dataForm, token);
-      console.log("response:::>", res.data);
+      // console.log("response:::>", res.data);
   
       onContinue(values); 
     } catch (error) {

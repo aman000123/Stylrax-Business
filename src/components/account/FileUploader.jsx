@@ -6,7 +6,7 @@ export const handleOnFileSelect = async (file, type, setFieldValue) => {
     } else {
        try {
         const fileUrl = await getPresignedUrl({ fileName: file.name });
-        console.log(" File type ::>", fileUrl);
+        // console.log(" File type ::>", fileUrl);
         setFieldValue(type, fileUrl.data.path);
         const formData = new FormData();
         formData.append('file', file);

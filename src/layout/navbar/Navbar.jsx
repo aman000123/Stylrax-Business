@@ -5,7 +5,7 @@ import styles from "../navbar/Navbar.module.css";
 import { NavLink } from "react-bootstrap";
 import Logo from "../../ux/Logo";
 const Navbar = (props) => {
-  console.log(" Nav Bar ::>", props);
+  // console.log(" Nav Bar ::>", props);
   const [menuOpen, setMenuOpen] = useState(false);
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);

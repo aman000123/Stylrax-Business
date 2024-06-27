@@ -26,13 +26,13 @@ const initialValues = {
 function AddStaff({ onClose, updatedData }) {
   const salonId = Session.get("salonId");
   const [imageUrls, setImageUrls] = useState("");
-  console.log("imgUrl", imageUrls);
+  // console.log("imgUrl", imageUrls);
   const handleClose = () => {
     onClose();
   };
 
   const handleSubmit = async (values) => {
-    console.log(values);
+    // console.log(values);
     try {
       const data = {
         firstName: values.firstName,
@@ -52,7 +52,7 @@ function AddStaff({ onClose, updatedData }) {
       Notify.success("Staff Added");
       updatedData();
 
-      console.log("addStaff::>", Staff);
+      // console.log("addStaff::>", Staff);
       onClose();
     } catch (error) {
       Notify.error(error.message);

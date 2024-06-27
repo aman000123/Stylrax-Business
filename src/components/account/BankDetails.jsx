@@ -20,7 +20,7 @@ const initialValues = {
 
 
 const BankDetails = ({salonId,onContinue}) => {
-  console.log("bank id:::>", salonId);
+  // console.log("bank id:::>", salonId);
 
 
 
@@ -28,7 +28,7 @@ const salons = useSelector((state) => state.auth.salons);
 
 const salonIdd = salons[0]?.id ?? null;
 
-console.log("salonID:::>", salonIdd);
+// console.log("salonID:::>", salonIdd);
  
    const handleOnSubmit = async (values) => {
      try {
@@ -44,11 +44,11 @@ console.log("salonID:::>", salonIdd);
 
       //const res = await bankDetails(salonIdd,data);
       const response = await bankDetails(salonId ? salonId : salonIdd, data);
-      console.log("response:::>", response);
+      // console.log("response:::>", response);
       onContinue(values);
     } catch (error) {
       Notify.error(error.message);
-      console.log("error:::>", error);
+      // console.log("error:::>", error);
 
     }
   }

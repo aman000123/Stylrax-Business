@@ -42,7 +42,7 @@ function RunningBanner({selectedSalon}) {
     if (salonId) {
       getSalon();
     } else {
-      console.log('')
+      // console.log('')
     }
   }, [salonId]);
 

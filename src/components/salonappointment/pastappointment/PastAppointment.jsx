@@ -21,7 +21,7 @@ const PastAppointment = () => {
       try {
         const response = await completedAppointments(salonId);
         const completed = response.data;
-        console.log("completed::>", completed);
+        // console.log("completed::>", completed);
         setCompleted(completed);
       } catch (error) {
         Notify.error(error.message);

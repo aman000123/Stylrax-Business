@@ -31,7 +31,7 @@ function SalonOwnerDetails({ onClose }) {
         [imageType]: imageUrl,
       }));
       const presignedUrl = await getPresignedUrl({ fileName: file.name });
-      console.log("presendUrl::>", presignedUrl.data.url);
+      // console.log("presendUrl::>", presignedUrl.data.url);
       const requestOptions = {
         method: "PUT",
         body: file,

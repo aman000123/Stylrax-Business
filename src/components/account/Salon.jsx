@@ -59,7 +59,7 @@ const BusinessDetails = ({ onContinue, token }) => {
   const states = Object.keys(data);
 
   const handleOnSubmit = async (values) => {
-    console.log(" Handle Submit Salon Details ::", values);
+    // console.log(" Handle Submit Salon Details ::", values);
     try {
       const verifyForm = {
         name: values.name,
@@ -79,9 +79,9 @@ const BusinessDetails = ({ onContinue, token }) => {
         gallaryImages: galleryImages,
       };
       const res = await createSalon(verifyForm);
-      console.log("respn::>", res);
+      // console.log("respn::>", res);
       const salonId = res.data.id;
-      console.log("salon id:::>", salonId);
+      // console.log("salon id:::>", salonId);
       onContinue(values, salonId);
     } catch (error) {
       Notify.error(error.message);
@@ -112,9 +112,9 @@ const BusinessDetails = ({ onContinue, token }) => {
       const verifyEmailData = {
         email: values.email,
       };
-      console.log("verifyEmailData ::>", verifyEmailData);
+      // console.log("verifyEmailData ::>", verifyEmailData);
       const res = await verifyEmail(verifyEmailData);
-      console.log("Email verification ::>", res);
+      // console.log("Email verification ::>", res);
       setShowOTP(true);
       Notify.success(res.message);
     } catch (error) {

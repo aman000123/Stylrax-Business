@@ -33,12 +33,12 @@ const UserProfile = () => {
   const userProfile = async () => {
     try {
       const response = await getProfile();
-      console.log(" User Profile ::>", response);
+      // console.log(" User Profile ::>", response);
       const data = response.data.profileImageUrl;
-      console.log(" User Profile Data ::>", data);
+      // console.log(" User Profile Data ::>", data);
       setProfile(data);
       Session.set("profileImageUrl", data);
-      console.log(" User Profile Session Set ::>", "profileImageUrl", data); 
+      // console.log(" User Profile Session Set ::>", "profileImageUrl", data); 
     } catch (error) {
       Notify.error(error.message);
     }

@@ -22,7 +22,7 @@ const UpComingAppointment = () => {
       try {
         const response = await pendingAppointments(salonId);
         const pending = response.data;
-        console.log(" upcoming completed::>",pending)
+        // console.log(" upcoming completed::>",pending)
         setPending(pending);
       } catch (error) {
         Notify.error(error.message);
@@ -34,7 +34,7 @@ const UpComingAppointment = () => {
   
   const handleViewDetails = (appointmentId) => {
     setSelectedAppointmentId(appointmentId);
-    console.log("id",appointmentId)
+    // console.log("id",appointmentId);
     setShowPopup(true);
   };
   if(!pending || pending.length===0){

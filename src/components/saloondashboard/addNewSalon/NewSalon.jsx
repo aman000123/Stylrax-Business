@@ -20,7 +20,7 @@ import styles from "../../account/account.module.css";
 import { data } from "../../account/Data";
 import SalonBank from "./SalonBank";
 
-console.log("data", data);
+// console.log("data", data);
 
 const states = Object.keys(data);
 
@@ -81,7 +81,7 @@ const NewSalon = ({ onClose, updatedData }) => {
       };
       const res = await createSalon(verifyForm);
       const verified = res.data.verified;
-      console.log('verified',verified)
+      // console.log('verified',verified)
       Notify.success("New Salon Added");
       const newSalonId = res.data.id;
       setSalonId(newSalonId); 

@@ -23,11 +23,11 @@ export const authSlice = createSlice({
   reducers: {
     storeToken: (state, action) => {
       const { token,profileImageUrl,firstName, ...userInfo } = action.payload; 
-      console.log("profile Image::>",profileImageUrl)
-      console.log("First Name::>",firstName)
+      // console.log("profile Image::>",profileImageUrl)
+      // console.log("First Name::>",firstName)
 
-      console.log("token::>",token)
-      console.log("profile status::>",userInfo.profileStatus)
+      // console.log("token::>",token)
+      // console.log("profile status::>",userInfo.profileStatus)
 
       state.token = token,
       state.userInfo = { ...userInfo, profileImageUrl };
@@ -72,18 +72,19 @@ export const authSlice = createSlice({
     setUserInfo: (state, action) => {
       state.userInfo = action.payload;
       Session.set("UserInfo::>",action.payload)
-      console.log("profile status::>",action.payload)
+      // console.log("profile status::>",action.payload)
 
     },
   storeSalons:(state,action) =>{
     state.salons=action.payload.salons
     Session.set("salons",action.payload.salons)
-    console.log("salons::>",action.payload.salons)
+    // console.log("salons::>",action.payload.salons)
   },
   setSelectedRowId: (state, action) => {
     state.selectedRowId = action.payload;
     Session.set("RowId",action.payload.selectedRowId)
-    console.log("Selected Row ID:", action.payload);  },
+    // console.log("Selected Row ID:", action.payload);
+    },
     removeToken: (state) => {
       Session.remove("token");
       state.token = "";
