@@ -8,7 +8,7 @@ import styles from './SwitchSalon.module.css';
 import { useNavigate } from 'react-router-dom';
 
 const SwitchSalon = ({ salons, onSelectSalon , selectedSalonId }) => {
-  console.log("ss id",selectedSalonId)
+  // console.log("ss id",selectedSalonId)
   const navigate = useNavigate();
  
 

@@ -17,7 +17,7 @@ function Stylist({ selectedSalon }) {
       try {
         const response = await salonStaff(salonId);
         const staff = response.data;
-        console.log("completed::>", staff);
+        // console.log("completed::>", staff);
         setStaff(staff);
       } catch (error) {
         Notify.error(error.message);

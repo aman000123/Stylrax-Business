@@ -3,6 +3,7 @@ import Session from '../../../service/session';
 import { useState, useEffect } from 'react';
 import { myQr } from '../../../api/salon.management';
 import styles from "./MyQR.module.css";
+import { NavLink } from "react-bootstrap";
 
 const MyQR = () => {
   const salonId = Session.get("salonId");
@@ -13,7 +14,7 @@ const MyQR = () => {
       try {
         const response = await myQr(salonId);
         const myQR = response.data; 
-        console.log("qr::>", myQR);
+        // console.log("qr::>", myQR);
         setQr(myQR);
       } catch (error) {
         Notify.error(error.message);
@@ -47,13 +48,13 @@ const MyQR = () => {
         <>
           <img src={`data:image/png;base64,${qr}`} alt="QR Code" className={styles.myQr} />
           <div className={styles.buttonContainer}>
-            <a
+            <NavLink
               href={`data:image/png;base64,${qr}`}
               download="salon_qr_code.png"
               className={styles.downloadBtn}
             >
               <button className={styles.button}>Download</button>
-            </a>
+            </NavLink>
             <button className={styles.button} onClick={handleShare}>Share</button>
           </div>
         </>

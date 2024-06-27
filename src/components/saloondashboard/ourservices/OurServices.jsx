@@ -28,10 +28,10 @@ function OurServices({selectedSalon}) {
 
       try {
         const response = await salonServices(salonId);
-        console.log("Salon Dashboard ::>", response);
+        // console.log("Salon Dashboard ::>", response);
         if (response && response.data) {
           const services = response.data;
-          console.log("services::>", services);
+          // console.log("services::>", services);
           setServices(services);
         } else {
           Notify.error("Failed to fetch services. Please try again.");

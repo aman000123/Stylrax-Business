@@ -12,7 +12,7 @@ function ProvideServices() {
   const [selectedCategoryId, setSelectedCategoryId] = useState(null);
   const [selectedCategoryName, setSelectedCategoryName] = useState(""); // New state variable
   const [categories, setCategories] = useState([]);
-  console.log("Provide Categories", categories);
+  // console.log("Provide Categories", categories);
 
   useEffect(() => {
     const fetchCategories = async () => {

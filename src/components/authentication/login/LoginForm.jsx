@@ -29,9 +29,9 @@ const LoginForm = ({ setActiveStep }) => {
     try {
       setSubmitting(true);
       setSubmittingText("Submitting...");
-      console.log("Submitting form with values:", values);
+      // console.log("Submitting form with values:", values);
       const { phoneNumber } = values;
-      console.log("Values ::", values);
+      // console.log("Values ::", values);
       const data = {
         countryCode: "91",
         phoneNumber: phoneNumber,
@@ -39,7 +39,7 @@ const LoginForm = ({ setActiveStep }) => {
         deviceToken: "staff3deviceid",
       };
       const res = await doLogin(data);
-      console.log("Response:", res.data);
+      // console.log("Response:", res.data);
       setPhoneNumber(phoneNumber);
       setShowOTPSection(true);
       setTimer(30);

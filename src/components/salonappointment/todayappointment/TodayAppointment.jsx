@@ -15,7 +15,7 @@ const TodayAppointment = () => {
 
     // Format it as "yyyy-mm-dd"
     const formattedDate = currentDate.toISOString().split('T')[0];
-    console.log("date::>",formattedDate)
+    // console.log("date::>",formattedDate)
   
     const [ongoing, setOngoing] = useState([]);
     const [showPopup, setShowPopup] = useState(false);
@@ -26,7 +26,7 @@ const TodayAppointment = () => {
         try {
           const response = await ongoingAppointments(salonId,formattedDate);
           const ongoing = response.data;
-          console.log(" ongoing completed::>",ongoing)
+          // console.log(" ongoing completed::>",ongoing)
           setOngoing(ongoing);
         } catch (error) {
           Notify.error(error.message);
@@ -37,7 +37,7 @@ const TodayAppointment = () => {
 
     const handleViewDetails = (appointmentId) => {
         setSelectedAppointmentId(appointmentId);
-        console.log("ara id",appointmentId)
+        // console.log("ara id",appointmentId);
         setShowPopup(true);
       };
       if(!ongoing || ongoing.length===0){

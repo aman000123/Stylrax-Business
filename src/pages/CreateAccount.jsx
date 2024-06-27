@@ -35,9 +35,9 @@ const CreateAccount = () => {
   const [steps, setSteps] = useState([]);
   const [salonId, setSalonId] = useState(null);
   const userInfo = useSelector((state) => state.auth.userInfo);
-  console.log("userInfo::>", userInfo);
+  // console.log("userInfo::>", userInfo);
   const status = userInfo?.profileStatus;
-  console.log("statusInfo::>", status);
+  // console.log("statusInfo::>", status);
   const userType = userInfo?.userType;
   // console.log("userType::>", userType);
   const [activeStep, setActiveStep] = useState(status);

@@ -27,7 +27,7 @@ function AddService({ onClose, updatedData, id, categoryName }) {
         type,
       };
 
-      console.log("Selected Category ID:", id);
+      // console.log("Selected Category ID:", id);
       const res = await addSalonService(salonId, data);
       Notify.success("Service added");
       onClose();

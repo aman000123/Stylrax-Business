@@ -44,7 +44,7 @@ const Serviceable = () => {
     };
     try {
       const response = await salonAddress(salonId, payload);
-      console.log('Radius updated successfully:', response);
+      // console.log('Radius updated successfully:', response);
       Notify.success(response.message);
     } catch (error) {
       Notify(error.message);

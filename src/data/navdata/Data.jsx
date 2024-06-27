@@ -3,24 +3,25 @@ import { FaClipboardList } from "react-icons/fa";
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
 import { MdOutlineContentCut } from "react-icons/md";
 import UserProfile from "../../components/authentication/UserProfile/UserProfile";
+import { NavLink } from "react-router-dom";
 
 const menuItems = [
   {
     id: 1,
     icon: (
-      <a href="tel:+918700882039" style={{ textDecoration: 'none', color: 'inherit' }}>
+      <NavLink href="tel:+918700882039" style={{ textDecoration: 'none', color: 'inherit' }}>
         <PhoneIcon />
         <span style={{ marginLeft: '5px' }}>+91 8700882039</span>
-      </a>
+      </NavLink>
     )
   },
   {
     id: 2,
     icon: (
-      <a href="mailto:support@stylrax.com" style={{ textDecoration: 'none', color: 'inherit' }}>
+      <NavLink href="mailto:support@stylrax.com" style={{ textDecoration: 'none', color: 'inherit' }}>
         <MailOutlineIcon />
         <span style={{ marginLeft: '5px' }}>support@stylrax.com</span>
-      </a>
+      </NavLink>
     )
   }
 ];

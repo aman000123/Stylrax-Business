@@ -20,7 +20,7 @@ const Ongoing = () => {
       try {
         const response = await cancelledAppointments(salonId);
         const pending = response.data;
-        console.log("cancelled completed::>", pending);
+        // console.log("cancelled completed::>", pending);
         setPending(pending);
       } catch (error) {
         Notify.error(error.message);
@@ -31,7 +31,7 @@ const Ongoing = () => {
 
   const handleViewDetails = (appointmentId) => {
     setSelectedAppointmentId(appointmentId);
-    console.log("id", appointmentId);
+    // console.log("id", appointmentId);
     setShowPopup(true);
   };
   if(!pending || pending.length===0){

@@ -9,11 +9,15 @@ function SalonDetails({ salonDetails }) {
       <div className={styles.imgDiv}>
         <div>
           <Zoom>
-          <Image
-            alt="Salon Main Gate"
-            className={styles.imgDiv}
-            imageUrl={details.mainGateImageUrl}
-          />
+          {details.mainGateImageUrl ? (
+              <Image
+                alt="Salon Main Gate"
+                className={styles.imgDiv}
+                imageUrl={details.mainGateImageUrl}
+              />
+            ) : (
+              <div>No image available</div> 
+            )}
           </Zoom>
         </div>
       </div>

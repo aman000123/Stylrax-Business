@@ -18,7 +18,7 @@ function ManageStaff() {
   const [staff, setStaff] = useState([]);
   const [selectedStaffId, setSelectedStaffId] = useState(null);
   const [addStaffOpen, setAddStaffOpen] = useState(false);
-  console.log("staff::>", staff);
+  // console.log("staff::>", staff);
   const handleOpen = () => setAddStaffOpen(true);
   //const handleClose = () => setOpen(false);
   const handleClose = (e) => {
@@ -36,7 +36,7 @@ function ManageStaff() {
   const ishandleClose = () => isSetOpen(false);
 
   const handleViewMore = (id) => {
-    console.log("View more clicked for staff ID:", id);
+    // console.log("View more clicked for staff ID:", id);
     setSelectedStaffId(id);
     setOpen(true);
   };

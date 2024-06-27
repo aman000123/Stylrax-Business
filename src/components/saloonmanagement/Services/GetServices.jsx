@@ -16,9 +16,9 @@ function GetServices({ id, categoryName }) {
   const [services, setServices] = useState([]);
   const [genderFilter, setGenderFilter] = useState("");
 
-  console.log("services", services);
+  // console.log("services", services);
   const salonId = Session.get("salonId");
-  console.log("Category Name", categoryName)
+  // console.log("Category Name", categoryName);
 
   const fetchCategories = async () => {
     try {

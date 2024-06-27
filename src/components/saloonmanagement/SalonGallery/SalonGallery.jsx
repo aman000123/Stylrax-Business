@@ -16,7 +16,7 @@ const SalonGallery = ({ salonDetails }) => {
       try {
         const response = await salonGallery(salonId);
         const galleryImages = response.data;
-        console.log("gallery images::>", galleryImages);
+        // console.log("gallery images::>", galleryImages);
         setGallery(galleryImages);
       } catch (error) {
         Notify.error(error.message);

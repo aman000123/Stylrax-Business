@@ -33,7 +33,7 @@ function SalonManagement() {
         const response = await singleSalon(salonId);
         const salonDetails = response.data;
         const image = salonDetails.salon.mainGateImageUrl;
-        console.log("salon management::>", salonDetails.salon.mainGateImageUrl);
+        // console.log("salon management::>", salonDetails.salon.mainGateImageUrl);
         setSalonDetails(salonDetails);
       } catch (error) {
         Notify.error(error.message);
@@ -47,7 +47,7 @@ function SalonManagement() {
     setActiveButton(buttonName);
   };
 
-  console.log("activebutton :", activeButton);
+  // console.log("activebutton :", activeButton);
 
   const data = [
     { name: "Salon details", key: "salonDetails" },

@@ -24,7 +24,7 @@ export default function Popup(props) {
     try {
       const response = await detailsAppointments(appointmentId);
       const ongoing = response.data;
-      console.log(" ongoing completed::>", ongoing);
+      // console.log(" ongoing completed::>", ongoing);
       setAppointmentDetails(ongoing);
     } catch (error) {
       Notify.error(error.message);
@@ -70,11 +70,11 @@ export default function Popup(props) {
 
   const handleStartService = () => {
     setStartServiceClicked(true);
-    console.log("startServiceClicked:", startServiceClicked);
+    // console.log("startServiceClicked:", startServiceClicked);
   };
 
   useEffect(() => {
-    console.log("startServiceClicked:", startServiceClicked);
+    // console.log("startServiceClicked:", startServiceClicked);
   }, [startServiceClicked]);
 
   const calculateGrandTotal = (services) => {

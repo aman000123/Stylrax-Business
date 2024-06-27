@@ -31,13 +31,11 @@ function SalonTime() {
     const getSalonTime = async () => {
       try {
         const res = await salonBusinessTime(salonId);
-        console.log(" Salon Time Res ::>", res);
+        // console.log("Salon Time Res ::>", res);
         const defaultTiming = openTimeData.map((dayData) => {
-          console.log(" Day Data ::", dayData);
           const dayTiming = res.data.find(
             (timingData) => timingData.day === dayData.day
           );
-          console.log("Day Timining ::", dayTiming);
           return {
             day: dayData.day,
             isOpen: dayTiming ? dayTiming.isOpen : false,
@@ -45,8 +43,6 @@ function SalonTime() {
             closeTime: dayTiming ? dayjs(dayTiming.closeTime) : null,
           };
         });
-        console.log("Day Timining ::::", defaultTiming);
-
         setTiming(defaultTiming);
       } catch (error) {
         Notify.error(error.message);
@@ -61,21 +57,24 @@ function SalonTime() {
   };
 
   const handleSubmit = async (values) => {
-    console.log("Salon Time Submit ::>", values);
+    const updatedTiming = timing.map((dayTiming, index) => {
+      const isOpenChanged = values[`isOpen${index}`] !== dayTiming.isOpen;
+      const openTimeChanged = values[`openTime${index}`] && dayjs(values[`openTime${index}`]).format("hh:mm A") !== dayTiming.openTime?.format("hh:mm A");
+      const closeTimeChanged = values[`closeTime${index}`] && dayjs(values[`closeTime${index}`]).format("hh:mm A") !== dayTiming.closeTime?.format("hh:mm A");
+
+      if (isOpenChanged || openTimeChanged || closeTimeChanged) {
+        return {
+          day: dayTiming.day,
+          isOpen: values[`isOpen${index}`],
+          openTime: values[`openTime${index}`] ? dayjs(values[`openTime${index}`]).format("hh:mm A") : "",
+          closeTime: values[`closeTime${index}`] ? dayjs(values[`closeTime${index}`]).format("hh:mm A") : "",
+        };
+      }
+      return null;
+    }).filter((timing) => timing !== null);
+
     try {
-      const updatedTiming = timing.map((dayTiming, index) => ({
-        day: dayTiming.day,
-        isOpen: values[`isOpen${index}`],
-        openTime: values[`openTime${index}`]
-          ? dayjs(values[`openTime${index}`]).format("hh:mm A")
-          : "",
-        closeTime: values[`closeTime${index}`]
-          ? dayjs(values[`closeTime${index}`]).format("hh:mm A")
-          : "",
-      }));
-      console.log(" Salon Updated Time :::", updatedTiming);
       await salonTime(salonId, updatedTiming);
-      console.log(" Salon Time :::>", salonTime);
       Notify.success("Salon timings updated successfully.");
       setAdd(false);
     } catch (error) {
@@ -137,7 +136,6 @@ function SalonTime() {
                                 {...field}
                                 value={field.value || null}
                                 onChange={(value) => {
-                                  console.log("TimePicker :: ", value);
                                   setFieldValue(`openTime${index}`, value);
                                 }}
                                 disabled={!add}
@@ -147,7 +145,7 @@ function SalonTime() {
                                     className={styles.spanOne}
                                   />
                                 )}
-                                ampm={true} 
+                                ampm={true}
                               />
                             )}
                           </Field>
@@ -171,7 +169,7 @@ function SalonTime() {
                                     className={styles.spanTwo}
                                   />
                                 )}
-                                ampm={true} 
+                                ampm={true}
                               />
                             )}
                           </Field>
