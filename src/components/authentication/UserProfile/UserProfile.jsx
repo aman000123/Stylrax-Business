@@ -18,7 +18,7 @@ import Image from '../../../ux/Image';
 
 const UserProfile = () => {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [profile, setProfile] = useState(Session.get("profileImageUrl") || "default-profile-image-url"); 
+  const [profile, setProfile] = useState(Session.get("profileImageUrl") || "");
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const menuRef = useRef(null);
@@ -81,7 +81,9 @@ const UserProfile = () => {
   return (
     <div ref={menuRef}>
       <div onClick={toggleMenu} className={styles.avtar}>
-        <img src={profile} className={styles.avtar_img} alt="Profile" tabIndex={-1} />
+      {profile && (
+        <img src={profile} className={styles.avtar_img} alt="Profile" />
+      )}
          {/* <Image
             alt="Salon Main Gate"
             className={styles.avtar_img}
