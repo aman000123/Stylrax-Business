@@ -50,7 +50,7 @@ const BusinessDetails = ({ onContinue, token }) => {
   const [bannerImages, setBannerImages] = useState([]);
   const [galleryImages, setGalleryImages] = useState([]);
   const [cityOptions, setCityOptions] = useState([
-    { value: "", text: "Enter salon city" },
+    { value: "", text: "Select salon city" },
   ]);
   const [showOTP, setShowOTP] = useState(false);
   const [otp, setOtp] = useState("");
@@ -176,7 +176,7 @@ const BusinessDetails = ({ onContinue, token }) => {
       value: city,
       text: city,
     }));
-    setCityOptions([{ value: "", text: "Enter salon city" }, ...cityOptions]);
+    setCityOptions([{ value: "", text: "Select salon city" }, ...cityOptions]);
   };
 
   return (
@@ -224,8 +224,8 @@ const BusinessDetails = ({ onContinue, token }) => {
                 <InputText
                   type="email"
                   name="email"
-                  label="Email ID"
-                  placeholder="Enter your email ID"
+                  label="Salon Email (optional) "
+                  placeholder="Enter salon email ID"
                   icon={isOTPVerified && <FaCheckCircle />}
                   iconClass="text-success"
                   disable={isOTPVerified}
@@ -266,7 +266,7 @@ const BusinessDetails = ({ onContinue, token }) => {
 
                 <InputSelect
                   name="state"
-                  label="State"
+                  label=" Salon State"
                   options={states.map((state) => ({
                     value: state,
                     text: state,
@@ -276,12 +276,12 @@ const BusinessDetails = ({ onContinue, token }) => {
                     handleStateChange(e.target.value);
                   }}
                 />
-                <InputSelect name="city" label="City" options={cityOptions} />
+                <InputSelect name="city" label="Salon City" options={cityOptions} />
                 <InputText
                   type="text"
                   name="pinCode"
                   label="Salon Pin Code"
-                  placeholder="Enter salon pin code"
+                  placeholder="Select salon pin code"
                 />
                 <InputSelect
                   name="serviceType"
@@ -303,7 +303,7 @@ const BusinessDetails = ({ onContinue, token }) => {
                   <Label text="Salon Images" />
                   <InputFile
                     name="mainGateUrl"
-                    helperText="Main Gate"
+                    helperText=" Upload salon main gate image"
                     onFileSelect={(e) =>
                       handleOnFileSelect(e, "mainGateUrl", setFieldValue)
                     }
