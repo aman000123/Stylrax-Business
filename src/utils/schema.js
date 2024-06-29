@@ -32,9 +32,9 @@ export const businessDetailsSchema = Yup.object({
     .matches(/^[a-zA-Z\s]+$/, 'Salon name must contain only alphabets')
     .required("Please enter salon name"),
   // email: Yup.string().email().required("Please enter your email"),
-  companyName: Yup.string()
-    .matches(/^[a-zA-Z\s]+$/, 'Company name must contain only alphabets')
-    .required("Please enter company name"),
+  // companyName: Yup.string()
+  //   .matches(/^[a-zA-Z\s]+$/, 'Company name must contain only alphabets')
+  //   .required("Please enter company name"),
   pinCode: Yup.string()
     .matches(/^[0-9]+$/, "PIN code must contain only numbers")
     .length(6, "PIN code must be exactly 6 digits")
@@ -52,7 +52,6 @@ export const businessDetailsSchema = Yup.object({
   mainGateUrl: Yup.string().required("Please upload main gate image"),
   bannerImages: Yup.array().min(1, "Please upload at least one banner image"),
   galleryImageUrl: Yup.array().min(1, "Please upload at least one gallery image"),
-  email: Yup.string().email().required("Please enter your email"),
 })
 
 
