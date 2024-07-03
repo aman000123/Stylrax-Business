@@ -6,19 +6,30 @@ import { MdOutlineEdit } from "react-icons/md";
 import { getProfile, updateProfile } from "../../api/user.api.js";
 import styles from "./EditProfile.module.css";
 import Image from "../../ux/Image.jsx";
+
 function SalonOwnerDetails({ onClose }) {
   const [details, setDetails] = useState({});
   const [imageUrls, setImageUrls] = useState({});
+
   useEffect(() => {
     const fetchUserDetail = async () => {
       try {
         const res = await getProfile();
         const details = res.data;
+        
+        // Format date of birth to dd/mm/yy
+        if (details.dataOfBirth) {
+          const date = new Date(details.dataOfBirth);
+          const formattedDate = `${String(date.getDate()).padStart(2, '0')}/${String(date.getMonth() + 1).padStart(2, '0')}/${String(date.getFullYear()).slice(-2)}`;
+          details.dataOfBirth = formattedDate;
+        }
+
         setDetails(details);
       } catch (error) {
         Notify.error(error.message);
       }
     };
+
     fetchUserDetail();
   }, []);
 
@@ -31,7 +42,6 @@ function SalonOwnerDetails({ onClose }) {
         [imageType]: imageUrl,
       }));
       const presignedUrl = await getPresignedUrl({ fileName: file.name });
-      // console.log("presendUrl::>", presignedUrl.data.url);
       const requestOptions = {
         method: "PUT",
         body: file,
@@ -45,6 +55,7 @@ function SalonOwnerDetails({ onClose }) {
       console.error("Error uploading image:", error);
     }
   };
+
   return (
     <div className={styles.mainDiv}>
       <RxCross2 onClick={onClose} className={styles.close_Icon} />

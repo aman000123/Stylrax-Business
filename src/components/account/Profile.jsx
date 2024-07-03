@@ -1,4 +1,4 @@
-import { Form, Formik } from "formik";
+import { Field, Form, Formik } from "formik";
 import { Container } from "react-bootstrap";
 import { InputText, InputSelect, InputFile, Label } from "../../ux/controls";
 import Section from "../../ux/Section";
@@ -11,7 +11,9 @@ import styles from "./account.module.css";
 import { useState } from "react";
 import OTPInput from "react-otp-input";
 import { verifyEmail, verifyEmailOtp } from "../../api/account.api";
-import { FaCheckCircle } from 'react-icons/fa'; 
+import { FaCheckCircle } from "react-icons/fa";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 const Profile = ({ onContinue, token }) => {
   const [type, setType] = useState("text");
@@ -59,6 +61,7 @@ const Profile = ({ onContinue, token }) => {
   );
 
   const handleOnSubmit = async (values) => {
+    console.log("Handle submit", values);
     try {
       const dataForm = {
         profileType: "Salon",
@@ -75,9 +78,9 @@ const Profile = ({ onContinue, token }) => {
         serviceType: "Male",
       };
       const res = await createProfile(dataForm, token);
-      // console.log("response:::>", res.data);
-  
-      onContinue(values); 
+      console.log("response:::>", res.data);
+
+      onContinue(values);
     } catch (error) {
       Notify.error(error.message);
     }
@@ -163,12 +166,12 @@ const Profile = ({ onContinue, token }) => {
                   name="email"
                   label="Email ID"
                   placeholder="Enter your email ID"
-                  icon={isOTPVerified && <FaCheckCircle />} 
+                  icon={isOTPVerified && <FaCheckCircle />}
                   iconClass="text-success"
                   disable={isOTPVerified}
                 />
-                
-                {(values.email && !showOTP && !isEmailVerified)  && (
+
+                {values.email && !showOTP && !isEmailVerified && (
                   <Section className="">
                     <button
                       type="button"
@@ -201,7 +204,7 @@ const Profile = ({ onContinue, token }) => {
                   </>
                 )}
 
-                <InputText
+                {/* <InputText
                   type={type}
                   name="dataOfBirth"
                   onFocus={() => setType("date")}
@@ -209,7 +212,18 @@ const Profile = ({ onContinue, token }) => {
                   label="Date of Birth"
                   placeholder="Select your date of birth"
                   max={getMinDOBDate()}
+                /> */}
+                <label className="fw-bold">Date Of Birth</label>
+                <Field
+                  // as={DatePicker}
+                  type="date"
+                  placeholderText="Select your date of birth"
+                  name="dataOfBirth"
+                  max={getMinDOBDate()}
+                  dateFormat="dd/MM/yyyy" 
+                  className={styles.datePicker}
                 />
+
                 <InputSelect
                   name="gender"
                   label="Gender"

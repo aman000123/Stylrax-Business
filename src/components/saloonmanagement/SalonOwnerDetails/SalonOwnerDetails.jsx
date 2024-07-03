@@ -8,11 +8,19 @@ import 'react-medium-image-zoom/dist/styles.css';
 
 function SalonOwnerDetails() {
   const [details, setDetails] = useState({});
+
   useEffect(() => {
     const fetchUserDetail = async () => {
       try {
         const res = await getProfile();
         const details = res.data;
+
+        // Formatting the date of birth
+        if (details.dataOfBirth) {
+          const dob = new Date(details.dataOfBirth);
+          details.dataOfBirth = dob.toLocaleDateString('en-GB'); 
+        }
+
         setDetails(details);
       } catch (error) {
         Notify.error(error.message);
@@ -26,11 +34,11 @@ function SalonOwnerDetails() {
       <div className={styles.imgDiv}>
         <div>
           <Zoom>
-          <Image
-            alt="Default Profile"
-            className={styles.imgDiv}
-            imageUrl={details.profileImageUrl}
-          />
+            <Image
+              alt="Default Profile"
+              className={styles.imgDiv}
+              imageUrl={details.profileImageUrl}
+            />
           </Zoom>
         </div>
       </div>
