@@ -62,6 +62,8 @@ const Profile = ({ onContinue, token }) => {
 
   const handleOnSubmit = async (values) => {
     console.log("Handle submit", values);
+    const formattedDate = formatDate(values.dataOfBirth); 
+    // console.log("Data Form ::>", dataForm);
     try {
       const dataForm = {
         profileType: "Salon",
@@ -69,7 +71,7 @@ const Profile = ({ onContinue, token }) => {
         middleName: values.middleName,
         lastName: values.lastName,
         email: values.email,
-        dataOfBirth: values.dataOfBirth,
+        dataOfBirth: formattedDate,
         gender: values.gender,
         panCardImageUrl: values.panCardImageUrl,
         aadharFrontUrl: values.aadharFrontUrl,
@@ -78,7 +80,7 @@ const Profile = ({ onContinue, token }) => {
         serviceType: "Male",
       };
       const res = await createProfile(dataForm, token);
-      console.log("response:::>", res.data);
+      // console.log("response:::>", res.data);
 
       onContinue(values);
     } catch (error) {
@@ -128,6 +130,11 @@ const Profile = ({ onContinue, token }) => {
       Notify.error(error.message);
     }
   };
+
+  const formatDate = (date) => {
+    const [year, month, day] = date.split('-');
+    return `${day}/${month}/${year}`;
+};
 
   return (
     <Container>

@@ -10,6 +10,7 @@ import Notify from "../../../utils/notify";
 import { salonBusinessTime, salonTime } from "../../../api/salon.management";
 import TextField from "@mui/material/TextField";
 import styles from "../SalonTime/SalonTime.module.css";
+import { styled } from "@mui/system";
 
 const salonId = Session.get("salonId");
 
@@ -26,6 +27,52 @@ const openTimeData = [
 function SalonTime() {
   const [timing, setTiming] = useState([]);
   const [add, setAdd] = useState(false);
+
+  const CustomTimePicker = styled(TimePicker)({
+    '& .MuiInputBase-root': {
+      border: '2px solid white',
+      boxShadow: '2px 3px 7px #a1acb0',
+      width: '100%',
+    },
+    '& .MuiOutlinedInput-root': {
+      '&:focus, &:focus-within': {
+        boxShadow: '2px 3px 7px #a1acb0',
+      },
+      '&:hover .MuiOutlinedInput-notchedOutline': {
+        borderColor: 'transparent', // Remove border on hover
+      },
+    },
+    '& .MuiOutlinedInput-notchedOutline': {
+      border: 'none', // Remove the border
+    },
+    '& .MuiInputBase-input': {
+      border: 'none',
+      width: '160px',
+      outline: 'none',
+      borderRadius: '50px',
+      height: '6px',
+      '&:focus': {
+        outline: 'none', // Remove blue outline on focus
+        boxShadow: 'none', // Remove box shadow on focus
+        borderColor: 'transparent', // Remove border on focus
+        backgroundColor: 'black', // Set background color to black on focus
+        color: 'white', // Set text color to white on focus
+      },
+    },
+    '& .Mui-selected': {
+      backgroundColor: 'black', // Set background color to black for selected time
+      color: 'white', // Set text color to white for selected time
+    },
+    '& .MuiInputAdornment-root': {
+      '&:focus': {
+        outline: 'none', // Remove blue outline on focus
+        boxShadow: 'none', // Remove box shadow on focus
+        borderColor: 'transparent', // Remove border on focus
+      },
+    },
+  });
+  
+  
 
   useEffect(() => {
     const getSalonTime = async () => {
@@ -132,8 +179,9 @@ function SalonTime() {
                         <div className={styles.height}>
                           <Field name={`openTime${index}`}>
                             {({ field }) => (
-                              <TimePicker
+                              <CustomTimePicker
                                 {...field}
+                                // className="CustomTimePicker"
                                 value={field.value || null}
                                 onChange={(value) => {
                                   setFieldValue(`openTime${index}`, value);
@@ -156,7 +204,7 @@ function SalonTime() {
                         <div className={styles.height}>
                           <Field name={`closeTime${index}`}>
                             {({ field }) => (
-                              <TimePicker
+                              <CustomTimePicker
                                 {...field}
                                 value={field.value || null}
                                 onChange={(value) =>
