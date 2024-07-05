@@ -61,6 +61,14 @@ const Ongoing = () => {
         return "";
     }
   };
+  const formatDate = (date) => {
+    const d = new Date(date);
+    const year = d.getFullYear();
+    const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+    const month = monthNames[d.getMonth()];
+    const day = String(d.getDate()).padStart(2, '0');
+    return `${day}-${month}-${year}`;
+  };
   return (
     <>
       <Row className={styles.today}>
@@ -96,7 +104,7 @@ const Ongoing = () => {
                     <br />
                     <span>{appointment.location}</span>
                     <span className={styles.locationDistance}>
-                      {appointment.date}
+                      {formatDate(appointment.date)}
                     </span>
                   </p>
                   {/* <button className={styles.accept}>Accept</button> */}

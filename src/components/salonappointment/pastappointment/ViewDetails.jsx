@@ -25,6 +25,14 @@ const ViewDetails = ({ isOpen, onClose, appointmentId }) => {
   const calculateGrandTotal = (services) => {
     return services.reduce((total, service) => total + service.servicePrice, 0);
   };
+  const formatDate = (date) => {
+    const d = new Date(date);
+    const year = d.getFullYear();
+    const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+    const month = monthNames[d.getMonth()];
+    const day = String(d.getDate()).padStart(2, '0');
+    return `${day}-${month}-${year}`;
+  };
 
   useEffect(() => {
     const fetchAppointments = async () => {
@@ -115,7 +123,7 @@ const ViewDetails = ({ isOpen, onClose, appointmentId }) => {
                 <p>Date</p>
               </Col>
               <Col>
-                <p>{completed?.date}</p>
+                <p>{formatDate(completed?.date)}</p>
               </Col>
             </Row>
             <Row>

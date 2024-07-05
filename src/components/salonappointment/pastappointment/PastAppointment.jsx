@@ -40,6 +40,15 @@ const PastAppointment = () => {
     setSelectedAppointmentId(null);
   };
 
+  
+  const formatDate = (date) => {
+    const d = new Date(date);
+    const year = d.getFullYear();
+    const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+    const month = monthNames[d.getMonth()];
+    const day = String(d.getDate()).padStart(2, '0');
+    return `${day}-${month}-${year}`;
+  };
   const getStatusClass = (status) => {
     switch (status) {
       case "PENDING":
@@ -100,7 +109,7 @@ const PastAppointment = () => {
                     </span>
                     <br />
                     <span className={styles.locationDistance}>
-                      {appointment.date}
+                      {formatDate(appointment.date)}
                     </span>
                   </p>
                 </Col>
