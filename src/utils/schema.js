@@ -24,7 +24,7 @@ export const bankDetailsSchema = Yup.object({
   ifscCode: Yup.string()
     .matches(/^[A-Za-z]{4}[0][A-Z0-9a-z]{6}$/, 'Invalid IFSC code')
     .required("Please enter your IFSC code"),
-  bankDocumentUrl: Yup.string().required("Please upload passbook image"),
+    documentImageUrl: Yup.string().required("Please upload passbook image"),
 });
 
 export const businessDetailsSchema = Yup.object({

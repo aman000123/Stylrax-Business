@@ -26,7 +26,7 @@ const serviceOptions = [
   { value: "", text: "Select Service" },
   { value: "Male", text: "Male" },
   { value: "Female", text: "Female" },
-  { value: "Both", text: "Both" },
+  { value: "Unisex", text: "Unisex" },
 ];
 
 const initialValues = {

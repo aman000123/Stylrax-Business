@@ -37,8 +37,9 @@ const Profile = ({ onContinue, token }) => {
 
   const genderOptions = [
     { value: "", text: "Select" },
-    { value: "male", text: "Male" },
-    { value: "female", text: "Female" },
+    { value: "Male", text: "Male" },
+    { value: "Female", text: "Female" },
+    { value: "Unisex", text: "Unisex" },
   ];
 
   const renderInput = (props, index) => (
