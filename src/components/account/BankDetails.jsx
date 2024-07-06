@@ -15,7 +15,7 @@ const initialValues = {
   accountHolderName:"",
   bankName:"",
   ifscCode:"",
-  bankDocumentUrl:"",
+  documentImageUrl:"",
 }
 
 
@@ -38,7 +38,7 @@ const salonIdd = salons[0]?.id ?? null;
         accountHolderName:values.accountHolderName,
         bankName:values.bankName,
         ifscCode:values.ifscCode,
-        //bankDocumentUrl:values.bankDocumentUrl,
+        documentImageUrl:values.documentImageUrl,
       }
       //const response = await bankDetails(salonId,data);
 
@@ -60,7 +60,7 @@ return (
                 <Formik
                     initialValues={initialValues}
                     onSubmit={handleOnSubmit}
-                    validationSchema={bankDetailsSchema}
+                    // validationSchema={bankDetailsSchema}
                 >
                     {({ setFieldValue }) => (
                         <Form className="d-flex flex-column">
@@ -72,7 +72,7 @@ return (
                       
                         <Section className="d-flex flex-column align-items-start mb-4">
                             <Label text="Passbook/Cancelled Cheque" />
-                            <InputFile name="bankDocumentUrl" onFileSelect={(e)=>handleOnFileSelect(e,"bankDocumentUrl", setFieldValue)} />
+                            <InputFile name="documentImageUrl" onFileSelect={(e)=>handleOnFileSelect(e,"documentImageUrl", setFieldValue)} />
                         </Section>
                         <Section className="d-flex flex-column align-items-center">
                             <Button type="submit" className={styles.registration__submit_button}>
