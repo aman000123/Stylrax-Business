@@ -1,8 +1,9 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./Stylist.module.css";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import { salonStaff } from "../../../api/salon.management";
 import Notify from "../../../utils/notify";
+import { Skeleton } from "@mui/material"; // Import Skeleton from Material-UI
 
 function Stylist({ selectedSalon }) {
   const [staff, setStaff] = useState([]);
@@ -17,14 +18,31 @@ function Stylist({ selectedSalon }) {
       try {
         const response = await salonStaff(salonId);
         const staff = response.data;
-        // console.log("completed::>", staff);
         setStaff(staff);
       } catch (error) {
         Notify.error(error.message);
       }
     };
-    getStaff();
+    if (salonId) {
+      getStaff();
+    }
   }, [salonId]);
+
+  // Show skeleton loading while waiting for staff
+  if (staff.length === 0) {
+    return (
+      <div className={styles.mainDiv}>
+        <div className={styles.secDiv}>
+          <h4 style={{ color: "#000000" }}>Stylist</h4>
+        </div>
+        <div className={styles.content}>
+          <Skeleton variant="text" width="100%" height={40} />
+          <Skeleton variant="rectangular" width="100%" height={300} />
+          <Skeleton variant="rectangular" width="100%" height={300} />
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className={styles.mainDiv}>

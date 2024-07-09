@@ -15,8 +15,6 @@ const ViewDetails = ({ isOpen, onClose, appointmentId, }) => {
   const [completed, setCompleted] = useState({});
   const [invoice, setInvoice] = useState([]);
 
-  console.log("invoice",invoice)
-
   const completeAppointment = async () => {
     try {
       await completeAppointments(appointmentId);
@@ -76,9 +74,6 @@ const ViewDetails = ({ isOpen, onClose, appointmentId, }) => {
     try {
       // Assuming invoice.invoicePath contains the URL to download the invoice
       const invoicePath = invoice.invoicePath;
-      console.log("invoivePath",invoicePath )
-
-      // Initiate download
       const link = document.createElement('a');
       link.href = invoicePath;
       link.setAttribute('download', '');
