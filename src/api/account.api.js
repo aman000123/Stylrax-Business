@@ -1,6 +1,6 @@
 import HTTP from "../service/http";
 import { methods } from "../constants";
-import { __endpoint_doLogin, __endpoint_verifyOtp, __endpoint_resendOtp, __endpoint_profile, __endpoint_bankDetails, __endpoint_verifyEmail, __endpoint_verifyEmailOtp, } from "../constants/endpoints";
+import { __endpoint_doLogin, __endpoint_verifyOtp, __endpoint_resendOtp, __endpoint_profile, __endpoint_bankDetails, __endpoint_verifyEmail, __endpoint_verifyEmailOtp, __endpoint_getInvoice, } from "../constants/endpoints";
 
 export const doLogin = (payload) => HTTP.Request(methods.POST, __endpoint_doLogin, payload);
 export const verifyOtp = (payload) => HTTP.Request(methods.POST, __endpoint_verifyOtp, payload);
@@ -25,3 +25,6 @@ export const bankDetails = (id,payload) => HTTP.Request(methods.POST, __endpoint
 
 //  export const salonDetails = (payload) =>
 //  HTTP.Request(methods.POST, __endpoint_salonDetails, payload);
+
+export const getInvoice = (id) =>
+  HTTP.Request(methods.GET, `${__endpoint_getInvoice}/${id}/invoice`);

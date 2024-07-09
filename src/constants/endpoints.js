@@ -59,3 +59,6 @@ export const __endpoint_rejectAppointment = (id)=>{return ` ${endpoint}b2b/appoi
 export const __endpoint_startAppointment = (id)=>{return ` ${endpoint}b2b/appointments/${id}/start`};
 export const __endpoint_completeAppointment = (id)=>{return ` ${endpoint}b2b/appointments/${id}/complete`};
 
+export const __endpoint_getInvoice = endpoint + "b2b/appointments";
+
+
