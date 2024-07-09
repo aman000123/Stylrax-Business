@@ -9,26 +9,44 @@ import ViewDetails from "./ViewDetails";
 import maleImage from '../../../assets/image/male-placeholder.svg';
 import femaleImage from '../../../assets/image/female-placeholder.svg';
 import { toLower } from "lodash";
+import { getInvoice } from "../../../api/account.api";
 
 const PastAppointment = () => {
   const [selectedAppointmentId, setSelectedAppointmentId] = useState(null);
   const [completed, setCompleted] = useState([]);
   const [showDetails, setShowDetails] = useState(false);
+  const [invoice, setInvoice] = useState(null); // Initialize invoice state
+
   const salonId = Session.get("salonId");
 
+  // Fetch completed appointments on component mount or salonId change
   useEffect(() => {
     const fetchAppointments = async () => {
       try {
         const response = await completedAppointments(salonId);
-        const completed = response.data;
-        // console.log("completed::>", completed);
-        setCompleted(completed);
+        const completedAppointmentsData = response.data;
+        setCompleted(completedAppointmentsData);
       } catch (error) {
         Notify.error(error.message);
       }
     };
     fetchAppointments();
   }, [salonId]);
+
+  // Fetch invoice when selectedAppointmentId changes
+  useEffect(() => {
+    const fetchInvoice = async () => {
+      if (selectedAppointmentId) {
+        try {
+          const res = await getInvoice(selectedAppointmentId);
+          setInvoice(res.data); // Assuming getInvoice returns the entire invoice object
+        } catch (error) {
+          console.error("Error fetching invoice", error);
+        }
+      }
+    };
+    fetchInvoice();
+  }, [selectedAppointmentId]); // Ensure to add selectedAppointmentId to dependency array
 
   const handleViewDetails = (appointmentId) => {
     setSelectedAppointmentId(appointmentId);
@@ -40,7 +58,6 @@ const PastAppointment = () => {
     setSelectedAppointmentId(null);
   };
 
-  
   const formatDate = (date) => {
     const d = new Date(date);
     const year = d.getFullYear();
@@ -49,6 +66,7 @@ const PastAppointment = () => {
     const day = String(d.getDate()).padStart(2, '0');
     return `${day}-${month}-${year}`;
   };
+
   const getStatusClass = (status) => {
     switch (status) {
       case "PENDING":
@@ -72,10 +90,6 @@ const PastAppointment = () => {
     }
   };
 
-  if (!completed || completed.length === 0) {
-    return <div className={styles.noContent}>No completed appointments</div>;
-  }
-
   return (
     <div>
       <Row className={styles.today}>
@@ -86,8 +100,7 @@ const PastAppointment = () => {
                 <Col md={4}>
                   <div>
                     <img
-                      src={appointment.serviceType.toLowerCase() === 'male' ? maleImage : femaleImage }
-                      // src={appointment.user.profileImageUrl}
+                      src={appointment.serviceType.toLowerCase() === 'male' ? maleImage : femaleImage}
                       className={styles.userImage}
                       alt="User"
                     />
@@ -115,11 +128,8 @@ const PastAppointment = () => {
                 </Col>
                 <Col md={4}>
                   <p
-                    className={`${styles.status} ${getStatusClass(
-                      appointment?.status
-                    )}`}
+                    className={`${styles.status} ${getStatusClass(appointment?.status)}`}
                   >
-                    {" "}
                     {appointment.status}
                   </p>
                 </Col>
@@ -130,9 +140,9 @@ const PastAppointment = () => {
                     onClick={() => handleViewDetails(appointment.id)}
                     className={styles.viewDetailsLink}
                   >
-                    View Details{" "}
+                    View Details
                   </p>
-                  <div className={styles.iconDiv}>
+                  <div className={styles.iconDiv} onClick={() => handleViewDetails(appointment.id)} style={{ cursor: "pointer" }}>
                     <FiDownload className={styles.loadIcon} />
                     <p>Download Invoice</p>
                   </div>

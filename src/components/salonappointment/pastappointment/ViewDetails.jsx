@@ -10,8 +10,12 @@ import {
 import Notify from "../../../utils/notify";
 import { Col, Row } from "react-bootstrap";
 import styles from "./ViewDetails.module.css";
-const ViewDetails = ({ isOpen, onClose, appointmentId }) => {
+import { getInvoice } from "../../../api/account.api";
+const ViewDetails = ({ isOpen, onClose, appointmentId, }) => {
   const [completed, setCompleted] = useState({});
+  const [invoice, setInvoice] = useState([]);
+
+  console.log("invoice",invoice)
 
   const completeAppointment = async () => {
     try {
@@ -54,6 +58,37 @@ const ViewDetails = ({ isOpen, onClose, appointmentId }) => {
   );
   const taxesAndFee = 49;
   const grandTotal = total + taxesAndFee;
+
+  // Invoice API call
+  useEffect(() => {
+    const fetchInvoice = async () => {
+      try {
+        const res = await getInvoice(appointmentId);
+        setInvoice(res.data); // Assuming getInvoice returns the entire invoice object
+      } catch (error) {
+        console.error("Error fetching invoice", error);
+      }
+    };
+    fetchInvoice();
+  }, [appointmentId]);
+
+  const handleDownloadInvoice = async () => {
+    try {
+      // Assuming invoice.invoicePath contains the URL to download the invoice
+      const invoicePath = invoice.invoicePath;
+      console.log("invoivePath",invoicePath )
+
+      // Initiate download
+      const link = document.createElement('a');
+      link.href = invoicePath;
+      link.setAttribute('download', '');
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    } catch (error) {
+      console.error("Error downloading invoice", error);
+    }
+  };
 
   return (
     <Drawer
@@ -231,7 +266,7 @@ const ViewDetails = ({ isOpen, onClose, appointmentId }) => {
           </Col>
         </Row>
         <div className={styles.invoice}>
-          <button>Download Invoice</button>
+          <button onClick={handleDownloadInvoice}>Download Invoice</button>
         </div>
       </Box>
     </Drawer>
