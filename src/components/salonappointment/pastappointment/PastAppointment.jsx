@@ -34,19 +34,36 @@ const PastAppointment = () => {
   }, [salonId]);
 
   // Fetch invoice when selectedAppointmentId changes
-  useEffect(() => {
-    const fetchInvoice = async () => {
-      if (selectedAppointmentId) {
-        try {
-          const res = await getInvoice(selectedAppointmentId);
-          setInvoice(res.data); // Assuming getInvoice returns the entire invoice object
-        } catch (error) {
-          console.error("Error fetching invoice", error);
-        }
-      }
-    };
-    fetchInvoice();
-  }, [selectedAppointmentId]); // Ensure to add selectedAppointmentId to dependency array
+  const fetchInvoice = async (appointmentId) => {
+    try {
+      const res = await getInvoice(appointmentId);
+      setInvoice(res.data); // Assuming getInvoice returns the entire invoice object
+      downloadInvoice(res.data.invoicePath); // Trigger download after fetching invoice
+    } catch (error) {
+      console.error("Error fetching invoice", error);
+      Notify.error(error.message);
+    }
+  };
+
+  // Function to handle download of invoice
+  const downloadInvoice = (invoicePath) => {
+    const link = document.createElement('a');
+    link.href = invoicePath;
+    link.setAttribute('download', '');
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
+  // Handle click on "Download Invoice"
+  const handleDownloadInvoice = async (appointmentId) => {
+    try {
+      setSelectedAppointmentId(appointmentId); // Update selectedAppointmentId
+      fetchInvoice(appointmentId); // Fetch invoice based on selected appointmentId
+    } catch (error) {
+      Notify.error("Error downloading invoice");
+    }
+  };
 
   const handleViewDetails = (appointmentId) => {
     setSelectedAppointmentId(appointmentId);
@@ -142,7 +159,7 @@ const PastAppointment = () => {
                   >
                     View Details
                   </p>
-                  <div className={styles.iconDiv} onClick={() => handleViewDetails(appointment.id)} style={{ cursor: "pointer" }}>
+                  <div className={styles.iconDiv} onClick={() => handleDownloadInvoice(appointment.id)} style={{ cursor: "pointer" }}>
                     <FiDownload className={styles.loadIcon} />
                     <p>Download Invoice</p>
                   </div>

@@ -1,37 +1,32 @@
 import osImg16 from "../../../assets/image/osImg16.png";
-import { useEffect, useState } from "react";
-import { Paper } from "@mui/material";
+import React, { useEffect, useState } from "react";
+import { Paper, Skeleton } from "@mui/material"; // Import Skeleton from Material-UI
 import { Row, Col } from "react-bootstrap";
 import styles from "../ourservices/OurServices.module.css";
 import { salonServices } from "../../../api/salon.management";
-import Session from "../../../service/session";
 import Notify from "../../../utils/notify";
 
-function OurServices({selectedSalon}) {
+function OurServices({ selectedSalon }) {
   const [services, setServices] = useState([]);
   const salonId = selectedSalon.id;
 
   const capitalizeFirstLetter = (string) => {
     return string
       .split(" ")
-      .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
       .join(" ");
   };
 
   useEffect(() => {
     const fetchServices = async () => {
       if (!salonId) {
-        //Notify.error("Invalid salon ID");
-
         return;
       }
 
       try {
         const response = await salonServices(salonId);
-        // console.log("Salon Dashboard ::>", response);
         if (response && response.data) {
           const services = response.data;
-          // console.log("services::>", services);
           setServices(services);
         } else {
           Notify.error("Failed to fetch services. Please try again.");
@@ -50,6 +45,25 @@ function OurServices({selectedSalon}) {
     serviceGroups.push(services.slice(i, i + 4));
   }
 
+  // Show skeleton loading while waiting for services
+  if (services.length === 0) {
+    return (
+      <div className={styles.mainDiv}>
+        <div style={{ color: "#000000" }}>Our Services</div>
+
+        <Row className="mt-2">
+          {[...Array(4)].map((_, index) => (
+            <Col key={index} className={styles.border}>
+              <Paper className={styles.paper} elevation={0}>
+                <Skeleton variant="rectangular" width="100%" height={200} />
+              </Paper>
+            </Col>
+          ))}
+        </Row>
+      </div>
+    );
+  }
+
   return (
     <div className={styles.mainDiv}>
       <div style={{ color: "#000000" }}>Our Services</div>
@@ -65,7 +79,7 @@ function OurServices({selectedSalon}) {
                   alt={service.serviceName || "Service"}
                 />
                 <p className={styles.hairStyle}>
-                {capitalizeFirstLetter(service.serviceName) || "?"}
+                  {capitalizeFirstLetter(service.serviceName) || "?"}
                   <br />
                 </p>
               </Paper>

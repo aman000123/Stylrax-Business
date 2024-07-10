@@ -1,14 +1,13 @@
+import React, { useEffect, useState } from "react";
 import styles from "./UpcomingAppointment.module.css";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
-import { Paper } from "@mui/material";
+import { Paper, Skeleton } from "@mui/material"; // Import Skeleton from Material-UI
 import { FaCalendarDays } from "react-icons/fa6";
 import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
-import { useState, useEffect } from "react";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
-import Session from "../../../service/session";
 import { ongoingAppointments } from "../../../api/appointments.api";
 import Notify from "../../../utils/notify";
 
@@ -27,29 +26,27 @@ const generateUpcomingWeek = () => {
   return upcomingWeek;
 };
 
-function UpcomingAppointment({selectedSalon}) {
+function UpcomingAppointment({ selectedSalon }) {
   const currentDate = new Date();
   const formattedDate = currentDate.toISOString().split("T")[0];
-  const currentDay = currentDate.getDate();
-  const currentDayOfWeek = currentDate.toLocaleDateString("en-US", {
-    weekday: "long",
-  });
-  const formattedCurrentDate = ` ${currentDate.toLocaleString(
-    "default",
-    { month: "long" }
-  )} ${currentDate.getFullYear()}`;
+  const formattedCurrentDate = ` ${currentDate.toLocaleString("default", {
+    month: "long",
+  })} ${currentDate.getFullYear()}`;
 
   const [ongoing, setOngoing] = useState([]);
   const [selectedDate, setSelectedDate] = useState(formattedDate);
   const [showNoAppointments, setShowNoAppointments] = useState(false);
+  const [loading, setLoading] = useState(true); // State for loading indicator
 
   const salonId = selectedSalon.id;
 
   const fetchAppointments = async (date) => {
     try {
       const response = await ongoingAppointments(salonId, date);
+      setLoading(false); // Set loading to false once data is fetched
       return response.data;
     } catch (error) {
+      setLoading(false); // Set loading to false on error as well
       Notify.error(error.message);
       return [];
     }
@@ -61,23 +58,19 @@ function UpcomingAppointment({selectedSalon}) {
         const initialAppointments = await fetchAppointments(formattedDate);
         setOngoing(initialAppointments);
         setShowNoAppointments(initialAppointments.length === 0);
-      } 
+      }
     };
     initFetch();
   }, [salonId, formattedDate]);
 
-
-
   const handleButtonClick = async (value) => {
     if (salonId) {
+      setLoading(true); // Set loading to true when fetching new appointments
       const appointments = await fetchAppointments(value.fullDate);
       setSelectedDate(value.fullDate);
       setOngoing(appointments);
-      if (value.fullDate === formattedDate) {
-        setShowNoAppointments(appointments.length === 0);
-      } else {
-        setShowNoAppointments(false);
-      }
+      setLoading(false); // Set loading to false after updating appointments
+      setShowNoAppointments(value.fullDate === formattedDate && appointments.length === 0);
     } else {
       Notify.error("Invalid salon ID");
     }
@@ -155,9 +148,7 @@ function UpcomingAppointment({selectedSalon}) {
             <span className="fw-bold">{formattedCurrentDate}</span>
           </div>
           <div className={styles.nav}>
-            <KeyboardArrowLeftIcon
-              onClick={() => console.log("Previous month")}
-            />
+            <KeyboardArrowLeftIcon onClick={() => console.log("Previous month")} />
             <KeyboardArrowRightIcon onClick={() => console.log("Next month")} />
           </div>
         </div>
@@ -167,14 +158,11 @@ function UpcomingAppointment({selectedSalon}) {
             <div className={styles.reactslider} key={value.date}>
               <button
                 onClick={() => handleButtonClick(value)}
-                className={
-                  selectedDate === value.fullDate ? styles.buttonClicked : ""
-                }
+                className={selectedDate === value.fullDate ? styles.buttonClicked : ""}
               >
                 <div
-                  className={`${styles.paperone} ${
-                    selectedDate === value.fullDate ? styles.paperClicked : ""
-                  }`}
+                  className={`${styles.paperone} ${selectedDate === value.fullDate ? styles.paperClicked : ""
+                    }`}
                 >
                   <p>
                     <span className={styles.days}>{value.day}</span>
@@ -188,13 +176,18 @@ function UpcomingAppointment({selectedSalon}) {
         </Slider>
 
         <div className={styles.appointmentDiv}>
-          {ongoing.length > 0 && !showNoAppointments ? (
+          {loading ? (
+            // Render loading skeleton while fetching data
+            <div className={styles.loadingSkeleton}>
+              {[...Array(4)].map((_, index) => (
+                <Paper key={index} className={styles.loadingPaper} elevation={0}>
+                  <Skeleton variant="rectangular" width="100%" height={100} />
+                </Paper>
+              ))}
+            </div>
+          ) : ongoing.length > 0 && !showNoAppointments ? (
             ongoing.map((appointment) => (
-              <Paper
-                className={styles.paper}
-                elevation={0}
-                key={appointment.id}
-              >
+              <Paper className={styles.paper} elevation={0} key={appointment.id}>
                 <div className={styles.appointmentdetails}>
                   <div className={styles.content}>
                     <div className={styles.imgDiv}>
@@ -207,13 +200,9 @@ function UpcomingAppointment({selectedSalon}) {
                       <p>
                         {appointment.user.firstName}
                         <br />
-                        <span className={styles.spanOne}>
-                          {appointment.serviceType}
-                        </span>
+                        <span className={styles.spanOne}>{appointment.serviceType}</span>
                         <br />
-                        <span className={styles.spanTwo}>
-                          {appointment.startTime}
-                        </span>
+                        <span className={styles.spanTwo}>{appointment.startTime}</span>
                       </p>
                     </div>
                   </div>

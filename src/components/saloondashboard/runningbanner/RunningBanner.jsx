@@ -6,12 +6,12 @@ import { singleSalon } from "../../../api/salon.api";
 import Session from "../../../service/session";
 import Notify from "../../../utils/notify";
 import styles from "./RunningBanner.module.css";
+import { Skeleton } from "@mui/material"; // Import Skeleton from Material-UI
 
-function RunningBanner({selectedSalon}) {
+function RunningBanner({ selectedSalon }) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [bannerImages, setBannerImages] = useState([]);
   const { salonName } = useSelector((state) => state.auth);
-
   const salonId = selectedSalon.id;
 
   const changeBanner = (direction) => {
@@ -21,8 +21,8 @@ function RunningBanner({selectedSalon}) {
           ? bannerImages.length - 1
           : prevIndex - 1
         : prevIndex === bannerImages.length - 1
-        ? 0
-        : prevIndex + 1
+          ? 0
+          : prevIndex + 1
     );
   };
 
@@ -34,27 +34,26 @@ function RunningBanner({selectedSalon}) {
         const images = salonDetails.bannerImages || [];
         setBannerImages(images);
       } catch (error) {
-        //console.log(error)
         Notify.error(error.message);
       }
     };
 
     if (salonId) {
       getSalon();
-    } else {
-      // console.log('')
     }
   }, [salonId]);
 
+  // Show skeleton loading while waiting for bannerImages
   if (bannerImages.length === 0) {
-    return <div>Loading...</div>;
+    return (
+      <div className={styles.banner}>
+        <Skeleton variant="rectangular" width="100%" height={400} />
+      </div>
+    );
   }
 
   return (
-    <div
-      className={styles.banner}
-      style={{ backgroundImage: `url(${bannerImages[currentIndex]})` }}
-    >
+    <div className={styles.banner} style={{ backgroundImage: `url(${bannerImages[currentIndex]})` }}>
       <div className={styles.text}>
         <div className={styles.title}>
           <p>Running Banner</p>

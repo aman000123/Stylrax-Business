@@ -1,4 +1,4 @@
-import { lazy,Suspense} from "react";
+import { lazy, Suspense } from "react";
 import { Navigate, useRoutes } from "react-router-dom";
 import Home from "./pages/Home";
 import NotFound from "./pages/404";
@@ -20,23 +20,24 @@ const SalonAppointment = lazy(() =>
 );
 const CreateAccount = lazy(() => import('./pages/CreateAccount'));
 
-const AppRoute = ({ authToken }) => {
-  // const isAuthTokenValid = authToken && authToken !== 'expired';
+
+const AppRoute = ({authToken}) => {
   const _routes = [
     {
       children: [
         // { path: "", element: isAuthTokenValid ? <Navigate to="/salon/dashboard" /> : <Navigate to="/home" />, exact: true },
-         { path: "", element: <Navigate to="/salon/dashboard" />, exact: true },
-        { path: "/account/create", element: <CreateAccount />},
-        { path: "home", element: <Home />
-       
-      },
-      { path: "/home/privacy", element: <Privacy/>},
-      { path: "/home/terms-condition", element: <TermsAndCondition/>},
-      { path: "/home/codeofconduct", element: <CodeOfConduct/>},
-      { path: "/home/aboutus", element: <About/>},
-      { path: "/home/contactUs", element: <ContactUs/>},
-      
+        { path: "", element: <Navigate to="/salon/dashboard" />, exact: true },
+        { path: "/account/create", element: <CreateAccount /> },
+        {
+          path: "home", element: <Home />
+
+        },
+        { path: "/home/privacy", element: <Privacy /> },
+        { path: "/home/terms-condition", element: <TermsAndCondition /> },
+        { path: "/home/codeofconduct", element: <CodeOfConduct /> },
+        { path: "/home/aboutus", element: <About /> },
+        { path: "/home/contactUs", element: <ContactUs /> },
+
 
         {
           path: "salon", element: <MainApp authToken={authToken} />,
@@ -85,4 +86,4 @@ const AppRoute = ({ authToken }) => {
   return routes;
 };
 
-export default AppRoute;
+export default AppRoute;
