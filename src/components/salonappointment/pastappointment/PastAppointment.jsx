@@ -75,15 +75,15 @@ const PastAppointment = () => {
     setSelectedAppointmentId(null);
   };
 
-  const formatDate = (date) => {
-    const d = new Date(date);
-    const year = d.getFullYear();
-    const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-    const month = monthNames[d.getMonth()];
-    const day = String(d.getDate()).padStart(2, '0');
-    return `${day}-${month}-${year}`;
-  };
-
+  function formatDate(dateString) {
+    const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+    
+    const [day, month, year] = dateString.split('-');
+    const monthIndex = parseInt(month, 10) - 1; // Convert month to 0-based index
+  
+    const formattedDate = `${day}-${months[monthIndex]}-${year}`;
+    return formattedDate;
+  }
   const getStatusClass = (status) => {
     switch (status) {
       case "PENDING":
