@@ -63,7 +63,7 @@ const Profile = ({ onContinue, token }) => {
 
   const handleOnSubmit = async (values) => {
     console.log("Handle submit", values);
-    const formattedDate = formatDate(values.dataOfBirth); 
+    const formattedDate = formatDate(values.dataOfBirth);
     // console.log("Data Form ::>", dataForm);
     try {
       const dataForm = {
@@ -133,9 +133,9 @@ const Profile = ({ onContinue, token }) => {
   };
 
   const formatDate = (date) => {
-    const [year, month, day] = date.split('-');
-    return `${day}/${month}/${year}`;
-};
+    const [year, month, day] = date.split("-");
+    return `${day}-${month}-${year}`;
+  };
 
   return (
     <Container>
@@ -228,7 +228,7 @@ const Profile = ({ onContinue, token }) => {
                   placeholderText="Select your date of birth"
                   name="dataOfBirth"
                   max={getMinDOBDate()}
-                  dateFormat="dd/MM/yyyy" 
+                  dateFormat="dd/MM/yyyy"
                   className={styles.datePicker}
                 />
 
