@@ -27,14 +27,19 @@ const ViewDetails = ({ isOpen, onClose, appointmentId }) => {
     }
   };
 
-  const formatDate = (date) => {
-    const d = new Date(date);
-    const year = d.getFullYear();
-    const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-    const month = monthNames[d.getMonth()];
-    const day = String(d.getDate()).padStart(2, '0');
-    return `${day}-${month}-${year}`;
+  const calculateGrandTotal = (services) => {
+    return services.reduce((total, service) => total + service.servicePrice, 0);
   };
+  function formatDate(dateString) {
+    if (!dateString) return '';
+    const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+    
+    const [day, month, year] = dateString.split('-');
+    const monthIndex = parseInt(month, 10) - 1; // Convert month to 0-based index
+  
+    const formattedDate = `${day}-${months[monthIndex]}-${year}`;
+    return formattedDate;
+  }
 
   useEffect(() => {
     const fetchAppointments = async () => {
@@ -159,7 +164,7 @@ const ViewDetails = ({ isOpen, onClose, appointmentId }) => {
             </Row>
             <Row>
               <Col>
-                <p>ServiceType</p>
+                <p>Service Type</p>
               </Col>
               <Col>
                 <p>{completed?.serviceType}</p>
@@ -175,7 +180,7 @@ const ViewDetails = ({ isOpen, onClose, appointmentId }) => {
             </Row>
             <Row>
               <Col>
-                <p>serviceStartTime</p>
+                <p>Service Start Time</p>
               </Col>
               <Col>
                 <p>{completed?.serviceStartTime}</p>
@@ -183,7 +188,7 @@ const ViewDetails = ({ isOpen, onClose, appointmentId }) => {
             </Row>
             <Row>
               <Col>
-                <p>serviceEndTime</p>
+                <p>Service End Time</p>
               </Col>
               <Col>
                 <p>{completed?.serviceEndTime}</p>
@@ -191,7 +196,7 @@ const ViewDetails = ({ isOpen, onClose, appointmentId }) => {
             </Row>
             <Row>
               <Col>
-                <p>serviceDate</p>
+                <p>Service Date</p>
               </Col>
               <Col>
                 <p>{formatDate(completed?.serviceDate)}</p>
@@ -213,7 +218,7 @@ const ViewDetails = ({ isOpen, onClose, appointmentId }) => {
             )}
             <Row>
               <Col>
-                <p>Total payment</p>
+                <p>Total Payment</p>
               </Col>
               <Col>
                 <p>₹{completed?.services?.reduce((sum, service) => sum + (service.servicePrice || 0), 0)}</p>
@@ -238,12 +243,12 @@ const ViewDetails = ({ isOpen, onClose, appointmentId }) => {
         <Row className={styles.mainDiv}>
           <h5>Payment Method</h5>
           <Col>
-            <p>paymentStatus</p>
+            <p>Payment Status</p>
           </Col>
           <Col><p>{completed?.paymentStatus?.paymentStatus}</p></Col>
           <Row>
           <Col>
-            <p>paymentMode</p>
+            <p>Payment Mode</p>
           </Col>
           <Col><p>{completed?.paymentStatus?.paymentMode}</p></Col>
           </Row>
@@ -251,7 +256,7 @@ const ViewDetails = ({ isOpen, onClose, appointmentId }) => {
         <Row className={styles.mainDiv}>
           <h5>Payment Summary</h5>
           <Col>
-            <p>Item total</p>
+            <p>Item Total</p>
           </Col>
           <Col>
             <p>₹{completed?.services?.reduce((sum, service) => sum + (service.servicePrice || 0), 0)}</p>

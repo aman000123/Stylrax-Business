@@ -39,7 +39,6 @@ const Profile = ({ onContinue, token }) => {
     { value: "", text: "Select" },
     { value: "Male", text: "Male" },
     { value: "Female", text: "Female" },
-    { value: "Unisex", text: "Unisex" },
   ];
 
   const renderInput = (props, index) => (
