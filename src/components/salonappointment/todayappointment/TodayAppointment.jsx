@@ -1,7 +1,6 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Session from "../../../service/session";
 import Notify from "../../../utils/notify";
-import { useState } from "react";
 import { Row, Col } from "react-bootstrap";
 import styles from "../upcomingappointment/UpComing.module.css";
 import { ongoingAppointments } from "../../../api/appointments.api";
@@ -12,20 +11,16 @@ import femaleImage from '../../../assets/image/female-placeholder.svg';
 
 const TodayAppointment = () => {
     const currentDate = new Date();
+    const day = currentDate.getDate().toString().padStart(2, '0');
+    const monthIndex = currentDate.getMonth();
+    const year = currentDate.getFullYear();
+    const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    const monthName = months[monthIndex];
+    const apiFormattedDate = `${day}-${(monthIndex + 1).toString().padStart(2, '0')}-${year}`;
+    const displayFormattedDate = `${day}-${monthName}-${year}`;
+    // console.log("API Formatted Date ::", apiFormattedDate);
+    // console.log("Display Formatted Date ::", displayFormattedDate);
 
-    // Format it as "yyyy-mm-dd"
-    const formattedDate = currentDate.toISOString().split('T')[0];
-
-    // Function to format date as dd/mmm/yyyy
-    const formatDate = (date) => {
-      const d = new Date(date);
-      const year = d.getFullYear();
-      const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-      const month = monthNames[d.getMonth()];
-      const day = String(d.getDate()).padStart(2, '0');
-      return `${day}-${month}-${year}`;
-    };
-  
     const [ongoing, setOngoing] = useState([]);
     const [showPopup, setShowPopup] = useState(false);
     const [selectedAppointmentId, setSelectedAppointmentId] = useState(null);
@@ -34,7 +29,7 @@ const TodayAppointment = () => {
     useEffect(() => {
         const fetchAppointments = async () => {
             try {
-                const response = await ongoingAppointments(salonId, formattedDate);
+                const response = await ongoingAppointments(salonId, apiFormattedDate);
                 const ongoingAppointment = response.data;
                 setOngoing(ongoingAppointment);
             } catch (error) {
@@ -42,7 +37,7 @@ const TodayAppointment = () => {
             }
         };
         fetchAppointments();
-    }, [salonId, formattedDate]);
+    }, [salonId, apiFormattedDate]);
 
     const handleViewDetails = (appointmentId) => {
         setSelectedAppointmentId(appointmentId);
@@ -72,6 +67,25 @@ const TodayAppointment = () => {
         }
     };
 
+    const formatAppointmentDate = (dateString) => {
+        if (!dateString) return '';
+        
+        const parts = dateString.split('-');
+        if (parts.length !== 3) return '';
+        
+        const [day, month, year] = parts.map(part => parseInt(part, 10));
+        const appointmentDate = new Date(year, month - 1, day);
+
+        if (isNaN(appointmentDate)) return '';
+
+        const dayFormatted = appointmentDate.getDate().toString().padStart(2, '0');
+        const monthIndexFormatted = appointmentDate.getMonth();
+        const yearFormatted = appointmentDate.getFullYear();
+        const monthNameFormatted = months[monthIndexFormatted];
+        
+        return `${dayFormatted}-${monthNameFormatted}-${yearFormatted}`;
+    };
+
     return (
         <>
             <Row className={styles.today}>
@@ -82,7 +96,7 @@ const TodayAppointment = () => {
                                 <Col md={4}>
                                     <div>
                                         <img
-                                            src={appointment.serviceType.toLowerCase() === 'male' ? maleImage : femaleImage}
+                                            src={appointment.serviceType?.toLowerCase() === 'male' ? maleImage : femaleImage}
                                             className={styles.userImage}
                                             alt="User"
                                         />
@@ -102,7 +116,7 @@ const TodayAppointment = () => {
                                         </span>
                                         <br />
                                         <span>{appointment.location}</span>
-                                        <span className={styles.locationDistance}>{formatDate(appointment.date)}</span>
+                                        <span className={styles.locationDistance}>{formatAppointmentDate(appointment.date)}</span>
                                     </p>
                                 </Col>
                                 <Col md={4}>
