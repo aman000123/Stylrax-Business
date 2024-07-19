@@ -11,6 +11,24 @@ import Slider from "react-slick";
 import { ongoingAppointments } from "../../../api/appointments.api";
 import Notify from "../../../utils/notify";
 
+// Utility function to format date to DD-MM-YYYY
+const formatDateToAPI = (date) => {
+  const d = new Date(date);
+  const day = String(d.getDate()).padStart(2, "0");
+  const month = String(d.getMonth() + 1).padStart(2, "0"); // Months are zero-based
+  const year = d.getFullYear();
+  return `${day}-${month}-${year}`;
+};
+
+// Utility function to format date to DD-MMM-YYYY
+const formatDateToDisplay = (date) => {
+  const d = new Date(date);
+  const day = String(d.getDate()).padStart(2, "0");
+  const month = d.toLocaleString("default", { month: "short" });
+  const year = d.getFullYear();
+  return `${day}-${month}-${year}`;
+};
+
 const generateUpcomingWeek = () => {
   const today = new Date();
   const upcomingWeek = [];
@@ -20,7 +38,7 @@ const generateUpcomingWeek = () => {
     upcomingWeek.push({
       day: date.toLocaleDateString("en-US", { weekday: "short" }),
       date: date.getDate(),
-      fullDate: date.toISOString().split("T")[0],
+      fullDate: formatDateToAPI(date), // Format the date for API
     });
   }
   return upcomingWeek;
@@ -28,10 +46,8 @@ const generateUpcomingWeek = () => {
 
 function UpcomingAppointment({ selectedSalon }) {
   const currentDate = new Date();
-  const formattedDate = currentDate.toISOString().split("T")[0];
-  const formattedCurrentDate = ` ${currentDate.toLocaleString("default", {
-    month: "long",
-  })} ${currentDate.getFullYear()}`;
+  const formattedDate = formatDateToAPI(currentDate);
+  const formattedCurrentDate = formatDateToDisplay(currentDate);
 
   const [ongoing, setOngoing] = useState([]);
   const [selectedDate, setSelectedDate] = useState(formattedDate);

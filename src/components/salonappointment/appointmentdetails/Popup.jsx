@@ -20,11 +20,19 @@ export default function Popup(props) {
   const [isRejected, setIsRejected] = useState(false);
   const [otpSubmitted, setOtpSubmitted] = useState(false);
 
+  function formatDate(dateString) {
+    if (!dateString) return ""; // Ensure dateString is defined
+    const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+    const [day, month, year] = dateString.split('-');
+    const monthIndex = parseInt(month, 10) - 1; // Convert month to 0-based index
+    const formattedDate = `${day}-${months[monthIndex]}-${year}`;
+    return formattedDate;
+  }
+
   const appointments = async () => {
     try {
       const response = await detailsAppointments(appointmentId);
       const ongoing = response.data;
-      // console.log(" ongoing completed::>", ongoing);
       setAppointmentDetails(ongoing);
     } catch (error) {
       Notify.error(error.message);
@@ -70,15 +78,15 @@ export default function Popup(props) {
 
   const handleStartService = () => {
     setStartServiceClicked(true);
-    // console.log("startServiceClicked:", startServiceClicked);
   };
 
-  useEffect(() => {
-    // console.log("startServiceClicked:", startServiceClicked);
-  }, [startServiceClicked]);
+  useEffect(() => {}, [startServiceClicked]);
 
-  const calculateGrandTotal = (services) => {
-    return services.reduce((total, service) => total + service.servicePrice, 0);
+  const calculateTotals = (services) => {
+    const serviceTotal = services.reduce((total, service) => total + (service.servicePrice || 0), 0);
+    const gst = serviceTotal * 0.18;
+    const totalWithGst = serviceTotal + gst; 
+    return { serviceTotal, gst, totalWithGst };
   };
 
   const getStatusClass = (status) => {
@@ -101,6 +109,9 @@ export default function Popup(props) {
         return "";
     }
   };
+
+  const services = appointmentDetails.services || [];
+  const { serviceTotal, gst, totalWithGst } = calculateTotals(services);
 
   return (
     <Modal
@@ -170,7 +181,7 @@ export default function Popup(props) {
                   <p>Appointment Date:</p>
                 </Col>
                 <Col>
-                  <p>{appointmentDetails?.date}</p>
+                  <p>{formatDate(appointmentDetails?.date)}</p>
                 </Col>
               </Row>
               <Row>
@@ -235,28 +246,31 @@ export default function Popup(props) {
           <Col md={appointmentDetails.homeService ? 6 : 12}>
             <Paper elevation={3} className="p-3">
               <h6>Payment Details</h6>
-              {appointmentDetails.services &&
-                appointmentDetails.services.map((service) => (
-                  <Row key={service.serviceId}>
-                    <Col>
-                      <p>{service.serviceName}</p>
-                    </Col>
-                    <Col>
-                      <p>{service.servicePrice}</p>
-                    </Col>
-                  </Row>
-                ))}
+              {services.map((service) => (
+                <Row key={service.serviceId}>
+                  <Col>
+                    <p>{service.serviceName}</p>
+                  </Col>
+                  <Col>
+                    <p>₹ {service.servicePrice}</p>
+                  </Col>
+                </Row>
+              ))}
+              <Row className={styles.mainDiv}>
+                <Col>
+                  <p className={styles.tax}>GST</p>
+                </Col>
+                <Col>
+                  <p className={styles.tax}>₹ {gst.toFixed(2)}</p>
+                </Col>
+              </Row>
               <hr />
               <Row>
                 <Col>
                   <p>Grand Total:</p>
                 </Col>
                 <Col>
-                  <p>
-                    {appointmentDetails.services
-                      ? calculateGrandTotal(appointmentDetails.services)
-                      : 0}
-                  </p>
+                  <p>₹ {totalWithGst.toFixed(2)}</p>
                 </Col>
               </Row>
             </Paper>
@@ -311,7 +325,7 @@ export default function Popup(props) {
         {(appointmentDetails.status === "IN_PROGRESS" ||
           appointmentDetails.status === "IN_SERVICE") && (
           <button className={styles.accept} onClick={completeAppointment}>
-            Complete Service
+            Complete
           </button>
         )}
         {appointmentDetails.status === "COMPLETED" && (
