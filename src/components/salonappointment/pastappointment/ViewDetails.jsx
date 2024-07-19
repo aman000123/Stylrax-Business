@@ -30,6 +30,7 @@ const ViewDetails = ({ isOpen, onClose, appointmentId }) => {
   const calculateGrandTotal = (services) => {
     return services.reduce((total, service) => total + service.servicePrice, 0);
   };
+
   function formatDate(dateString) {
     if (!dateString) return '';
     const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
@@ -60,11 +61,10 @@ const ViewDetails = ({ isOpen, onClose, appointmentId }) => {
     fetchAppointments();
   }, [appointmentId]);
 
-  const taxesAndFee = 49;
   const grandTotal = completed?.services?.reduce(
     (sum, service) => sum + (service.servicePrice || 0),
     0
-  ) + taxesAndFee + cgst + sgst;
+  ) + cgst + sgst;
 
   // Invoice API call
   useEffect(() => {
@@ -113,7 +113,7 @@ const ViewDetails = ({ isOpen, onClose, appointmentId }) => {
         onKeyDown={onClose}
       >
         <List className="d-flex justify-content-start align-items-center ps-5 pe-5 pt-4 fw-bold gap-1">
-          <RxCross2 className="fs-5 fw-bold cancel "  style={{cursor:"pointer"}} onClick={onClose} />
+          <RxCross2 className="fs-5 fw-bold cancel" style={{ cursor: "pointer" }} onClick={onClose} />
           <div className="">Appointment Details</div>
         </List>
         <hr style={{ borderTop: "2px solid black" }} />
@@ -216,14 +216,6 @@ const ViewDetails = ({ isOpen, onClose, appointmentId }) => {
                 </Col>
               </Row>
             )}
-            <Row>
-              <Col>
-                <p>Total Payment</p>
-              </Col>
-              <Col>
-                <p>₹{completed?.services?.reduce((sum, service) => sum + (service.servicePrice || 0), 0)}</p>
-              </Col>
-            </Row>
           </div>
         </Col>
         <Row className={styles.mainDiv}>
@@ -267,23 +259,7 @@ const ViewDetails = ({ isOpen, onClose, appointmentId }) => {
             <p className={styles.tax}>GST</p>
           </Col>
           <Col>
-            <p className={styles.tax}>₹ {taxesAndFee}</p>
-          </Col>
-        </Row>
-        <Row className={styles.mainDiv}>
-          <Col>
-            <p className={styles.tax}>CGST</p>
-          </Col>
-          <Col>
-            <p className={styles.tax}>₹ {cgst.toFixed(2)}</p>
-          </Col>
-        </Row>
-        <Row className={styles.mainDiv}>
-          <Col>
-            <p className={styles.tax}>SGST</p>
-          </Col>
-          <Col>
-            <p className={styles.tax}>₹ {sgst.toFixed(2)}</p>
+            <p className={styles.tax}>₹ {(cgst + sgst).toFixed(2)}</p>
           </Col>
         </Row>
         <hr />
@@ -297,6 +273,24 @@ const ViewDetails = ({ isOpen, onClose, appointmentId }) => {
         </Row>
         <div className={styles.invoice}>
           <button onClick={handleDownloadInvoice}>Download Invoice</button>
+        </div>
+        <div className={styles.btnDiv}>
+          {completed?.status === "COMPLETED" ? (
+            <button
+              className="btn btn-success mt-3 ms-2 me-2 mb-2"
+              disabled
+              style={{ cursor: "not-allowed" }}
+            >
+              Completed
+            </button>
+          ) : (
+            <button
+              className="btn btn-success mt-3 ms-2 me-2 mb-2"
+              onClick={completeAppointment}
+            >
+              Complete Appointment
+            </button>
+          )}
         </div>
       </Box>
     </Drawer>
