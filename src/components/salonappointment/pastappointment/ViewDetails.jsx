@@ -242,7 +242,7 @@ const ViewDetails = ({ isOpen, onClose, appointmentId }) => {
           <Col>
             <p>Payment Mode</p>
           </Col>
-          <Col><p>{completed?.paymentStatus?.paymentMode}</p></Col>
+          <Col><p className="px-3">{completed?.paymentStatus?.paymentMode}</p></Col>
           </Row>
         </Row>
         <Row className={styles.mainDiv}>
@@ -273,24 +273,6 @@ const ViewDetails = ({ isOpen, onClose, appointmentId }) => {
         </Row>
         <div className={styles.invoice}>
           <button onClick={handleDownloadInvoice}>Download Invoice</button>
-        </div>
-        <div className={styles.btnDiv}>
-          {completed?.status === "COMPLETED" ? (
-            <button
-              className="btn btn-success mt-3 ms-2 me-2 mb-2"
-              disabled
-              style={{ cursor: "not-allowed" }}
-            >
-              Completed
-            </button>
-          ) : (
-            <button
-              className="btn btn-success mt-3 ms-2 me-2 mb-2"
-              onClick={completeAppointment}
-            >
-              Complete Appointment
-            </button>
-          )}
         </div>
       </Box>
     </Drawer>
