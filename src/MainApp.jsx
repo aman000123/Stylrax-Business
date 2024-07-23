@@ -1,16 +1,19 @@
-import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { setUserInfo } from './store/auth.slice';
-import { Navigate, Outlet } from 'react-router-dom';
-import { getProfile } from './api/account.api';
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { setUserInfo } from "./store/auth.slice";
+import { Navigate, Outlet } from "react-router-dom";
+import { getProfile } from "./api/account.api";
+import PropTypes from 'prop-types';
 
-const AppLayout = ({ authToken }) => {
+const AppLayout = ({ authToken, isVerifiedUser }) => {
+  const dispatch = useDispatch();
+  if (!authToken) {
+    return <Navigate to="/home" />;
+  } else if (!isVerifiedUser) {
+    return <Navigate to="/account/create" />;
+  }
 
-    const dispatch = useDispatch();
-
-   if (!authToken) {
-      return <Navigate to="/home" />;
-   }
+ 
 
     useEffect(() => {
         loadProfileInfo();
@@ -33,4 +36,8 @@ const AppLayout = ({ authToken }) => {
     );
 };
 
+AppLayout.propTypes = {
+  authToken: PropTypes.string,
+  isVerifiedUser: PropTypes.bool
+};
 export default AppLayout;

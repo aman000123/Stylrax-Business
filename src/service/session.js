@@ -8,8 +8,12 @@ export default class Session {
      * @param {string} key - The key to retrieve the value for.
      * @returns {string|null} The value associated with the key, or null if the key does not exist.
      */
-    static get(key){
-        return localStorage.getItem(key);
+    static get(key) {
+        const value = localStorage.getItem(key);
+        if (value === 'true' || value === 'false') {
+            return JSON.parse(value);
+        }
+        return value;
     }
 
     /**
@@ -27,8 +31,12 @@ export default class Session {
      * @param {string} key - The key to set the value for.
      * @param {string} value - The value to set.
      */
-    static set(key, value){
-        localStorage.setItem(key, value);
+    static set(key, value) {
+        if (typeof value === 'boolean') {
+            localStorage.setItem(key, JSON.stringify(value));
+        } else {
+            localStorage.setItem(key, value);
+        }
     }
 
     /**

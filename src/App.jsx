@@ -8,10 +8,10 @@ function App() {
 
    // Get the auth state from the store
    const auth = useSelector(state => state.auth);
-   
+   const isVerifiedUser = useSelector(state => state.auth.isVerifiedUser);
    return (
       <>
-         <AppRoute authToken={auth.token} />
+         <AppRoute authToken={auth.token} isVerifiedUser={isVerifiedUser} />
          <ToastContainer />
       </>
    );

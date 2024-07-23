@@ -17,12 +17,14 @@ export const authSlice = createSlice({
       profileImageUrl: "",
       firstName: "",
     },
+    isVerifiedUser: Session.get("isVerifiedUser") || false,
     salons: [],
     selectedRowId: null
   },
   reducers: {
     storeToken: (state, action) => {
       const { token, profileImageUrl, firstName, ...userInfo } = action.payload;
+      console.log("Action is varified ::>", userInfo.isVerifiedUser ,typeof userInfo.isVerifiedUser);
       // console.log("profile Image::>",profileImageUrl)
       // console.log("First Name::>",firstName)
 
@@ -32,11 +34,12 @@ export const authSlice = createSlice({
       state.token = token,
         state.userInfo = { ...userInfo, profileImageUrl };
       Session.set("token", token);
-      Session.set("userStatus::>", userInfo.profileStatus)
-      Session.set("userType::>", userInfo.userType)
+      Session.set("userstatus", userInfo.profileStatus)
+      Session.set("userinfo", userInfo.userType)
       Session.set("profileImageUrl", profileImageUrl);
       Session.set("firstName", firstName);
-
+      Session.set("isVerifiedUser", userInfo.isVerifiedUser);
+      state.isVerifiedUser = userInfo.isVerifiedUser;
     },
     logOut: (state) => {
       state.token = "",
@@ -47,11 +50,11 @@ export const authSlice = createSlice({
           role: "",
           userType: "",
           profileImageUrl: "",
-          firstName: "",
+          firstName: ""
         };
       Session.remove("token")
-      Session.remove("userStatus::>")
-      Session.remove("userType::>")
+      Session.remove("userstatus")
+      Session.remove("usertype")
       Session.remove("profileImageUrl")
       Session.remove("firstName")
       Session.remove("salonName")
@@ -62,8 +65,10 @@ export const authSlice = createSlice({
       state.homeService = ""
       Session.remove("salonId")
       state.salonId = ""
-      Session.remove("UserInfo::>")
+      Session.remove("userinfo")
       state.userInfo = ""
+      Session.remove("isVerifiedUser")
+      state.isVerifiedUser = false;
       console.log("logout called");
     },
     
@@ -85,7 +90,7 @@ export const authSlice = createSlice({
     },
     setUserInfo: (state, action) => {
       state.userInfo = action.payload;
-      Session.set("UserInfo::>", action.payload)
+      Session.set("userinfo", action.payload)
       // console.log("profile status::>",action.payload)
 
     },
@@ -120,9 +125,9 @@ export const authSlice = createSlice({
       state.salonImage = null;
     },
     removeUserInfo: (state) => {
-      Session.remove("UserInfo::>");
-      Session.remove("userStatus::>");
-      Session.remove("userType::>");
+      Session.remove("userinfo");
+      Session.remove("userstatus");
+      Session.remove("usertype");
       Session.remove("profileImageUrl");
       Session.remove("firstName");
       state.userInfo = {
@@ -133,6 +138,7 @@ export const authSlice = createSlice({
         userType: "",
         profileImageUrl: "",
         firstName: "",
+        verified:false
       };
     },
   },

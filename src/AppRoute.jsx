@@ -9,7 +9,6 @@ import TermsAndCondition from "./pages/TermsAndCondition";
 import CodeOfConduct from "./components/privacypolicy/codeOfConduct/CodeOfConduct";
 import ContactUs from "./components/privacypolicy/contactUs/ContactUs";
 import NewSalon from "./components/saloondashboard/addNewSalon/NewSalon";
-import BusinessDetails from "./components/account/Salon";
 
 const SalonManagement = lazy(() =>
   import('./components/saloonmanagement/salonmanagement/SalonManagement')
@@ -21,7 +20,7 @@ const SalonAppointment = lazy(() =>
 const CreateAccount = lazy(() => import('./pages/CreateAccount'));
 
 
-const AppRoute = ({authToken}) => {
+const AppRoute = ({authToken, isVerifiedUser}) => {
   const _routes = [
     {
       children: [
@@ -40,7 +39,7 @@ const AppRoute = ({authToken}) => {
 
 
         {
-          path: "salon", element: <MainApp authToken={authToken} />,
+          path: "salon", element: <MainApp authToken={authToken} isVerifiedUser={isVerifiedUser}/>,
           children: [
             {
               path: 'dashboard',
