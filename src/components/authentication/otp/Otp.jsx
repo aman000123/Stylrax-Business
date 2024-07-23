@@ -79,6 +79,7 @@ const Otp = ({ phoneNumber, timer, setTimer, isTimerActive, setIsTimerActive }) 
         userType:data.userType,
         profileImageUrl:data.profile.profileImageUrl,
         firstName:data.profile.firstName,
+        isVerifiedUser:  data.verified || false
       };
       if(data.profileStatus===2 || 0){
         dispatch(storeSalons({ salons: data.salons }));
@@ -87,14 +88,9 @@ const Otp = ({ phoneNumber, timer, setTimer, isTimerActive, setIsTimerActive }) 
 
       dispatch(storeToken(authData));
       // console.log(authData)
-      if (data.profileStatus === 3 && data.verified) {
+      if (data.verified) {
         navigate("/salon/dashboard");
-      }
-     // if (data.profileStatus === 2) {
-        //navigate("/account/create" ,{ state: { token: data.authToken } });
-       // handleBankDetails()
-     // }
-      else {
+      }else{
         navigate("/account/create" ,{ state: { token: data.authToken } });
      }
     } catch (error) {

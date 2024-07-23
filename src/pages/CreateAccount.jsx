@@ -32,46 +32,16 @@ const accountSteps = [
   ];
 
 const CreateAccount = () => {
-  const [steps, setSteps] = useState([]);
   const [salonId, setSalonId] = useState(null);
   const userInfo = useSelector((state) => state.auth.userInfo);
-  // console.log("userInfo::>", userInfo);
   const status = userInfo?.profileStatus;
-  // console.log("statusInfo::>", status);
-  const userType = userInfo?.userType;
-  // console.log("userType::>", userType);
   const [activeStep, setActiveStep] = useState(status);
-  //const salonId = useSelector(state => state.auth.salonId);
+  const authToken = useSelector(state => state.auth.token);
 
-  // console.log("id",salonId)
-  const location = useLocation();
-  const { token = "" } = location.state || {};
-
-  // console.log("Location::>", location);
-  // console.log("Token::>", token);
-  // useEffect(() => {
-  //   const storedSalonId = Session.get("salonId");
-  //   if (storedSalonId) {
-  //     setSalonId(storedSalonId);
-  //   }
-  // }, []);
-
-  
-  if (!token) {
+  if (!authToken) {
     return <Navigate to="/home" />;
   }
-// const salon = Session.get("salonId");
- //console.log("salonID:::>", salon);
-  //   {status!=0 && useEffect(() => {
-  //     onServiceSelect(userType);
-  // }, [])}
-
-//   const onServiceSelect = (userType) => {
-//     console.log("user::>",userType);
-//     setSteps(accountSteps[0]);
-//     setActiveStep(activeStep + 1);
-
-// }
+  
   const handleProfileCreate = (data) => {
     setActiveStep(activeStep + 1);
   };
