@@ -8,7 +8,8 @@ import FormContainer from "./FormContainer";
 import Notify from "../../utils/notify";
 import { handleOnFileSelect } from "./FileUploader";
 import { bankDetails } from "../../api/account.api";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { updateProfileStatus } from "../../store/auth.slice";
 
 const initialValues = {
   accountNumber:"",
@@ -27,6 +28,7 @@ const BankDetails = ({salonId,onContinue}) => {
 const salons = useSelector((state) => state.auth.salons);
 
 const salonIdd = salons[0]?.id ?? null;
+const dispatch = useDispatch();
 
 // console.log("salonID:::>", salonIdd);
  
@@ -44,8 +46,9 @@ const salonIdd = salons[0]?.id ?? null;
 
       //const res = await bankDetails(salonIdd,data);
       const response = await bankDetails(salonId ? salonId : salonIdd, data);
+      dispatch(updateProfileStatus(3));
       // console.log("response:::>", response);
-      onContinue(values);
+      // onContinue(values);
     } catch (error) {
       Notify.error(error.message);
       // console.log("error:::>", error);

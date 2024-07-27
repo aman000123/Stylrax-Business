@@ -14,13 +14,14 @@ export const getProfile = (payload) => HTTP.Request(methods.GET, __endpoint_user
 //   })}
 //export const createProfile = (payload,token) => HTTP.Request(methods.POST, __endpoint_userProfile, payload,token);
 export const getOwnerDetails = (payload) => HTTP.Request(methods.GET, __endpoint_userProfile, payload);
+export const createProfile = (payload) => HTTP.Request(methods.POST, __endpoint_userProfile, payload);
 
-export const createProfile = (payload, token) => {
-    console.log("temp Token:", token);
-    return axios.post(__endpoint_userProfile, payload, {
-        headers: {
-            'Authorization': `Bearer ${token}`,
-            'Content-Type': 'application/json'
-        }
-    });
-}
+// export const createProfile = (payload, token) => {
+//     console.log("temp Token:", token);
+//     return axios.post(__endpoint_userProfile, payload, {
+//         headers: {
+//             'Authorization': `Bearer ${token}`,
+//             'Content-Type': 'application/json'
+//         }
+//     });
+// }
