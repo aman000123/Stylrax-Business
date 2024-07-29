@@ -9,7 +9,7 @@ export const authSlice = createSlice({
     salonImage: Session.get("salonImage") || "",
     homeService: Session.get("homeService") || "",
     userInfo: {
-      profileStatus: 0,
+      profileStatus: Session.get("userstatus") || 0,
       email: "",
       phoneNumber: "",
       role: "",
@@ -24,7 +24,7 @@ export const authSlice = createSlice({
   reducers: {
     storeToken: (state, action) => {
       const { token, profileImageUrl, firstName, ...userInfo } = action.payload;
-      console.log("Action is varified ::>", userInfo.isVerifiedUser ,typeof userInfo.isVerifiedUser);
+      // console.log("Action is varified ::>", userInfo.isVerifiedUser ,typeof userInfo.isVerifiedUser);
       // console.log("profile Image::>",profileImageUrl)
       // console.log("First Name::>",firstName)
 
@@ -40,6 +40,10 @@ export const authSlice = createSlice({
       Session.set("firstName", firstName);
       Session.set("isVerifiedUser", userInfo.isVerifiedUser);
       state.isVerifiedUser = userInfo.isVerifiedUser;
+    },
+    updateProfileStatus: (state, action) => {
+      state.userInfo.profileStatus = action.payload;
+      Session.set("userstatus", action.payload);
     },
     logOut: (state) => {
       state.token = "",
@@ -69,7 +73,7 @@ export const authSlice = createSlice({
       state.userInfo = ""
       Session.remove("isVerifiedUser")
       state.isVerifiedUser = false;
-      console.log("logout called");
+      // console.log("logout called");
     },
     
     setSalonName: (state, action) => {
@@ -145,6 +149,6 @@ export const authSlice = createSlice({
 })
 
 export const { storeToken, setSalonID, removeUserInfo, removeToken, removeSalonID, setUserInfo, storeSalons, removeSalons, setSalonName,
-  setSalonImage, setHomeService, removeSalonImage, removeSalonName, logOut } = authSlice.actions
+  setSalonImage, setHomeService, removeSalonImage, removeSalonName, logOut, updateProfileStatus } = authSlice.actions
 
 export default authSlice.reducer;

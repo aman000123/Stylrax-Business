@@ -14,6 +14,8 @@ import { verifyEmail, verifyEmailOtp } from "../../api/account.api";
 import { FaCheckCircle } from "react-icons/fa";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { useDispatch } from "react-redux";
+import { updateProfileStatus } from "../../store/auth.slice";
 
 const Profile = ({ onContinue, token }) => {
   const [type, setType] = useState("text");
@@ -21,7 +23,7 @@ const Profile = ({ onContinue, token }) => {
   const [otp, setOtp] = useState("");
   const [isOTPVerified, setIsOTPVerified] = useState(false);
   const [isEmailVerified, setIsEmailVerified] = useState(false);
-
+  const dispatch = useDispatch();
   const initialValues = {
     firstName: "",
     middleName: "",
@@ -79,10 +81,11 @@ const Profile = ({ onContinue, token }) => {
         profileImageUrl: values.profileImageUrl,
         serviceType: "Male",
       };
-      const res = await createProfile(dataForm, token);
-      // console.log("response:::>", res.data);
+      const res = await createProfile(dataForm);
+      console.log("response:::>", res.data);
+      dispatch(updateProfileStatus(1));
 
-      onContinue(values);
+      // onContinue(values);
     } catch (error) {
       Notify.error(error.message);
     }

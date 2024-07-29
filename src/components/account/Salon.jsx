@@ -21,6 +21,8 @@ import { getPresignedUrl } from "../../api/file.api";
 import OTPInput from "react-otp-input";
 import { verifyEmail, verifyEmailOtp } from "../../api/account.api";
 import { FaCheckCircle } from "react-icons/fa";
+import { updateProfileStatus } from "../../store/auth.slice";
+import { useDispatch } from "react-redux";
 
 const serviceOptions = [
   { value: "", text: "Select Service" },
@@ -57,7 +59,9 @@ const BusinessDetails = ({ onContinue, token }) => {
   const [isOTPVerified, setIsOTPVerified] = useState(false);
   const [isEmailVerified, setIsEmailVerified] = useState(false);
   const states = Object.keys(data);
+  const dispatch = useDispatch();
 
+  // console.log('Business details ::>');
   const handleOnSubmit = async (values) => {
     // console.log(" Handle Submit Salon Details ::", values);
     try {
@@ -80,9 +84,10 @@ const BusinessDetails = ({ onContinue, token }) => {
       };
       const res = await createSalon(verifyForm);
       // console.log("respn::>", res);
+      dispatch(updateProfileStatus(2));
       const salonId = res.data.id;
       // console.log("salon id:::>", salonId);
-      onContinue(values, salonId);
+      onContinue(salonId);
     } catch (error) {
       Notify.error(error.message);
     }
