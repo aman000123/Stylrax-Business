@@ -63,7 +63,7 @@ const Profile = ({ onContinue, token }) => {
   );
 
   const handleOnSubmit = async (values) => {
-    console.log("Handle submit", values);
+    // console.log("Handle submit", values);
     const formattedDate = formatDate(values.dataOfBirth);
     // console.log("Data Form ::>", dataForm);
     try {
@@ -82,7 +82,7 @@ const Profile = ({ onContinue, token }) => {
         serviceType: "Male",
       };
       const res = await createProfile(dataForm);
-      console.log("response:::>", res.data);
+      // console.log("Profile Response:::>", res.data);
       dispatch(updateProfileStatus(1));
 
       // onContinue(values);

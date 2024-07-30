@@ -10,6 +10,7 @@ import InputFile from "../../../ux/controls/Input.jsx";
 import styles from "../ManageStaff/ManageStaff.module.css";
 import { useState } from "react";
 import PhoneInputComponent from "../../authentication/login/PhoneInputComponent.jsx";
+
 const initialValues = {
   firstName: "",
   lastName: "",
@@ -26,19 +27,18 @@ const initialValues = {
 function AddStaff({ onClose, updatedData }) {
   const salonId = Session.get("salonId");
   const [imageUrls, setImageUrls] = useState("");
-  // console.log("imgUrl", imageUrls);
+
   const handleClose = () => {
     onClose();
   };
 
   const handleSubmit = async (values) => {
-    // console.log(values);
     try {
       const data = {
         firstName: values.firstName,
         lastName: values.lastName,
         email: values.email,
-        dataOfBirth: values.dob,
+        dateOfBirth: formatDate(values.dob),
         gender: values.gender,
         profileImageUrl: values.profileImageUrl,
         specialization: values.specialization,
@@ -51,16 +51,14 @@ function AddStaff({ onClose, updatedData }) {
       setImageUrls({ ...imageUrls, profile: profileImageUrl });
       Notify.success("Staff Added");
       updatedData();
-
-      // console.log("addStaff::>", Staff);
       onClose();
     } catch (error) {
       Notify.error(error.message);
     }
   };
+
   const handleKeyPress = (event) => {
     const charCode = event.charCode;
-    // Allow only letters (a-z, A-Z)
     if (!/^[a-zA-Z]+$/.test(String.fromCharCode(charCode))) {
       event.preventDefault();
     }
@@ -70,6 +68,13 @@ function AddStaff({ onClose, updatedData }) {
     const currentDate = new Date();
     return new Date(currentDate.getFullYear() - 18, currentDate.getMonth(), currentDate.getDate()).toISOString().split("T")[0];
   };
+
+  const formatDate = (dateString) => {
+    const [year, month, day] = dateString.split('-');
+    const formattedDate = `${day}-${month}-${year}`;
+    return formattedDate;
+  };
+
 
   return (
     <Col md={4}>
@@ -111,27 +116,26 @@ function AddStaff({ onClose, updatedData }) {
                 component="div"
                 className={styles.formError}
               />
-              < div className={styles.phoneBox}>
-              <Field
-                component={PhoneInputComponent}
-                style={{
-                  borderRadius: "20px",
-                  boxShadow: "none",
-                  outlineColor: "none",
-                  border:"none",
-                }}
-                type="text"
-                value={values.phoneNumber}
-                placeholder="Phone Number"
-                name="phoneNumber"
-              />
+              <div className={styles.phoneBox}>
+                <Field
+                  component={PhoneInputComponent}
+                  style={{
+                    borderRadius: "20px",
+                    boxShadow: "none",
+                    outlineColor: "none",
+                    border: "none",
+                  }}
+                  type="text"
+                  value={values.phoneNumber}
+                  placeholder="Phone Number"
+                  name="phoneNumber"
+                />
               </div>
               <ErrorMessage
                 name="phoneNumber"
                 component="div"
                 className={styles.formError}
               />
-
               <Field
                 type="date"
                 placeholder="Enter staff's date of birth"
@@ -144,7 +148,6 @@ function AddStaff({ onClose, updatedData }) {
                 component="div"
                 className={styles.formError}
               />
-
               <Field
                 type="text"
                 placeholder="Enter staff's email Id"
@@ -165,13 +168,7 @@ function AddStaff({ onClose, updatedData }) {
                 component="div"
                 className={styles.formError}
               />
-              {/* <Field
-                type="text"
-                placeholder="Enter specialization"
-                name="specialization"
-                onKeyPress={handleKeyPress}
-              /> */}
-                <Field as="select" name="specialization" className={styles.gender}>
+              <Field as="select" name="specialization" className={styles.gender}>
                 <option value="">Select specialization</option>
                 <option value="Staff">Staff</option>
                 <option value="Manager">Manager</option>
