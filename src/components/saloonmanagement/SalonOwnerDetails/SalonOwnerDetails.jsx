@@ -90,7 +90,7 @@ function SalonOwnerDetails() {
         <br />
         <input
           type="text"
-          placeholder={details.dataOfBirth}
+          placeholder={details.dateOfBirth}
           name="dataOfBirth"
           className={styles.inputs}
           disabled

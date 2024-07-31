@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Formik, Form, Field } from "formik";
 import { FaCircle } from "react-icons/fa";
-import { MobileTimePicker, TimePicker } from "@mui/x-date-pickers";
+import { TimePicker } from "@mui/x-date-pickers";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import dayjs from "dayjs";
@@ -12,7 +12,6 @@ import TextField from "@mui/material/TextField";
 import styles from "../SalonTime/SalonTime.module.css";
 import { renderTimeViewClock } from "@mui/x-date-pickers/timeViewRenderers";
 import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
-import { styled } from "@mui/system";
 
 const salonId = Session.get("salonId");
 
@@ -40,8 +39,8 @@ function SalonTime() {
         return {
           day: dayData.day,
           isOpen: dayTiming ? dayTiming.isOpen : false,
-          openTime: dayTiming ? dayjs(dayTiming.openTime) : null,
-          closeTime: dayTiming ? dayjs(dayTiming.closeTime) : null,
+          openTime: dayTiming ? dayjs(dayTiming.openTime, 'hh:mm A') : null,
+          closeTime: dayTiming ? dayjs(dayTiming.closeTime, 'hh:mm A') : null,
         };
       });
       setTiming(defaultTiming);
@@ -108,8 +107,8 @@ function SalonTime() {
             initialValues={{
               ...timing.reduce((acc, dayTiming, index) => {
                 acc[`isOpen${index}`] = dayTiming.isOpen;
-                acc[`openTime${index}`] = dayTiming.openTime;
-                acc[`closeTime${index}`] = dayTiming.closeTime;
+                acc[`openTime${index}`] = dayTiming.openTime ? dayjs(dayTiming.openTime) : null;
+                acc[`closeTime${index}`] = dayTiming.closeTime ? dayjs(dayTiming.closeTime) : null;
                 return acc;
               }, {}),
             }}
@@ -141,7 +140,7 @@ function SalonTime() {
                               <DemoContainer components={["TimePicker"]}>
                                 <TimePicker
                                   value={values[`openTime${index}`] ? dayjs(values[`openTime${index}`]) : null}
-                                  onChange={(newValue) => setFieldValue(`openTime${index}`, newValue ? newValue.format() : null)}
+                                  onChange={(newValue) => setFieldValue(`openTime${index}`, newValue)}
                                   viewRenderers={{
                                     hours: renderTimeViewClock,
                                     minutes: renderTimeViewClock,
@@ -162,7 +161,7 @@ function SalonTime() {
                               <DemoContainer components={["TimePicker"]}>
                                 <TimePicker
                                   value={values[`closeTime${index}`] ? dayjs(values[`closeTime${index}`]) : null}
-                                  onChange={(newValue) => setFieldValue(`closeTime${index}`, newValue ? newValue.format() : null)}
+                                  onChange={(newValue) => setFieldValue(`closeTime${index}`, newValue)}
                                   viewRenderers={{
                                     hours: renderTimeViewClock,
                                     minutes: renderTimeViewClock,
