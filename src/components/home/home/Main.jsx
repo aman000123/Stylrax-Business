@@ -9,6 +9,7 @@ import Registration from "../registration/Registration";
 import Feedback from '../feedback/Feedback';
 import Explore from '../explore/Explore';
 import Review from "../review/Review";
+import DownloadApp from "../downloadapp/DownloadApp";
 import Partners from "../partners/Partners";
 import Team from "../team/Team";
 import Support from '../support/Support';
@@ -18,23 +19,23 @@ import LoginForm from '../../authentication/login/LoginForm';
 const Main = () => {
   return (
     <div className='mainbusiness'>
-      <Navbar data={menuItems} redirect="/" />
-      <LoginForm />
-      <About />
-      <Counter />
-      <Overview />
-      <AboutOne />
-      <AboutTwo />
-      <Comment />
-      <Registration />
-      <Feedback />
-      <Explore />
-      <Review />
-      {/* <DownloadApp/> */}
-      <Partners />
-      <Team />
-      <Support />
-      <Footer redirect="/" />
+    <Navbar data={menuItems} redirect="/"/>
+    <LoginForm/> 
+    <About/> 
+    <Counter/>
+    <Overview/>
+    <AboutOne/>
+    <AboutTwo/>
+    <Comment/> 
+    <Registration/>
+    <Feedback/>
+    <Explore/>
+    <Review/>
+    {/* <DownloadApp/> */}
+    <Partners/>
+    <Team/>
+    <Support/>
+    <Footer redirect="/"/>
     </div>
   );
 }

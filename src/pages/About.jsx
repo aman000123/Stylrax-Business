@@ -2,7 +2,7 @@ import AboutUs from "../components/privacypolicy/aboutUs/AboutUs";
 const About = () => {
   return (
     <div>
-      <AboutUs />
+      <AboutUs/>
     </div>
   )
 };

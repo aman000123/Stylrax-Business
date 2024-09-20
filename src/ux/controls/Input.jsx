@@ -1,7 +1,8 @@
 import { GrFormUpload } from "react-icons/gr";
 import style from './controls.module.css'
 import { useState } from "react";
-export default function InputFile({ label, helperText, onFileSelect, name, ...rest }) {
+import { ErrorMessage } from "formik";
+export default function InputFile({ label, helperText, onFileSelect,name, ...rest }) {
 
     const [file, setFile] = useState("");
 
@@ -15,7 +16,7 @@ export default function InputFile({ label, helperText, onFileSelect, name, ...re
         const file = event.target.files[0];
         setFile(file);
         onFileSelect(file)
-    };
+      };
 
     return (
         <div className='d-flex flex-column mb-1 '>
@@ -23,11 +24,11 @@ export default function InputFile({ label, helperText, onFileSelect, name, ...re
             {helperText && <small>{helperText}</small>}
             <div className={style.control__input_file}>
                 <button type="button" onClick={handleOnClick} className={style.control__input_button}>
-                    <GrFormUpload />
-                    Upload
+                   <GrFormUpload/>
+                     Upload
                 </button>
-                <input type='file' name={name} {...rest} style={{ display: "none" }} onChange={handleFileChange} />
-                <div className={style.fileName}> <small >{file?.name}</small></div>
+                <input type='file' name={name} {...rest}  style={{display:"none"}} onChange={handleFileChange}  />
+             <div className={style.fileName}> <small >{file?.name}</small></div>
                 {/* <ErrorMessage component="div" name={name} className={style.control__input_error} /> */}
             </div>
         </div>

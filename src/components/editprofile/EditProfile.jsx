@@ -16,7 +16,7 @@ function SalonOwnerDetails({ onClose }) {
       try {
         const res = await getProfile();
         const details = res.data;
-
+        
         // Format date of birth to dd/mm/yy
         if (details.dataOfBirth) {
           const date = new Date(details.dataOfBirth);

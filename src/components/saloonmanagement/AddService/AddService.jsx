@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import { addSalonService } from "../../../api/salon.management";
 import { addServiceSchema } from "../../../utils/schema";
@@ -28,7 +28,7 @@ function AddService({ onClose, updatedData, id, categoryName }) {
       };
 
       // console.log("Selected Category ID:", id);
-      await addSalonService(salonId, data);
+      const res = await addSalonService(salonId, data);
       Notify.success("Service added");
       onClose();
       updatedData();

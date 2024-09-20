@@ -8,6 +8,7 @@ import styles from "../upcomingappointment/UpComing.module.css";
 import ViewDetails from "./ViewDetails";
 import maleImage from '../../../assets/image/male-placeholder.svg';
 import femaleImage from '../../../assets/image/female-placeholder.svg';
+import { toLower } from "lodash";
 import { getInvoice } from "../../../api/account.api";
 
 const PastAppointment = () => {
@@ -76,10 +77,10 @@ const PastAppointment = () => {
 
   function formatDate(dateString) {
     const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-
+    
     const [day, month, year] = dateString.split('-');
     const monthIndex = parseInt(month, 10) - 1; // Convert month to 0-based index
-
+  
     const formattedDate = `${day}-${months[monthIndex]}-${year}`;
     return formattedDate;
   }

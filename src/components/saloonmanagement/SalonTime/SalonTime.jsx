@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Formik, Form, Field } from "formik";
 import { FaCircle } from "react-icons/fa";
 import { TimePicker } from "@mui/x-date-pickers";
@@ -178,10 +178,11 @@ function SalonTime() {
                       <div className={`${styles.circleDiv} rounded-pill`}>
                         <FaCircle
                           onClick={add ? handleToggle : null}
-                          className={`${styles.blackCircle} ${values[`isOpen${index}`]
+                          className={`${styles.blackCircle} ${
+                            values[`isOpen${index}`]
                               ? styles.iconOpen
                               : styles.iconClose
-                            }`}
+                          }`}
                         />
                       </div>
                     </div>

@@ -80,12 +80,12 @@ export default function Popup(props) {
     setStartServiceClicked(true);
   };
 
-  useEffect(() => { }, [startServiceClicked]);
+  useEffect(() => {}, [startServiceClicked]);
 
   const calculateTotals = (services) => {
     const serviceTotal = services.reduce((total, service) => total + (service.servicePrice || 0), 0);
     const gst = serviceTotal * 0.18;
-    const totalWithGst = serviceTotal + gst;
+    const totalWithGst = serviceTotal + gst; 
     return { serviceTotal, gst, totalWithGst };
   };
 
@@ -300,7 +300,7 @@ export default function Popup(props) {
                 show={startServiceClicked}
                 onHide={() => setStartServiceClicked(false)}
                 appointmentId={appointmentId}
-                onOtpSubmit={() => { }}
+                onOtpSubmit={() => {}}
                 updatedData={setAppointmentDetails}
               />
             )}
@@ -324,10 +324,10 @@ export default function Popup(props) {
         )}
         {(appointmentDetails.status === "IN_PROGRESS" ||
           appointmentDetails.status === "IN_SERVICE") && (
-            <button className={styles.accept} onClick={completeAppointment}>
-              Complete
-            </button>
-          )}
+          <button className={styles.accept} onClick={completeAppointment}>
+            Complete
+          </button>
+        )}
         {appointmentDetails.status === "COMPLETED" && (
           <button className={styles.accept}>Invoice</button>
         )}

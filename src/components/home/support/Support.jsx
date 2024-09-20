@@ -1,6 +1,7 @@
 import styles from '../support/Support.module.css'
-
-import cards from '../../../assets/image/img-cards.png.svg'
+import CallIcon from '@mui/icons-material/Call';
+import WorkIcon from '@mui/icons-material/Work';
+ import cards from '../../../assets/image/img-cards.png.svg'
 
 function Support() {
     return (
@@ -17,7 +18,7 @@ function Support() {
             <div className={styles.payment}>
                 <p>Payment Supports</p>
                 <div className={styles.paymentOption}>
-                    <img src={cards} alt='cards' className={styles.image} />
+                    <img src={cards} alt='cards' className={styles.image}/>
                 </div>
 
             </div>

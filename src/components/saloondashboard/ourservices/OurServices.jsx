@@ -1,5 +1,5 @@
 import osImg16 from "../../../assets/image/osImg16.png";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Paper, Skeleton } from "@mui/material"; // Import Skeleton from Material-UI
 import { Row, Col } from "react-bootstrap";
 import styles from "../ourservices/OurServices.module.css";

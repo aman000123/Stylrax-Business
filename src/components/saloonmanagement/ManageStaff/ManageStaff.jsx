@@ -175,6 +175,6 @@ const ModalContent = styled("div")(
     display: flex;
     flex-direction: row;
     gap: 5px;
-    overflow: hidden;
+    overfloe: hidden;
   `
 );

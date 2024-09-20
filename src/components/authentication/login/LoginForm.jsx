@@ -1,4 +1,4 @@
-
+import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
 import Login from "../../home/loginpage/Login";
 import styles from "../../home/loginpage/Login.module.css";
@@ -7,7 +7,7 @@ import { Row, Col, Container } from "react-bootstrap";
 import Otp from "../../authentication/otp/Otp";
 import { doLogin } from "../../../api/account.api";
 import Notify from "../../../utils/notify";
-import { Formik, ErrorMessage, Form } from "formik";
+import { Field, Formik, ErrorMessage, Form } from "formik";
 import { LoginSchema } from "../../../utils/schema";
 import { Link } from "react-router-dom";
 import PhoneInputComponent from "./PhoneInputComponent";
@@ -29,6 +29,7 @@ const LoginForm = ({ setActiveStep }) => {
     try {
       setSubmitting(true);
       setSubmittingText("Submitting...");
+      // console.log("Submitting form with values:", values);
       const { phoneNumber } = values;
       // console.log("Values ::", values);
       const data = {
@@ -37,7 +38,8 @@ const LoginForm = ({ setActiveStep }) => {
         deviceType: 1,
         deviceToken: "staff3deviceid",
       };
-      await doLogin(data);
+      const res = await doLogin(data);
+      // console.log("Response:", res.data);
       setPhoneNumber(phoneNumber);
       setShowOTPSection(true);
       setTimer(30);
@@ -115,7 +117,7 @@ const LoginForm = ({ setActiveStep }) => {
                               <button
                                 type="submit"
                                 className={`${styles.btn} text-black bg-white`}
-                              // disabled={submitting}
+                               // disabled={submitting}
                               >
                                 {submitting ? submittingText : "Continue"}
                               </button>

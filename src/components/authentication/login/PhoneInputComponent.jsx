@@ -4,7 +4,7 @@ import "react-phone-input-2/lib/style.css";
 
 const PhoneInputComponent = ({ value, style }) => {
   const { setFieldValue } = useFormikContext();
-
+  const { phoneNumber } = useFormikContext().initialValues;
 
   return (
     <PhoneInput
@@ -15,7 +15,7 @@ const PhoneInputComponent = ({ value, style }) => {
       onlyCountries={["in"]}
       countryCodeEditable={false}
       value={value ? `+91${value}` : ""}
-      onChange={(_, __, ___, formattedValue) => {
+      onChange={(phoneNumber, country, e, formattedValue) => {
         // Remove the country code prefix and any "-" characters
         const sanitizedPhoneNumber = formattedValue
           .replace(/^(\+91|91|-)/, "")

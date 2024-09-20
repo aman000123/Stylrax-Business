@@ -48,7 +48,7 @@ const initialValues = {
   gallaryImages: [],
 };
 
-const BusinessDetails = ({ onContinue }) => {
+const BusinessDetails = ({ onContinue, token }) => {
   const [bannerImages, setBannerImages] = useState([]);
   const [galleryImages, setGalleryImages] = useState([]);
   const [cityOptions, setCityOptions] = useState([
@@ -258,7 +258,7 @@ const BusinessDetails = ({ onContinue }) => {
                         onChange={(otpValue) => {
                           setOtp(otpValue);
                           if (otpValue.length === 4) {
-                            handleOTPVerification(otpValue, values);
+                            handleOTPVerification(otpValue, values, {});
                           }
                         }}
                         numInputs={4}

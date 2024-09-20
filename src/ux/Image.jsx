@@ -1,4 +1,4 @@
-
+import React from "react";
 import PropTypes from "prop-types";
 import dummyImage from "../../src/assets/image/dummyImage.webp";
 

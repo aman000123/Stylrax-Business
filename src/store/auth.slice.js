@@ -75,7 +75,7 @@ export const authSlice = createSlice({
       state.isVerifiedUser = false;
       // console.log("logout called");
     },
-
+    
     setSalonName: (state, action) => {
       state.salonName = action.payload.salonName;
       Session.set("salonName", action.payload.salonName);
@@ -142,7 +142,7 @@ export const authSlice = createSlice({
         userType: "",
         profileImageUrl: "",
         firstName: "",
-        verified: false
+        verified:false
       };
     },
   },

@@ -21,14 +21,14 @@ const Finish = () => {
             <br /> once the verification is completed
 
           </p> */}
-          <p>
-            We are verifying your details,which will
+                    <p>
+                    We are verifying your details,which will 
             <br />
-            take 2 to 3 days to process. You can
+            take 2 to 3 days to process. You can 
             <br />
-            proceed once the verification is
+            proceed once the verification is 
             <br /> completed.
-
+            
           </p>
 
           <div className={`${styles.btn} d-flex flex-column align-items-center`}>

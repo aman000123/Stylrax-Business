@@ -18,26 +18,26 @@ const ViewDetails = ({ isOpen, onClose, appointmentId }) => {
   const [cgst, setCgst] = useState(0);
   const [sgst, setSgst] = useState(0);
 
-  // const completeAppointment = async () => {
-  //   try {
-  //     await completeAppointments(appointmentId);
-  //     Notify.success("Appointment Completed Successfully");
-  //   } catch (error) {
-  //     Notify.error(error.message);
-  //   }
-  // };
+  const completeAppointment = async () => {
+    try {
+      await completeAppointments(appointmentId);
+      Notify.success("Appointment Completed Successfully");
+    } catch (error) {
+      Notify.error(error.message);
+    }
+  };
 
-  // const calculateGrandTotal = (services) => {
-  //   return services.reduce((total, service) => total + service.servicePrice, 0);
-  // };
+  const calculateGrandTotal = (services) => {
+    return services.reduce((total, service) => total + service.servicePrice, 0);
+  };
 
   function formatDate(dateString) {
     if (!dateString) return '';
     const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-
+    
     const [day, month, year] = dateString.split('-');
     const monthIndex = parseInt(month, 10) - 1; // Convert month to 0-based index
-
+  
     const formattedDate = `${day}-${months[monthIndex]}-${year}`;
     return formattedDate;
   }
@@ -239,10 +239,10 @@ const ViewDetails = ({ isOpen, onClose, appointmentId }) => {
           </Col>
           <Col><p>{completed?.paymentStatus?.paymentStatus}</p></Col>
           <Row>
-            <Col>
-              <p>Payment Mode</p>
-            </Col>
-            <Col><p className="px-3">{completed?.paymentStatus?.paymentMode}</p></Col>
+          <Col>
+            <p>Payment Mode</p>
+          </Col>
+          <Col><p className="px-3">{completed?.paymentStatus?.paymentMode}</p></Col>
           </Row>
         </Row>
         <Row className={styles.mainDiv}>
