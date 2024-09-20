@@ -1,4 +1,4 @@
-import  { useEffect} from 'react';
+
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { MdOutlineAddBox } from 'react-icons/md';
@@ -7,13 +7,13 @@ import { Paper } from '@mui/material';
 import styles from './SwitchSalon.module.css';
 import { useNavigate } from 'react-router-dom';
 
-const SwitchSalon = ({ salons, onSelectSalon , selectedSalonId }) => {
+const SwitchSalon = ({ salons, onSelectSalon, selectedSalonId }) => {
   // console.log("ss id",selectedSalonId)
   const navigate = useNavigate();
- 
 
-  const handleSalonClick = (salonName, salonImage, id,homeService) => {
-    onSelectSalon(salonName, salonImage, id,homeService);
+
+  const handleSalonClick = (salonName, salonImage, id, homeService) => {
+    onSelectSalon(salonName, salonImage, id, homeService);
   };
   // useEffect(() => {
   //   const selectedSalon = document.querySelector(`.selectSalon[data-id='${selectedSalonId}']`);
@@ -25,7 +25,7 @@ const SwitchSalon = ({ salons, onSelectSalon , selectedSalonId }) => {
   // }, [selectedSalonId]);
   return (
     <>
-      <Paper className={`${styles.switchPaper}`} elevation={15} style={{ borderRadius: '15px' ,border:'none'}}>
+      <Paper className={`${styles.switchPaper}`} elevation={15} style={{ borderRadius: '15px', border: 'none' }}>
         <div className={styles.main}>
           <div className={styles.mainDiv}>
             <div className="d-flex">
@@ -40,11 +40,11 @@ const SwitchSalon = ({ salons, onSelectSalon , selectedSalonId }) => {
           </div>
           <p className={styles.select}>Select Your Salon</p>
           {salons.map((salon) => (
-             <div
-             key={salon.id}
-             className={clsx(styles.selectSalon, { [styles.selected]: salon.id === selectedSalonId })}
-             onClick={() => handleSalonClick(salon.name, salon.mainGateImageUrl, salon.id,salon.homeService)}
-           >
+            <div
+              key={salon.id}
+              className={clsx(styles.selectSalon, { [styles.selected]: salon.id === selectedSalonId })}
+              onClick={() => handleSalonClick(salon.name, salon.mainGateImageUrl, salon.id, salon.homeService)}
+            >
               <img src={salon.mainGateImageUrl} alt={salon.name} className={styles.userImage} />
               <p>{salon.name}</p>
             </div>

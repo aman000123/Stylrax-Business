@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useDispatch } from "react-redux";
 import { Row, Col } from "react-bootstrap";
 import { LuSwitchCamera } from "react-icons/lu";

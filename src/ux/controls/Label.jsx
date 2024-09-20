@@ -1,7 +1,7 @@
 export default function Label({ text, ...rest }) {
-  return(
+  return (
     <label className="fw-bold" {...rest}>
-        {text}
+      {text}
     </label>
   )
 }

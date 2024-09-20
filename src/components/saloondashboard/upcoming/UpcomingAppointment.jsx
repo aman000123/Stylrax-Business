@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "./UpcomingAppointment.module.css";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import { Paper, Skeleton } from "@mui/material"; // Import Skeleton from Material-UI

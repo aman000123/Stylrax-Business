@@ -22,9 +22,9 @@ function Footer(props) {
           <Link to="/home/privacy">Privacy Policy</Link>
           <Link to="/home/terms-condition">Terms of use</Link>
           <div className={styles.iconDiv}>
-          <img src={playstore} alt="playstore" className={styles.gplay} />
-          <img src={appstore} alt="playstore" className={styles.appstore} />
-        </div>
+            <img src={playstore} alt="playstore" className={styles.gplay} />
+            <img src={appstore} alt="playstore" className={styles.appstore} />
+          </div>
         </div>
       </div>
     </div>

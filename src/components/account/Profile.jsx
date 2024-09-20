@@ -12,13 +12,11 @@ import { useState } from "react";
 import OTPInput from "react-otp-input";
 import { verifyEmail, verifyEmailOtp } from "../../api/account.api";
 import { FaCheckCircle } from "react-icons/fa";
-import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { useDispatch } from "react-redux";
 import { updateProfileStatus } from "../../store/auth.slice";
 
 const Profile = ({ onContinue, token }) => {
-  const [type, setType] = useState("text");
   const [showOTP, setShowOTP] = useState(false);
   const [otp, setOtp] = useState("");
   const [isOTPVerified, setIsOTPVerified] = useState(false);
@@ -29,7 +27,7 @@ const Profile = ({ onContinue, token }) => {
     middleName: "",
     lastName: "",
     email: "",
-   dateOfBirth: "",
+    dateOfBirth: "",
     gender: "",
     panCardImageUrl: "",
     aadharFrontUrl: "",
@@ -63,7 +61,6 @@ const Profile = ({ onContinue, token }) => {
   );
 
   const handleOnSubmit = async (values) => {
-    // console.log("Handle submit", values);
     const formattedDate = formatDate(values.dataOfBirth);
     // console.log("Data Form ::>", dataForm);
     try {
@@ -73,7 +70,7 @@ const Profile = ({ onContinue, token }) => {
         middleName: values.middleName,
         lastName: values.lastName,
         email: values.email,
-       dateOfBirth: formattedDate,
+        dateOfBirth: formattedDate,
         gender: values.gender,
         panCardImageUrl: values.panCardImageUrl,
         aadharFrontUrl: values.aadharFrontUrl,
@@ -81,10 +78,8 @@ const Profile = ({ onContinue, token }) => {
         profileImageUrl: values.profileImageUrl,
         serviceType: "Male",
       };
-      const res = await createProfile(dataForm);
-      // console.log("Profile Response:::>", res.data);
+      await createProfile(dataForm);
       dispatch(updateProfileStatus(1));
-
       // onContinue(values);
     } catch (error) {
       Notify.error(error.message);
@@ -203,7 +198,7 @@ const Profile = ({ onContinue, token }) => {
                         onChange={(otpValue) => {
                           setOtp(otpValue);
                           if (otpValue.length === 4) {
-                            handleOTPVerification(otpValue, values, {});
+                            handleOTPVerification(otpValue, values);
                           }
                         }}
                         numInputs={4}

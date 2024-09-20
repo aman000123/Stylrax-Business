@@ -34,12 +34,12 @@ const Ongoing = () => {
     // console.log("id", appointmentId);
     setShowPopup(true);
   };
-  if(!pending || pending.length===0){
+  if (!pending || pending.length === 0) {
     return <div className={styles.noContent}>
       No cancelled appointments
     </div>
-   }
-   const getStatusClass = (status) => {
+  }
+  const getStatusClass = (status) => {
     switch (status) {
       case "PENDING":
         return styles.pending;
@@ -55,8 +55,8 @@ const Ongoing = () => {
         return styles.inService;
       case "IN_PROGRESS":
         return styles.inProgress;
-        case "CANCELLED":
-          return styles.cancelled;
+      case "CANCELLED":
+        return styles.cancelled;
       default:
         return "";
     }
@@ -79,7 +79,7 @@ const Ongoing = () => {
                 <Col md={4}>
                   <div>
                     <img
-                     src={appointment.serviceType.toLowerCase() === 'male' ? maleImage : femaleImage }
+                      src={appointment.serviceType.toLowerCase() === 'male' ? maleImage : femaleImage}
                       // src={appointment.user.profileImageUrl}
                       className={styles.userImage}
                       alt="User"
@@ -110,7 +110,7 @@ const Ongoing = () => {
                   {/* <button className={styles.accept}>Accept</button> */}
                 </Col>
                 <Col md={4}>
-                <p className={`${styles.status} ${getStatusClass(appointment?.status)}`}>                    {appointment.status}
+                  <p className={`${styles.status} ${getStatusClass(appointment?.status)}`}>                    {appointment.status}
                     <br />
                     <Link onClick={() => handleViewDetails(appointment.id)}>
                       View Details

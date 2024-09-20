@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "./Stylist.module.css";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import { salonStaff } from "../../../api/salon.management";
