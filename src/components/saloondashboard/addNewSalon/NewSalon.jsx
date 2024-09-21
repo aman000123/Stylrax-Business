@@ -155,7 +155,7 @@ const NewSalon = ({ onClose }) => {
               <Formik
                 initialValues={initialValues}
                 validationSchema={businessDetailsSchema}
-                onSubmit={(values, { event }) => handleOnSubmit(event, values)}
+                onSubmit={(values) => handleOnSubmit(values)}
               >
                 {({ setFieldValue }) => (
                   <Form

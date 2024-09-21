@@ -80,7 +80,7 @@ const Profile = ({ onContinue, token }) => {
         profileImageUrl: values.profileImageUrl,
         serviceType: "Male",
       };
-      const res = await createProfile(dataForm);
+      await createProfile(dataForm);
       // console.log("Profile Response:::>", res.data);
       dispatch(updateProfileStatus(1));
 
@@ -202,7 +202,7 @@ const Profile = ({ onContinue, token }) => {
                         onChange={(otpValue) => {
                           setOtp(otpValue);
                           if (otpValue.length === 4) {
-                            handleOTPVerification(otpValue, values, {});
+                            handleOTPVerification(otpValue, values);
                           }
                         }}
                         numInputs={4}

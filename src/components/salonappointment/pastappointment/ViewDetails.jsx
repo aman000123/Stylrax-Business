@@ -4,7 +4,7 @@ import Drawer from "@mui/material/Drawer";
 import List from "@mui/material/List";
 import { RxCross2 } from "react-icons/rx";
 import {
-  completeAppointments,
+
   detailsAppointments,
 } from "../../../api/appointments.api";
 import Notify from "../../../utils/notify";
