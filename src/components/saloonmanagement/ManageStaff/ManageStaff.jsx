@@ -21,11 +21,12 @@ function ManageStaff() {
   // console.log("staff::>", staff);
   const handleOpen = () => setAddStaffOpen(true);
   //const handleClose = () => setOpen(false);
-  const handleClose = (e) => {
-    if (!e.target.closest(".popup")) {
-      setOpen(false);
-    }
-  };
+
+  // const handleClose = (e) => {
+  //   if (!e.target.closest(".popup")) {
+  //     setOpen(false);
+  //   }
+  // };
 
   const salonId = Session.get("salonId");
   const [isOpen, isSetOpen] = useState(false);

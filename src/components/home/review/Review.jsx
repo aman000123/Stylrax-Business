@@ -30,32 +30,32 @@ let data = [
     profession: "Freelancer, Noida",
   },
 
-//   {
-//     about: (
-//       <p>
-//         &quot;Love this platform! Easy sign-up, smooth appointments, and a safe
-//         space for freelancers and salons. Highly recommended for a hassle-free
-//         experience!&quot;
-//       </p>
-//     ),
-//     img: poster,
-//     name: "Anil Kumar",
-//     profession: "Salon Owner, Big Boss",
-//   },
+  //   {
+  //     about: (
+  //       <p>
+  //         &quot;Love this platform! Easy sign-up, smooth appointments, and a safe
+  //         space for freelancers and salons. Highly recommended for a hassle-free
+  //         experience!&quot;
+  //       </p>
+  //     ),
+  //     img: poster,
+  //     name: "Anil Kumar",
+  //     profession: "Salon Owner, Big Boss",
+  //   },
 ];
 
 export default function Review() {
   return (
     <>
       <div className={`${styles.main} d-flex align-items-center`}>
-        {data.map((value) => (
-          <div className={`${styles.child} d-flex flex-column`}>
+        {data.map((value, index) => (
+          <div key={index} className={`${styles.child} d-flex flex-column`}>
             <p >{value.about}</p>
             <div
               className={`${styles.flexDiv} d-flex justify-content-center align-items-center`}
             >
               <div className={styles.imgDiv}>
-                <img src={value.img} alt="" className={styles.image}/>
+                <img src={value.img} alt="" className={styles.image} />
               </div>
               <div
                 className={`${styles.textDiv} d-flex justify-content-between flex-column`}

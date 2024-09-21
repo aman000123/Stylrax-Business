@@ -4,10 +4,10 @@ import OTPInput from "react-otp-input";
 import Notify from "../../../utils/notify";
 import { useNavigate } from "react-router-dom";
 import { resendOtp, verifyOtp } from "../../../api/account.api";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { storeSalons, storeToken } from "../../../store/auth.slice";
 import PropTypes from "prop-types";
-import { Field, Formik, Form, ErrorMessage } from "formik";
+import { Formik, Form, ErrorMessage } from "formik";
 import { OTPSchema } from "../../../utils/schema";
 import PhoneInputComponent from "../login/PhoneInputComponent";
 
@@ -57,31 +57,31 @@ const Otp = ({ phoneNumber, timer, setTimer, isTimerActive, setIsTimerActive }) 
 
   const onSubmit = async (values, { setSubmitting }) => {
     try {
-      setSubmitting(true); 
+      setSubmitting(true);
       const verifyData = {
         countryCode: "91",
         phoneNumber: phoneNumber,
         otp: values.otp,
       };
 
-      const { data} = await verifyOtp(verifyData);
-      const salons = data.salons;
-      // console.log("salons::>",salons)
+      const { data } = await verifyOtp(verifyData);
+      // const salons = data.salons;
+      // // console.log("salons::>",salons)
 
-      const ProfileStatus = data.profileStatus;
+      // const ProfileStatus = data.profileStatus;
       // console.log("status::>", ProfileStatus)
       const authData = {
         token: data.authToken,
         email: data.email,
         phoneNumber: data.phoneNumber,
         role: data.role,
-        profileStatus:data.profileStatus,
-        userType:data.userType,
-        profileImageUrl:data.profile.profileImageUrl,
-        firstName:data.profile.firstName,
-        isVerifiedUser:  data.verified || false
+        profileStatus: data.profileStatus,
+        userType: data.userType,
+        profileImageUrl: data.profile.profileImageUrl,
+        firstName: data.profile.firstName,
+        isVerifiedUser: data.verified || false
       };
-      if(data.profileStatus===2 || 0){
+      if (data.profileStatus === 2 || 0) {
         dispatch(storeSalons({ salons: data.salons }));
 
       }
@@ -90,9 +90,9 @@ const Otp = ({ phoneNumber, timer, setTimer, isTimerActive, setIsTimerActive }) 
       // console.log(authData)
       if (data.verified) {
         navigate("/salon/dashboard");
-      }else{
-        navigate("/account/create" ,{ state: { token: data.authToken } });
-     }
+      } else {
+        navigate("/account/create", { state: { token: data.authToken } });
+      }
     } catch (error) {
       Notify.error(error.message);
     }
@@ -129,11 +129,11 @@ const Otp = ({ phoneNumber, timer, setTimer, isTimerActive, setIsTimerActive }) 
                 <label className="mb-1">Mobile Number</label>
                 <br />
                 <PhoneInputComponent value={phoneNumber}
-                  readOnly  style={{
+                  readOnly style={{
                     borderRadius: "20px",
                     boxShadow: "none",
                     outlineColor: "none",
-                  }}/>
+                  }} />
               </div>
               <div className="otp-box d-flex justify-content-center my-3">
                 <OTPInput
@@ -149,8 +149,8 @@ const Otp = ({ phoneNumber, timer, setTimer, isTimerActive, setIsTimerActive }) 
                 />
               </div>
               {submitting && timer < 30 && (
-              <div>Resend OTP in {30 - timer} seconds</div>
-            )}
+                <div>Resend OTP in {30 - timer} seconds</div>
+              )}
               {isTimerActive ? (
                 <div className={styles.timerDiv}>{`Resend OTP in ${timer} seconds`}</div>
               ) : (
@@ -170,12 +170,12 @@ const Otp = ({ phoneNumber, timer, setTimer, isTimerActive, setIsTimerActive }) 
                 Clear
               </p>
               <ErrorMessage
-                        component="div"
-                        name="otp"
-                        className={styles.error}
-                    />
+                component="div"
+                name="otp"
+                className={styles.error}
+              />
               <div>
-              <button
+                <button
                   type="submit"
                   className={styles.btn}
                   disabled={props.isSubmitting}

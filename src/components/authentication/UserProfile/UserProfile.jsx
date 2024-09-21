@@ -14,7 +14,7 @@ import clsx from 'clsx';
 import EditProfile from '../../editprofile/EditProfile';
 import Notify from '../../../utils/notify';
 import { getProfile } from '../../../api/user.api';
-import Image from '../../../ux/Image';
+
 
 const UserProfile = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -76,17 +76,17 @@ const UserProfile = () => {
     dispatch(removeSalonImage());
     dispatch(logOut());
 
-    Session.clear(); 
+    Session.clear();
     navigate("/home");
   };
 
   return (
     <div ref={menuRef}>
       <div onClick={toggleMenu} className={styles.avtar}>
-      {profile && (
-        <img src={profile} className={styles.avtar_img} alt="Profile" />
-      )}
-         {/* <Image
+        {profile && (
+          <img src={profile} className={styles.avtar_img} alt="Profile" />
+        )}
+        {/* <Image
             alt="Salon Main Gate"
             className={styles.avtar_img}
             imageUrl={profile}
@@ -104,7 +104,7 @@ const UserProfile = () => {
               <div className='d-flex' onClick={togglePopup}>
                 <PiUserCircleLight className={styles.icon} />
                 <li className={styles.profile}>View profile</li>
-                 {/* <li >View profile</li> */}
+                {/* <li >View profile</li> */}
               </div>
               <div className='d-flex' onClick={handleLogout}>
                 <IoLogOutOutline className={styles.icon} />

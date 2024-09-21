@@ -3,7 +3,6 @@ import { useSelector } from "react-redux";
 import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import { singleSalon } from "../../../api/salon.api";
-import Session from "../../../service/session";
 import Notify from "../../../utils/notify";
 import styles from "./RunningBanner.module.css";
 import { Skeleton } from "@mui/material"; // Import Skeleton from Material-UI

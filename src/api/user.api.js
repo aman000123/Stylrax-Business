@@ -1,7 +1,6 @@
 import HTTP from "../service/http";
 import { methods } from "../constants";
 import { __endpoint_userProfile } from "../constants/endpoints";
-import axios from "axios";
 
 export const updateProfile = (payload) => HTTP.Request(methods.PUT, __endpoint_userProfile, payload);
 export const getProfile = (payload) => HTTP.Request(methods.GET, __endpoint_userProfile, payload);

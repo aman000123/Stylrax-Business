@@ -258,7 +258,7 @@ const BusinessDetails = ({ onContinue, token }) => {
                         onChange={(otpValue) => {
                           setOtp(otpValue);
                           if (otpValue.length === 4) {
-                            handleOTPVerification(otpValue, values, {});
+                            handleOTPVerification(otpValue, values);
                           }
                         }}
                         numInputs={4}

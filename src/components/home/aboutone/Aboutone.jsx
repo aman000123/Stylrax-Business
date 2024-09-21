@@ -2,7 +2,6 @@ import barber1 from "../../../assets/image/barber1.png";
 import barber2 from "../../../assets/image/barber2.png";
 import barber3 from "../../../assets/image/barber3.png";
 import barber4 from "../../../assets/image/barber4.png";
-import doubleQuotes from "../../../assets/image/doubleQuotes.svg.png";
 import cross from "../../../assets/image/cross.png";
 import styles from "../aboutone/Aboutone.module.css";
 
@@ -27,17 +26,17 @@ export default function AboutOne() {
           {/* <img src={doubleQuotes} alt="" /> */}
         </div>
         <div className={styles.text}>
-            
-           <h3 className="text-white">Why join Stylrax?</h3> 
-          <p className="text-white mt-3">
+
+          <h3 className="text-white">Why join Stylrax?</h3>
+          <h3 className="text-white mt-3">
             <ul className={styles.menuList}>
-                <li>- Customer pool near your location</li>
-                <li> - Dynamic and supportive community</li>
-                <li>- Seamless appointment management </li>
-                <li>- Secure environment for professionals</li>
+              <li>- Customer pool near your location</li>
+              <li> - Dynamic and supportive community</li>
+              <li>- Seamless appointment management </li>
+              <li>- Secure environment for professionals</li>
             </ul>
-            
-             
+
+
             {/* At Stylrax, We are dedicated to
             <br /> revolutionizing the way freelancers and
             <br /> Salon owners grow their businesses.
@@ -46,7 +45,7 @@ export default function AboutOne() {
             <br /> opportunities for professionals to reach a<br /> wider
             audience and succeed in their
             <br /> endeavors */}
-          </p>
+          </h3>
         </div>
         <div className={styles.img2}>
           <img src={cross} alt="" />

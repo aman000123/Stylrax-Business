@@ -15,9 +15,9 @@ const TodayAppointment = () => {
     const monthIndex = currentDate.getMonth();
     const year = currentDate.getFullYear();
     const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-    const monthName = months[monthIndex];
+    //const monthName = months[monthIndex];
     const apiFormattedDate = `${day}-${(monthIndex + 1).toString().padStart(2, '0')}-${year}`;
-    const displayFormattedDate = `${day}-${monthName}-${year}`;
+    // const displayFormattedDate = `${day}-${monthName}-${year}`;
     // console.log("API Formatted Date ::", apiFormattedDate);
     // console.log("Display Formatted Date ::", displayFormattedDate);
 
@@ -69,10 +69,10 @@ const TodayAppointment = () => {
 
     const formatAppointmentDate = (dateString) => {
         if (!dateString) return '';
-        
+
         const parts = dateString.split('-');
         if (parts.length !== 3) return '';
-        
+
         const [day, month, year] = parts.map(part => parseInt(part, 10));
         const appointmentDate = new Date(year, month - 1, day);
 
@@ -82,7 +82,7 @@ const TodayAppointment = () => {
         const monthIndexFormatted = appointmentDate.getMonth();
         const yearFormatted = appointmentDate.getFullYear();
         const monthNameFormatted = months[monthIndexFormatted];
-        
+
         return `${dayFormatted}-${monthNameFormatted}-${yearFormatted}`;
     };
 

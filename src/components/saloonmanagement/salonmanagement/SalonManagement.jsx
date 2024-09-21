@@ -24,7 +24,6 @@ function SalonManagement() {
 
   const [salonDetails, setSalonDetails] = useState([]);
   const salonId = Session.get("salonId");
-  const name = Session.get("firstName");
   const homeService = Session.get('homeService') === 'true';  // Ensure this is a boolean
 
   useEffect(() => {
@@ -32,7 +31,7 @@ function SalonManagement() {
       try {
         const response = await singleSalon(salonId);
         const salonDetails = response.data;
-        const image = salonDetails.salon.mainGateImageUrl;
+        // const image = salonDetails.salon.mainGateImageUrl;
         // console.log("salon management::>", salonDetails.salon.mainGateImageUrl);
         setSalonDetails(salonDetails);
       } catch (error) {
@@ -129,9 +128,8 @@ function SalonManagement() {
                 {data.map((item) => (
                   <div
                     key={item.key}
-                    className={`${styles.btn} ${
-                      activeButton === item.name ? styles.active : ""
-                    }`}
+                    className={`${styles.btn} ${activeButton === item.name ? styles.active : ""
+                      }`}
                   >
                     <button onClick={() => handleButtonClick(item.name)}>
                       {item.name}

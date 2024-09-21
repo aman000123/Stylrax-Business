@@ -85,9 +85,7 @@ function GetServices({ id, categoryName }) {
                   onChange={handleGenderChange}
                   className={styles.genderFilter}
                 >
-                  <option value="">
-                    <em>All</em>
-                  </option>
+                  <option value="">  All </option>
                   <option value="Male">Male</option>
                   <option value="Female">Female</option>
                 </select>

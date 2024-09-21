@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { createSalon } from "../../../api/salon.api";
 import { getPresignedUrl } from "../../../api/file.api";
-import { salonAddress } from "../../../api/salon.api";
 import Section from "../../../ux/Section";
 import FormContainer from "../../account/FormContainer";
 import { Form, Formik } from "formik";
@@ -48,7 +47,7 @@ const initialValues = {
   provideHomeServices: false, // Add initial value for checkbox
 };
 
-const NewSalon = ({ onClose, updatedData }) => {
+const NewSalon = ({ onClose }) => {
   const [bannerImages, setBannerImages] = useState([]);
   const [galleryImages, setGalleryImages] = useState([]);
   const [verified, setVerified] = useState(false);
@@ -57,9 +56,9 @@ const NewSalon = ({ onClose, updatedData }) => {
     { value: "", text: "Select salon city" },
   ]);
   const [salonId, setSalonId] = useState(null);
-  const [showSalonDetails, setShowSalonDetails] = useState(false); 
+  const [showSalonDetails, setShowSalonDetails] = useState(false);
 
-  const handleOnSubmit = async (event, values) => {
+  const handleOnSubmit = async (values) => {
     //event.stopPropagation();
     try {
       const verifyForm = {
@@ -74,7 +73,7 @@ const NewSalon = ({ onClose, updatedData }) => {
         state: values.state,
         pincode: values.pinCode,
         serviceType: values.serviceType,
-        homeService: values.provideHomeServices, 
+        homeService: values.provideHomeServices,
         mainGateImageUrl: values.mainGateUrl,
         bannerImages: bannerImages,
         gallaryImages: galleryImages,
@@ -84,10 +83,10 @@ const NewSalon = ({ onClose, updatedData }) => {
       // console.log('verified',verified)
       Notify.success("New Salon Added");
       const newSalonId = res.data.id;
-      setSalonId(newSalonId); 
+      setSalonId(newSalonId);
       // updatedData();
       setVerified(verified);
-      setShowSalonDetails(true); 
+      setShowSalonDetails(true);
     } catch (error) {
       Notify.error(error.message);
     }
@@ -136,7 +135,7 @@ const NewSalon = ({ onClose, updatedData }) => {
   };
 
   useEffect(() => {
-    const handleClickOutside = (event) => {};
+    const handleClickOutside = () => { };
     document.addEventListener("mousedown", handleClickOutside);
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
@@ -276,7 +275,7 @@ const NewSalon = ({ onClose, updatedData }) => {
           </Section>
         </div>
       ) : (
-        <SalonBank salonId={salonId} onClose={onClose} verified={verified}/>
+        <SalonBank salonId={salonId} onClose={onClose} verified={verified} />
       )}
     </>
   );

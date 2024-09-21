@@ -70,7 +70,8 @@ function OurServices({ selectedSalon }) {
 
       {serviceGroups.map((group, groupIndex) => (
         <Row key={groupIndex} className="mt-2">
-          {group.map((service, serviceIndex) => (
+          {group.map((service) => (
+
             <Col key={service.id} className={styles.border}>
               <Paper className={styles.paper} elevation={0}>
                 <img
@@ -79,7 +80,9 @@ function OurServices({ selectedSalon }) {
                   alt={service.serviceName || "Service"}
                 />
                 <p className={styles.hairStyle}>
-                  {capitalizeFirstLetter(service.serviceName) || "?"}
+                  {service.serviceName
+                    ? capitalizeFirstLetter(service.serviceName)
+                    : "Unknown Service"}
                   <br />
                 </p>
               </Paper>

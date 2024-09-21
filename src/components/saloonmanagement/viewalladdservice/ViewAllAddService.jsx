@@ -12,7 +12,7 @@ import Session from "../../../service/session";
 import Swal from "sweetalert2";
 import Zoom from 'react-medium-image-zoom';
 import 'react-medium-image-zoom/dist/styles.css';
-function ViewAllAddService({ id, onClose,updatedData }) {
+function ViewAllAddService({ id, onClose, updatedData }) {
   const [staff, setStaff] = useState({});
   const [editable, setEditable] = useState(false);
   const [specialization, setSpecialization] = useState("");
@@ -20,7 +20,6 @@ function ViewAllAddService({ id, onClose,updatedData }) {
 
   const [showConfirmation, setShowConfirmation] = useState(false); // State for showing confirmation dialog
   const salonId = Session.get("salonId");
-
   useEffect(() => {
     const getSalonStaff = async () => {
       try {
@@ -84,11 +83,11 @@ function ViewAllAddService({ id, onClose,updatedData }) {
               <RxCross2 />
             </div>
             <Zoom>
-            <img
-              src={staff.profileImageUrl}
-              alt=""
-              className={styles.profile}
-            />
+              <img
+                src={staff.profileImageUrl}
+                alt=""
+                className={styles.profile}
+              />
             </Zoom>
           </div>
 
@@ -116,7 +115,7 @@ function ViewAllAddService({ id, onClose,updatedData }) {
               readOnly={!editable}
               style={{
                 // color: editable ? "#000" : "#888",
-                 borderColor: editable ? "#000" : "#888",
+                borderColor: editable ? "#000" : "#888",
               }}
               onChange={(e) => setSpecialization(e.target.value)}
             />
@@ -124,10 +123,10 @@ function ViewAllAddService({ id, onClose,updatedData }) {
               type="text"
               disabled={!editable}
               placeholder={!editable ? staff.role : "Role"}
-            // value={editable ? role : staff.role || ""}
+              // value={editable ? role : staff.role || ""}
               readOnly={!editable}
               style={{
-                color: editable ? "#000" : "#000",
+                color: editable ? "#000" : "inherit",
                 borderColor: editable ? "#000" : "#888",
               }}
               onChange={(e) => setRole(e.target.value)}
@@ -136,17 +135,17 @@ function ViewAllAddService({ id, onClose,updatedData }) {
               <div className="col">
                 <div>Adhar Front</div>
                 <Zoom>
-                <img
-                  src={staff.aadharFrontUrl}
-                  alt="adhar front"
-                  className="mb-3"
-                />
+                  <img
+                    src={staff.aadharFrontUrl}
+                    alt="adhar front"
+                    className="mb-3"
+                  />
                 </Zoom>
               </div>
               <div className="col">
                 <div>Adhar Back</div>
 
-<Zoom><img src={staff.aadharBackUrl} alt="adhar back"/></Zoom>
+                <Zoom><img src={staff.aadharBackUrl} alt="adhar back" /></Zoom>
               </div>
             </div>
           </form>

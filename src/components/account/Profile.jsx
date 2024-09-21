@@ -12,13 +12,12 @@ import { useState } from "react";
 import OTPInput from "react-otp-input";
 import { verifyEmail, verifyEmailOtp } from "../../api/account.api";
 import { FaCheckCircle } from "react-icons/fa";
-import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { useDispatch } from "react-redux";
 import { updateProfileStatus } from "../../store/auth.slice";
 
 const Profile = ({ onContinue, token }) => {
-  const [type, setType] = useState("text");
+  // const [type, setType] = useState("text");
   const [showOTP, setShowOTP] = useState(false);
   const [otp, setOtp] = useState("");
   const [isOTPVerified, setIsOTPVerified] = useState(false);
@@ -29,7 +28,7 @@ const Profile = ({ onContinue, token }) => {
     middleName: "",
     lastName: "",
     email: "",
-   dateOfBirth: "",
+    dateOfBirth: "",
     gender: "",
     panCardImageUrl: "",
     aadharFrontUrl: "",
@@ -73,7 +72,7 @@ const Profile = ({ onContinue, token }) => {
         middleName: values.middleName,
         lastName: values.lastName,
         email: values.email,
-       dateOfBirth: formattedDate,
+        dateOfBirth: formattedDate,
         gender: values.gender,
         panCardImageUrl: values.panCardImageUrl,
         aadharFrontUrl: values.aadharFrontUrl,
