@@ -110,7 +110,11 @@ export default function Popup(props) {
     }
   };
 
-  const services = appointmentDetails.services || [];
+
+  if (!appointmentDetails) {
+    return <p>Loading appointment details...</p>;
+  }
+  const services = appointmentDetails?.services || [];
   const { gst, totalWithGst } = calculateTotals(services);
 
   return (

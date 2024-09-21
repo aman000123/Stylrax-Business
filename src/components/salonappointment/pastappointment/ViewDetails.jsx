@@ -220,17 +220,17 @@ const ViewDetails = ({ isOpen, onClose, appointmentId }) => {
         </Col>
         <Row className={styles.mainDiv}>
           <h5>Services</h5>
-          {completed.services &&
-            completed.services.map((service) => (
-              <Row key={service.serviceId}>
-                <Col>
-                  <p className={styles.service}>{service.serviceName}</p>
-                </Col>
-                <Col>
-                  <p>{service.servicePrice}</p>
-                </Col>
-              </Row>
-            ))}
+
+          {completed && completed.services && completed.services.map((service) => (
+            <Row key={service.serviceId}>
+              <Col>
+                <p className={styles.service}>{service.serviceName}</p>
+              </Col>
+              <Col>
+                <p>{service.servicePrice}</p>
+              </Col>
+            </Row>
+          ))}
         </Row>
         <Row className={styles.mainDiv}>
           <h5>Payment Method</h5>

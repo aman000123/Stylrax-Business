@@ -115,39 +115,45 @@ const PastAppointment = () => {
               <div className={styles.userInfo}>
                 <Col md={4}>
                   <div>
-                    <img
-                      src={appointment.serviceType.toLowerCase() === 'male' ? maleImage : femaleImage}
-                      className={styles.userImage}
-                      alt="User"
-                    />
+                    {appointment?.serviceType && (
+                      <img
+                        src={appointment.serviceType.toLowerCase() === 'male' ? maleImage : femaleImage}
+                        className={styles.userImage}
+                        alt="User"
+                      />
+                    )}
                   </div>
                 </Col>
                 <Col md={4}>
-                  <p className={styles.user}>
-                    <span className={styles.userName}>
-                      {`${appointment.user.firstName} ${appointment.user.lastName}`}
-                    </span>
-                    <br />
-                    <span>{appointment.service}</span>
-                    <br />
-                    <span className={styles.appointTime}>
-                      {appointment.startTime} &nbsp;
-                      <span className={styles.gender}>
-                        {appointment.serviceType}
+                  {appointment?.user && ( // Check if appointment and user are defined
+                    <p className={styles.user}>
+                      <span className={styles.userName}>
+                        {`${appointment.user.firstName} ${appointment.user.lastName}`}
                       </span>
-                    </span>
-                    <br />
-                    <span className={styles.locationDistance}>
-                      {formatDate(appointment.date)}
-                    </span>
-                  </p>
+                      <br />
+                      <span>{appointment.service}</span>
+                      <br />
+                      <span className={styles.appointTime}>
+                        {appointment.startTime} &nbsp;
+                        <span className={styles.gender}>
+                          {appointment.serviceType}
+                        </span>
+                      </span>
+                      <br />
+                      <span className={styles.locationDistance}>
+                        {formatDate(appointment.date)}
+                      </span>
+                    </p>
+                  )}
                 </Col>
                 <Col md={4}>
-                  <p
-                    className={`${styles.status} ${getStatusClass(appointment?.status)}`}
-                  >
-                    {appointment.status}
-                  </p>
+                  {appointment?.status && ( // Check if appointment and status are defined
+                    <p
+                      className={`${styles.status} ${getStatusClass(appointment.status)}`}
+                    >
+                      {appointment.status}
+                    </p>
+                  )}
                 </Col>
               </div>
               <Col className={styles.invoice}>
