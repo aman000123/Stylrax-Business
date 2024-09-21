@@ -34,12 +34,12 @@ const Ongoing = () => {
     // console.log("id", appointmentId);
     setShowPopup(true);
   };
-  if(!pending || pending.length===0){
+  if (!pending || pending.length === 0) {
     return <div className={styles.noContent}>
       No cancelled appointments
     </div>
-   }
-   const getStatusClass = (status) => {
+  }
+  const getStatusClass = (status) => {
     switch (status) {
       case "PENDING":
         return styles.pending;
@@ -55,8 +55,8 @@ const Ongoing = () => {
         return styles.inService;
       case "IN_PROGRESS":
         return styles.inProgress;
-        case "CANCELLED":
-          return styles.cancelled;
+      case "CANCELLED":
+        return styles.cancelled;
       default:
         return "";
     }
@@ -69,58 +69,61 @@ const Ongoing = () => {
     const day = String(d.getDate()).padStart(2, '0');
     return `${day}-${month}-${year}`;
   };
+
   return (
     <>
       <Row className={styles.today}>
         {pending?.map((appointment, index) => (
-          <Col md={4} sm={6} xs={12} key={index}>
-            <Row className={`${styles.mainDiv} mb-2`}>
-              <div className={styles.userInfo}>
-                <Col md={4}>
-                  <div>
-                    <img
-                     src={appointment.serviceType.toLowerCase() === 'male' ? maleImage : femaleImage }
-                      // src={appointment.user.profileImageUrl}
-                      className={styles.userImage}
-                      alt="User"
-                    />
-                  </div>
-                </Col>
-                <Col md={4}>
-                  <p className={styles.user}>
-                    <span className={styles.userName}>
-                      {`${appointment.user.firstName} ${appointment.user.lastName}`}{" "}
-                    </span>
-                    <br />
-                    <span>{appointment.service}</span>
-                    <br />
-                    <span className={styles.appointTime}>
-                      {appointment.startTime}{" "}&nbsp;
-                      <span className={styles.gender}>
-                        {appointment.serviceType}
+          appointment ? (
+            <Col md={4} sm={6} xs={12} key={index}>
+              <Row className={`${styles.mainDiv} mb-2`}>
+                <div className={styles.userInfo}>
+                  <Col md={4}>
+                    <div>
+                      <img
+                        src={appointment.serviceType.toLowerCase() === 'male' ? maleImage : femaleImage}
+                        // src={appointment.user.profileImageUrl}
+                        className={styles.userImage}
+                        alt="User"
+                      />
+                    </div>
+                  </Col>
+                  <Col md={4}>
+                    <p className={styles.user}>
+                      <span className={styles.userName}>
+                        {`${appointment.user?.firstName ?? ''} ${appointment.user?.lastName ?? ''}`}{" "}
                       </span>
-                    </span>
+                      <br />
+                      <span>{appointment.service}</span>
+                      <br />
+                      <span className={styles.appointTime}>
+                        {appointment.startTime}{" "}&nbsp;
+                        <span className={styles.gender}>
+                          {appointment.serviceType}
+                        </span>
+                      </span>
 
-                    <br />
-                    <span>{appointment.location}</span>
-                    <span className={styles.locationDistance}>
-                      {formatDate(appointment.date)}
-                    </span>
-                  </p>
-                  {/* <button className={styles.accept}>Accept</button> */}
-                </Col>
-                <Col md={4}>
-                <p className={`${styles.status} ${getStatusClass(appointment?.status)}`}>                    {appointment.status}
-                    <br />
-                    <Link onClick={() => handleViewDetails(appointment.id)}>
-                      View Details
-                    </Link>
-                  </p>
-                  {/* <button className={styles.decline}>Decline</button> */}
-                </Col>
-              </div>
-            </Row>
-          </Col>
+                      <br />
+                      <span>{appointment.location}</span>
+                      <span className={styles.locationDistance}>
+                        {formatDate(appointment.date)}
+                      </span>
+                    </p>
+                    {/* <button className={styles.accept}>Accept</button> */}
+                  </Col>
+                  <Col md={4}>
+                    <p className={`${styles.status} ${getStatusClass(appointment?.status)}`}>                    {appointment.status}
+                      <br />
+                      <Link onClick={() => handleViewDetails(appointment.id)}>
+                        View Details
+                      </Link>
+                    </p>
+                    {/* <button className={styles.decline}>Decline</button> */}
+                  </Col>
+                </div>
+              </Row>
+            </Col>
+          ) : null
         ))}
       </Row>
       {showPopup && (
